@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style lang="css">
+    #content {
+      position: relative;
+      left: 50%;
+      margin-left: -150px;
+      margin-top: 100px;
+      width: 300px;
+      height: 300px;
+      background-color: #ccc;
+    }  
+  </style>
+</head>
+<body>
+  <div id="content">
+  </div>
+  <script>
+    (function () {
+      const content = document.getElementById('content');
+
+      content.addEventListener('click', e => {
+        console.log('click event!');
+      });
+
+      content.addEventListener('touchstart', e => {
+        e.preventDefault();
+        console.log('touch start: ', e.touches, e.type); 
+        // touches = e.touches[0];
+        // console.log(touches.pageX, touches.pageY);
+      });
+
+      content.addEventListener('touchmove', e => {
+        console.log('touch move: ', e.touches, e.type);
+        // touches = e.touches[0];
+        // console.log(touches.pageX, touches.pageY);   
+      });
+
+      content.addEventListener('touchend', e => {
+        console.log('touch end:', e.touches, e.type);
+      });
+
+      content.addEventListener('touchcancel', e => {
+        console.log('touch cancel:', e.touches, e.type);
+      });
+
+      /* setTimeout(() => {
+        alert('hello!');
+      }, 1000); */
+
+    })();
+  </script>
+</body>
+</html>

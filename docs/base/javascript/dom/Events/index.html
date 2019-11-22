@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style lang="css">
+    #list {
+      width: 100%;
+      height: 100px;
+      background-color: #ccc;
+    }
+    #item {
+      width: 100px;
+      height: 200px;
+      background-color: red;
+    }
+    #sub-item {
+      width: 100px;
+      height: 50px;
+      background-color: yellow;
+    }
+    #float {
+      z-index: -1;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div id="list">
+    <div id="item">
+      <div id="sub-item"></div>
+    </div>
+  </div>
+  <div id="float"></div>
+  <script>
+    (function() {
+      const list = document.getElementById('list');
+      const item = document.getElementById('item');
+      const sub_item = document.getElementById('sub-item');
+      const float = document.getElementById('float');
+
+      function handleClick() {
+        console.log('In list.');
+      }
+
+      list.onclick = handleClick;
+
+
+      item.addEventListener('click', e => {
+        console.log('In item.', e.eventPhase, e.bubbles);
+      }, true);
+
+      sub_item.addEventListener('click', e => {
+        console.log('In sub-item.', e.eventPhase, e.bubbles);
+      }, true);
+
+
+      /* list.addEventListener('mousedown', () => {
+        console.log('mousedown');
+      })
+
+      list.addEventListener('mouseup', () => {
+        console.log('mouseup');
+      }) */
+
+      /* list.addEventListener('mousemove', () => {
+        console.log('mousemove');
+      }) */
+
+      /* list.addEventListener('mouseenter', () => {
+        console.log('mouseenter');
+      }) */
+
+      /* list.addEventListener('mouseleave', () => {
+        console.log('mouseleave');
+      }) */
+
+      /* list.addEventListener('mouseover', () => {
+        console.log('mouseover');
+      })
+
+      list.addEventListener('mouseout', () => {
+        console.log('mouseout');
+      }) */
+
+      /* list.addEventListener('contextmenu', () => {
+        console.log('你点击了鼠标右键！')
+      }) */
+
+    })();
+  </script>
+</body>
+</html>
