@@ -7,7 +7,7 @@
 3. 创建数据文件目录 'H:\Users\mongodb\data'，用于保存数据库
 4. 在控制台使用命令启动 MongoDB：
 
-```shell
+```powershell
 mongod -dbpath H:/Users/mongodb/data
 ```
 
@@ -15,13 +15,13 @@ mongod -dbpath H:/Users/mongodb/data
 
 **启动命令：**
 
-```shell
+```powershell
 mongod -dbpath H:/Users/mongodb/data
 ```
 
 **停止命令：**
 
-```shell
+```powershell
 use admin
 db.shutdownServer()
 ```

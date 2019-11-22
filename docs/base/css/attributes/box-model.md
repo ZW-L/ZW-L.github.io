@@ -9,29 +9,28 @@
 + BFC
 + flex
 
-### CSS 属性
+## CSS 属性
 
 属性|取值|类似属性|说明
 -|-|-|-
-box-sizing|'content-box', 'border-box'|none|设置盒子的组成模式
-width|length, percentage|min-width, max-width, device-width|设置元素的宽度
-height|length, percentage|min-height, max-height, device-height|设置元素的高度
-margin|length, percentage|margin-[ top、right、bottom、left ]|设置元素的外边距，<font color='red'>可以为负值</font>
-padding|length, percentage|padding-[ top、right、bottom、left ]|设置元素的内边距
-border|exp: '1px solid red'|border-[ top、left、bottom、right ]-[ width、style、color ]|设置边框的样式
-box-shadow||none|设置元素的阴影
+`box-sizing`|`content-box`, `border-box`|none|设置盒子的组成模式
+`width`|`<length>`<br>`<percentage>`|min-width, max-width, device-width|设置元素的宽度
+`height`|`<length>`<br>`<percentage>`|min-height, max-height, device-height|设置元素的高度
+`margin`|`<length>`<br>`<percentage>`|margin-[ top、right、bottom、left ]|设置元素的外边距，<font color='red'>可以为负值</font>
+`padding`|`<length>`<br>`<percentage>`|padding-[ top、right、bottom、left ]|设置元素的内边距
+`border`|`1px solid red`|border-[ top、left、bottom、right ]-[ width、style、color ]|设置边框的样式
+`box-shadow`|-|-|设置元素的阴影
 
+::: tip 说明：
++ 对于 `box-sizing: content-box;` 的正常盒子(没有受到 `flex` 等布局形式的影响)，设置 `margin/padding/border` 均会撑大盒子的宽高，其盒子宽高为：
+  + box_width = margin-left + border-left + padding-left + width + padding-right + border-right + margin-right
+  + box_height = margin-top + border-top + padding-top + height + padding-bottom + border-bottom + margin-bottom
 
-&emsp;&emsp;对于 `box-sizing: content-box;` 的正常盒子(没有受到 `flex` 等布局形式的影响)，设置 `margin/padding/border` 均会撑大盒子的宽高，其盒子宽高为：
++ 对于 `box-sizing: border-box;` 的正常盒子，显式的 `width/height` 属性已经包含了 `padding/border` 在内，设置额外的 `padding/border` 只会让盒子的 `content` 缩小，不会撑大盒子的宽高，其盒子宽高为：
+  + box_width = margin-left + width + margin-right
+  + box_height = margin-top + height + margin-bottom
+:::
 
-+ box_width = margin-left + border-left + padding-left + width + padding-right + border-right + margin-right
-+ box_height = margin-top + border-top + padding-top + height + padding-bottom + border-bottom + margin-bottom
-
-
-&emsp;&emsp;对于 `box-sizing: border-box;` 的正常盒子，显式的 `width/height` 属性已经包含了 `padding/border` 在内，设置额外的 `padding/border` 只会让盒子的 `content` 缩小，不会撑大盒子的宽高，其盒子宽高为：
-
-+ box_width = margin-left + width + margin-right
-+ box_height = margin-top + height + margin-bottom
 
 
 
@@ -62,6 +61,7 @@ box-shadow||none|设置元素的阴影
 **1.防止父元素高度塌陷**
 
 &emsp;&emsp;当一个盒子没有设置固定的高度时，若它的唯一子元素设置浮动，则会出现高度塌陷：
+
 ```html
 <div class="content">
   <div class="box"></div>
@@ -84,6 +84,7 @@ box-shadow||none|设置元素的阴影
 
 
 &emsp;&emsp;为父元素创建 BFC，这样计算父元素高度时，浮动元素参与计算(除了设置 `position` 属性，还可以设置 `float`/`display`/`overflow` 等，实际效果可能有少许不同，但是都为父元素创建了 BFC 并且防止了高度塌陷)。
+
 ```css
 .content {
   position: absolute;

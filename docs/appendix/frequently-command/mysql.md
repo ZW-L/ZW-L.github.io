@@ -2,30 +2,30 @@
 
 命令行启动(管理员模式)：
 
-```
-// root 为用户, -p 指代密码登录
+```powershell
+# root 为用户, -p 指代密码登录
 $ mysql -u root -p
 ```
 
 ## 管理
 
-```mysql
-// 1.显示所有数据库
+```powershell
+# 1.显示所有数据库
 SHOW DATABASES;
 
-// 2.选择数据库
+# 2.选择数据库
 use dbname;
 
-// 3.创建数据库
+# 3.创建数据库
 CREATE DATABASE dbname;
 
-// 4.删除数据库
+# 4.删除数据库
 DROP DATABASE dbname;
 
-// 5.显示所选数据库内的所有数据表
+# 5.显示所选数据库内的所有数据表
 SHOW TABLES;
 
-// 6.创建数据表
+# 6.创建数据表
 CREATE TABLE tbname(
   id INT(6) AUTO_INCREMENT NOT NULL PRIMARY KEY,
   age INT(3) NOT NULL,
@@ -33,29 +33,29 @@ CREATE TABLE tbname(
   reg_date TIMESTAMP
 );
 
-// 7.删除数据表
+# 7.删除数据表
 DROP TABLE tbname;
 
-// 8.显示数据表的属性等信息
+# 8.显示数据表的属性等信息
 SHOW COLUMNS FROM tbname;
 
-// 9.显示数据表的详细索引，包括主键
+# 9.显示数据表的详细索引，包括主键
 SHOW INDEX FROM tbname;
 
-// 10.查看表结构
+# 10.查看表结构
 DESC tbname;
 
-// 11.查看创建表的SQL语句
+# 11.查看创建表的SQL语句
 SHOW CREATE TABLE tbname;
 
-// 12.修改表
-// 12-1.增加列
+# 12.修改表
+# 12-1.增加列
 ALTER TABLE tbname ADD COLUMN age INT(3) NOT NULL; 
 
-// 12-2.删除列
+# 12-2.删除列
 ALTER TABLE tbname DROP COLUMN age;
 
-// 12-3.修改列
+# 12-3.修改列
 ALTER TABLE tbname CHANGE COLUMN age user_age INT(3) NOT NULL;
 ```
 
@@ -141,22 +141,22 @@ ALTER TABLE tbname CHANGE COLUMN age user_age INT(3) NOT NULL;
 
 ### 增
 
-```mysql
-// 1.插入单行
+```powershell
+# 1.插入单行
 INSERT INTO tbname(field1 [, field2]) VALUES(value1 [, value2]);
 ```
 
 ### 删
 
-```mysql
-// 1.删除满足条件的行
+```powershell
+# 1.删除满足条件的行
 DELETE FROM tbname WHERE age=24;
 ```
 
 ### 改
 
-```mysql
-// 1.更新满足条件的
+```powershell
+# 1.更新满足条件的
 UPDATE tbname SET age=18 WHERE name='Anna';
 ```
 
@@ -176,57 +176,57 @@ UPDATE tbname SET age=18 WHERE name='Anna';
 + 多表查询
 + 连接查询
 
-```mysql
-// 1.选择所有
+```powershell
+# 1.选择所有
 SELECT * FROM tbname;
 
-// 2.选择部分字段
+# 2.选择部分字段
 SELECT age, name FROM tbname;
 
-// 3.使用 WHERE 选择满足条件的部分
+# 3.使用 WHERE 选择满足条件的部分
 SELECT * FROM tbname WHERE <表达式>;
 
-// 4.使用 LIKE 选择包含(开头结尾中间)
+# 4.使用 LIKE 选择包含(开头结尾中间)
 SELECT * FROM tbname WHERE name LIKE 'Anna%';
 
-// 5.选择后排序 ORDER BY
+# 5.选择后排序 ORDER BY
 SELECT * FROM tbname ORDER BY <字段1> [, <字段2>...];
 
-// 6.分页查询
+# 6.分页查询
 SELECT * FROM tbname 
 ORDER BY <字段1> [, <字段2>...]
 LIMIT <条目数> OFFSET <偏移量>;
 
-// 7.聚合查询
-// 7-1.COUNT 显示表行数，可以设置别名
+# 7.聚合查询
+# 7-1.COUNT 显示表行数，可以设置别名
 SELECT COUNT(<字段>) [alias] FROM tbname [<子句>];
 SELECT COUNT(user_age) age FROM tbname WHERE age>20;
 
-// 7-2.AVG 求取平均数
+# 7-2.AVG 求取平均数
 SELECT AVG(<字段>) [alias] FROM tbname [<子句>];
 SELECT AVG(age) age_average FROM tbname;
 
-// 7-3.SUM
+# 7-3.SUM
 
 
-// 7-4.MAX
+# 7-4.MAX
 
 
-// 7-5.MIN
+# 7-5.MIN
 
-// 7-6.GROUP BY 分组聚合
+# 7-6.GROUP BY 分组聚合
 SELECT [<字段>,...] COUNT(<字段>) [alia] FROM tbname 
 GROUP BY <字段> [,<字段>...];
 SELECT COUNT(*) num FROM tbname GROUP BY class_id;
 SELECT class_id, gender, COUNT(*) num FROM tbname 
 GROUP BY class_id, gender;
 
-// 8.多表查询
-// 8-1.笛卡尔积，n*m*... 条记录
+# 8.多表查询
+# 8-1.笛卡尔积，n*m*... 条记录
 SELECT * FROM <表1>, <表1> [,..];
 SELECT * FROM users, cities;
 
-// 8-2.别名
+# 8-2.别名
 SELECT 
 	users.id uid,
 	users.name uname,
@@ -234,7 +234,7 @@ SELECT
 	cities.name cname,
 FROM users, cities;
 
-// 8-3 别名优化
+# 8-3 别名优化
 SELECT 
 	u.id uid,
 	u.name uname,
@@ -242,7 +242,7 @@ SELECT
 	c.name cname,
 FROM users s, cities c;
 
-// 8-4.添加 WHERE 子句筛选结果
+# 8-4.添加 WHERE 子句筛选结果
 SELECT 
 	u.id uid,
 	u.name uname,
@@ -251,11 +251,11 @@ SELECT
 FROM users s, cities c
 WHERE age<30 AND cities='shenzhen';
 
-// 9.连接查询
-// 9-1.同一个表中
+# 9.连接查询
+# 9-1.同一个表中
 SELECT age, name FROM tbname;
 
-// 9-2.不同一个表中, INNER JOIN, 并使用 ON 指示两个表中相同的部分实现连接
+# 9-2.不同一个表中, INNER JOIN, 并使用 ON 指示两个表中相同的部分实现连接
 SELECT 
 	u.id uid,
 	u.name uname,
@@ -265,7 +265,7 @@ FROM users s
 INNER JOIN cities c
 ON u.city_name=c.name
 
-// 9-3.RIGHT OUTER JOIN
+# 9-3.RIGHT OUTER JOIN
 SELECT 
 	u.id uid,
 	u.name uname,
@@ -275,7 +275,7 @@ FROM users s
 RIGHT OUTER JOIN cities c
 ON u.city_name=c.name
 
-// 9-4.LEFT OUTER JOIN
+# 9-4.LEFT OUTER JOIN
 SELECT 
 	u.id uid,
 	u.name uname,
@@ -285,7 +285,7 @@ FROM users s
 LEFT OUTER JOIN cities c
 ON u.city_name=c.name
 
-// 9-4.FULL OUTER JOIN
+# 9-4.FULL OUTER JOIN
 SELECT 
 	u.id uid,
 	u.name uname,
@@ -306,20 +306,20 @@ ON u.city_name=c.name
 
 附加表达式，匹配满足条件的结果
 
-```mysql
-// 语法
+```powershell
+# 语法
 SELECT * FROM tbname WHERE <表达式>;
-
-/* 一般表达式：
-age=24 | name='Alice'
-age>24 | name>'Alice'
-age>=24 
-age<24 
-age<=24
-age<>24
-name LIKE '%an%'
-*/
 ```
+
+**一般表达式：**
+
++ age=24 | name='Alice'
++ age>24 | name>'Alice'
++ age>=24 
++ age<24 
++ age<=24
++ age<>24
++ name LIKE '%an%'
 
 
 
@@ -327,19 +327,19 @@ name LIKE '%an%'
 
 实现简易的包含匹配，更多的匹配模式可以用正则。
 
-```mysql
-// 1.以固定值开头
+```powershell
+# 1.以固定值开头
 SELECT * FROM tbname WHERE name LIKE ‘An%’;
 
-// 2.以固定值结尾
+# 2.以固定值结尾
 SELECT * FROM tbname WHERE name LIKE ‘%nd’;
 
-// 3.中间包含固定值
+# 3.中间包含固定值
 SELECT * FROM tbname WHERE name LIKE ‘%en%’;
 
-// 4.不使用 % 
+# 4.不使用 % 
 SELECT * FROM tbname WHERE name LIKE 'An';
-// 等同于
+# 等同于
 SELECT * FROM tbname WHERE name='An';
 ```
 
@@ -349,14 +349,14 @@ SELECT * FROM tbname WHERE name='An';
 
 用于排序，默认为升序(ASC)，也可以指定降序(DESC)。
 
-```mysql
-// 1.升序
+```powershell
+# 1.升序
 SELECT * FROM tbname WHERE score>60 ORDER BY score;
 
-// 2.降序
+# 2.降序
 SELECT * FROM tbname WHERE score>60 ORDER BY score DESC;
 
-// 3.设定多个排序规则
+# 3.设定多个排序规则
 SELECT * FROM tbname WHERE score>60 ORDER BY score DESC, age;
 ```
 
@@ -366,7 +366,7 @@ SELECT * FROM tbname WHERE score>60 ORDER BY score DESC, age;
 
 使用正则进行匹配。
 
-```mysql
+```powershell
 SELECT * FROM tbname WHERE name REGEXP 'Anna|Alice';
 ```
 
@@ -378,19 +378,19 @@ SELECT * FROM tbname WHERE name REGEXP 'Anna|Alice';
 
 + 无记录则增加，有记录则删除后增加
 
-```mysql
+```powershell
 REPLACE INTO tbname(age, name) VALUES(22, 'Anna');
 ```
 
 + 无记录则增加，有记录则忽略
 
-```mysql
+```powershell
 INSERT IGNORE INTO tbname(age, name) VALUES(22, 'Anna');
 ```
 
 + 无记录则增加，有记录则更新
 
-```mysql
+```powershell
 INSERT INTO tbname(age, name, city) VALUES(23, 'Anna', 'shenzhen') 
 ON DUPLICATE UPDATE age=23, city='guangzhou';
 ```
@@ -401,13 +401,13 @@ ON DUPLICATE UPDATE age=23, city='guangzhou';
 
 + 创建快照
 
-```mysql
+```powershell
 CREATE TABLE tbname_2  SELECT * FROM tbname_1 WHERE age>20;
 ```
 
 + 将表查询结果写入另一个数据表
 
-```mysql
+```powershell
 INSERT INTO tbname_2 (class_id, average) 
 SELECT class_id, AVG(score) FROM tbname_1 
 GROUP BY class_id;
@@ -421,13 +421,13 @@ GROUP BY class_id;
 
 + 导出到 `.txt` 文件
 
-```mysql
+```powershell
 SELECT * FROM tbname INTO OUTFILE 'data.txt';
 ```
 
 + 导出为 `CSV` 格式
 
-```mysql
+```powershell
 SELECT * FROM tbname OUTFILE 'data.txt'
 FIELDS TERMINATED BY ',' ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n';

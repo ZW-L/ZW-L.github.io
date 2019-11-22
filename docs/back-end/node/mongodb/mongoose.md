@@ -212,6 +212,8 @@ Users.create([user1, user2, user3], function(err) {
 + 使用 Model 对象的 create() 方法添加文档
 
 
+
+
 ## 对象
 
 ### Query
@@ -276,9 +278,11 @@ size([path], value)|匹配数组字段为指定大小的文档。
 
 
 ### Document
+
 &emsp;&emsp;使用 Model 对象时，回调函数中的文档属于 Mongoose 的 `Document` 对象，其继承于 Model 对象，代表集合中的文档。可以对 Document 对象使用一系列的方法来操作文档。
 
 **可以在 Document 对象上使用的属性和方法**：
+
 <center>属性/方法</center>|<center>说明</center>
 ---|---
 id|包含文档的 _id 值。
@@ -329,6 +333,7 @@ invalidate(path, msg, value)|将路径标志为无效，从而导致验证失败
 + Document 对象的 remove() 删除单个文档
 
 ### 聚合文档
+
 &emsp;&emsp;Model 对象提供了 aggregate() 方法进行聚合操作，同样回调函数是可选的，缺省时会返回一个 Aggregate 对象，可继续进行管道操作。
 **可在 Aggregate 对象上使用的方法**：
 <center>方法</center>|<center>说明</center>
@@ -348,33 +353,39 @@ unwind(arrFields)|通过为数组的每个值在聚合集中建立一个新的�
 ## 验证框架
 
 &emsp;&emsp;可以为字段添加验证函数，当读取或保存文件时，会执行验证函数:
+
 ```js
 Users.mySchema.path('name').validate(function(val) {
   return val.length < 20
 }, 'Name is too long!')
 ```
+
 当验证结果为 false 时，第二个字符串参数会写进错误对象的 error 字符串。错误对象具有以下字段：
-+ error.errors.<field>.message
-+ error.errors.<field>.type
-+ error.errors.<field>.path
-+ error.errors.<field>.value
-+ error.name
-+ error.message
+
++ `error.errors.<field>.message`
++ `error.errors.<field>.type`
++ `error.errors.<field>.path`
++ `error.errors.<field>.value`
++ `error.name`
++ `error.message`
 
 
 ## 中间件函数
 
 &emsp;&emsp;Mongoose 提供一个中间件框架，在 **Document** 对象上使用 `init()`、 `validate()`、 `save()`、 `remove()` 方法的前后，会分别执行 `pre` 和 `post` 函数。但二者有些区别：
+
 + `pre` 函数可以被同步或异步执行；同步时它的回调函数接收一个 next 参数；异步时额外接收一个 done 参数。
 + `post` 函数的回调函数接收 Document 对象(或对象数组)。
 
 而且：
+
 + 这两个中间件函数要在模型编译前使用才有效
 + 只有 Document 对象使用上述方法才会触发，Model 对象或 Query 对象的 `remove()` 不会触发。
 
 ### pre
 
 同步：
+
 ```js
 mySchema.pre('save', function(next) {
   console.log('...')
@@ -383,6 +394,7 @@ mySchema.pre('save', function(next) {
 ```
 
 异步：
+
 ```js
 // 还要用一个 true 指明异步使用
 mySchema.pre('save', true, function(next, done) {

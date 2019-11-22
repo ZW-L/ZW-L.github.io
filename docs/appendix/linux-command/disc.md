@@ -1,10 +1,10 @@
 ## 常用命令
-+ [df](#command-df)
-+ [du](#command-du)
-+ [fsck](#command-fsck)
-+ [sync](#command-sync)
-+ [eject](#command-eject)
-+ [mount/umount](#command-mount/umount)
++ `df`
++ `du`
++ `fsck`
++ `sync`
++ `eject`
++ `mount`/`umount`
 
 ## df
 
@@ -12,7 +12,7 @@
 
 **语法：**
 
-```shell
+```powershell
 df [option]
 ```
 
@@ -33,7 +33,7 @@ df [option]
 
 **语法：**
 
-```shell
+```powershell
 du [option] 文件/目录
 ```
 
@@ -52,7 +52,7 @@ du [option] 文件/目录
 
 **语法：**
 
-```shell
+```powershell
 fsck [option] [-t <文件系统类型>] [设备名]
 ```
 
@@ -73,7 +73,7 @@ fsck [option] [-t <文件系统类型>] [设备名]
 
 **语法：**
 
-```shell
+```powershell
 sync
 ```
 
@@ -89,7 +89,7 @@ sync
 
 **语法：**
 
-```shell
+```powershell
 eject [option] 设备名
 ```
 
@@ -111,7 +111,7 @@ eject [option] 设备名
 
 **语法：**
 
-```shell
+```powershell
 mount [option] [-L<标签>] [-o<选项>] [-t<文件系统类型>] [设备名] [挂载点]
 或
 umount [挂载点]

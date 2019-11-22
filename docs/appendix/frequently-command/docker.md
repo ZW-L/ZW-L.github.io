@@ -28,7 +28,7 @@
 
 **语法：**
 
-```shell
+```powershell
 docker pull [OPTIONS] NAME[:TAG|@DIGEST]
 ```
 
@@ -47,7 +47,7 @@ docker pull [OPTIONS] NAME[:TAG|@DIGEST]
 
 **语法：**
 
-```shell
+```powershell
 docker images [OPTIONS] [REPOSITORY[:TAG]]
 ```
 
@@ -68,7 +68,7 @@ docker images [OPTIONS] [REPOSITORY[:TAG]]
 
 **语法：**
 
-```shell
+```powershell
 docker create [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 
@@ -84,7 +84,7 @@ docker create [OPTIONS] IMAGE [COMMAND] [ARG...]
 
 **语法：**
 
-```shell
+```powershell
 docker start [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
@@ -104,7 +104,7 @@ docker start [OPTIONS] CONTAINER [CONTAINER...]
 
 **语法：**
 
-```shell
+```powershell
 docker ps [OPTIONS]
 ```
 
@@ -127,7 +127,7 @@ docker ps [OPTIONS]
 
 **语法：**
 
-```shell
+```powershell
 docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 ```
 
@@ -150,7 +150,7 @@ docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 
 **语法：**
 
-```shell
+```powershell
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 
@@ -170,7 +170,7 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
 **语法：**
 
-```shell
+```powershell
 docker stop [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
@@ -187,7 +187,7 @@ docker stop [OPTIONS] CONTAINER [CONTAINER...]
 
 **语法：**
 
-```shell
+```powershell
 docker restart [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
@@ -203,7 +203,7 @@ docker restart [OPTIONS] CONTAINER [CONTAINER...]
 
 **语法：**
 
-```shell
+```powershell
 docker rm [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
@@ -221,7 +221,7 @@ docker rm [OPTIONS] CONTAINER [CONTAINER...]
 
 **语法：**
 
-```shell
+```powershell
 docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 ```
 
@@ -240,7 +240,7 @@ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 
 **语法：**
 
-```shell
+```powershell
 docker push [OPTIONS] NAME[:TAG]
 ```
 

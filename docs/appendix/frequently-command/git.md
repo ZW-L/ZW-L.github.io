@@ -19,7 +19,7 @@
 
 使用 `Git` 的第一步是设置以下用户名和邮箱：
 
-```shell
+```powershell
 $ git config --global user.name "Alice"
 $ git config --global user.email "Alice@example.com"
 ```
@@ -29,7 +29,7 @@ $ git config --global user.email "Alice@example.com"
 
 + `git init`：初始化 `Git` 仓库
 
-```shell
+```powershell
 $ git init
 ```
 
@@ -42,7 +42,7 @@ $ git init
 + `git diff`：查看尚未暂存的文件更新了哪些部分，可选参数
   + `--staged`/`--cached`：查看已暂存的将要添加到下次提交里的内容
 
-```shell
+```powershell
 # git status
 $ git status
 $ git status -s
@@ -59,7 +59,7 @@ $ git diff --staged
 + `git rm`：
 + `git mv`：
 
-```shell
+```powershell
 # git add
 $ git add hello.txt
 $ git add *.js
@@ -74,7 +74,7 @@ $ git add .
   + `git commit -m <commit-word>`：快捷提交
   + `git commit -a -m <commit-word>`：将跟踪的文件暂存，并快捷提交
 
-```shell
+```powershell
 $ git commit
 $ git commit -m "fix some problem"
 $ git commit -a -m "fix some problem"
@@ -86,7 +86,7 @@ $ git commit -a -m "fix some problem"
 + `git reset`
 + `git revert`
 
-```shell
+```powershell
 
 ```
 
@@ -99,7 +99,7 @@ $ git commit -a -m "fix some problem"
   + `git log -p -2`：显示每次提交的差异，并且只显示最后两次的提交
 + `git reflog`：
 
-```shell
+```powershell
 $ git log
 $ git log stat
 $ git log -p -2
@@ -114,7 +114,7 @@ $ git log -p -2
 + `git pull`：
 + `git push`：
 
-```shell
+```powershell
 $ git remote  // 列出所有指定的远程仓库简写
 $ git remote -v  // 显示远程仓库的简写及其 URL
 $ git remote add <short-name> <url>  // 添加远程仓库，并指定别名
@@ -133,7 +133,7 @@ $ git push  // 默认推送至 origin 仓库的 master 分支
 
 + `git stash`
 
-```shell
+```powershell
 
 ```
 
@@ -151,7 +151,7 @@ $ git push  // 默认推送至 origin 仓库的 master 分支
 + `git rebase`：分支变基，用法：
 + `git cherry-pick`：挑选合并，用法：
 
-```shell
+```powershell
 $ git branch
 $ git branch hotfix
 $ git branch -d hotfix
@@ -166,6 +166,6 @@ $ git checkout -b hotfix
 + `git tag`
 + `git show`
 
-```shell
+```powershell
 
 ```

@@ -27,12 +27,12 @@
 |`$('.className')`|类选择器|
 |`$('p')`|元素选择器|
 |`$('.class1, .class2')`|选中多个元素|
-|<font color="orange">层级选择</font>：子、后代、兄弟元素||
+|<font color="orange">层级选择</font>||
 |`$('div > p')`|直接子元素|
 |`$('div p')`|后代元素|
 |`$('.prev + .next')`|下一个兄弟元素|
 |`$('.prev ~ .siblings')`|所有兄弟元素|
-|<font color="orange">基本筛选</font>：对前一组匹配结果筛选||
+|<font color="orange">基本筛选</font>||
 |`:not(selector)`|除括号外的所有元素|
 |`:first`|第一个元素|
 |`:last`|最后一个元素|
@@ -46,12 +46,12 @@
 |`:target`|由文档 URI 的格式化识别码表示的目标元素|
 |`:lang`|指定语言的所有元素|
 |`:header`|所有 `<h1>` ~ `<h6>` 元素|
-|<font color="orange">内容筛选</font>：根据包含/不包含筛选||
+|<font color="orange">内容筛选</font>||
 |`:empty`|没有子节点的元素|
 |`:parent`|拥有子节点的元素|
 |`:contains('text')`|包含指定文本的元素|
 |`:has(selector)`|至少包含一个指定选择器的元素|
-|<font color="orange">可见性筛选</font>：根据元素的可见性筛选||
+|<font color="orange">可见性筛选</font>||
 |`:hidden`|所有隐藏的元素|
 |`:visible`|所有在页面占据控件的元素|
 |<font color="orange">子节点筛选</font>||
@@ -65,7 +65,7 @@
 |`:nth-last-of-type(n)`|所有他们的父级元素的第 n 个子元素，计数从最后一个元素到第一个|
 |`:first-of-type`|所有相同的元素名称的第一个兄弟元素|
 |`:last-of-type`|所有元素之间具有相同元素名称的最后一个兄弟元素|
-|<font color="orange">属性筛选</font>：与 `CSS` 的属性匹配类似||
+|<font color="orange">属性筛选</font>||
 |`[attr]`|拥有指定属性的元素，以下属性均以匹配指定属性为前提|
 |`[attr="value"`]|匹配指定值的元素|
 |`[attr!="value"`]|值不等于指定值的元素|
@@ -74,7 +74,7 @@
 |`[attr*="value"`]|包含特定值的元素|
 |`[attr~="value"`]|属性值是以空格分隔的多个值中的一个|
 |`[attr|="value"`]|等于指定值，或者以指定值开头|
-|<font color="orange">表单筛选</font>：快速匹配特定表单元素||
+|<font color="orange">表单筛选</font>||
 |`:input`|所有 `input` 元素|
 |`:text`|所有 `text` 类型的 `input` 元素|
 |`:password`|所有 `password` 类型的元素|

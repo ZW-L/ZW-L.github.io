@@ -1,7 +1,5 @@
 ## 分类
 
-?> 按照以下规则对 HTML 标签进行分类，总共约 `119` 个常用标签。
-
 + 基础类-19个
 + 布局类-11个
 + 格式类-38个
@@ -10,11 +8,12 @@
 + 多媒体类-11个
 + 对象/容器/框架类-8个
 
+::: tip 说明：
+按照以上规则对 HTML 标签进行分类，总共约 `119` 个常用标签。
+:::
 
 
 ## 基础类
-
-?> 该类标签包含了 HTML 的骨架标签(`<head>`、`<body>`)，存在于头部元素的标签(`<title>`、`<meta>`)，主体部分常用的标签(`<h1>`、`<p>`)等标签。
 
 + `<basefont>`：<font color="red">HTML5 不支持</font>。页面文本的默认字体、颜色、尺寸
 + `<hgroup>`：<font color="orange">HTML5</font>。对 `<h1>` ~ `<h6>` 进行分组
@@ -36,10 +35,12 @@
 + `<br>`：换行
 + `<hr>`：水平线
 
+::: tip 说明：
+该类标签包含了 HTML 的骨架标签(`<head>`、`<body>`)，存在于头部元素的标签(`<title>`、`<meta>`)，主体部分常用的标签(`<h1>`、`<p>`)等标签。
+:::
+
 
 ## 布局类
-
-?> 该类标签包含了传统的布局标签(`<div>`、`<span>`)，HTML5 新增的语义化布局标签(`<header>`、`<section>`)等标签。
 
 + `<header>`：<font color="orange">HTML5</font>。文档头部
 + `<footer>`：<font color="orange">HTML5</font>。文档底部
@@ -53,10 +54,11 @@
 + `<div>` ：块级布局元素
 + `<span>` ：行内布局元素
 
+::: tip 说明：
+该类标签包含了传统的布局标签(`<div>`、`<span>`)，HTML5 新增的语义化布局标签(`<header>`、`<section>`)等标签。
+:::
 
 ## 格式类
-
-?> 该类标签包含了短语类(`<code>`, `<dfn>`, `<em>`, `<strong>`, `<kbd>`, `<samp>`, `<var>`)，字符格式化类(`<b>`, `<i>`)，特殊功能类(`<time>`, `<progress>`)等标签。<br>在一百多个标签里，该类标签占了三分之一左右，主要是为了增强语义。
 
 + `<acronym>`：<font color="red">HTML5 不支持</font>。首字母缩写
 + `<big>`：<font color="red">HTML5 不支持</font>。大号文本
@@ -97,10 +99,11 @@
 + `<samp>`：计算机代码样本
 + `<var>`：变量
 
+::: tip 说明：
+该类标签包含了短语类(`<code>`, `<dfn>`, `<em>`, `<strong>`, `<kbd>`, `<samp>`, `<var>`)，字符格式化类(`<b>`, `<i>`)，特殊功能类(`<time>`, `<progress>`)等标签。<br>在一百多个标签里，该类标签占了三分之一左右，主要是为了增强语义。
+:::
 
 ## 列表/表格类
-
-?> 该类标签包含了列表(`<ul>`，`<ol>`)，定义列表(`<dl>`)，表格(`<table>`)等标签；其中大部分浏览器不支持 `<menu>` 和 `<command>` 标签。
 
 + `<dir>`：<font color="red">HTML5 不支持</font>。目录列表
 + `<command>`：<font color="orange">HTML5</font>。用户可能调用的命令
@@ -122,10 +125,11 @@
 + `<col>`：规定表格列的属性
 + `<colgroup>`：组合表格中的列
 
+::: tip 说明： 
+该类标签包含了列表(`<ul>`，`<ol>`)，定义列表(`<dl>`)，表格(`<table>`)等标签；其中大部分浏览器不支持 `<menu>` 和 `<command>` 标签。
+:::
 
 ## 表单类
-
-?> 该类标签包含了表单控件相关的标签。
 
 + `<datalist>`：<font color="orange">HTML5</font>。`<input>` 元素可能的选项列表
 + `<keygen>`：<font color="orange">HTML5</font>。用于表单的密钥对生成字段
@@ -141,10 +145,11 @@
 + `<fieldset>`：围绕表单种元素的边框
 + `<legend>`：`<fieldset>` 元素的标题
 
+::: tip 说明： 
+该类标签包含了表单控件相关的标签。
+:::
 
 ## 多媒体类
-
-?> 该类标签包含了图像(`<img>`，`<canvas>`)，音频(`<audio>`)，视频(`<video>`)等标签。
 
 + `<canvas>`：<font color="orange">HTML5</font>。通过脚本来绘制图形
 + `<figure>`：<font color="orange">HTML5</font>。对元素进行组合
@@ -158,10 +163,11 @@
 + `<map>`：图像映射
 + `<area>`：图像地图内部的区域
 
+::: tip 说明： 
+该类标签包含了图像(`<img>`，`<canvas>`)，音频(`<audio>`)，视频(`<video>`)等标签。
+:::
 
 ## 对象/容器/框架类
-
-?> 该类标签包含了框架(`<iframe>`)，容器(`<embed>`)，对象(`<object>`，`<param>`)等标签。
 
 + `<applet>`：<font color="red">HTML5 不支持</font>。嵌入的 java 程序
 + `<frame>`：<font color="red">HTML5 不支持</font>。框架集的窗口或框架
@@ -171,3 +177,7 @@
 + `<embed>`：<font color="orange">HTML5</font>。用于嵌入外部应用的容器
 + `<object>`：嵌入的对象
 + `<param>`：对象的参数
+
+::: tip 说明： 
+该类标签包含了框架(`<iframe>`)，容器(`<embed>`)，对象(`<object>`，`<param>`)等标签。
+:::

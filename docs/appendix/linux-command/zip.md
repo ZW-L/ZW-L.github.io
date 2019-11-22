@@ -1,11 +1,11 @@
 ## 常用命令
 
-+ [zip/unzip](#command-zip/unzip)
-+ [gzip/gunzip](#command-gzip/gunzip)
-+ [bzip2/bunzip2](#command-bzip2/bunzip2)
-+ [tar](#command-tar)
-+ [dd](#command-dd)
-+ [cpio](#command-cpio)
++ `zip`/`unzip`
++ `gzip`/`gunzip`
++ `bzip2`/`bunzip2`
++ `tar`
++ `dd`
++ `cpio`
 
 ## zip/unzip
 
@@ -13,7 +13,7 @@
 
 **语法：**
 
-```shell
+```powershell
 zip [option] 压缩文件名 压缩文档列表
 unzip [option] 压缩文件名
 ```
@@ -50,7 +50,7 @@ unzip [option] 压缩文件名
 
 **语法：**
 
-```shell
+```powershell
 gzip [option] 压缩/解压缩的文件名
 ```
 
@@ -71,7 +71,7 @@ gzip [option] 压缩/解压缩的文件名
 
 **语法：**
 
-```shell
+```powershell
 bzip2 [option] 压缩/解压缩的文件名
 ```
 
@@ -92,7 +92,7 @@ bzip2 [option] 压缩/解压缩的文件名
 
 **语法：**
 
-```shell
+```powershell
 tar [主选项 + 辅助选项] 文件/目录
 ```
 
@@ -127,7 +127,7 @@ tar [主选项 + 辅助选项] 文件/目录
 
 **语法：**
 
-```shell
+```powershell
 dd if="input_file" of="output_file" bs="block_size" count="number"
 ```
 
@@ -145,7 +145,7 @@ dd if="input_file" of="output_file" bs="block_size" count="number"
 
 **语法：**
 
-```shell
+```powershell
 cpio [option] > 文件名/设备名
 或
 cpio [option] < 文件名/设备名

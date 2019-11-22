@@ -1,18 +1,18 @@
 ## 常用命令
 
-+ [mkdir](#command-mkdir)
-+ [more](#command-more)
-+ [cat](#command-cat)
-+ [diff](#command-diff)
-+ [grep](#command-grep)
-+ [rm](#command-rm)
-+ [touch](#command-touch)
-+ [ln](#command-ln)
-+ [file](#command-file)
-+ [cp](#command-cp)
-+ [find](#command-find)
-+ [split](#command-split)
-+ [mv](#command-mv)
++ `mkdir`
++ `more`
++ `cat`
++ `diff`
++ `grep`
++ `rm`
++ `touch`
++ `ln`
++ `file`
++ `cp`
++ `find`
++ `split`
++ `mv`
 
 ## mkdir
 
@@ -20,7 +20,7 @@
 
 **语法：**
 
-```shell
+```powershell
 mkdir [option] 目录名
 ```
 
@@ -37,7 +37,7 @@ mkdir [option] 目录名
 
 **语法：**
 
-```shell
+```powershell
 more [option] 文件名
 ```
 
@@ -56,7 +56,7 @@ more [option] 文件名
 
 **语法：**
 
-```shell
+```powershell
 cat [option] 文件名
 或
 cat 文件1 文件2 > 文件3
@@ -75,7 +75,7 @@ cat 文件1 文件2 > 文件3
 
 **语法：**
 
-```shell
+```powershell
 diff [option] 文件1 文件2
 ```
 
@@ -95,7 +95,7 @@ diff [option] 文件1 文件2
 
 **语法：**
 
-```shell
+```powershell
 grep [option] 查找的字符串 文件名
 ```
 
@@ -116,7 +116,7 @@ grep [option] 查找的字符串 文件名
 
 **语法：**
 
-```shell
+```powershell
 rm [option] 文件/目录
 ```
 
@@ -138,7 +138,7 @@ rm [option] 文件/目录
 
 **语法：**
 
-```shell
+```powershell
 touch [option] 设定时间 文件
 ```
 
@@ -159,7 +159,7 @@ touch [option] 设定时间 文件
 
 **语法：**
 
-```shell
+```powershell
 ln [option] 源文件 目标链接名
 ```
 
@@ -183,7 +183,7 @@ ln [option] 源文件 目标链接名
 
 **语法：**
 
-```shell
+```powershell
 file [option] 文件
 ```
 
@@ -202,7 +202,7 @@ file [option] 文件
 
 **语法：**
 
-```shell
+```powershell
 copy [option] 源文件/目录 目标文件/目录
 ```
 
@@ -222,7 +222,7 @@ copy [option] 源文件/目录 目标文件/目录
 
 **语法：**
 
-```shell
+```powershell
 find path_name [-option] [-print -exec -ok 命令 {} \;] 
 ```
 
@@ -259,7 +259,7 @@ find path_name [-option] [-print -exec -ok 命令 {} \;]
 
 **语法：**
 
-```shell
+```powershell
 split [option] [input_file] [output_file]
 ```
 
@@ -278,7 +278,7 @@ split [option] [input_file] [output_file]
 
 **语法：**
 
-```shell
+```powershell
 mv [option] 源文件 目标文件
 或
 mv [option] 源文件 目标目录

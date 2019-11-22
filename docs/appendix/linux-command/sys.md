@@ -1,22 +1,22 @@
 ## 常用命令
 
-+ [ls](#command-ls)
-+ [pwd](#command-pwd)
-+ [cd](#command-cd)
-+ [date](#command-date)
-+ [passwd](#command-passwd)
-+ [su](#command-su)
-+ [clear](#command-clear)
-+ [man](#command-man)
-+ [who](#command-who)
-+ [w](#command-w)
-+ [uname](#command-uname)
-+ [uptime](#command-uptime)
-+ [last](#command-last)
-+ [dmesg](#command-dmesg)
-+ [free](#command-free)
-+ [ps](#command-ps)
-+ [top](#command-top)
++ `ls`
++ `pwd`
++ `cd`
++ `date`
++ `passwd`
++ `su`
++ `clear`
++ `man`
++ `who`
++ `w`
++ `uname`
++ `uptime`
++ `last`
++ `dmesg`
++ `free`
++ `ps`
++ `top`
 
 
 ## ls
@@ -24,7 +24,7 @@
 &emsp;&emsp;显示指定工作目录下的内容，类似 `Windows` 下的 `dir` 命令，而且 `Linux` 中也能使用 `dir` 代替 `ls`。
 
 **语法：**
-```shell
+```powershell
 ls [option] [路径或文件]
 ```
 
@@ -63,7 +63,7 @@ ls [option] [路径或文件]
 &emsp;&emsp;显示当前的工作目录的绝对路径。
 
 **语法：**
-```shell
+```powershell
 pwd
 ```
 
@@ -73,7 +73,7 @@ pwd
 
 **语法：**
 
-```shell
+```powershell
 cd [目录名]
 ```
 
@@ -98,7 +98,7 @@ cd ~[用户名]返回指定用户的工作目录
 
 **语法：**
 
-```shell
+```powershell
 data [option] [时间显示字符串](格式为 `+` 开始，以字符和占位符组合)
 ```
 
@@ -143,7 +143,7 @@ data [option] [时间显示字符串](格式为 `+` 开始，以字符和占位�
 
 **语法：**
 
-```shell
+```powershell
 passwd [用户名]
 ```
 
@@ -158,7 +158,7 @@ passwd [用户名]
 
 **语法：**
 
-```shell
+```powershell
 su [option] [用户名]
 ```
 
@@ -167,7 +167,7 @@ su [option] [用户名]
 选项|说明
 -|-
 -|加载相应用户下的环境变量
--l|使当前的 shell 成为改变身份后用户默认的 shell
+-l|使当前的 powershell 成为改变身份后用户默认的 powershell
 -c|改变身份运行一个指令后结束
 -m|改变用户身份，但是不改变环境变量
 
@@ -177,7 +177,7 @@ su [option] [用户名]
 &emsp;&emsp;用于清除屏幕信息。
 
 **语法：**
-```shell
+```powershell
 clear
 ```
 
@@ -186,7 +186,7 @@ clear
 &emsp;&emsp;用于显示指定命令的帮助信息。
 
 **语法：**
-```shell
+```powershell
 man [命令名]
 ```
 
@@ -195,7 +195,7 @@ man [命令名]
 &emsp;&emsp;用于显示目前登录到系统的用户。
 
 **语法：**
-```shell
+```powershell
 who [option] [file]
 ```
 
@@ -219,7 +219,7 @@ who [option] [file]
 &emsp;&emsp;用于显示登录到系统的用户信息。
 
 **语法：**
-```shell
+```powershell
 w [option] [用户]
 ```
 
@@ -239,7 +239,7 @@ w [option] [用户]
 
 **语法：**
 
-```shell
+```powershell
 w [option]
 ```
 
@@ -259,7 +259,7 @@ w [option]
 
 **语法：**
 
-```shell
+```powershell
 uptime
 ```
 
@@ -269,7 +269,7 @@ uptime
 
 **语法：**
 
-```shell
+```powershell
 last [option]
 ```
 
@@ -289,7 +289,7 @@ last [option]
 &emsp;&emsp;用于显示开机信息。
 
 **语法：**
-```shell
+```powershell
 dmesg [option]
 ```
 
@@ -307,7 +307,7 @@ dmesg [option]
 
 **语法：**
 
-```shell
+```powershell
 free [option]
 ```
 
@@ -328,7 +328,7 @@ free [option]
 
 **语法：**
 
-```shell
+```powershell
 ps [option]
 ```
 
@@ -352,7 +352,7 @@ a|显示所有用户的进程，包括每个程序的完整路径
 
 **语法：**
 
-```shell
+```powershell
 top [option]
 ```
 

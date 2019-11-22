@@ -1,11 +1,11 @@
 ## 常用命令
 
-+ [ifconfig](#command-ifconfig)
-+ [scp](#command-scp)
-+ [netstat](#command-netstat)
-+ [traceroute](#command-traceroute)
-+ [telnet](#command-telnet)
-+ [wget](#command-wget)
++ `ifconfig`
++ `scp`
++ `netstat`
++ `traceroute`
++ `telnet`
++ `wget`
 
 ## ifconfig
 
@@ -13,7 +13,7 @@
 
 **语法：**
 
-```shell
+```powershell
 ifconfig [option] [interface] [inet|up|down|netmask|addr|broadcast]
 ```
 
@@ -44,13 +44,13 @@ ifconfig [option] [interface] [inet|up|down|netmask|addr|broadcast]
 
 + 将远程 `Linux` 系统上某个文件或目录复制到本地 `Linux` 系统：
 
-```shell
+```powershell
 scp 远程用户名@ip地址:文件的绝对路径 本地Linux系统路径 
 ```
 
 + 将本地的某个文件或者目录复制到远程 `Linux` 系统的某个路径下
 
-```shell
+```powershell
 scp 本地Linux系统文件路径 远程用户名@ip地址:远程系统文件的绝对路径
 ```
 
@@ -60,7 +60,7 @@ scp 本地Linux系统文件路径 远程用户名@ip地址:远程系统文件的
 
 **语法：**
 
-```shell
+```powershell
 netstat [option]
 ```
 
@@ -86,7 +86,7 @@ netstat [option]
 
 **语法：**
 
-```shell
+```powershell
 traceroute [option] [远程主机名/IP地址] [数据包大小]
 ```
 
@@ -108,7 +108,7 @@ traceroute [option] [远程主机名/IP地址] [数据包大小]
 
 **语法：**
 
-```shell
+```powershell
 telnet 主机名或IP地址 端口
 ```
 
@@ -118,6 +118,6 @@ telnet 主机名或IP地址 端口
 
 **语法：**
 
-```shell
+```powershell
 wget [下载的软件的url]
 ```

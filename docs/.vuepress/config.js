@@ -67,6 +67,7 @@ module.exports = {
           title: 'HTML',
           collapsable: false,
           children: [
+            ['', '标签总览'],
             ['categories/base', '基础类'],
             ['categories/layout', '布局类'],
             ['categories/format', '格式类'],
