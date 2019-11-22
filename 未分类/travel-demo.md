@@ -128,22 +128,22 @@ $priceColor: #ff8300;
 
 （1）三种类型的尺寸：
 
-| 尺寸         | 只读 | 包含                     | 说明                                     |
+| 尺寸         | 只读 | 包含                     | 说明                                      |
 | ------------ | ---- | ------------------------ | ---------------------------------------- |
-| clientWidth  | 是   | padding                  | 盒子的大小，包含padding，不包含滚动条    |
+| clientWidth  | 是   | padding                  | 盒子的大小，包含padding，不包含滚动条       |
 | clientHeight | 是   | padding                  |                                          |
-| clientTop    | 是   | border                   | 只跟boder有关，不知道有什么用            |
+| clientTop    | 是   | border                   | 只跟boder有关，不知道有什么用              |
 | clientLeft   | 是   | border                   |                                          |
 |              |      |                          |                                          |
-| offsetWidth  | 是   | padding/border/scrollBar | 盒子的大小，不包含margin                 |
+| offsetWidth  | 是   | padding/border/scrollBar | 盒子的大小，不包含margin                   |
 | offsetHeight | 是   | padding/border/scrollBar |                                          |
-| offsetTop    | 是   | margin/position/...      | 相对父元素的偏移，相对于左上角           |
+| offsetTop    | 是   | margin/position/...      | 相对父元素的偏移，相对于左上角              |
 | offsetLeft   | 是   | margin/position/...      |                                          |
 |              |      |                          |                                          |
-| scrollWidth  | 是   | padding/margin           | 滚动区的大小，滚动内容无法设置border     |
+| scrollWidth  | 是   | padding/margin           | 滚动区的大小，滚动内容无法设置border        |
 | scrollHeight | 是   | padding/margin           |                                          |
-| scrollTop    | 否   | padding/margin           | 当前滚动显示区域距离整个滚动区上方的距离 |
-| scrollLeft   | 否   | padding/margin           | 当前滚动显示区域距离整个滚动区左侧的距离 |
+| scrollTop    | 否   | padding/margin           | 当前滚动显示区域距离整个滚动区上方的距离     |
+| scrollLeft   | 否   | padding/margin           | 当前滚动显示区域距离整个滚动区左侧的距离     |
 
 
 
@@ -241,14 +241,3 @@ const rect = box.getBoundingClientRect()
 + rect.y: 盒子左上角相对于页面纵坐标的偏移
 + rect.width: 盒子的宽度，包含 padding、border
 + rect.height: 盒子的高度，包含 padding、border
-
-
-
-
-
-
-
-
-
-
-
