@@ -156,13 +156,47 @@ module.exports = {
       ],
       // 深入
       '/deep/html/': [
-        
+        ['html', 'HTML'],
+        ['html5', 'HTML5'],
       ],
       '/deep/css/': [
-        
+        ['css', 'CSS'],
+        ['css3', 'CSS3'],
       ],
       '/deep/javascript/': [
-        
+        {
+          title: 'BOM',
+          collapsable: false,
+          children: [
+            ['bom', 'BOM'],
+          ]
+        },
+        {
+          title: 'DOM',
+          collapsable: false,
+          children: [
+            ['dom', 'DOM'],
+          ]
+        },
+        {
+          title: 'ECMAScript',
+          collapsable: false,
+          children: [
+            ['ecmascript/data-type', '数据类型'],
+            ['ecmascript/syntax', '语法'],
+            ['ecmascript/oop', '面向对象程序设计'],
+            ['ecmascript/fp', '函数式编程'],
+            ['ecmascript/es6+', 'ES6+'],
+            ['ecmascript/es-power', '编码能力'],
+          ]
+        },
+        {
+          title: '浏览器',
+          collapsable: false,
+          children: [
+            ['browser', '浏览器'],
+          ]
+        },
       ],
       '/deep/engineering/': [
         {
@@ -188,6 +222,21 @@ module.exports = {
             ['fw/vue', 'Vue']
           ]
         },
+      ],
+      '/deep/business-related/': [
+        ['speedup', '开发提速'],
+        ['debug', '调试'],
+        ['cross-platform', '跨平台'],
+        ['business-related', '业务相关'],
+        ['performance-optimization', '性能优化'],
+        ['ci&cd', 'CI & CD'],
+      ],
+      '/deep/basis-of-computer/': [
+        ['computed-network', '计算机网络'],
+        ['http', 'HTTP'],
+        ['design-patterns', '设计模式'],
+        ['fundamentals-of-compiling', '编译原理'],
+        ['software-engineering', '软件工程'],
       ],
       // 文章
       '/post/': [
