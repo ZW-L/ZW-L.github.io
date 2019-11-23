@@ -1,32 +1,71 @@
 ## 长度
 
+**相对长度：**
+
 单位|说明|兼容性
 -|-|-
-%|
-px|
-em|
-rem|
-cm|
-ex|
-mm|
-in|
-pt|
-pc|
+%|相对于另一个元素|All
+em|相对于父元素的 `font-size`|All
+rem|相对于 `<html>` 元素的 `font-size`|>IE8
+ex|相对于小写字母 x 的高度|>IE8
+ch|相对于数字 0 的宽度|>IE8
+vw|viewport width，相对于视窗宽度的百分比|>IE8
+vh|viewport height，相对于视窗高度的百分比|>IE8
+vmin|两者的最小值：min(vw, vh)|>IE8
+vmax|两者的最大值：max(vw, vh)|IE, Safari 不支持
 
+**绝对长度：**
+
+单位|说明|兼容性
+-|-|:-:
+px|像素|All
+cm|厘米|All
+mm|毫米|All
+in|英寸|All
+pt|点|All
+pc|皮卡|All
+
+::: tip 绝对长度单位换算：
+1in = 2.54cm = 25.4mm = 72pt = 6pc = 96px
+:::
+
+
+## 颜色
+
+单位|说明|兼容性
+-|-|-
+`#cccccc`|十六进制颜色，这里可以用 #ccc 简写|
+`rgb(r, g, b)`|根据 红、绿、蓝 定义颜色配比，取值为 0~255 或 0%~100%|
+`rgba(r, g, b, a)`|在 `rgb(r, g, b)` 的基础上添加透明度属性，取值 0~1|
+`hsl(h, s, l)`|根据色相、饱和度、亮度设置，取值分别为 0~360, 0%~100%, 0%~100%|
+`hsla(h, s, l)`|在 `hsl(h, s, l)` 的基础上添加透明度属性，取值 0~1|
+`<color-name>`|直接使用浏览器能识别的颜色名，如 grey|
+
+::: tip 提示：
+可以在样式中定义多个同名属性的颜色，当浏览器不支持时，会使用上一个定义的颜色。
+:::
+
+```css
+.box {
+  color: #ccc;
+  color: rgb(128, 128, 128);
+  color: hsl(0, 0%, 78%);
+}
+```
 
 ## 角度
 
 单位|说明|兼容性
 -|-|-
-deg|
-grad|
-rad|
-turn|
+deg|度，一个圆共 360 deg|>IE8
+grad|梯度，一个圆共 400 grad|>IE8
+rad|弧度，一个圆共 2PI rad|>IE8
+turn|圈，一个圆共 1 turn|>IE8
 
 
 ## 时间
 
 单位|说明|兼容性
 -|-|-
-s|
-ms|
+s|秒|All
+ms|毫秒|All

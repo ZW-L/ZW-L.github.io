@@ -56,6 +56,7 @@ module.exports = {
           { text: 'PS',  link: '/other/tips/ps' },
           { text: 'Sublime Text 3',  link: '/other/tips/sublime-text3' },
           { text: '技术之外',  link: '/other/suggest' },
+          { text: '成长图谱',  link: '/other/growth-map/' },
         ]
       },
     ],
@@ -384,6 +385,12 @@ module.exports = {
           ]
         },
       ],
+      // 更多
+      '/other/growth-map/': [
+        ['front-end', '前端'],
+        ['back-end', '后端'],
+        ['devops', 'DevOps'],
+      ]
     }
   }
 }

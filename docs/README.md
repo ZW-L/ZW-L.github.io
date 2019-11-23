@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574434270263&di=e62f81f9c3f5b9991c280d689b493c8b&imgtype=0&src=http%3A%2F%2Fimg2.ctoutiao.com%2Fuploads%2F2018%2F11%2F30%2F1543561287416320.png
+heroImage: /image/web.jpg # 资源位于 .vuepress/public 下
 actionText: 开始阅读 ->
 actionLink: /base/html/
 features:
