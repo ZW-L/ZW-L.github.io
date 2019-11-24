@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      float: left;
+      margin-left: 50px;
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      line-height: 200px;
+      font-size: 30px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="left">
+    <span class="darg-text" id="text" draggable="true">Drag Text!</span>
+  </div>
+  <div class="box" id="right"></div>
+  <script>
+    const left = document.getElementById('left')
+    const right = document.getElementById('right')
+    const text = document.getElementById('text')
+
+    left.addEventListener('drag', function(e) {
+      console.log('drag...')
+    })
+
+    left.addEventListener('dragstart', function(e) {
+      console.log('dragstart...')
+    })
+
+    left.addEventListener('dragend', function(e) {
+      e.preventDefault()
+      console.log('dragend...')
+    })
+
+    left.addEventListener('dragover', function(e) {
+      e.preventDefault()
+      console.log('dragover...')
+    })
+
+    left.addEventListener('dragleave', function(e) {
+      e.preventDefault()
+      console.log('dragleave...')
+    })
+
+    left.addEventListener('dragenter', function(e) {
+      e.preventDefault()
+      console.log('dragenter...')
+    })
+
+    left.addEventListener('dragexit', function(e) {
+      e.preventDefault()
+      console.log('dragexit...')
+    })
+
+    left.addEventListener('drop', function(e) {
+      e.preventDefault()
+      left.appendChild(right.removeChild(text))
+    })
+
+    right.addEventListener('dragover', function(e) {
+      e.preventDefault()
+    })
+
+    right.addEventListener('drop', function(e) {
+      e.preventDefault()
+      right.appendChild(left.removeChild(text))
+    })
+  </script>
+</body>
+</html>

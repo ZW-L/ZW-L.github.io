@@ -19,7 +19,7 @@
 
 ### 命令格式
 
-```shell
+```powershell
 command [option] [arguments]
 ```
 

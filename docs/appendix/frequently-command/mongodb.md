@@ -33,25 +33,26 @@ db.shutdownServer()
 
 **显示数据库清单：**
 
-```
+```powershell
 show dbs
 ```
 
 **切换当前数据库：**
 
 &emsp;&emsp;`MongoDB` 使用内置的句柄 `db` 进行数据库的操作，需要使用其他数据库时，需要将当前的 `db` 句柄指向目标数据库。以下操作均会将 `db` 句柄指向 `testDB` 数据库：
-```
-// 使用 use 命令，切换到需要使用的数据库
+```powershell
+# 使用 use 命令，切换到需要使用的数据库
 use testDB
 
-// 或使用 db.getSiblingDB() 方法
+# 或使用 db.getSiblingDB() 方法
 db = db.getSiblingDB('testDB)
 ```
 
 **创建数据库：**
 
 &emsp;&emsp;`MongoDB` 没有显式创建数据库的命令，但可以通过直接使用一个不存在的数据库，然后再其上添加一个集合来创建数据库。但是，如果只使用了不存在的数据库而不进行添加集合的操作，数据库并不会保存。
-```
+
+```powershell
 use newDB
 db.createCollection('newCollection')
 ```
@@ -59,7 +60,8 @@ db.createCollection('newCollection')
 **删除数据库：**
 
 &emsp;&emsp;要删除一个数据库，首先切换到该数据库中，再使用 `db.dropDatabase()` 方法进行删除。但是，数据库删除后，`db` 句柄依然为当前数据库(即使他已经被删除)，此时若新建一个集合，该数据库便会 **复活**。
-```
+
+```powershell
 use newDB
 db.dropDatabase()
 ```
@@ -71,7 +73,7 @@ db.dropDatabase()
 + `destination`：在此 `MongoDB` 服务器上要创建的数据库名称
 + `hostname`：可选，指定 `origin` 数据库所在的 `MongoDB` 服务器的主机名(当要在不同的主机复制数据库时)
 
-```
+```powershell
 db.copyDatabase(origin, destination, [hostname])
 ```
 
@@ -82,7 +84,7 @@ db.copyDatabase(origin, destination, [hostname])
 &emsp;&emsp;对集合的操作都需要在数据库中进行，因此都需要切换句柄到相应数据库：`use testDB`。
 
 **显示集合：**
-```
+```powershell
 use testDB
 show collections
 ```
@@ -98,7 +100,7 @@ show collections
 |`size`|以字节为单位，用于封顶集合。最旧的文件被删除，腾出空间给新的文件|
 |`max`|在封顶集合中允许的最大文档数。最旧的文件被删除，腾出空间给新的文件|
 
-```
+```powershell
 use testDB
 db.createCollection('newCollection')
 ```
@@ -107,7 +109,7 @@ db.createCollection('newCollection')
 
 &emsp;&emsp;删除集合时，先使用方法 `db.getCollection('newCollection')` 获取集合对象，然后在对象上调用方法 `coll.drop()` 进行删除。
 
-```
+```powershell
 use testDB
 coll = db.getCollection('newCollection')
 coll.drop()
@@ -115,7 +117,7 @@ coll.drop()
 
 &emsp;&emsp;也可以直接使用：
 
-```js
+```powershell
 use testDB
 db.coll.drop()
 ```
@@ -131,12 +133,12 @@ db.coll.drop()
 
 `insert(document)` 方法或 `save(document)` 方法
 
-```
+```powershell
 use testDB
 coll = db.getCollection('newCollection')
-coll.insert({name: 'Anna', age: '20'})  // 等同于 db.newCollection.insert({name: 'Anna', age: '20'})
-coll.insert({name: 'Alice', age: '22'}) // 等同于 db.newCollection.insert({name: 'Alice', age: '22'})
-coll.save({name: 'Zed', age: '18'})  // 等同于 db.newCollection.save({name: 'Zed', age: '18'})
+coll.insert({name: 'Anna', age: '20'})  # 等同于 db.newCollection.insert({name: 'Anna', age: '20'})
+coll.insert({name: 'Alice', age: '22'}) # 等同于 db.newCollection.insert({name: 'Alice', age: '22'})
+coll.save({name: 'Zed', age: '18'})  # 等同于 db.newCollection.save({name: 'Zed', age: '18'})
 ```
 
 **删除文档：**
@@ -145,7 +147,7 @@ coll.save({name: 'Zed', age: '18'})  // 等同于 db.newCollection.save({name: '
 + `remove()`：删除所有文档
 + `remove({name: 'Anna'})`：删除匹配字段 name 及其值的文档
 
-```
+```powershell
 use testDB
 db.newCollection.remove({name: 'Anna'})
 db.newCollection.remove()
@@ -158,7 +160,7 @@ db.newCollection.remove()
 + `find()`：返回集合中所有文档
 + `coll.find({name: 'Anna'})`：返回匹配字段 name 及其值的文档
 
-```
+```powershell
 use testDB
 db.newCollection.find({name: 'Anna'})
 db.newCollection.find()
@@ -179,10 +181,10 @@ db.newCollection.find()
     + `upsert`：布尔值，为 `true` 则当没有找到就创建一个新的文档
     + `multi`： 布尔值，为 `true` 则与查询匹配的所有文档都被更新，否则只有第一个文档被更新
 
-```
+```powershell
+# 以下命令将所有年龄为20的文档的 job 字段的值设置为 'student'
 use testDB
-// 以下命令将所有年龄为20的文档的 job 字段的值设置为 'student'
+# 以下命令将覆盖对应 _id 字段的文档
 db.newCollection.update({age: '20'}, {$set: {job: 'student'}, {upsert: false, multi: true}})
-// 以下命令将覆盖对应 _id 字段的文档
 db.newCollection.update({'_id': '5d594b30f464fc645f888fcf', age: '21'})
 ```

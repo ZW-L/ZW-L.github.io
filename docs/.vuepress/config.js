@@ -64,11 +64,11 @@ module.exports = {
     sidebar: {
       // 基础
       '/base/html/': [
+        ['', '标签概览'],
         {
-          title: 'HTML',
+          title: 'HTML 分类概述',
           collapsable: false,
           children: [
-            ['', '标签总览'],
             ['categories/base', '基础类'],
             ['categories/layout', '布局类'],
             ['categories/format', '格式类'],
@@ -83,13 +83,16 @@ module.exports = {
           collapsable: false,
           children: [
             ['html5/tags-change', '标签的变动'],
+            ['html5/mathml', 'MathML'],
+            ['html5/drag', '拖放'],
+            ['html5/audio', 'Audio'],
+            ['html5/video', 'Video'],
             ['html5/canvas', 'Canvas'],
             ['html5/svg', 'SVG'],
-            ['html5/mathml', 'MathML'],
+            ['html5/geolocation', '地理位置'],
             ['html5/storage', '本地存储'],
-            ['html5/audio', 'Audio'],
-            ['html5/cache', '缓存'],
-            ['html5/drag', '拖放'],
+            ['html5/cache', '应用缓存'],
+            ['html5/sse', '服务器发送事件'],
             ['html5/worker', 'Worker'],
             ['html5/websocket', 'WebSocket'],
           ],
@@ -162,8 +165,34 @@ module.exports = {
         ['html5', 'HTML5'],
       ],
       '/deep/css/': [
-        ['css', 'CSS'],
-        ['css3', 'CSS3'],
+        {
+          title: '深入 CSS',
+          collapsable: false,
+          children: [
+            ['knowledge/selectors', '选择器'],
+            ['knowledge/attributes', '属性'],
+            ['knowledge/weird', '怪异行为'],
+            ['knowledge/responsive-design', '响应式设计'],
+          ]
+        },
+        {
+          title: '实现效果',
+          collapsable: false,
+          children: [
+            ['effect/horizontal-center', '水平居中'],
+            ['effect/vertical-center', '垂直居中'],
+            ['effect/layout', '常用布局'],
+            ['effect/more', '常见效果'],
+          ]
+        },
+        {
+          title: '其他',
+          collapsable: false,
+          children: [
+            ['dev/compatibility', '兼容性'],
+            ['dev/tips', '开发中'],
+          ]
+        },
       ],
       '/deep/javascript/': [
         {

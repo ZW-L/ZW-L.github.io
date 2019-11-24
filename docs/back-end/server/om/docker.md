@@ -25,7 +25,7 @@
 
 1. 安装 `docker-ce`
 
-```shell
+```powershell
 # 1.安装一些必要的系统工具：
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 # 2.添加软件源信息：
@@ -42,7 +42,7 @@ sudo systemctl start docker
 
 2. 镜像加速
 
-```shell
+```powershell
 # 1.进入目录
 cd /etc/docker
 # 2.打开/创建 daemon.json 文件
@@ -66,7 +66,7 @@ docker run hello-world
 
 使用以下命令删除 `Docker`：
 
-```shell
+```powershell
 sudo yum remove docker-ce
 sudo rm -rf /var/lib/docker
 ```
@@ -93,7 +93,7 @@ sudo rm -rf /var/lib/docker
 
 1. 安装后，运行 `docker run hello-world` 报错：`Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?`
 
-```shell
+```powershell
 systemctl daemon-reload # 重新加载守护进程
 service docker restart # 重启 docker 服务
 service docker status # 查看 docker 状态，若看到 Active: active(running) 则成功
@@ -104,7 +104,7 @@ docker run hello-world # 重新运行
 
 &emsp;&emsp;docker 的命令执行完成就会自动退出，为了防止线程退出，可以使用一些参数或命令将线程挂起：
 
-```shell
+```powershell
 docker run -d -t --name nodeContainer ubuntu:18.04 /bin/bash
 ```
 
@@ -113,7 +113,7 @@ docker run -d -t --name nodeContainer ubuntu:18.04 /bin/bash
 
 1. 快速启动容器，并映射到指定的端口
 
-```shell
+```powershell
 docker run -d -p 3000:5000 training/webapp python app.py
 ```
 
@@ -130,7 +130,7 @@ docker run -d -p 3000:5000 training/webapp python app.py
 
 **Node：**
 
-```shell
+```powershell
 apt-get update
 apt-get install wget
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash

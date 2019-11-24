@@ -2,14 +2,14 @@
 
 **说明：** 需要先安装 node，若安装不能使用，需要确认最低 node 版本。
 
-```shell
+```powershell
 $ npm install -g pm2
 ```
 
 
 ## 管理应用
 
-```shell
+```powershell
 # 查看应用列表
 $ pm2 list
 

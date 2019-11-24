@@ -3,7 +3,7 @@
 
 ### 常用命令
 
-```shell
+```powershell
 # 查看文件，-a 为显示隐藏文件
 $ ls -a
 
@@ -29,6 +29,6 @@ $ whereis node
 ### 软链接
 
 &emsp;&emsp;`/usr/local/bin` 目录下是一些全局命令，将一些命令建立软连接，就可以全局使用
-```shell
+```powershell
 $ ln -s /root/node-v6.9.5-linux-x64/bin/node /usr/local/bin/node
 ```

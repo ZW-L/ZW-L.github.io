@@ -1,8 +1,134 @@
-## 伪类 first-child 和 first-of-type 的区别
+## 区别 link 和 @import
+
++ `link` 属于 HTML 标签，`@import` 引用的 `CSS` 会等到页面被加载完再加载
++ 兼容性，`@import` 在 `IE5` 以上才适用
++ `link` 方式的样式的权重高于 `@import`
+
+## 区分 visibility: hidden 和 display: none
+
++ `visibility: hidden`：隐藏元素，但仍占有物理空间
++ `display: none`：隐藏元素，不再占有空间，其空间被其他元素占有
+
+## 自适应单位有哪些
+
++ `%`:
++ `em`:
++ `rem`:
++ `vw`:
++ `vh`:
++ `vm`:
+
+## content 属性的作用
+
+
+## 可以继承的样式和不可继承的样式
+
+
+## 初始化样式的意义以及实现
+
+
+## 行内元素和块级元素
+
+
+## BFC, IFC, GFC, FFC
+
+
+## 浮动产生的问题以及解决方法
+
+**产生问题：**
++ 父元素高度塌陷
+
+**解决：**
++ 在浮动元素下方添加空 div，并给该元素设置 clear 属性
+```css
+/* 缺点：过多的空元素造成 HTML 混乱 */
+.box {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+}
+.empty {
+  clear: both;
+}
+```
++ 父元素固定高度
+```css
+/* 缺点：不适用父元素高度不确定的场景 */
+.container {
+  height: 100px;
+  border: 1px solid red;
+}
+.box {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+}
+```
++ 父元素也浮动
+```css
+/* 缺点：会影响上一级的布局，浮动过多时布局难以管理 */
+.container {
+  float: left;
+  border: 1px solid red;
+}
+.box {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+}
+```
++ 父元素添加 `overflow:hidden`
+```css
+/* 缺点：内容增多时候容易造成不会自动换行导致内容被隐藏掉，无法显示需要溢出的元素 */
+.container {
+  overflow: hidden;
+  border: 1px solid red;
+}
+.box {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+}
+```
++ 父元素添加 `::after` 伪元素样式(推荐)，效果相当于添加空 `div`，但是不用更改 HTML
+```css
+/* 基本完美 */
+.container {
+  border: 1px solid red;
+}
+.container::after {
+  content: '.'; /* 任何一个字符串均可 */
+  display: block; /* 显示为块级元素 */
+  height: 0; /* 高度为 0，content 不占空间，但仍会折行 */
+  overflow: hidden; /* 彻底隐藏 content */
+  clear: both; /* 清除浮动 */
+}
+.box {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+}
+```
+
+
+## absolute 和 float 的异同
+
++ 相同：都脱离文档流，生成一个 BFC 容器
++ 不同：absolute 相对于父元素定位，通过 z-index 值覆盖同一父元素内的其他元素，float 属性会占有位置而不是覆盖
+
+## absolute 和 fixed 的异同
+
++ 相同：都是使元素脱离文本流
++ 不同：`absolute` 相对于最近一个非 `static` 定位属性的父元素定位，`fixed` 相对于浏览器窗口定位
 
 
 
-## box-sizing
+## box-sizing 的各个属性
 
 ```css
 .box {
@@ -14,24 +140,25 @@
 + border-box：设置的宽高为 content + padding + border 之和，额外的 padding 和 border 会缩小 content 的实际宽高。
 + padding-box：设置的宽高为 content + padding 之和，额外的 padding 会缩小 content 的实际宽高。
 
-## 文本阴影，盒子阴影，边框圆角
+## 区分文本阴影和盒子阴影
 
 **text-shadow**：
-**box-shadow**：
-**border-radius**：
 
-## 渐变
+**box-shadow**：
+
+
+## 渐变的分类和使用
 
 + linear-gradient
 + repeating-linear-gradient
 + radial-gradient
 + repeating-radial-gradient
 
-
 ## transform
 
 `transform` 用于设置元素的转换(平移、缩放、扭曲、旋转)，对应的 X, Y, Z 轴如下所示，其中，由屏幕向外的轴为 Z 正半轴，屏幕向右和向下分别为 X 正半轴和 Y 正半轴：
 
+<!-- ![](./imgs/transform_01.png) -->
 
 ```css
 /* 2D 转换 */
@@ -102,41 +229,6 @@
 + `CSS` 实现的 `transition` 只能单向运动，而 `animation` 能够双向运动；
 + `transition` 激活时只能运动一次，`animation` 能运动任意次数
 
-## 超出文本显示省略号
-
-**单行文本省略号：**
-```css
-.ellipsis {
-  overflow: hidden; /* 超出隐藏 */
-  text-overflow: ellipsis; /* 超出显示省略号 */
-  white-space: nowrap; /* 不换行 */
-}
-```
-
-**多行文本省略号：**
-```css
-.ellipsis-multi {
-  overflow: hidden; /* 超出隐藏 */
-  text-overflow: ellipsis; /* 超出显示省略号 */
-  display: -webkit-box; /* 或 display: -webkit-inline-box */
-  -webkit-box-orient: vertical; /* 垂直朝向 */
-  -webkit-line-clamp: 3; /* 指定行数 */
-}
-```
-
-## 实现蒙版
-
-
-## 实现倒影
-
-
-## 实现淡入/淡出效果
-
-
-
-## 怎样使用媒体查询
-
-
 ## flex 布局
 
 更多参考 [Flex](https://www.runoob.com/w3cnote/flex-grammar.html)
@@ -148,6 +240,7 @@
   + 容器默认存在两根轴线：水平的主轴（`main axis`）和垂直的交叉轴（`cross axis`）
   + 项目默认沿主轴排列，单个项目占据的主轴空间叫做`main size`，占据的交叉轴空间叫做 `cross size`
 
+![flex 容器](imgs/flex_01.png)
 
 父元素（容器）：第一个为默认值
 ```css
