@@ -98,6 +98,7 @@
 
 |类型|说明|
 |-|-|
+|file|文件域|
 |email|email 域，会自动验证|
 |url|url 域，会自动验证|
 |number|number 域，会自动验证|

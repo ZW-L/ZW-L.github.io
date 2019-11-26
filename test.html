@@ -19,61 +19,22 @@
   </style>
 </head>
 <body>
-  <div class="box" id="left">
-    <span class="darg-text" id="text" draggable="true">Drag Text!</span>
-  </div>
-  <div class="box" id="right"></div>
+  <button id="btn">获取经纬度</button>
+  <div id="text"></div>
   <script>
-    const left = document.getElementById('left')
-    const right = document.getElementById('right')
+    const btn = document.getElementById('btn')
     const text = document.getElementById('text')
 
-    left.addEventListener('drag', function(e) {
-      console.log('drag...')
+    function showPosition(position) {
+      const x = position.coords.latitude
+      const y = position.coords.longitude
+      text.innerHTML = `经度：${x}, 维度：${y}.`
+    }
+
+    btn.addEventListener('click', function() {
+      navigator.geolocation.getCurrentPosition(showPosition)
     })
 
-    left.addEventListener('dragstart', function(e) {
-      console.log('dragstart...')
-    })
-
-    left.addEventListener('dragend', function(e) {
-      e.preventDefault()
-      console.log('dragend...')
-    })
-
-    left.addEventListener('dragover', function(e) {
-      e.preventDefault()
-      console.log('dragover...')
-    })
-
-    left.addEventListener('dragleave', function(e) {
-      e.preventDefault()
-      console.log('dragleave...')
-    })
-
-    left.addEventListener('dragenter', function(e) {
-      e.preventDefault()
-      console.log('dragenter...')
-    })
-
-    left.addEventListener('dragexit', function(e) {
-      e.preventDefault()
-      console.log('dragexit...')
-    })
-
-    left.addEventListener('drop', function(e) {
-      e.preventDefault()
-      left.appendChild(right.removeChild(text))
-    })
-
-    right.addEventListener('dragover', function(e) {
-      e.preventDefault()
-    })
-
-    right.addEventListener('drop', function(e) {
-      e.preventDefault()
-      right.appendChild(left.removeChild(text))
-    })
   </script>
 </body>
 </html>
