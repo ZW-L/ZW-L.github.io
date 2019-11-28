@@ -4,8 +4,8 @@
 
 属性|说明|兼容性
 -|-|-
-`position`|设置定位方式。取值：<br>`static`: <font color="orange">默认值。</font>静态定位，对象遵循正常文档流，此时 top/right/bottom/left 等属性无效。<br>`relative`: 相对定位，对象遵循正常文档流，但根据 top/right/bottom/left 等属性在正常文档流中偏移。<br>`absolute`: 绝对定位，对象脱离正常文档流，根据 top/right/bottom/left 等属性进行定位。<br>`fixed`: 固定定位，对象脱离正常文档流，使用 top/right/bottom/left 等属性进行定位。|IE6 不支持 fixed
-`z-index`|设置对象的层叠优先级。取值: <br>`auto`: <font color="orange">默认值。</font>遵循父对象的行为。<br>`<integer>`: 整数，可为负值，仅当 position 属性值不是 static 时生效。|-
+`position`|设置定位方式。取值：<br>`static`: <font color="orange">默认值。</font>静态定位，对象遵循正常文档流<br>`relative`: 相对定位，对象遵循正常文档流<br>`absolute`: 绝对定位，对象脱离正常文档流<br>`fixed`: 固定定位，对象脱离正常文档流|IE6 不支持 fixed
+`z-index`|设置对象的层叠优先级。取值: <br>`auto`: <font color="orange">默认值。</font>遵循父对象的行为。<br>`<integer>`: 整数，可为负值|-
 `top`<br>`right`<br>`bottom`<br>`left`|设置对象相对其最近定位父元素顶部的偏移。取值: <br>`auto`: <font color="orange">默认值。</font>无特殊定位，根据 HTML 定位规则在文档流中分配。<br>`<length>`: 长度，可以为负值。<br>`<percentage>`: 百分比，可以为负值。|-
 
 
