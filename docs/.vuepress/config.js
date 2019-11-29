@@ -121,19 +121,25 @@ module.exports = {
           ]
         },
         {
-          title: 'CSS3',
+          title: '响应式设计',
           collapsable: false,
           children: [
             ['css3/new-selector', '新增选择器'],
             ['css3/border', '边框相关'],
             ['css3/text', '文本效果'],
             ['css3/gradient', '渐变'],
-            ['css3/transform', '转换'],
-            ['css3/transition', '过渡'],
-            ['css3/animation', '动画'],
             ['css3/flex', '弹性布局'],
             ['css3/grid', '网格布局'],
             ['css3/responsive-design', '响应式设计'],
+          ]
+        },
+        {
+          title: '特效',
+          collapsable: false,
+          children: [
+            ['css3/transform', '转换'],
+            ['css3/transition', '过渡'],
+            ['css3/animation', '动画'],
           ]
         },
       ],
@@ -142,14 +148,36 @@ module.exports = {
           title: 'BOM',
           collapsable: false,
           children: [
-            ['bom/', '']
+            ['bom/window', 'window'],
+            ['bom/console', 'console'],
+            ['bom/document', 'document'],
+            ['bom/frames', 'frames'],
+            ['bom/history', 'history'],
+            ['bom/location', 'location'],
+            ['bom/navigator', 'navigator'],
+            ['bom/screen', 'screen'],
           ]
         },
         {
           title: 'DOM',
           collapsable: false,
           children: [
-            ['dom/', '']
+            ['dom/', '简介'],
+            ['dom/', 'EventTarget'],
+            ['dom/', 'Node'],
+            ['dom/', 'Document'],
+            ['dom/', 'DocumentFragment'],
+            ['dom/', 'Element'],
+            ['dom/', 'HTMLElement'],
+            ['dom/', 'Attr'],
+            ['dom/', 'NodeList'],
+            ['dom/', 'HTMLCollection'],
+            ['dom/', 'ChildNode'],
+            ['dom/', 'ParentNode'],
+            ['dom/', 'NonDocumentTypeChildNode'],
+            ['dom/', 'DocumentType'],
+            ['dom/', 'Event'],
+            ['dom/', 'CustomEvent'],
           ]
         },
         {

@@ -46,15 +46,37 @@ sidebarDepth: 2
 ```
 
 
+
 ## border-image
 
+&emsp;&emsp;图片边框能使用图像构造盒子的边框。
 
+
+### 原理
+
+完整的图像边框：
+
+```css
+.box {
+  background-color: #ccc;
+  width: 100px;
+  height: 100px;
+  border: 10px solid;
+  border-image: url('./border.png') 30 round;
+}
+```
+
+::: tip 说明：
++ 要先设置 `border` 属性，`border-image` 才会生效
++ `border-image-repeat` 属性的值为：`stretch`(默认), `round`, `repeat`
+:::
 
 
 
 ## box-shadow
 
 &emsp;&emsp;盒子阴影能在盒子的周围添加一层阴影色，构造出一些立体效果，而且不会影响盒子的布局属性。
+
 
 ### 原理
 
@@ -65,6 +87,30 @@ sidebarDepth: 2
   background-color: #ccc;
   width: 100px;
   height: 100px;
-  
+  box-shadow: 0px 0px 10px 2px #333;
+}
+```
+
+::: tip 说明：
++ 还可以设置一个 `inset` 参数指定阴影为内阴影
++ 除了四个长度参数按照严格顺序，其他参数顺序不限制
++ 颜色参数默认为黑色(`#000`)
++ 四个长度参数分别为：
+  + 水平偏移，向下为正
+  + 垂直偏移，向右为正
+  + 模糊值，不允许负值
+  + 外延值，不允许负值
++ 可以使用阴影构造一个边框：`0px 0px 0px 2px #333`
+:::
+
+
+### 一个边框
+
+```css
+.box {
+  background-color: #ccc;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0px 0px 0px 2px #333;
 }
 ```

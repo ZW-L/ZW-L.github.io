@@ -3,7 +3,7 @@
 
 ### 设置
 
-```shell
+```powershell
 # 初始化 package.json 文件
 $ npm init
 
@@ -19,7 +19,7 @@ $ npm config set registry https://registry.npmjs.org
 
 ### 安装包
 
-```shell
+```powershell
 # 根据 package.json 安装全部依赖包
 $ npm install
 $ npm i # 缩写

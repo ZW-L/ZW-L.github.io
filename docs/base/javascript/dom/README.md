@@ -1,5 +1,7 @@
 ## 简介
 
+![DOM 关系](./imgs/dom_01.png)
+
 ### DOM
 
 &emsp;&emsp;DOM (Document Object Model, 文档对象模型)，是HTML和XML文档的编程接口。[DOM 介绍](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduction):
