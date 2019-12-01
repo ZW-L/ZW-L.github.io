@@ -22,7 +22,7 @@
 
 `Position` 对象包括：
 
-+ 定义了当前位置的 `Coordinates` 对象
++ 定义了当前位置的 `Coordinates` 对象(使用方式为 `Position.coords`)
 + `DOMTimeStamp` 属性，表示获取到位置时的时间戳
 
 
@@ -34,8 +34,8 @@
 |-|-|
 |latitude|Double 类型，表示纬度|
 |longitude|Double 类型，表示经度|
-|altitude|Double 类型，表示海拔高度|
-|accuracy|Double 类型，表示 latitude 和 longitude 属性的精度|
-|altitudeAccuracy|Double 类型，表示 latitude 属性的精度|
-|heading|Double 类型，表示设备运行的方向|
-|speed|Double 类型，表示设备速度|
+|accuracy|Double 类型，表示经度和维度属性的精度，单位为米|
+|altitude|Double 类型，表示海拔高度，单位为米|
+|altitudeAccuracy|Double 类型，海拔的精度，单位为米|
+|speed|Double 类型，表示设备速度，单位米/秒|
+|heading|Double 类型，正北方向的顺时针偏差|

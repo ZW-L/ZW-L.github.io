@@ -47,3 +47,4 @@ MDN 所有 [DOM 接口](https://developer.mozilla.org/zh-CN/docs/Web/API/Documen
   + `Element` 对象涵盖所有的标签节点，而且它的后代也有不同功能的扩展：`HTMLElement`(`HTML` 元素节点对象), `SVGElement`(`<svg>` 元素节点对象), `HTMLCanvasElement`(`<canvas>` 元素节点对象)
 + `ChildNode` 和 `ParentNode` 接口作为某些节点对象的补充，提供相关的属性和方法
 + `NodeList`(节点列表) 和 `HTMLCollection`(`HTML` 元素节点集合)
++ `Event` 对象作为所有事件对象的超类，包括自定义事件(`CustomEvent`)和常见的 UI 事件(`UIEvent`)

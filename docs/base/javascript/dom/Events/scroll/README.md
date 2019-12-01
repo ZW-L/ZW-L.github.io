@@ -47,15 +47,3 @@
 + scrollIntoView(alignToTop)：布尔类型参数
 + scrollIntoView(scrollIntoViewOptions)：对象参数
 
-
-
-
-
-
-## 样式
-
-
-### 伪类样式
-
-+ [::-webkit-scrollbar](https://developer.mozilla.org/zh-CN/docs/Web/CSS/::-webkit-scrollbar) 等一些伪类可以修改 WebKit 内核的浏览器中元素滚动条的样式。
-
