@@ -178,8 +178,9 @@ module.exports = {
             ['dom/non-cnode', 'NonDocumentTypeChildNode'],
             ['dom/document-type', 'DocumentType'],
             ['dom/character-data', 'CharacterData'],
+            ['dom/sub-character-data', 'CharacterData 子类'],
             ['dom/event', 'Event'],
-            ['dom/custom-event', 'CustomEvent'],
+            ['dom/sub-event', 'Event 子类'],
           ]
         },
         {

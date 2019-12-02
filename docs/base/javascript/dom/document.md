@@ -54,9 +54,9 @@ const doc = new Document()
 
 
 
-::: tip 其他属性：
+::: tip 更多属性：
 + 从 [Node](/base/javascript/dom/node) 对象继承了属性
-+ 从 [ParentNode](/base/javascript/dom/parent-node) 接口扩展了属性
++ 从 [ParentNode](/base/javascript/dom/parent-node) 接口继承了属性
 + 从 [HTMLDocument](/base/javascript/dom/html-document) 接口继承了属性
 :::
 
@@ -76,6 +76,8 @@ const doc = new Document()
 
 ### 返回接口对象
 
++ `getElementsByClassName(className: String): HTMLCollection`: 返回一个 `HTMLCollection` 对象
++ `getElementsByTagName(tagName: String): HTMLCollection`: 返回一个 `HTMLCollection` 对象
 + `createRange(): Range`: 返回一个 `Range` 对象
 + `createTouchList(touches*: Touch): TouchList`: 返回一个 `TouchList` 对象
 + `createRangeFromPoint(x: Number, y: Number): Range | Null`: 返回一个 `Range` 对象
@@ -94,20 +96,16 @@ const doc = new Document()
 + `requestStorageAccess(): Promise`: 解析是否授予对第一方存储的访问权限
 
 
-::: tip 其他方法：
+::: tip 更多方法：
 + 从 [Node](/base/javascript/dom/node) 对象继承了方法
-+ 从 [ParentNode](/base/javascript/dom/parent-node) 接口扩展了方法
-+ 从 XPathEvaluator 接口扩展了方法：
-  + `createExpression()`
-  + `createNSResolver()`
-  + `evaluate()`
++ 从 [ParentNode](/base/javascript/dom/parent-node) 接口继承了方法
 + 从 [HTMLDocument](/base/javascript/dom/html-document) 接口继承了方法
 :::
 
 ::: tip 包括从其他接口实现，Document 一共拥有以下几种获取 Element 节点的方法：
 + `getElementsByClassName(className: String): HTMLCollection`
 + `getElementsByTagName(tagName: String): HTMLCollection`
-+ `getElementsByName(name: String): HTMLCollection`
++ `getElementsByName(name: String): NodeList`
 + `getElementById(idName: String): Element`
 + `querySelector(CSSSelector: String): Element`
 + `querySelectorAll(CSSSelector: String): NodeList`

@@ -5,9 +5,10 @@
 + 节点的集合(一个类数组)，由以下方式返回：
   + `childNodes`
   + `querySelectorAll()`
+  + `getElementsByName()`
 
 ::: danger 注意：
-+ `childNodes` 返回一个实时的 `NodeList`，而 `querySelectorAll()` 返回一个静态的 `NodeList`
++ `childNodes` 返回一个动态的 `NodeList`，而 `querySelectorAll()` 返回一个静态的 `NodeList`
 :::
 
 

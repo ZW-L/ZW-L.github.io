@@ -6,7 +6,6 @@
 + 以下对象实现了该接口
   + `Comment`
   + `Text`
-  + `ProcessingInstruction`
 
 
 ## 属性
