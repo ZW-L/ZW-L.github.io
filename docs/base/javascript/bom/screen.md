@@ -21,11 +21,11 @@
 
 ## 方法
 
-+ `lockOrientation()`: 锁定屏幕转向
-+ `unlockOrientation()`: 解锁屏幕转向
 + `addEventListener()`: 添加事件监听
 + `removeEventListener()`: 移除事件监听
-+ `dispatchEvent()`: 
++ `dispatchEvent()`: 派发事件
++ `lockOrientation()`: 锁定屏幕转向
++ `unlockOrientation()`: 解锁屏幕转向
 
 ## 事件
 

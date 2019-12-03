@@ -14,7 +14,7 @@ module.exports = {
     // 导航栏
     nav: [
       {
-        text: '基础',
+        text: '前端核心',
         items: [
           { text: 'HTML',  link: '/base/html/' },
           { text: 'CSS',  link: '/base/css/' },
@@ -22,7 +22,7 @@ module.exports = {
         ]
       },
       {
-        text: '深入',
+        text: '前端深入',
         items: [
           { text: 'HTML',  link: '/deep/html/' },
           { text: 'CSS',  link: '/deep/css/' },
@@ -33,21 +33,21 @@ module.exports = {
         ]
       },
       {
-        text: '文章',
-        link: '/post/',
-      },
-      {
-        text: '附录',
-        link: '/appendix/',
-      },
-      {
-        text: '后端',
+        text: '了解后端',
         items: [
           { text: 'Node',  link: '/back-end/node/' },
           { text: 'Python',  link: '/back-end/python/' },
           { text: '服务器',  link: '/back-end/server/' },
           { text: '算法',  link: '/back-end/algorithm/' },
         ]
+      },
+      {
+        text: '文章',
+        link: '/post/',
+      },
+      {
+        text: '附录',
+        link: '/appendix/',
       },
       {
         text: '更多',
@@ -84,12 +84,12 @@ module.exports = {
           children: [
             ['html5/tags-change', '标签的变动'],
             ['html5/mathml', 'MathML'],
-            ['html5/drag', '拖放'],
+            ['html5/drag', 'Drag & Drop'],
             ['html5/audio', 'Audio'],
             ['html5/video', 'Video'],
             ['html5/canvas', 'Canvas'],
             ['html5/svg', 'SVG'],
-            ['html5/geolocation', '地理位置'],
+            ['html5/geolocation', 'Geolocation'],
             ['html5/storage', 'Storage'],
             ['html5/indexeddb', 'IndexedDB'],
             ['html5/app-cache', 'AppCache'],
@@ -366,10 +366,30 @@ module.exports = {
       // 后端
       '/back-end/node/': [
         {
-          title: 'Node 基础',
+          title: '异步编程',
           collapsable: false,
           children: [
-            ['syntax', '语法'],
+            ['async-theory', '原理'],
+            ['async-event-manage', '事件处理'],
+            ['async-process-control', '流程控制'],
+          ],
+        },
+        {
+          title: '缓冲 & 流',
+          collapsable: false,
+          children: [
+            ['bs-buffer', 'Buffer'],
+            ['bs-stream', 'Stream'],
+          ],
+        },
+        {
+          title: '模块系统',
+          collapsable: false,
+          children: [
+            ['module-standard', '模块化规范'],
+            ['module-global-property', '内置全局属性'],
+            ['module-native', '原生模块'],
+            ['module-third-party', '第三方模块'],
           ],
         },
         {
@@ -378,6 +398,7 @@ module.exports = {
           children: [
             ['fw/express', 'Express'],
             ['fw/koa', 'Koa'],
+            ['fw/egg', 'Egg'],
           ],
         },
         {

@@ -6,9 +6,9 @@ sidebarDepth: 2
 
 [MDN window](https://developer.mozilla.org/zh-CN/docs/Web/API/Window) 对象：
 
-+ 表示一个包含 `DOM` 文档的窗口，其 `document` 属性指向窗口中载入的 `DOM` 文档
-+ 作为全局变量，代表了脚本正在运行的窗口，暴露给 `Javascript` 代码
-+ 每个标签都拥有自己的 `window` 对象；也就是说，同一个窗口的标签页之间不会共享一个 `window` 对象
++ 表示一个包含 `DOM` 文档的窗口，`window.document` 属性指向窗口中载入的 `DOM` 文档，而 `document.defaultView` 指向 `window`
++ 每个标签页都拥有自己的 `window` 对象；也就是说，同一个窗口的标签页之间不会共享一个 `window` 对象
++ 作为全局变量，并挂载了很多不同功能的全局对象，暴露给当前窗口的 `Javascript` 脚本
 
 
 ## 属性
@@ -24,10 +24,10 @@ sidebarDepth: 2
 + `screen`: 返回 `screen` 对象的引用
 + `localStorage`: 返回 `localStorage` 对象的引用
 + `sessionStorage`: 返回 `sessionStorage` 对象的引用
-+ `crypto`: 返回 `crypto` 对象的引用
-+ `speechSynthesis`: 返回 `speechSynthesis` 对象的引用
-+ `indexedDB`: 返回 `indexedDB` 对象的引用
 + `caches`: 返回 `CacheStorage` 对象的引用
++ `indexedDB`: 返回 `indexedDB` 对象的引用
++ `speechSynthesis`: 返回 `speechSynthesis` 对象的引用
++ `crypto`: 返回 `crypto` 对象的引用
 
 ### 浏览器属性
 

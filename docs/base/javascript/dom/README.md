@@ -1,6 +1,6 @@
 ## DOM
 
-&emsp;&emsp;DOM (Document Object Model, 文档对象模型)，是HTML和XML文档的编程接口。[DOM 介绍](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduction):
+&emsp;&emsp;DOM (Document Object Model, 文档对象模型)，是 HTML 和 XML 文档的编程接口。[DOM 介绍](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduction):
 
 + 提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容；
 + 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。简言之，它会将 web 页面和脚本或程序语言连接起来；

@@ -114,7 +114,7 @@ console.log(Object.getOwnPropertyDescriptor(obj, 'name'));
 
 &emsp;&emsp;使用 Object 构造函数和字面量对象的方式能够快捷地创建对象，但是在大量使用面向对象的场景有一个缺点：会产生大量重复的代码。此外，有很多方式能够用于创建对象，每种方式的使用因场景而异。
 
-**几种创建对象的方式：**
+[几种创建对象的方式：](/post/es-create-object-patterns)
 
 + 工厂模式
 + 构造函数模式
@@ -125,11 +125,9 @@ console.log(Object.getOwnPropertyDescriptor(obj, 'name'));
 + 稳妥构造函数模式
 
 
-
-
 ## 实现继承的方式
 
-**几种实现继承的方式：**
+[几种实现继承的方式：](/post/es-implement-extend-patterns)
 
 + 原型链继承
 + 借用构造函数继承
@@ -137,8 +135,6 @@ console.log(Object.getOwnPropertyDescriptor(obj, 'name'));
 + 原型式继承
 + 寄生继承
 + 寄生组合继承
-
-
 
 
 ## 防篡改对象
