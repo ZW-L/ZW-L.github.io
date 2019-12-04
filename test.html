@@ -22,18 +22,10 @@
   <button id="btn">获取经纬度</button>
   <div id="text"></div>
   <script>
-    const btn = document.getElementById('btn')
-    const text = document.getElementById('text')
+    var a = 1
+    let b = 2
 
-    function showPosition(position) {
-      const x = position.coords.latitude
-      const y = position.coords.longitude
-      text.innerHTML = `经度：${x}, 维度：${y}.`
-    }
-
-    btn.addEventListener('click', function() {
-      navigator.geolocation.getCurrentPosition(showPosition)
-    })
+    console.log(window.a, window.b) // 1 undefined
 
   </script>
 </body>

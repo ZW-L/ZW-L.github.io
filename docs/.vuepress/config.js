@@ -146,7 +146,6 @@ module.exports = {
       '/base/javascript/': [
         {
           title: 'BOM',
-          collapsable: false,
           children: [
             ['bom/window', 'window'],
             ['bom/console', 'console'],
@@ -160,7 +159,6 @@ module.exports = {
         },
         {
           title: 'DOM',
-          collapsable: false,
           children: [
             ['dom/', '介绍'],
             ['dom/event-target', 'EventTarget'],
@@ -185,7 +183,6 @@ module.exports = {
         },
         {
           title: 'ECMAScript',
-          collapsable: false,
           children: [
             ['es5/syntax', '语法'],
             ['es5/variables&data-type', '变量和数据类型'],
@@ -198,6 +195,32 @@ module.exports = {
             ['es5/json&ajax', 'JSON & Ajax'],
           ]
         },
+        {
+          title: 'ES6',
+          children: [
+            ['es6/let&const', 'let & const'],
+            ['es6/destructuring', '解构赋值'],
+            ['es6/object-extensions', '内置对象的扩展'],
+            ['es6/symbol', 'Symbol'],
+            ['es6/set&map', 'Set & Map'],
+            ['es6/proxy', 'Proxy'],
+            ['es6/reflect', 'Reflect'],
+            ['es6/promise', 'Promise'],
+            ['es6/iterator', 'Iterator'],
+            ['es6/generator', 'Generator'],
+            ['es6/class', 'Class'],
+            ['es6/module', 'Module'],
+          ]
+        },
+        {
+          title: 'ES6+',
+          children: [
+            ['es7', 'ES7'],
+            ['es8', 'ES8'],
+            ['es9', 'ES9'],
+            ['es10', 'ES10'],
+          ]
+        }
       ],
       // 深入
       '/deep/html/': [
