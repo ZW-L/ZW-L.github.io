@@ -1,8 +1,3 @@
-## 简介
-
-+ `Array.prototype.includes()`
-+ 幂运算符 `**`
-
 ## Array 新增方法
 
 + `Array.prototype.includes(el: any): Boolean`: 判断一个数组中是否包含指定值

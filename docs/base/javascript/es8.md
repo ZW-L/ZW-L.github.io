@@ -1,8 +1,115 @@
-## 简介
-
+---
+sidebarDepth: 2
+---
 
 ## async/await
 
+### 介绍
+
++ `async` 函数返回一个 `Promise` 对象
++ 函数执行的时遇到 `await` 就会先返回，等到异步操作完成后再接着执行函数体内后面的语句
++ 是处理异步操作和解决回调地狱的终极杀器
+
+### 语法
+
++ 基础用法: 
+
+```js
+function timeout(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms)
+  })
+}
+
+async function asyncPrint(value, ms) {
+  await timeout(ms)
+  console.log(value)
+}
+
+asyncPrint('hello world', 50)
+```
+
++ 可以为 `async` 函数添加 `then`，而且回调函数的参数为 `async` 函数内部 `return` 语句返回的值
+
+```js
+async function f() {
+  return 'hello world'
+}
+
+f().then(v => console.log(v))
+// 'hello world'
+```
+
+
+### await
+
++ `await` 命令后面如果不是 `Promise` 对象，就直接返回对应的值
+
+```js
+async function f() {
+  // 等同于 return 123
+  return await 123
+}
+
+f().then(v => console.log(v))
+// 123
+```
+
++ `await` 命令后面是一个 `thenable` 对象，`await` 会将其等同于 `Promise` 对象
+
+```js
+class Sleep {
+  constructor(timeout) {
+    this.timeout = timeout
+  }
+  then(resolve, reject) {
+    const startTime = Date.now()
+    setTimeout(
+      () => resolve(Date.now() - startTime),
+      this.timeout
+    )
+  }
+}
+
+(async () => {
+  const sleepTime = await new Sleep(1000)
+  console.log(sleepTime)
+})()
+// 1000
+```
+
+### 错误处理
+
++ `await` 后面的异步操作出错，等同于 `async` 函数返回的 `Promise` 对象被 `reject`
+
+```js
+async function f() {
+  await new Promise(function (resolve, reject) {
+    throw new Error('出错了')
+  });
+}
+
+f()
+.then(v => console.log(v))
+.catch(e => console.log(e))
+// Error：出错了
+```
+
++ 一般将 `await` 放在 `try...catch` 代码块之中
+
+```js
+async function f() {
+  try {
+    await new Promise(function (resolve, reject) {
+      throw new Error('出错了')
+    })
+  } catch(e) {
+    console.log(e)
+  }
+
+  return await('hello world')
+}
+```
 
 ## Function 变动
 
