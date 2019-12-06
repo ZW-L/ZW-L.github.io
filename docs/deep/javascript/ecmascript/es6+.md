@@ -1,6 +1,11 @@
+---
+sidebarDepth: 2
+---
+
+
 ## 箭头函数
 
-### 箭头函数的特点和应用场景
+### 箭头函数的特点 & 应用场景
 
 **特点:**
 + 是匿名函数(不能用作构造函数，不能使用 `new` 关键字)
@@ -14,11 +19,13 @@
 
 
 
+
 ## Symbol
 
 `Symbol` 是 ES6 新增的基本数据类型，其表示为独一无二的值。
 
-### Symbol 类型在实际开发中的应用
+
+### Symbol 在开发中的应用
 
 1. 用作对象的属性名，选择性地对外输出
 ```js
@@ -43,9 +50,11 @@ console.log(Reflect.ownKeys(obj))               // [ 'name', 'age', Symbol(pet) 
 
 
 
+
 ## Promise
 
-### Promise 简述和优缺点
+
+### Promise 简述 & 优缺点
 
 **简述：**
 + `Promise` 是异步编程的一种解决方案，比传统的回调函数和事件更合理、更强大
@@ -61,7 +70,9 @@ console.log(Reflect.ownKeys(obj))               // [ 'name', 'age', Symbol(pet) 
 + 若不设置回调函数，在 `Promise` 中发生的错误，不会反映到外部
 + 处于 `pending` 状态时，无法得知目前进展到那一步(刚开始还是快完成)
 
-### 如何创建和使用 Promise
+
+
+### 创建和使用 Promise
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -100,6 +111,8 @@ const getJSON = function(url) {
 }
 ```
 
+
+
 ### 使用 Promise 实现串行
 
 **使用 reduce()：**
@@ -125,9 +138,13 @@ async function runPromiseByQueue(myPromises) {
 
 
 
+
+
 ## Proxy
 
-### Object.defineProperty() 和 proxy 的区别
+
+
+### Object.defineProperty() & Proxy
 
 
 
@@ -136,8 +153,6 @@ async function runPromiseByQueue(myPromises) {
 
 
 ## 其他
-
-
 
 
 

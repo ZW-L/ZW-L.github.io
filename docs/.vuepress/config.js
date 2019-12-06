@@ -259,20 +259,6 @@ module.exports = {
       ],
       '/deep/javascript/': [
         {
-          title: 'BOM',
-          collapsable: false,
-          children: [
-            ['bom', 'BOM'],
-          ]
-        },
-        {
-          title: 'DOM',
-          collapsable: false,
-          children: [
-            ['dom', 'DOM'],
-          ]
-        },
-        {
           title: 'ECMAScript',
           collapsable: false,
           children: [
@@ -280,14 +266,17 @@ module.exports = {
             ['ecmascript/syntax', '语法'],
             ['ecmascript/oop', '面向对象程序设计'],
             ['ecmascript/fp', '函数式编程'],
+            ['ecmascript/cros', '跨域'],
             ['ecmascript/es6+', 'ES6+'],
             ['ecmascript/es-power', '编码能力'],
           ]
         },
         {
-          title: '浏览器',
+          title: '其他',
           collapsable: false,
           children: [
+            ['bom', 'BOM'],
+            ['dom', 'DOM'],
             ['browser', '浏览器'],
           ]
         },
@@ -327,7 +316,6 @@ module.exports = {
       ],
       '/deep/basis-of-computer/': [
         ['computed-network', '计算机网络'],
-        ['http', 'HTTP'],
         ['design-patterns', '设计模式'],
         ['fundamentals-of-compiling', '编译原理'],
         ['software-engineering', '软件工程'],
@@ -374,6 +362,16 @@ module.exports = {
             ['linux-command/zip', '压缩与解压'],
             ['linux-command/disc', '磁盘管理与维护'],
             ['linux-command/net', '网络设置与维护'],
+          ],
+        },
+        {
+          title: 'HTTP 参考',
+          collapsable: false,
+          children: [
+            ['http-referrence/status-code', '状态码'],
+            ['http-referrence/mime-type', 'MIME-TYPE'],
+            ['http-referrence/head-fields', '头部字段'],
+            ['http-referrence/body-fields', '主体字段'],
           ],
         },
         {

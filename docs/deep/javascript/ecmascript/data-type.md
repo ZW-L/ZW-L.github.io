@@ -1,9 +1,11 @@
-## 理解 ECMAScript 和 Javascript 的关系
+## ECMAScript & Javascript
 
 + `javascript` 是一种动态类型、弱类型、基于原型的解释型语言；由 `ECMAScript`, `DOM`, `BOM` 三部分组成
 + `ECMAScript` 常用的版本为 `ES3`, `ES5`, `ES6+`
 
-## JavaScript 的数据类型
+
+
+## JavaScript 数据类型
 
 + 基本数据类型：
   + `Undefined`：只有 `undefined`
@@ -15,7 +17,9 @@
 + 引用数据类型：
   + `Object`：一组数据和功能的集合
 
-## 区分原始类型和引用类型
+
+
+## 原始类型 & 引用类型
 
 **数据类型底层的数据结构：**
 + 栈：保存基本数据类型的值或对象的引用地址指针(由系统分配存储空间、存储的值大小固定、空间小、直接操作变量效率高)
@@ -25,7 +29,9 @@
 + 不可变性：原始类型是不可变的(有些字符串变异方法可变是因为开辟了新的内存空间)，因为栈存储的值大小固定；引用类型是可变的，因为堆存储的值可动态调整
 + 变量比较：原始类型直接比较值，引用类型会比较引用地址
 
-## undefined 和 not defined 的区别
+
+
+## undefined & not defined
 
 + `undefined`：变量声明但未初始化，在初始化前使用该变量时它的值都是 `undefined`
 + `not defined`：指变量还未声明，除了 `typeof`，其他使用未声明的变量的行为都会报错(`ReferenceError`)
@@ -36,7 +42,9 @@ console.log(typeof b) // undefined
 console.log(b) // ReferenceError!
 ```
 
-## null 和 undefined 的区别
+
+
+## null & undefined
 
 + 产生：
   + 遍历声明后但未初始化时，其默认值都是 `undefined`，也可以显式声明，但意义不大
@@ -69,11 +77,15 @@ if (a || b) {
 }
 ```
 
-## JavaScript 中的假值
+
+
+## 有哪些假值
 
 以下值用在 `if` 条件语句中判断时都会返回 `false`：`0`, `undefined`, `null`, `NaN`, `''`, `false`
 
-## 出现小数点精度丢失的原因，Javascript 可以存储的最大数字、最大安全数字，处理大数字的方法，避免精度丢失的方法
+
+
+## 小数点精度丢失的原因 & 最大数字/最大安全数字 & 处理大数字的方法 & 避免精度丢失的方法
 
 **说明：**
 + `javascript` 中 `Number` 类型是双精度 64 位二进制格式 `IEEE 754` 值(位于 `-(2^53-1)` 和 `2^53-1` 之间的数字)
@@ -88,7 +100,9 @@ if (a || b) {
 **避免精度丢失：**
 
 
-## 判断 Javascript 数据类型的方式及优缺点，如何准确地判断数据类型
+
+
+## 判断数据类型的方式 & 如何准确判断数据类型
 
 + `typeof`
   + 优点：可以准确判断几个原始类型(`undefined`, `boolean`, `number`, `string`, `symbol`)
@@ -103,7 +117,7 @@ if (a || b) {
   + 返回实例的构造函数
 
 
-## JavaScript 有哪些内置对象
+## 有哪些内置对象
 
 + `Object`
 + `Function`
@@ -116,7 +130,7 @@ if (a || b) {
 + `Date`
 + `Error`
 
-## 基本包装类型，以及他们之间的装箱拆箱操作
+## 基本包装类型 & 装箱拆箱操作
 
 + 基本包装类型：`Number`, `String`, `Boolean`
 + 装箱：简单来说就是把基本类型转换为对应的包装类型；因为通过直接声明(不通过构造函数)创建的 `number`, `string`, `boolean` 类型的变量都属于基本数据类型，由于不是对象，理论上是不存在可调用的方法的，但是它们却可以使用包装类原型上的方法，是因为 javascript 在后台进行了装箱操作：
@@ -159,7 +173,9 @@ const obj3 = {
 console.log(obj3 - 1); // valueOf toString TypeError
 ```
 
-## 类型转换规则和可能发生隐式类型转换的场景，应如何避免或巧妙应用
+
+
+## 类型转换规则 & 隐式类型转换 & 避免或应用
 
 **类型转换规则：**
 + 转换为 `Boolean`：相当于使用 `Boolean()`
@@ -206,11 +222,15 @@ console.log(obj3 - 1); // valueOf toString TypeError
 + 使用 `!!variable` 将变量转换为对应的 `Boolean` 类型的值
 + `React` 使用 `&&` 作条件渲染
 
-## 为什么 [] == ![] 返回 true
+
+
+## 解释 [] == ![]
 
 1. `!` 的优先级高于 `==`，先将 `![]` 转换为 `false`
 2. 转换为比较 `[] == false`，先将 `false` 转换为 `0`
 3. 转换为比较 `[] == 0`，先将 `[]` 转换为 `0`
+
+
 
 ## 使 (a == 1 && a == 2 && a == 3) 返回 true
 
@@ -224,9 +244,12 @@ const a = {
 console.log(a == 1 && a == 2 && a == 3) // true
 ```
 
-## 深拷贝和浅拷贝，如何实现数组和对象的深拷贝
+
+
+## 深拷贝和浅拷贝 & 数组和对象的深拷贝
 
 **浅拷贝简介：** 仅拷贝引用类型的第一层数据，第二层或更深层数据拷贝的是一个引用
+
 ```js
 const arr = [1, 2, [2, 3]]
 const newArr = arr.concat()
@@ -237,16 +260,20 @@ console.log(arr, newArr) // [ 1, 2, [ 2, 3 ] ] [ 0, 2, [ 2, 3 ] ]
 newArr[2][0] = 100
 console.log(arr, newArr) // [ 1, 2, [ 100, 3 ] ] [ 0, 2, [ 100, 3 ] ]
 ```
+
 **实现浅拷贝：**
+
 + 数组使用不带参数的 `slice()` 和 `concat()` 返回的就是原数组的浅拷贝
 + 对象使用展开运算符也可以获得一层浅拷贝(`obj2 = { ...obj }`)
 
 **深拷贝简介：** 深拷贝：递归拷贝引用类型中任意层级的数据，返回是全新的变量，彼此修改都不会有影响
 
 **实现深拷贝：**
+
 + 使用 `JSON.parse()` 和 `JSON.stringify()` 转化
   + 优点：语法简单，在大多数仅有 `Number`, `String`, `Boolean` 的值的情况下使用
   + 缺点：是不能转化 `RegExp`、`Function`、`Date`、`undefined` 等值
+
 ```js
 const obj = {
   name: 'Alice',
@@ -259,7 +286,9 @@ obj2.likes[1] = 'dancing'
 console.log(obj) // { name: 'Alice', age: 24, likes: [ 'coding', 'singing' ] }
 console.log(obj2) // { name: 'Alice', age: 24, likes: [ 'coding', 'dancing' ] }
 ```
+
 + 递归实现对象的深拷贝，能使用大部分情况
+
 ```js
 // 深拷贝
 function deepClone(obj) {
@@ -290,20 +319,26 @@ console.log(obj) // { name: 'Alice', age: 24, likes: [ 'coding', 'singing' ], to
 console.log(obj2) // { name: 'Alice', age: 24, likes: [ 'dancing', 'singing' ], todo: { coding: true } }
 ```
 
-## var, let, const 的区别
 
-**let/const 对比 var 的区别：**
+
+## var & let & const
+
+**let/const 和 var 的区别：**
+
 + 块级作用域
 + 不存在变量提升
 + 暂时性死区：只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量
 + 不可重复声明
 + `let`、`const` 声明的全局变量不会挂在顶层对象下面：使用 var 声明的全局变量可以用 `global.a`/`window.a` 的形式获取，但使用 `let` 和 `const` 声明的则不行
 
-**const 对比 let 的区别：**
-+ const 用于声明常量，一旦声明便不可变(引用类型除外)
-+ const 声明常量时一定要赋值，否则报错
+**const 和 let 的区别：**
 
-## 什么是变量提升，函数提升
++ `const` 用于声明常量，一旦声明便不可变(引用类型除外)
++ `const` 声明常量时一定要赋值，否则报错
+
+
+
+## 变量提升 & 函数提升
 
 + 变量提升：在同一作用域下，变量可以在声明之前使用，值为 `undefined`
 + 函数提升：使用函数声明方式定义的方法，调用语句可以在声明语句之前(解析器在代码开始执行前将函数提升到顶部)
@@ -315,7 +350,9 @@ var a = 'hello'
 function func() { console.log('world') }
 ```
 
-## 函数定义的方法以及区别
+
+
+## 函数定义的方式
 
 **函数定义：**
 ```js

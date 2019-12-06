@@ -1,4 +1,4 @@
-## 熟练掌握 Javascript 提供的全局函数、全局属性
+## 全局函数 & 全局属性
 
 **全局属性：** `null`, `undefined`, `NaN`, `Infinity`
 **全局方法：** 
@@ -9,7 +9,8 @@
 + `isNaN()`/`isFinite()`，同时作为 `Number` 对象的静态方法
 
 
-## Javascript 提供的正则表达式 API，使用正则表示式解决常见问题
+
+## 正则 API & 解决常见问题
 
 **API：**
 + `regex.exec(str)`：在目标字符串中执行一次正则匹配操作
@@ -25,7 +26,9 @@
 + URL 解析
 + 去重
 
-## 数组常用方法及用处
+
+
+## 数组常用 API
 
 **变异方法：**
 + `sort()`：数组排序，可接受一个排序函数(排序函数接受两个参数)，返回排序后的数组
@@ -65,19 +68,25 @@
   + `toString()`：返回一个由所有数组元素组合而成的字符串，默认为 `join(',')`
   + `valueOf()`：返回数组对象的原始值
 
-## 如何中断 forEach 循环
+
+
+## 如何中断 forEach
 
 + 使用 `try...catch` 监视代码块，在需要终端的地方抛出异常
 + 使用其他方法代替 `forEach`
 
-## 怎样将 arguments 转化为数组
+
+
+## 将 arguments 转化为数组
 
 + `Array.prototype.slice.call(arguments)`
 + `Array.prototype.concat.apply([], arguments)`
 + `Array.from(arguments)`
 + `[...arguments]`
 
-## 以下代码分别输出是什么
+
+
+## 解释以下代码的输出
 
 ```js
 var y = 1
@@ -92,11 +101,14 @@ if (f = function() {}) {
 }
 console.log(y)
 ```
+
 **输出:** `1undefined` 和 `1function`
 
 **解析：** 
-+ 只要条件语句返回的值不是六个假值(`false`：`0`, `undefined`, `null`, `NaN`, `''`, `false`)之一，`if` 语句块内的代码都会执行(与 `eval` 有关???)
+
++ 只要条件语句返回的值不是六个假值(`false`：`0`, `undefined`, `null`, `NaN`, `''`, `false`)之一，`if` 语句块内的代码都会执行
 + 在 if 语句中使用赋值语句时，它相当于创建一个变量：
+
 ```js
 var y = 1
 if (1) {
@@ -106,7 +118,9 @@ if (1) {
 console.log(y) // 1function
 ```
 
-## Javascript 异常处理的方式，统一的异常处理方案
+
+
+## 异常处理的方式 & 异常处理的方案
 
 **异常处理说明：**
 + `try...catch...finally` 语句块，其中 `try` 语句时必需的，`catch` 和 `finally` 应至少有一个
@@ -118,11 +132,15 @@ console.log(y) // 1function
 **异常处理方案：**
 
 
-## 为何在 try 块里面放 return， finally 还会执行，理解其内部机制
+
+
+## 解释 try 的 return 语句不能终止 finally
 
 **说明：** `finally` 块用于包含清理代码(关闭文件等)，因此始终执行 `finally` 语句块是有必要的
 
-## 宏任务和微任务分别有哪些
+
+
+## 宏任务 & 微任务
 
 **宏任务：**
 + `I/O`
@@ -135,9 +153,10 @@ console.log(y) // 1function
 + `MutationObserver`
 + `process.nextTick`(Node.js)
 
-## Javascript 如何实现异步编程，详细描述 EventLoop 机制
 
-**实现异步编程：**
+
+## 实现异步编程
+
 + 回调函数
   + 优点：简单、容易理解和部署
   + 缺点：代码高度耦合，且每个人物只能指定一个回调
@@ -151,17 +170,27 @@ console.log(y) // 1function
   + 优点：
   + 缺点：
 
-**EventLoop 机制：** 在 `Javascript` 中，任务分为宏任务(`macrotask`)和微任务(`microtask`)，这两个任务分别维护一个队列(均采用先进先出的策略执行)，同步执行的任务都在宏任务上执行。具体的操作步骤如下(前四步构成了一个事件的循环检测机制(`EventLoop`))：
+
+
+## EventLoop
+
+在 `Javascript` 中，任务分为宏任务(`macrotask`)和微任务(`microtask`)，这两个任务分别维护一个队列(均采用先进先出的策略执行)，同步执行的任务都在宏任务上执行。具体的操作步骤如下(前四步构成了一个事件的循环检测机制(`EventLoop`))：
+
 1. 从宏任务的头部取出一个任务执行
 2. 执行过程中若遇到微任务则将其添加到微任务的队列中
 3. 宏任务执行完毕后，若微任务的队列中存在任务，则逐个执行至全部完成
 4. `GUI` 渲染
 5. 回到步骤 1，直到宏任务执行完毕
 
-## Node 与浏览器 EventLoop 的差异
 
 
-## 可以快速分析一个复杂的异步嵌套逻辑，并掌握分析方法
+## Node EventLoop & 浏览器 EventLoop
 
-+ 先把复杂的异步写法转换为简单写法(`async/await`) 
-+ 然后按照事件的循环机制进行分析
+
+
+
+
+## 如何分析复杂的异步嵌套逻辑
+
+1. 复杂的异步写法转换为简单写法(`async/await`) 
+2. 按照事件的循环机制进行分析

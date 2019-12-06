@@ -1,6 +1,10 @@
-## 手动实现原生函数
+---
+sidebarDepth: 2
+---
 
-### call、apply、bind 的区别和手动实现
+## 实现原生函数
+
+### call/apply/bind 的区别 & 实现
 
 **区别：**
 + 三者都接收一个对象(或 `null`)作为 `this` 的绑定
@@ -99,6 +103,7 @@ Function.prototype._bind = function(context, ...firstArgs) {
 }
 ```
 
+
 ### 实现 Object.assign()
 
 
@@ -107,39 +112,33 @@ Function.prototype._bind = function(context, ...firstArgs) {
 
 
 
-### 手写 JSON.stringify()、JSON.parse()
+### JSON.stringify() 和 JSON.parse()
 
 
 
-### 手动实现一个 Symbol
+### 实现 Symbol
 
 
 
-### 手动实现符合 Promise/A+ 规范的 Promise
+### 实现符合 Promise/A+ 规范的 Promise
 
 
 
-### 手动实现 async/await
+### 实现 async/await
 
 
 
-### 手动实现一个 Set
+### 实现 Set
 
 
 
 
-## 数组相关
 
-### 实现数组 map 方法
 
-**说明：**
-+ 
+## 实现数组方法/操作
 
-```js
 
-```
-
-### 实现数组 filter 方法
+### 实现 map()
 
 **说明：**
 + 
@@ -148,7 +147,8 @@ Function.prototype._bind = function(context, ...firstArgs) {
 
 ```
 
-### 实现数组的 some 方法
+
+### 实现 filter()
 
 **说明：**
 + 
@@ -157,7 +157,8 @@ Function.prototype._bind = function(context, ...firstArgs) {
 
 ```
 
-### 实现数组的 reduce 方法
+
+### 实现 some()
 
 **说明：**
 + 
@@ -166,7 +167,18 @@ Function.prototype._bind = function(context, ...firstArgs) {
 
 ```
 
-### 实现数组扁平化
+
+### 实现 reduce()
+
+**说明：**
++ 
+
+```js
+
+```
+
+
+### 数组扁平化
 
 **说明：**
 + 基本上都是利用 `concat()` 和 `apply()` (或者用 `...`) 进行扁平化
@@ -223,7 +235,9 @@ const arr = [1, 2, [4, 2], 3, {'age': [22, 24]}, [2, [1, 5]], [[[[[2, [2, 1]]]]]
 console.log(flattenDeep(arr)) // [ 1, 2, 4, 2, 3, { age: [ 22, 24 ] }, 2, 1, 5, 2, 2, 1 ]
 ```
 
-### 实现数组去重
+
+
+### 数组去重
 
 ```js
 // 1.ES6 的 Set 和扩展运算符
@@ -250,7 +264,9 @@ console.log(uniq([1, 2, 3, 3, 1]))  // [1, 2, 3]
 
 
 
-## 手动实现工具函数
+
+## 实现工具函数
+
 
 ### 准确获取变量的数据类型
 
@@ -269,15 +285,25 @@ function type(obj) {
 }
 ```
 
-### 实现一个简单的 CO 模块
 
-### 实现一个 sleep 函数
+### 实现简单的 co 模块
 
-### 实现一个记忆函数
 
-### 手写柯里化工具函数，并理解其应用场景和优势
 
-### 手写防抖和节流工具函数，并理解其内部原理和应用场景
+### 实现 sleep 函数
+
+
+
+### 实现记忆函数
+
+
+
+### 实现柯里化工具函数 & 理解其应用场景
+
+
+
+
+### 实现防抖/节流工具函数 & 理解其内部原理和应用场景
 
 **节流：** 在指定时间间隔内只会执行一次任务。一个例子：当监听页面滚动事件时，判断是否滚动到底部，在不考虑函数节流和代码性能的情况下，会频繁触发 `onscroll` 事件，此时可添加节流函数：
 ```js
@@ -307,17 +333,31 @@ function debounce (fn) {
 }
 ```
 
-### 手写一个模板引擎，并能解释其中原理
+
+
+### 实现模板引擎 & 解释原理
+
+
 
 ### 实现异步回调
 
-### 手写一个 EventEmitter 实现事件发布、订阅
 
-### 说出两种可以实现双向绑定的方案、可以手动实现
+
+### 手写 EventEmitter & 实现事件发布/订阅
+
+
+
+### 实现双向绑定
+
+
 
 ### 洗牌算法
 
+
+
 ### 单例模式
+
+
 
 ### 判断数据类型
 
@@ -334,13 +374,24 @@ console.log(isArray([]))
 
 
 
+
 ## 其他
+
+
 
 ### 给数字添加千分位符
 
+
+
 ### 支持占位符的函数柯里化
+
+
 
 ### 偏函数
 
+
+
 ### 斐波那契数列及其优化
+
+
 

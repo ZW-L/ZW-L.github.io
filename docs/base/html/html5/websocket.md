@@ -15,34 +15,34 @@ sidebarDepth: 2
 
 ### 构造函数
 
-`WebSocket(url[, protocols])`：返回一个 `WebSocket` 实例对象
+`WebSocket(url: String, protocol?='': Array)`：返回一个 `WebSocket` 实例对象
 + `url`: 连接的服务器 URL
 + `protocols`: 可接受的子协议
 
 ### 属性
 
-+ `binaryType`: 连接使用的二进制数据类型
-+ `bufferedAmount`: 只读。数据队列的字节数
-+ `extensions`: 只读。服务器接受的扩展名
-+ `protocol`: 只读。服务器接受的子协议
-+ `readyState`: 只读。表示连接状态，取值为
++ `binaryType: readonly String`: 连接使用的二进制数据类型
++ `bufferedAmount: readonly Number`: 数据队列的字节数
++ `extensions: readonly String`: 服务器接受的扩展名
++ `protocol: readonly Array`: 服务器接受的子协议
++ `readyState: readonly Number`: 表示连接状态，取值为
   + 0: 连接尚未建立
   + 1: 连接已建立，可以进行通信
   + 2: 连接正在进行关闭
   + 3: 连接已关闭或不能打开
-+ `url`: 只读。`WebSocket` 连接的服务器 URL
++ `url: readonly String`: `WebSocket` 连接的服务器 URL
 
 ### 方法
 
 + `send(data)`: 发送数据
-+ `close([code, reason])`: 关闭连接
++ `close(code?, reason?)`: 关闭连接
 
 ### 事件
 
-+ `onopen()`: 连接建立时
-+ `onmessage()`: 客户端接收服务端数据时
-+ `onclose()`: 连接关闭时
-+ `onerror()`: 通信发生错误时
++ `open()`: 连接建立时
++ `close()`: 连接关闭时
++ `message()`: 接收服务端数据时
++ `error()`: 连接发生错误时
 
 
 ## 简单使用
