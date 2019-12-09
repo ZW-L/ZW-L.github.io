@@ -1,6 +1,8 @@
-## 废弃的标签和新增的标签
+## 废弃的标签 & 新增的标签
 
-## 新特性及其用途
+
+
+## 介绍新特性及其用途
 
 + 标签变化
   + 删除的标签
@@ -15,7 +17,7 @@
 + WebSocket
 + WebWorker
 
-## 谈谈标签语义化
+## 标签语义化的目的 & 实现
 
 目的：
 + 丢失样式时，页面也会有较为清晰的结构
@@ -29,9 +31,20 @@
 + 使用语义化的文本标签：`<em>`, `<strong>`, `<address>` 等
 + 使用 HTML5 新增的语义化结构标签：`<header>`, `<footer>`, `<nav>`, `<aside>`, `<section>`, `<article>`
 
+
 ## Canvas 和 SVG 的区别
 
-## sessionStorage 和 localStorage
+|Canvas|SVG|
+|-|-|
+|依赖分辨率|不依赖分辨率|
+|不支持事件处理器|支持事件处理器|
+|弱的文本渲染能力|适合带有大型渲染区域的应用(如谷歌地图)|
+|能够以 .png 或 .jpg 格式保存结果图像|复杂度高会减慢渲染速度(过度使用 DOM)|
+|适合图像密集型的游戏，许多对象会被频繁重绘|不适合游戏应用|
+
+
+
+## sessionStorage & localStorage
 
 相同的属性和 API：
 + `length`：返回键值对的长度
@@ -41,10 +54,12 @@
 + `clear()`：删除所有键值对
 
 区别：
-+ sessionStorage：会话级别的存储，在浏览器关闭后清除
-+ localStorage：持久化的存储，可长期存储数据，除非用户手动清除
++ `sessionStorage`：会话级别的存储，在浏览器关闭后清除
++ `localStorage`：持久化的存储，可长期存储数据，除非用户手动清除
 
-## 谈谈 HTML5 的应用缓存
+
+
+## 应用缓存
 
 + 优势
 + 实现
@@ -52,23 +67,33 @@
 + 回退
 + 网络命令
 
-## HTML5 离线缓存原理
 
-## 分析常用的浏览器存储
+
+## 离线缓存原理
+
+
+
+
+## 常用的浏览器存储
 
 + Cache
 + Cookie
 + Session
 + Storage
-+ WebSql
-+ IndexDB
++ IndexedDB
 
-## 实现浏览器多标签页之间的通信
+
+
+## 浏览器多标签页间的通信
 
 + Cookie
 + localStorage
 
+
+
 ## Web Worker
 
 
+
 ## WebSocket
+

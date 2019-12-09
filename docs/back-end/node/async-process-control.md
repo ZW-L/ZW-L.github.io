@@ -1,7 +1,7 @@
 ## 介绍
 
 
-## 回调函数
+## Callback
 
 ## Thunk
 
@@ -10,3 +10,5 @@
 ## Generator
 
 ## async/await
+
+## 最佳方式

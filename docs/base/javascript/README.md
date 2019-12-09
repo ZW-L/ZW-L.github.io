@@ -1,4 +1,17 @@
-## 简介
+## TODO
+
++ BOM
+
++ DOM
+
++ ECMAScript
+
++ ES6
+
++ ES6+
+
+
+### Javascript 简介
 
 + `javascript` 由三部分组成：`BOM`(Browser Object Model)、`DOM`(Document Object Model) 和 `ECMAScript`。
 + `BOM` 能使用浏览器提供的基于客户端的存储、URL 定位等接口

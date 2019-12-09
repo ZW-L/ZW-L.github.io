@@ -28,7 +28,7 @@ module.exports = {
           { text: 'CSS',  link: '/deep/css/' },
           { text: 'Javascript',  link: '/deep/javascript/' },
           { text: '前端工程化',  link: '/deep/engineering/' },
-          { text: '业务相关',  link: '/deep/business-related/' },
+          { text: '开发技巧',  link: '/deep/business-related/' },
           { text: '计算机基础',  link: '/deep/basis-of-computer/' },
         ]
       },
@@ -266,9 +266,17 @@ module.exports = {
             ['ecmascript/syntax', '语法'],
             ['ecmascript/oop', '面向对象程序设计'],
             ['ecmascript/fp', '函数式编程'],
-            ['ecmascript/cros', '跨域'],
             ['ecmascript/es6+', 'ES6+'],
-            ['ecmascript/es-power', '编码能力'],
+          ]
+        },
+        {
+          title: '编码能力',
+          collapsable: false,
+          children: [
+            ['es-power/native', '实现原生功能'],
+            ['es-power/array', '实现数组方法'],
+            ['es-power/util', '常用工具函数'],
+            ['es-power/fw', '深入框架思想'],
           ]
         },
         {
@@ -292,10 +300,21 @@ module.exports = {
             ['gulp', 'Gulp'],
             ['babel', 'Babel'],
             ['eslint', 'ESLint'],
-            ['typescript', 'TypeScript'],
             ['jest', 'Jest'],
             ['sass', 'Sass'],
             ['ajax', 'Ajax'],
+          ]
+        },
+        {
+          title: 'TypeScript',
+          collapsable: false,
+          children: [
+            ['ts/install', '安装使用'],
+            ['ts/strong-type', '强类型'],
+            ['ts/es6+', 'ES6+ 语法'],
+            ['ts/oop', '面向对象编程'],
+            ['ts/ts-file', '.d.ts 文件'],
+            ['ts/more', '更多特性'],
           ]
         },
         {
@@ -386,13 +405,14 @@ module.exports = {
       ],
       // 后端
       '/back-end/node/': [
+        ['', '简介'],
         {
           title: '异步编程',
           collapsable: false,
           children: [
             ['async-theory', '原理'],
-            ['async-event-manage', '事件处理'],
-            ['async-process-control', '流程控制'],
+            ['async-event-manage', '事件处理方式'],
+            ['async-process-control', '异步流程控制'],
           ],
         },
         {
