@@ -60,8 +60,8 @@ function error(message: string): never {
 
 ### 结构类型
 
-+ 接口类型：作为一个接口限定的成员和数据类型
-+ 类类型：作为一个构造函数或构造函数的实例
++ 接口结构类型：作为一个接口限定的成员和数据类型
++ 类结构类型：作为一个构造函数或构造函数的实例
 
 ```ts
 interface Person {
@@ -88,19 +88,6 @@ class Student implements Person{
 // 类类型
 let s: Student = new Student('Alice', 24, 'GDPU')
 ```
-
-## 高级类型
-
-&emsp;&emsp;
-
-
-+ 交叉类型
-+ 联合类型
-+ 类型保护与区分类型
-+ 可以为 null 的类型
-+ 类型别名
-+ ...
-
 
 
 
@@ -133,6 +120,123 @@ let strLength: number = (someValue as string).length
 
 ## 类型兼容性
 
+&emsp;&emsp;[类型兼容性](https://typescript.bootcss.com/type-compatibility.html)是指如果 x 要兼容 y，那么 y 至少具有与 x 相同的属性。
+
+```ts
+interface Named {
+  name: string
+}
+
+class Person {
+  name: string
+}
+
+let p: Named
+// 因为 Person 实例拥有和 Named 接口相同的属性，因此不会报错
+p = new Person()
+```
 
 
 
+## 高级类型
+
+&emsp;&emsp;[高级类型](https://typescript.bootcss.com/advanced-types.html)
+
+
+### 交叉类型
+
+可以拥有多种类型的类型，使用 `&` 连接，语法为 `T & U & P`：
+
+```ts
+function extend<T, U>(first: T, second: U): T & U {
+  let result = <T & U>{}
+  for (let id in first) {
+    (<any>result)[id] = (<any>first)[id];
+  }
+  for (let id in second) {
+    if (!result.hasOwnProperty(id)) {
+      (<any>result)[id] = (<any>second)[id]
+    }
+  }
+  return result
+}
+
+class Person {
+  constructor(public name: string) { }
+}
+interface Loggable {
+  log(): void
+}
+class ConsoleLogger implements Loggable {
+  log() {
+    console.log('Hello World!')
+  }
+}
+
+const jim = extend(new Person('Jim'), new ConsoleLogger())
+
+console.log(jim.name)
+jim.log()
+```
+
+::: tip 说明：
++ 这种特性常用于创建 `mixins`
+:::
+
+
+### 联合类型
+
+一个值可以是几种类型之一，用 `|` 分隔每个类型，语法为 `string | number | boolean`：
+
+```ts
+function padLeft(value: string, padding: string | number) {
+  if (typeof padding === 'number') {
+    return Array(padding + 1).join(' ') + value
+  }
+  if (typeof padding === 'string') {
+    return padding + value
+  }
+  throw new Error(`Expected string or number, got '${padding}'.`)
+}
+```
+
+::: tip 说明：
++ 可用于规定函数参数的类型或返回值类型，比 `any` 更细粒度
+:::
+
+
+### 类型别名
+
+使用 `type` 关键字定义类型别名：
+
+```ts
+type Name = string
+type Container<T> = { value: T }
+type LinkedList<T> = T & { next: LinkedList<T> }
+```
+
+::: tip 说明：
++ 类型别名与接口有类似的功能，都能用于规定类型，但是它没有 `extends` 和 `implements` 的特性（**建议尽量使用接口代替类型别名，除非无法通过接口来描述一个类型并且需要使用联合类型或元组类型**）
++ 类型别名不能出现在声明右侧的任何地方:
+```ts
+type Yikes = Array<Yikes> // error
+```
++ 交叉类型一起使用，可以创建出一些稀奇古怪的类型:
+```ts
+type LinkedList<T> = T & { next: LinkedList<T> }
+
+interface Person {
+    name: string
+}
+
+var people: LinkedList<Person>
+var s = people.name
+var s = people.next.name
+var s = people.next.next.name
+var s = people.next.next.next.name
+```
++ 创建特定的枚举类型：
+```ts
+type Easing = 'ease-in' | 'ease-out' | 'ease-in-out'
+```
+:::

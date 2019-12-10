@@ -4,12 +4,12 @@ sidebarDepth: 2
 
 ## 简介
 
-+ `Buffer`: 
-+ `__dirname`: 
-+ `__filename`: 
-+ `console`: 
-+ `process`: 
-+ `timer`: 
++ `Buffer`: 全局缓冲器对象
++ `__dirname`: 当前模块的目录名
++ `__filename`: 当前模块的文件名
++ `console`: 类似浏览器
++ `process`: 全局执行上下文对象
++ `timer`: 全局定时器，包含 `Immediate`/`Timeout` 类和设置/取消定时器的方法
 
 
 ## Buffer
@@ -143,20 +143,24 @@ sidebarDepth: 2
 
 ## timer
 
-+ `Immediate` 类:
-  + `immediate.hasRef()`: 
-  + `immediate.ref()`: 
-  + `immediate.unref()`: 
-+ `Timeout` 类:
-  + `timeout.hasRef()`: 
-  + `timeout.ref()`: 
-  + `timeout.refresh()`: 
-  + `timeout.unref()`: 
-+ 预定定时器:
-  + `setTimeout()`: 
-  + `setInterval()`: 
-  + `setImmediate()`: 
-+ 取消定时器:
-  + `clearTimeout()`: 
-  + `clearInterval()`: 
-  + `clearImmediate()`: 
+### Immediate 类
+
++ `immediate.hasRef()`: 
++ `immediate.ref()`: 
++ `immediate.unref()`: 
+
+### Timeout 类
+
++ `timeout.hasRef()`: 
++ `timeout.ref()`: 
++ `timeout.refresh()`: 
++ `timeout.unref()`: 
+
+### 预定/取消定时器
+
++ `setTimeout()`: 
++ `setInterval()`: 
++ `setImmediate()`: 
++ `clearTimeout()`: 
++ `clearInterval()`: 
++ `clearImmediate()`: 
