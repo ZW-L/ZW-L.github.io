@@ -52,11 +52,45 @@ sidebarDepth: 2
 + `assert.throws(fn[, error][, message])`：
 
 
-## [child_process](http://nodejs.cn/api/child_process.html)
+## child_process
 
-+ 创建异步的进程
-+ 创建同步的进程
-+ ChildProcess 类
++ [child_process](http://nodejs.cn/api/child_process.html)继承自 `EventEmitter`
++ `child_process` 的实例代表衍生的子进程
++ 没有构造函数，`child_process` 实例通过以下方法创建：
+  + `child_process.spawn()`
+  + `child_process.exec()`
+  + `child_process.execFile()`
+  + `child_process.fork()`
+
+### 事件
+
++ `close`：当子进程的 stdio 流被关闭时触发
++ `disconnect`：调用父进程的 `subprocess.disconnect()` 或子进程的 `process.disconnect()` 后触发
++ `error`：当无法衍生进程、无法杀死进程、向子进程发送消息失败时触发
++ `exit`：当子进程结束后触发
++ `message`：当子进程使用 `process.send()` 发送消息时触发
+
+### 属性
+
++ `subprocess.channel: object | undefined`：子进程的 IPC 通道
++ `subprocess.connected: boolean`：指示是否可以从子进程发送和接收消息
++ `subprocess.killed: boolean`：指示子进程是否已成功接收到信号
++ `subprocess.pid: integer`：子进程的进程标识符 pid
++ `subprocess.stderr: Readable`：子进程的 `stderr` 的可读流
++ `subprocess.stdout: Readable`：子进程的 `stdout` 的可读流
++ `subprocess.stdin: Writable`：子进程的 `stdin` 的可写流
++ `subprocess.stdio: []`：一个到子进程的管道的稀疏数组
+
+### 方法
+
++ `subprocess.disconnect()`：关闭父进程与子进程之间的 IPC 通道
++ `subprocess.kill(signal?: number | string)`：向子进程发送一个信号
++ `subprocess.send(message: any, sendHandler?: Server | Socket, options?: object, callback: function)`：用于发送消息到子进程（当父进程和子进程之间已建立了一个 IPC 通道时）
++ `subprocess.ref()`：为子进程恢复已删除的引用计数
++ `subprocess.unref()`：父进程的事件循环不会在其引用计数中包括子进程，允许父进程独立于子进程退出（除非子进程与父进程之间已建立了 IPC 通道）
+
+
+
 
 ## [cluster](http://nodejs.cn/api/cluster.html)
 
@@ -321,39 +355,49 @@ myEmitter.on('removeListener', (eventName, listener) => {
 
 ### ClientRequest
 
++ **介绍：**
+  + 继承自 `Stream`
+  + 由 `http.request()` 创建并返回，代表正在进行中的请求，其请求头已进入队列
+  + 要为请求对象添加 `response` 事件监听以获得响应，否则响应将会被完全地丢弃
+  + 如果响应过早关闭，则 `response` 会触发 `aborted` 事件而不是 `error` 事件
+
 + **事件：**
-  + `abort`：
-  + `connect`：
-  + `continue`：
-  + `information`：
-  + `response`：
-  + `socket`：
-  + `timeout`：
-  + `upgrade`：
+  + `abort`：当请求被客户端中止时触发
+  + `connect`：当服务器使用 `CONNECT` 方法响应请求时都会触发
+  + `continue`：当服务器发送 100 Continue HTTP 响应时触发
+  + `information`：当服务器发送 1xx 中间响应（不包括 101 Upgrade）时触发
+  + `response`：当收到此请求的响应时触发（仅触发一次）
+  + `socket`：将套接字分配给此请求后触发
+  + `timeout`：当底层套接字因不活动而超时时触发
+  + `upgrade`：每次服务器响应升级请求时触发
 
 + **属性：**
-  + `request.aborted`：
+  + `request.aborted: boolean`：指示请求是否已终止
   + `request.connection`：
-  + `request.finished`：
-  + `request.maxHeadersCount`：
-  + `request.path`：
-  + `request.socket`：
-  + `request.writableEnded`：
-  + `request.writableFinished`：
+  + `request.finished: boolean`：在调用 `request.end()` 之后为 true
+  + `request.maxHeadersCount=2000: number`：最大响应头数
+  + `request.path: string`：请求的路径
+  + `request.socket`：指向底层套接字
+  + `request.writableEnded`：在调用 `request.end()` 之后为 true
+  + `request.writableFinished`：如果在触发 `finish` 事件之前所有数据都已刷新到底层系统，则为 true
 
 + **方法：**
-  + `request.abort()`：
-  + `request.end([data[, encoding]][, callback])`：
-  + `request.flushHeaders()`：
-  + `request.getHeader(name)`：
-  + `request.removeHeader(name)`：
-  + `request.setHeader(name, value)`：
-  + `request.setNoDelay([noDelay])`：
-  + `request.setSocketKeepAlive([enable][, initialDelay])`：
-  + `request.setTimeout(timeout[, callback])`：
-  + `request.write(chunk[, encoding][, callback])`：
+  + `request.abort()`：将请求标记为中止，响应中剩余的数据会被丢弃且套接字被销毁
+  + `request.flushHeaders()`：刷新请求头
+  + `request.getHeader(name: string): any`：读取请求中的一个请求头
+  + `request.setHeader(name: string, value: any)`：设置单个请求头
+  + `request.removeHeader(name: string)`：删除指定请求头
+  + `request.end(data?: string | Buffer, encoding?: string, callback?: function): this`：完成发送请求，若部分请求主体还未发送，则将它们刷新到流中
+  + `request.write(chunk?: string | Buffer, encoding: string, callback?: function)`：发送一个请求主体的数据块
+  + `request.setNoDelay(noDelay?: boolean)`：一旦将套接字分配给此请求并且连接了套接字，便立即调用 `socket.setNoDelay()`
+  + `request.setSocketKeepAlive(enable?: boolean, initialDelay: number)`：一旦将套接字分配给此请求并连接了套接字，便立即调用 `socket.setKeepAlive()`
+  + `request.setTimeout(timeout?: number, callback?: function): ClientRequest`：一旦将套接字分配给此请求并且连接了套接字，便立即调用 socket.setTimeout()
+
 
 ### Server
+
++ **介绍：**
+  + 继承自 `net.Server`
 
 + **事件：**
   + `checkContinue`：
@@ -379,6 +423,9 @@ myEmitter.on('removeListener', (eventName, listener) => {
 
 
 ### ServerResponse
+
++ **介绍：**
+  + 继承自 `Stream`
 
 + **事件：**
   + `close`：
@@ -413,6 +460,9 @@ myEmitter.on('removeListener', (eventName, listener) => {
 
 
 ### IncomingMessage
+
++ **介绍：**
+  + 继承自 `stream.Readable`
 
 + **事件：**
   + `aborted`：

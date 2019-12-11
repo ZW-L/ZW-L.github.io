@@ -8,15 +8,19 @@ sidebarDepth: 2
 
 参考 [Stream](http://nodejs.cn/api/stream.html):
 
-+ Stream 是一个抽象接口，Node 中有很多对象实现了这个接口
-+ 所有的 Stream 对象都是 EventEmitter 的实例
++ 所有 `Stream` 对象都是 `EventEmitter` 的实例
++ `Stream` 是一个抽象接口，Node 中有很多对象实现了这个接口
 
 ### 流的类型
 
-+ `Writable`: 可写入数据的流，如 `fs.createWriteStream()`
-+ `Readable`: 可读取数据的流，如 `fs.createReadStream()`
-+ `Duplex`: 可读又可写的双工流，如 `net.Socket`
++ `Writable`: 可写流，如 `fs.createWriteStream()`
++ `Readable`: 可读流，如 `fs.createReadStream()`
++ `Duplex`: 可读写的双工流，如 `net.Socket`
 + `Transform`: 在读写过程中可以修改或转换数据的 `Duplex` 流，如 `zlib.createDeflate()`
+
+::: tip 说明：
++ 因为 `Duplex` 和 `Transform` 都是可读写的，所以它们各自维护着两个相互独立的内部缓冲器用于读取和写入，在维护数据流时，读取和写入两边可以各自独立地运作
+:::
 
 ## Readable
 
@@ -49,16 +53,14 @@ sidebarDepth: 2
 
 ### 属性
 
-|属性|类型|描述|
-|-|-|-|
-|[readable.destroyed](http://nodejs.cn/api/stream.html#stream_readable_destroyed)|Boolean|在调用 readable.destroy() 之后为 true|
-|[readable.readable](http://nodejs.cn/api/stream.html#stream_readable_readable)|Boolean|如果可以安全地调用 readable.read()，则为 true。|
-|[readable.readableEncoding](http://nodejs.cn/api/stream.html#stream_readable_readableencoding)|String|获取用于给定可读流的 encoding 属性。 可以使用 readable.setEncoding() 方法设置 encoding 属性。|
-|[readable.readableEnded](http://nodejs.cn/api/stream.html#stream_readable_readableended)|Boolean|当 'end' 事件被触发时变为 true。|
-|[readable.readableFlowing](http://nodejs.cn/api/stream.html#stream_readable_readableflowing)|||
-|[readable.readableHighWaterMark](http://nodejs.cn/api/stream.html#stream_readable_readablehighwatermark)||返回构造可读流时传入的 highWaterMark 的值。|
-|[readable.readableLength](http://nodejs.cn/api/stream.html#stream_readable_readablelength)||此属性包含准备读取的队列中的字节数（或对象数）。 该值提供有关 highWaterMark 状态的内省数据。|
-|[readable.readableObjectMode](http://nodejs.cn/api/stream.html#stream_readable_readableobjectmode)|String|获取用于给定可读流的 objectMode 属性。|
++ `readable.destroyed`：在调用 `readable.destroy()` 之后为 `true`
++ `readable.readable`：若调用 `readable.read()` 是安全的，则为 `true`
++ `readable.readableEncoding`：获取用于给定可读流的 encoding 属性
++ `readable.readableEnded`：当 `end` 事件被触发时变为 `true`
++ `readable.readableFlowing`：
++ `readable.readableHighWaterMark`：返回构造可读流时传入的 highWaterMark 的值
++ `readable.readableLength`：此属性包含准备读取的队列中的字节数（或对象数）
++ `readable.readableObjectMode`：获取用于给定可读流的 objectMode 属性
 
 ### 方法
 
@@ -79,17 +81,30 @@ sidebarDepth: 2
 
 ### 简介
 
-+ 所有可写流都实现了 stream.Writable 类定义的接口
++ 所有可写流都实现了 `stream.Writable` 类定义的接口
 + 可写流是对数据要被写入的目的地的一种抽象
++ 常见的可写流（有些是 `Duplex` 流）：
+  + 客户端 HTTP 请求
+  + 服务器 HTTP 响应
+  + fs 写入流
+  + zlib 流
+  + crypto 流
+  + TCP socket
+  + 子进程 stdin
+  + `process.stdout`/`process.stderr`
 
 ### 事件
 
-+ `close`: 当流或其底层资源（比如文件描述符）被关闭时触发。 表明不会再触发其他事件，也不会再发生操作
-+ `drain`: 
-+ `error`: 
-+ `finish`: 
-+ `pipe`: 
-+ `unpipe`: 
++ `close`: 当流或其底层资源被关闭时触发
++ `finish`: 调用 `stream.end()` 且缓冲数据都已传给底层系统之后触发
++ `error`: 写入数据时发生错误时触发
++ `drain`: 当 `stream.write()` 返回 `false` 但仍可以继续写入数据到流时触发
++ `pipe`: 在可读流上调用 `stream.pipe()` 方法时触发
++ `unpipe`: 在可读流上调用 `stream.unpipe()` 方法时触发
+
+::: tip 说明：
++ 除非在创建流时设置选项 `autoDestroy` 为 `true`，否则在触发 `error` 事件时不会关闭流
+:::
 
 
 ### 实现
@@ -102,15 +117,14 @@ sidebarDepth: 2
 
 ### 属性
 
-|属性|类型|描述|
-|-|-|-|
-|[writable.destroyed](http://nodejs.cn/api/stream.html#stream_writable_destroyed)|Boolean|调用 writable.destroy() 之后为 true|
-|[writable.writable](http://nodejs.cn/api/stream.html#stream_writable_writable)|Boolean|如果调用 writable.write() 是安全的，则为 true|
-|[writable.writableEnded](http://nodejs.cn/api/stream.html#stream_writable_writableended)|Boolean|在调用了 writable.end() 之后为 true|
-|[writable.writableFinished](http://nodejs.cn/api/stream.html#stream_writable_writablefinished)|Boolean|在触发 'finish' 事件之前立即设置为 true|
-|[writable.writableHighWaterMark](http://nodejs.cn/api/stream.html#stream_writable_writablehighwatermark)||返回构造可写流时传入的 highWaterMark 的值|
-|[writable.writableLength](http://nodejs.cn/api/stream.html#stream_writable_writablelength)||此属性包含准备写入的队列中的字节数（或对象）。 该值提供有关 highWaterMark 状态的内省数据|
-|[writable.writableObjectMode](http://nodejs.cn/api/stream.html#stream_writable_writableobjectmode)||获取用于给定 Writable 流的 objectMode 属性|
+
++ `writable.destroyed: boolean`：调用 `writable.destroy()` 之后为 `true`
++ `writable.writable: boolean`：若调用 `writable.write()` 是安全的，则为 `true`
++ `writable.writableEnded: boolean`：调用 `writable.end()` 之后为 `true`
++ `writable.writableFinished: boolean`：在触发 `finish` 事件之前立即设置为 `true`
++ `writable.writableHighWaterMark`：返回构造可写流时传入的 highWaterMark 的值
++ `writable.writableLength`：此属性包含准备写入的队列中的字节数（或对象）
++ `writable.writableObjectMode`：获取用于给定 Writable 流的 objectMode 属性
 
 ### 方法
 
@@ -149,6 +163,7 @@ sidebarDepth: 2
 ### 方法
 
 + [transform.destroy([error])](http://nodejs.cn/api/stream.html#stream_transform_destroy_error): 销毁流，并可选地触发 `error` 事件
+
 
 
 
