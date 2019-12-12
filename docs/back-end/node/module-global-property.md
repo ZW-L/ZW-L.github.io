@@ -21,44 +21,58 @@ sidebarDepth: 2
 
 + 当前模块的目录名（绝对路径），等同于 `path.dirname(__filename)`
 
+```js
+console.log(__dirname) // d:\notes\web-docs-source
+```
 
 ## __filename
 
 + 当前模块的文件名（绝对路径，符号链接会被解析）
 + 对于主程序，不一定与命令行中使用的文件名相同
 
+```js
+console.log(__filename) // d:\notes\web-docs-source\test.js
+```
 
 ## console
 
 + `Console` 类
-  + `new Console(stdout[, stderr][, ignoreErrors])`: 
-  + `new Console(options)`: 
-  + `console.assert(value[, ...message])`: 
-  + `console.clear()`: 
-  + `console.count([label])`: 
-  + `console.countReset([label])`: 
-  + `console.debug(data[, ...args])`: 
-  + `console.dir(obj[, options])`: 
-  + `console.dirxml(...data)`: 
-  + `console.error([data][, ...args])`: 
-  + `console.group([...label])`: 
-  + `console.groupCollapsed()`: 
-  + `console.groupEnd()`: 
-  + `console.info([data][, ...args])`: 
-  + `console.log([data][, ...args])`: 
-  + `console.table(tabularData[, properties])`: 
-  + `console.time([label])`: 
-  + `console.timeEnd([label])`: 
-  + `console.timeLog([label][, ...data])`: 
-  + `console.trace([message][, ...args])`: 
-  + `console.warn([data][, ...args])`: 
-+ 仅用于调试的方法
-  + `console.markTimeline([label])`: 
-  + `console.profile([label])`: 
-  + `console.profileEnd([label])`: 
-  + `console.timeStamp([label])`: 
-  + `console.timeline([label])`: 
-  + `console.timelineEnd([label])`: 
+
+### 构造函数
+
++ `new Console(stdout[, stderr][, ignoreErrors])`: 
++ `new Console(options)`: 
+
+### 其他
+
++ `console.log([data][, ...args])`: 
++ `console.warn([data][, ...args])`: 
++ `console.assert(value[, ...message])`: 
++ `console.clear()`: 
++ `console.count([label])`: 
++ `console.countReset([label])`: 
++ `console.error([data][, ...args])`: 
++ `console.debug(data[, ...args])`: 
++ `console.dir(obj[, options])`: 
++ `console.dirxml(...data)`: 
++ `console.group([...label])`: 
++ `console.groupCollapsed()`: 
++ `console.groupEnd()`: 
++ `console.info([data][, ...args])`: 
++ `console.table(tabularData[, properties])`: 
++ `console.time([label])`: 
++ `console.timeEnd([label])`: 
++ `console.timeLog([label][, ...data])`: 
++ `console.trace([message][, ...args])`: 
+
+### 仅用于调试的方法
+
++ `console.markTimeline([label])`: 
++ `console.profile([label])`: 
++ `console.profileEnd([label])`: 
++ `console.timeStamp([label])`: 
++ `console.timeline([label])`: 
++ `console.timelineEnd([label])`: 
 
 
 
@@ -72,15 +86,15 @@ sidebarDepth: 2
 
 ### 事件
 
-+ `beforeExit`: 当 Node.js 清空其事件循环并且没有其他工作要安排时触发
-+ `exit`: 调用 `process.exit()` 或 Node.js 事件循环不再执行其他工作时触发
-+ `disconnect`: 使用 IPC 通道衍生了 Node.js 进程，在 IPC 通道关闭时触发
-+ `message`: 使用 IPC 通道衍生了 Node.js 进程，当子进程收到父进程使用 `send()` 发送的消息时触发
-+ `multipleResolves`: 当 `Promise` 被 `resolve`/`reject` 不止一次或在两者之间切换时触发
-+ `rejectionHandled`: 当 `Promise` 被拒绝并且错误处理函数附加到晚于一个 Node.js 事件循环时触发
-+ `uncaughtException`: 当未捕获的 `JavaScript` 异常一直冒泡回到事件循环时触发
-+ `unhandledRejection`: 当 `Promise` 被 `reject` 但它没有没有绑定错误处理器时触发
-+ `warning`: 当 Node.js 触发进程警告时触发
++ `beforeExit`：当 Node.js 清空其事件循环并且没有其他工作要安排时触发
++ `exit`：调用 `process.exit()` 或 Node.js 事件循环不再执行其他工作时触发
++ `disconnect`：使用 IPC 通道衍生了 Node.js 进程，在 IPC 通道关闭时触发
++ `message`：使用 IPC 通道衍生了 Node.js 进程，当子进程收到父进程使用 `send()` 发送的消息时触发
++ `multipleResolves`：当 `Promise` 被 `resolve`/`reject` 不止一次或在两者之间切换时触发
++ `rejectionHandled`：当 `Promise` 被拒绝并且错误处理函数附加到晚于一个 Node.js 事件循环时触发
++ `uncaughtException`：当未捕获的 `JavaScript` 异常一直冒泡回到事件循环时触发
++ `unhandledRejection`：当 `Promise` 被 `reject` 但它没有没有绑定错误处理器时触发
++ `warning`：当 Node.js 触发进程警告时触发
 
 
 ::: tip 说明：
@@ -119,70 +133,93 @@ sidebarDepth: 2
 ### 方法
 
 + **其他：**
-  + `process.abort()`: 使 Node.js 进程立即结束，并生成一个核心文件
-  + `process.chdir(directory)`: 
-  + `process.cpuUsage(previousValue?: object): object`: 返回当前进程的用户 CPU 时间和系统 CPU 时间的对象
-  + `process.cwd(): string`: 返回当前工作目录
-  + `process.disconnect()`: 关闭到父进程的 IPC 通道
-  + `process.dlopen(module: object, filename: string, flags?: string)`: 动态加载共享对象
-  + `process.emitWarning(warning: string | Error, options?: object)`: 触发自定义或应用特定的进程警告
-  + `process.emitWarning(warning: string | Error, type?: string, code?: string, ctor: function)`: 触发自定义或应用特定的进程警告
-  + `process.exit(code?: integer)`: 以指定退出状态码终止进程
-  + `process.hasUncaughtExceptionCaptureCallback(): boolean`: 指示是否使用了 `setUncaughtExceptionCaptureCallback()` 设置回调
-  + `process.hrtime(time?: integer[]): integer[]`: 返回当前时间的高精度解析值
-  + `process.hrtime.bigint(): bigInt`: 返回当前的高精度实际时间
-  + `process.initgroups(user: string | number, extraGroup: string | number)`: 读取 `/etc/group` 文件并初始化组访问列表，包括了用户所在的所有组（仅 POSIX 平台）
-  + `process.kill(pid: number, signal?: string | number)`: 杀死进程
-  + `process.memoryUsage(): object`: 返回 Node.js 进程的内存使用情况
-  + `process.nextTick(callback: function, ...args?: any)`: 将 callback 添加到下一个时间点的队列
-  + `process.resourceUsage(): object`: 
-  + `process.send(message: string, sendHandle: Server | Socket, options?: object, callback?: function)`: 将消息发送到父进程（进程必须使用 IPC 通道衍生）
-  + `process.setUncaughtExceptionCaptureCallback(fn: function | null)`: 
-  + `process.umask(mask?: number)`: 设置/返回 Node.js 进程的默认创建文件的权限掩码
-  + `process.uptime(): number`: 返回当前 Node.js 进程运行时间秒长
+  + [process.abort()](http://nodejs.cn/api/process.html#process_process_abort)：结束进程并生成一个核心文件
+  + [process.chdir(directory)](http://nodejs.cn/api/process.html#process_process_chdir_directory)：切换当前的工作目录
+  + [process.cwd()](http://nodejs.cn/api/process.html#process_process_cwd)：返回当前的工作目录
+  + [process.cpuUsage([previousValue])](http://nodejs.cn/api/process.html#process_process_cpuusage_previousvalue)：返回进程的用户 CPU 时间和系统 CPU 时间信息
+  + [process.disconnect()](http://nodejs.cn/api/process.html#process_process_disconnect)：关闭连接到父进程的 IPC 通道
+  + [process.dlopen(module, filename[, flags])](http://nodejs.cn/api/process.html#process_process_dlopen_module_filename_flags)：动态加载共享对象
+  + [process.emitWarning(warning[, options])](http://nodejs.cn/api/process.html#process_process_emitwarning_warning_options)：触发自定义或应用特定的进程警告
+  + [process.emitWarning(warning[, type[, code]][, ctor])](http://nodejs.cn/api/process.html#process_process_emitwarning_warning_type_code_ctor)：触发自定义或应用特定的进程警告
+  + [process.exit([code])](http://nodejs.cn/api/process.html#process_process_exit_code)：以指定退出状态码终止进程
+  + [process.hasUncaughtExceptionCaptureCallback()](http://nodejs.cn/api/process.html#process_process_hasuncaughtexceptioncapturecallback)：指示是否使用了 `setUncaughtExceptionCaptureCallback()` 设置回调
+  + [process.hrtime([time])](http://nodejs.cn/api/process.html#process_process_hrtime_time)：返回当前时间的高精度解析值
+  + [process.hrtime.bigint()](http://nodejs.cn/api/process.html#process_process_hrtime_bigint)：返回当前的高精度实际时间
+  + [process.kill(pid[, signal])](http://nodejs.cn/api/process.html#process_process_kill_pid_signal)：向另一个进程发送信号
+  + [process.memoryUsage()](http://nodejs.cn/api/process.html#process_process_memoryusage)：返回 Node.js 进程的内存使用情况，有以下几个属性：
+    + `rss`：常驻内存的大小
+    + `heapTotal`：动态分配的可用内存
+    + `heapUsed`：已使用的堆大小
+  + [process.nextTick(callback[, ...args])](http://nodejs.cn/api/process.html#process_process_nexttick_callback_args)：将 callback 添加到下一个时间点的队列
+  + [process.resourceUsage()](http://nodejs.cn/api/process.html#process_process_resourceusage)：
+  + [process.send(message[, sendHandle[, options]][, callback])](http://nodejs.cn/api/process.html#process_process_send_message_sendhandle_options_callback)：将消息发送到父进程（进程必须使用 IPC 通道衍生）
+  + [process.setUncaughtExceptionCaptureCallback(fn)](http://nodejs.cn/api/process.html#process_process_setuncaughtexceptioncapturecallback_fn)：
+  + [process.umask([mask])](http://nodejs.cn/api/process.html#process_process_umask_mask)：设置/返回 Node.js 进程的默认创建文件的权限掩码
+  + [process.uptime()](http://nodejs.cn/api/process.html#process_process_uptime)：返回当前 Node.js 进程运行时间秒长
 + **标识：仅适用 POSIX 平台**
-  + `process.getegid(): object`: 返回 Node.js 进程的有效数字标记的组身份
-  + `process.geteuid(): object`: 返回 Node.js 进程的有效数字标记的用户身份
-  + `process.getgid(): object`: 返回 Node.js 进程的数字标记的组身份
-  + `process.getuid(): object`: 返回 Node.js 进程的数字标记的用户身份
-  + `process.getgroups(): integer[]`: 返回补充的组 ID
-  + `process.setegid(id: string | number)`: 为进程设置有效的组标识
-  + `process.seteuid(id: string | number)`: 为进程设置有效的用户标识
-  + `process.setgid(id: string | number)`: 为进程设置组标识
-  + `process.setuid(id: string | number)`: 为进程设置用户标识
-  + `process.setgroups(groups: integer[])`: 为进程补充组 ID
+  + [process.getgid()](http://nodejs.cn/api/process.html#process_process_getgid)：返回进程的数字标记的组身份
+  + [process.getuid()](http://nodejs.cn/api/process.html#process_process_getuid)：返回进程的数字标记的用户身份
+  + [process.getegid()](http://nodejs.cn/api/process.html#process_process_getegid)：返回 Node.js 进程的有效数字标记的组身份
+  + [process.geteuid()](http://nodejs.cn/api/process.html#process_process_geteuid)：返回进程的有效数字标记的用户身份
+  + [process.setgid(id)](http://nodejs.cn/api/process.html#process_process_setgid_id)：为进程设置组标识
+  + [process.setuid(id)](http://nodejs.cn/api/process.html#process_process_setuid_id)：为进程设置用户标识
+  + [process.setegid(id)](http://nodejs.cn/api/process.html#process_process_setegid_id)：为进程设置有效的组标识
+  + [process.seteuid(id)](http://nodejs.cn/api/process.html#process_process_seteuid_id)：为进程设置有效的用户标识
+  + [process.getgroups()](http://nodejs.cn/api/process.html#process_process_getgroups)：返回补充的组 ID
+  + [process.setgroups(groups)](http://nodejs.cn/api/process.html#process_process_setgroups_groups)：为进程补充组 ID
+  + [process.initgroups(user, extraGroup)](http://nodejs.cn/api/process.html#process_process_initgroups_user_extragroup)：读取 `/etc/group` 文件并初始化组访问列表，包括了用户所在的所有组
 
 ## timer
 
-[timer](http://nodejs.cn/api/timers.html)模块暴露了一些全局的 API，用于预定在将来某个时间段调用的函数。其中：
-
-+ Node.js 中的定时器函数与 Web 浏览器类似，但使用了不同的内部实现（基于 Node.js 事件循环）
-+ 定义了 `Immediate`/`Timeout` 两个类来描述立即定时器/延迟定时器
++ [timer](http://nodejs.cn/api/timers.html)模块暴露了一些全局的 API，用于预定在将来某个时间段调用的函数
++ 定时器函数与 Web 浏览器类似，但使用了不同的内部实现（基于 Node.js 事件循环）
 
 
 ### Immediate
 
-+ `immediate.hasRef(): boolean`: 
-+ `immediate.ref(): Immediate`: 
-+ `immediate.unref(): Immediate`: 
+`setImmediate()` 返回一个 `Immediate` 实例：
+
++ [immediate.hasRef()](http://nodejs.cn/api/timers.html#timers_immediate_hasref)：
++ [immediate.ref()](http://nodejs.cn/api/timers.html#timers_immediate_ref)：
++ [immediate.unref()](http://nodejs.cn/api/timers.html#timers_immediate_unref)：
 
 
 ### Timeout
 
-+ `timeout.hasRef(): boolean`: 
-+ `timeout.ref(): Timeout:`: 
-+ `timeout.unref(): Timeout`: 
-+ `timeout.refresh()`: 
+`setTimeout()`/`setInterval()` 返回一个 `Timeout` 实例：
+
++ [timeout.hasRef()](http://nodejs.cn/api/timers.html#timers_timeout_hasref)：
++ [timeout.ref()](http://nodejs.cn/api/timers.html#timers_timeout_ref)：
++ [timeout.unref()](http://nodejs.cn/api/timers.html#timers_timeout_unref)：
++ [timeout.refresh()](http://nodejs.cn/api/timers.html#timers_timeout_refresh)：
+
+::: tip 说明：
++ `unref()` 用于自动清除 `Interval` 定时器：
+```js
+const timer = setInterval(() => {
+  console.log('Interval...')
+}, 1000)
+
+timer.unref()
+
+setTimeout(() => {
+  console.log('Done!')
+}, 3000)
+// Interval...
+// Interval...
+// Done!
+```
+:::
 
 
 ### 设置/清除定时器
 
-+ `setImmediate(callback: function, ...args?: any): Immediate`: 在 I/O 事件的回调之后立即执行 callback
-+ `setTimeout(callback: function, delay: number, ..args?: any): Timeout`: 在 delay 毫秒后执行一次 callback
-+ `setInterval(callback: function, delay: number, ...args?: any): Timeout`: 每隔 delay 毫秒执行一次 callback
-+ `clearImmediate(immediate)`: 取消由 `setImmediate()` 创建的 `Immediate` 对象
-+ `clearTimeout(timeout)`: 取消由 `setTimeout()` 创建的 `Timeout` 对象
-+ `clearInterval(timeout)`: 取消由 `setInterval()` 创建的 `Timeout` 对象
++ [setImmediate(callback[, ...args])](http://nodejs.cn/api/timers.html#timers_setimmediate_callback_args)：在 I/O 事件的回调之后立即执行 callback
++ [setTimeout(callback, delay[, ...args]))](http://nodejs.cn/api/timers.html#timers_settimeout_callback_delay_args)：在指定延迟后执行一次 callback
++ [setInterval(callback, delay[, ...args]))](http://nodejs.cn/api/timers.html#timers_setinterval_callback_delay_args)：每隔指定延迟执行一次 callback
++ [clearImmediate(immediate)](http://nodejs.cn/api/timers.html#timers_clearimmediate_immediate)：取消由 `setImmediate()` 创建的 `Immediate` 对象
++ [clearTimeout(timeout)](http://nodejs.cn/api/timers.html#timers_cleartimeout_timeout)：取消由 `setTimeout()` 创建的 `Timeout` 对象
++ [clearInterval(timeout)](http://nodejs.cn/api/timers.html#timers_clearinterval_timeout)：取消由 `setInterval()` 创建的 `Timeout` 对象
 
 
 ::: tip 说明：

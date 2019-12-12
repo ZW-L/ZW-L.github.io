@@ -294,15 +294,15 @@ module.exports = {
           title: '工程化',
           collapsable: false,
           children: [
-            ['npm&yarn', 'npm & yarn'],
-            ['git', 'Git'],
-            ['webpack', 'Webpack'],
-            ['gulp', 'Gulp'],
-            ['babel', 'Babel'],
-            ['eslint', 'ESLint'],
-            ['jest', 'Jest'],
-            ['sass', 'Sass'],
-            ['ajax', 'Ajax'],
+            ['engine/npm&yarn', 'npm & yarn'],
+            ['engine/git', 'Git'],
+            ['engine/webpack', 'Webpack'],
+            ['engine/gulp', 'Gulp'],
+            ['engine/babel', 'Babel'],
+            ['engine/eslint', 'ESLint'],
+            ['engine/jest', 'Jest'],
+            ['engine/sass', 'Sass'],
+            ['engine/ajax', 'Ajax'],
           ]
         },
         {
@@ -322,6 +322,15 @@ module.exports = {
           collapsable: false,
           children: [
             ['fw/vue', 'Vue']
+          ]
+        },
+        {
+          title: '其他工具库',
+          collapsable: false,
+          children: [
+            ['libraries/element', 'Element'],
+            ['libraries/bootstrap', 'Bootstrap'],
+            ['libraries/vue-awesome-swiper', 'vue-awesome-swiper'],
           ]
         },
       ],
