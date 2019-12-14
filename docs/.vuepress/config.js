@@ -270,6 +270,21 @@ module.exports = {
           ]
         },
         {
+          title: '函数式编程',
+          collapsable: false,
+          children: [
+            ['es-fp/introduction', '简介'],
+            ['es-fp/scope&closure', '作用域和闭包'],
+            ['es-fp/high-order-function', '高阶函数'],
+            ['es-fp/currying', '柯里化'],
+            ['es-fp/recursion', '递归'],
+            ['es-fp/rules', '规则'],
+            ['es-fp/flow', '基于流'],
+            ['es-fp/non-class', '无类编程'],
+            ['es-fp/referrence', '参考：使用或生成的函数'],
+          ]
+        },
+        {
           title: '编码能力',
           collapsable: false,
           children: [
