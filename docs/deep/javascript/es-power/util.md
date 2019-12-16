@@ -65,6 +65,45 @@ function debounce (fn) {
 ```
 
 
+## 记忆函数
+
+&emsp;&emsp;记忆函数实际上是一个闭包，它捕获了一个初始化的 `cache` 对象，然后在每次调用函数 `fn` 时都在 `cache` 对象上查找属性：读取已有属性或添加新属性。
+
+**实现：**
+```js
+function memoize(fn, cache) {
+  cache = (typeof cache === 'object' && cache !== null) ? cache : {}
+
+  return function(arg) {
+    if (!cache.hasOwnProperty(arg)) {
+      cache[arg] = fn(arg)
+    }
+    
+    return cache[arg]
+  }
+}
+```
+
+**使用：**
+```js
+function factorial(n) {
+  if (n === 1) {
+    return 1;
+  }
+  
+  return n * factorial(n-1)
+}
+
+const fac = memoize(factorial, { 0: 1, 1: 1 })
+console.log(fac(6)) // 一段时间后，打印 720
+console.log(fac(6)) // 读取缓存，打印 720
+```
+
+::: tip 说明：
++ 优点：避免重复运算，读取缓存结果速度快
++ 缺点：使用了闭包，导致内存不能回收，当缓存结果过大时影响性能
+:::
+
 
 ## 洗牌算法
 

@@ -84,6 +84,36 @@ promise.then(v => {
 })
 ```
 
+### 以下代码几秒后输出结果
+
+```js
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('fail'))
+  }, 3000)
+})
+
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(p1)
+  }, 1000)
+})
+
+p2.then(res => {
+  console.log(res)
+}).catch(err => {
+  console.log(err)
+})
+
+// 3s 后
+```
+
+::: tip 说明：
+1. `resolve()` 的参数是一个 `Promise` 实例时，会将其原封不动地返回，因此 p2 的状态依赖于 p1
+2. 由于 `new Promise()` 会立即执行，因此 p1 和 p2 都会将一个 `setTimeout` 加入事件队列，它们同步执行
+3. 当 p2 执行到 `resolve(p1)` 的时候，需要等待 p1 的状态，此时 p1 再过 2 秒就会 `reject`，因此 p2 的状态变为 `reject`，最终耗时 3 秒
+:::
+
 ### 使用 Promise 封装一个 Ajax 函数
 
 ```js

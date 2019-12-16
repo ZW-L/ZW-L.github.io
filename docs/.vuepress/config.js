@@ -263,6 +263,7 @@ module.exports = {
           collapsable: false,
           children: [
             ['ecmascript/data-type', '数据类型'],
+            ['ecmascript/strict-mode', '严格模式'],
             ['ecmascript/syntax', '语法'],
             ['ecmascript/oop', '面向对象程序设计'],
             ['ecmascript/fp', '函数式编程'],
@@ -281,7 +282,19 @@ module.exports = {
             ['es-fp/rules', '规则'],
             ['es-fp/flow', '基于流'],
             ['es-fp/non-class', '无类编程'],
-            ['es-fp/referrence', '参考：使用或生成的函数'],
+            ['es-fp/referrence', '参考：相关函数'],
+          ]
+        },
+        {
+          title: '高性能 Javascript',
+          collapsable: false,
+          children: [
+            ['es-hp/load', '脚本加载和执行'],
+            ['es-hp/syntax', 'JS 语法'],
+            ['es-hp/bom', 'BOM'],
+            ['es-hp/dom', 'DOM'],
+            ['es-hp/data', '数据'],
+            ['es-hp/apply', '应用'],
           ]
         },
         {
