@@ -14,11 +14,13 @@ module.exports = {
     // 导航栏
     nav: [
       {
-        text: '前端核心',
+        text: 'API',
         items: [
           { text: 'HTML',  link: '/base/html/' },
           { text: 'CSS',  link: '/base/css/' },
-          { text: 'Javascript',  link: '/base/javascript/' },
+          { text: 'BOM',  link: '/base/javascript/bom/' },
+          { text: 'DOM',  link: '/base/javascript/dom/' },
+          { text: 'ECMAScript',  link: '/base/javascript/es/' },
         ]
       },
       {
@@ -62,7 +64,7 @@ module.exports = {
     ],
     // 边栏
     sidebar: {
-      // 基础
+      // API
       '/base/html/': [
         ['', '标签概览'],
         {
@@ -143,46 +145,41 @@ module.exports = {
           ]
         },
       ],
-      '/base/javascript/': [
-        {
-          title: 'BOM',
-          children: [
-            ['bom/window', 'window'],
-            ['bom/console', 'console'],
-            ['bom/document', 'document'],
-            ['bom/frames', 'frames'],
-            ['bom/history', 'history'],
-            ['bom/location', 'location'],
-            ['bom/navigator', 'navigator'],
-            ['bom/screen', 'screen'],
-          ]
-        },
-        {
-          title: 'DOM',
-          children: [
-            ['dom/', '介绍'],
-            ['dom/event-target', 'EventTarget'],
-            ['dom/node', 'Node'],
-            ['dom/document', 'Document'],
-            ['dom/html-document', 'HTMLDocument'],
-            ['dom/document-fragment', 'DocumentFragment'],
-            ['dom/element', 'Element'],
-            ['dom/html-element', 'HTMLElement'],
-            ['dom/attr', 'Attr'],
-            ['dom/node-list', 'NodeList'],
-            ['dom/html-collection', 'HTMLCollection'],
-            ['dom/child-node', 'ChildNode'],
-            ['dom/parent-node', 'ParentNode'],
-            ['dom/non-cnode', 'NonDocumentTypeChildNode'],
-            ['dom/document-type', 'DocumentType'],
-            ['dom/character-data', 'CharacterData'],
-            ['dom/sub-character-data', 'CharacterData 子类'],
-            ['dom/event', 'Event'],
-            ['dom/sub-event', 'Event 子类'],
-          ]
-        },
+      '/base/javascript/bom/': [
+        ['window', 'window'],
+        ['console', 'console'],
+        ['document', 'document'],
+        ['frames', 'frames'],
+        ['history', 'history'],
+        ['location', 'location'],
+        ['navigator', 'navigator'],
+        ['screen', 'screen'],
+      ],
+      '/base/javascript/dom/': [
+        ['', '介绍'],
+        ['event-target', 'EventTarget'],
+        ['node', 'Node'],
+        ['document', 'Document'],
+        ['html-document', 'HTMLDocument'],
+        ['document-fragment', 'DocumentFragment'],
+        ['element', 'Element'],
+        ['html-element', 'HTMLElement'],
+        ['attr', 'Attr'],
+        ['node-list', 'NodeList'],
+        ['html-collection', 'HTMLCollection'],
+        ['child-node', 'ChildNode'],
+        ['parent-node', 'ParentNode'],
+        ['non-cnode', 'NonDocumentTypeChildNode'],
+        ['document-type', 'DocumentType'],
+        ['character-data', 'CharacterData'],
+        ['sub-character-data', 'CharacterData 子类'],
+        ['event', 'Event'],
+        ['sub-event', 'Event 子类'],
+      ],
+      '/base/javascript/es/': [
         {
           title: 'ECMAScript',
+          collapsable: false,
           children: [
             ['es5/syntax', '语法'],
             ['es5/variables&data-type', '变量和数据类型'],
@@ -190,13 +187,14 @@ module.exports = {
             ['es5/process-control', '流程控制语句'],
             ['es5/scope', '作用域和内存'],
             ['es5/reference-type', '引用类型'],
-            ['es5/oop', '面向对象编程'],
-            ['es5/fp', '函数式编程'],
+            ['es5/oop', '面向对象编程基础'],
+            ['es5/fp', '函数式编程基础'],
             ['es5/json&ajax', 'JSON & Ajax'],
           ]
         },
         {
           title: 'ES6',
+          collapsable: false,
           children: [
             ['es6/let&const', 'let & const'],
             ['es6/destructuring', '解构赋值'],
@@ -214,6 +212,7 @@ module.exports = {
         },
         {
           title: 'ES6+',
+          collapsable: false,
           children: [
             ['es7', 'ES7'],
             ['es8', 'ES8'],
@@ -271,7 +270,7 @@ module.exports = {
           ]
         },
         {
-          title: '函数式编程',
+          title: '专题：函数式编程',
           collapsable: false,
           children: [
             ['es-fp/introduction', '简介'],
@@ -286,7 +285,7 @@ module.exports = {
           ]
         },
         {
-          title: '高性能 Javascript',
+          title: '专题：高性能 Javascript',
           collapsable: false,
           children: [
             ['es-hp/load', '脚本加载和执行'],
@@ -298,7 +297,7 @@ module.exports = {
           ]
         },
         {
-          title: '编码能力',
+          title: '专题：编码能力',
           collapsable: false,
           children: [
             ['es-power/native', '实现原生功能'],
@@ -453,6 +452,20 @@ module.exports = {
           ],
         },
         {
+          title: '异步编程',
+          collapsable: false,
+          children: [
+            ['async/concept', '原理和概念'],
+            ['async/timer', '定时器和 nextTick()'],
+            ['async/callback', 'Callback - 回调地狱'],
+            ['async/thunk', 'Thunk - 回调的链式执行'],
+            ['async/promise', 'Promise - 更优雅的 Thunk'],
+            ['async/generator', 'Generator - 生成一切'],
+            ['async/async&await', 'async & await - 终极杀器'],
+            ['async/best', '最优美的异步'],
+          ]
+        },
+        {
           title: '缓冲 & 流',
           collapsable: false,
           children: [
@@ -468,6 +481,13 @@ module.exports = {
             ['module-global-property', '内置全局属性'],
             ['module-native', '原生模块'],
             ['module-third-party', '第三方模块'],
+          ],
+        },
+        {
+          title: '使用技巧',
+          collapsable: false,
+          children: [
+            ['tips/npm-module', '使用 npm 开发模块'],
           ],
         },
         {

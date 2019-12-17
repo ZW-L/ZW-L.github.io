@@ -268,21 +268,25 @@ function fibonacci(n) {
 + 使用尾递归优化：
 ```js
 // factorial() 改写为
-function factorial(n, prev = 1) {
-  if (n === 1) {
-    return prev
-  }
+function factorial(n) {
+  return tail(n, 1)
+}
 
-  return factorial(n-1, prev*n)
+function tail(n, prev) {
+  if (n === 0) return prev
+
+  return tail(n-1, prev*n)
 }
 
 // fibonacci() 改写为
-function fibonacci(n, fib1 = 0, fib2 = 1) {
-  if (n === 1) {
-    return fib2
-  }
-  
-  return fibonacci(n-1, fib2, fib1 + fib2)
+function fibonacci(n) {
+  return tail(n, 0, 1)
+}
+
+function tail(n, current, next) {
+  if (n === 0) return current
+
+  return tail(n - 1, next, current + next)
 }
 ```
 
