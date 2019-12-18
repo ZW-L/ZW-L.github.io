@@ -183,7 +183,6 @@ console.log(person2.like); // [ 'coding, travel, reading', 'singing' ]
 **原理：** 使用构造函数模式定义实例属性，使用原型对象让对象共享属性和方法
 
 **实现：** 
-
 ```js
 function Person(name, age, like) {
   this.name = name;

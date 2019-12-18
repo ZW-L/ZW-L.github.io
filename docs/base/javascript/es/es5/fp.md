@@ -1,58 +1,229 @@
-## 函数声明和函数表达式
+---
+sidebarDepth: 2
+---
 
-&emsp;&emsp;定义函数常用的方式有两种：函数声明和函数表达式(一般不使用构造函数生成实例)。
+## 函数的定义
 
-**函数声明：** 一个显著的特征是函数声明提升(执行代码前会先读取函数声明)，就是说可以把调用函数的语句放在函数声明的前面
+定义函数方式有以下几种：
+
++ **函数声明**：函数声明提升(执行代码前会先读取函数声明)，可以把调用函数的语句放在函数声明的前面
 ```js
-foo(); // declare
+foo() // declare
 
 function foo() {
-  console.log('declare');
+  console.log('declare')
 }
 ```
 
-**函数表达式：** 也叫匿名函数(或 `lambda` 函数)，它的形式类似变量的赋值，只不过右边使用关键字 `function`，`function` 的后面可以带函数名也可以不带函数名；另外，函数表达式没有变量提升
++ **函数表达式**：也叫匿名函数(或 `lambda` 函数)，类似变量的赋值的形式，只不过右边使用关键字 `function`，`function` 的后面可以带函数名也可以不带函数名；函数表达式没有变量提升
 ```js
 var foo = function () {
-  console.log('declare');
+  console.log('declare')
 }
 
-foo(); // declare
-console.log(foo.name); // foo
+foo() // declare
+console.log(foo.name) // foo
 
 var bar = function baz() {
-  console.log('declare');
+  console.log('declare')
 }
 
-bar(); // declare
-console.log(bar.name); // baz
+bar() // declare
+console.log(bar.name) // baz
 ```
 
-&emsp;&emsp;函数声明和函数表达式最显著的区别就是有无函数提升，以下例子出现在 《javascript 高级程序设计》:
++ **构造函数**：通过 `Function` 构造函数生成
 ```js
+const foo = new Function('a', 'b', 'console.log(a+b)')
+
+foo(2, 3) // 5
+```
+
+::: tip 说明：
++ 函数声明和函数表达式最显著的区别是：函数声明会提升，而函数表达式没有
++ 尽量不要使用构造函数的方式创建函数，因为它的可读性和性能很差
++ 一个函数声明的误区：
+```js
+// 函数声明会发生函数提升，导致在一些浏览器会产生不一致的行为
 if (condition) {
   function foo() {
-    console.log('foo true');
+    console.log('foo true')
   }
 } else {
   function foo() {
-    console.log('foo false');
+    console.log('foo false')
   }
 }
-```
-&emsp;&emsp;因为函数声明会发生函数提升，导致在一些浏览器会产生不一致的行为(但我测试了谷歌和火狐浏览器，它们的行为一致，或许是后来的版本修正了)，建议使用函数表达式的语法：
-```js
-var foo;
+
+// 避免产生不一致的行为，改写为函数表达式的形式
+let foo
 if (condition) {
   foo = function () {
-    console.log('foo true');
+    console.log('foo true')
   }
 } else {
   foo = function () {
-    console.log('foo false');
+    console.log('foo false')
   }
 }
 ```
+:::
+
+
+
+
+## 概念
+
+### 名词说明
+
++ **执行环境**：定义了变量和函数有权访问其他的数据，决定它们各自的行为；函数有自己的执行环境
++ **变量对象**：每个执行环境都有一个关联的变量对象，其保存了执行环境中定义的所有变量和函数；我们无法访问该变量对象，但解析器会在后台使用
++ **执行流和环境栈**：当执行流进入到一个函数时，函数的环境会被推入一个执行栈；当函数完成后，栈会弹出该函数的环境，把控制权交给之前的执行环境
++ **作用域**：
+  + 按作用域动静态分：动态作用域、静态作用域（词法作用域）
+  + 按作用域范围分：全局作用域、局部作用域（函数作用域）、块级作用域（`let` 赋予）
++ **作用域链**：执行环境会创建变量对象的一个作用域链，其保证对执行环境有权访问的所有变量和函数的有序访问；内部环境能够通过作用域链访问所有的外部环境，反之则不能
+
+::: tip 说明：
++ **执行环境**也叫**执行上下文**，它的声明周期为：创建->执行->回收，在创建阶段，主要用处：
+  + 创建变量对象：初始化函数 `arguments` 参数，提升函数声明和变量声明
+  + 创建作用域链
+  + 确立 `this` 指向
++ **执行环境确立 `this` 的指向**：详见下文**函数中 this 的绑定**
+:::
+
+
+### 函数中 this 的绑定
+
++ **默认绑定**：作为方法调用时绑定为所属对象，作为函数调用时绑定至全局对象
+```js
+const obj = {
+  name: 'Alice',
+  getName: function() {
+    console.log(this.name)
+  },
+}
+
+obj.getName() // Alice
+const getName = obj.getName
+getName() // undefined
+// 严格模式下报错 TypeError: Cannot read property 'name' of undefined
+```
+
++ **显式绑定**：使用 `call()`/`apply()`/`bind()` 修改 `this` 的绑定
+```js
+const obj = {
+  name: 'Alice',
+}
+
+function getName() {
+  console.log(this.name)
+}
+
+getName() // undefined
+getName.call(obj) // Alice
+```
+
++ **new 绑定**：绑定为该函数的实例
+```js
+function foo() {
+  this.a = 'foo'
+  console.log(this)
+}
+
+new foo() // foo { a: 'foo' }
+foo() // global {}
+```
+
+
+
+### 作用域分类
+
++ **全局作用域**：能被所有作用域访问，另外没有使用关键字声明的变量都会上升为全局变量
+```js
+const str = 'hello'
+function foo() {
+  name = 'Alice'
+  console.log(str)
+}
+
+foo() // hello
+console.log(name) // Alice
+```
+
++ **局部作用域**：变量的查找从最接近的绑定上下文向外扩展，直到找到第一个绑定
+```js
+const str = 'hello'
+function foo() {
+  const str = 'world'
+  console.log(str)
+}
+
+foo() // world
+console.log(str) // hello
+```
+
++ **没有块级作用域**：循环和流程控制并不能生成块级作用域，`var` 定义的变量位于全局作用域中
+```js
+for (var i = 0; i < 10; i++) {
+  var a = i * 2
+}
+console.log(i) // 10
+console.log(a) // 20
+```
+
+::: tip 说明：
++ ES6 的 `let` 具有块级作用域
+```js
+for (let i = 0; i < 10; i++) {
+  let a = i * 2
+}
+
+console.log(i) // ReferenceError
+console.log(a) // ReferenceError
+```
+:::
+
+
+### 延长作用域链
+
+两种方法延长作用域链：
+
++ `try/catch` 块中的 `catch`
+```js
+function foo() {
+  try {
+    console.log(res)
+  } catch (e) {
+    console.log(e.name) // ReferenceError
+    const str = 'hello world'
+  }
+  console.log(str) // hello world
+}
+
+foo()
+```
+
++ `with` 语句
+```js
+const obj = {
+  str: 'hello',
+}
+
+function foo() {
+  const temp = 'world'
+  with (obj) {
+    const res = str + ' ' + temp
+  }
+  console.log(res)
+}
+
+foo() // hello world
+```
+
+::: tip 说明:
++ 由于 `with` 具有性能问题，因此不建议使用
+:::
 
 
 ## 闭包
@@ -61,15 +232,15 @@ if (condition) {
 
 ```js
 function foo() {
-  var str = 'hello';
+  const str = 'hello'
 
   return function () {
-    console.log(str);
+    console.log(str)
   }
 }
 
-var sayHi = foo();
-sayHi(); // hello
+var sayHi = foo()
+sayHi() // hello
 ```
 
 &emsp;&emsp;在调用 `foo()` 后，`foo()` 的执行环境的作用域会被销毁，但是它的活动对象仍会保存在内存中，因为变量 `sayHi` 保存了对它的引用；当该引用销毁时(将 `sayHi` 赋值为 `null`)，`foo()` 的活动对象才会被销毁。
@@ -162,7 +333,9 @@ function assignHandle() {
 ```
 
 
-## 模拟块级作用域
+
+
+### 模拟块级作用域
 
 &emsp;&emsp;可以使用立即执行函数(`IIFE`)来模拟块级作用域(私有作用域)，在块级作用域内的变量，它们会在代码执行之后被回收，而且不会跟全局作用域发生命名冲突：
 
@@ -181,7 +354,7 @@ console.log(str); // global
 &emsp;&emsp;这是很多开源库使用的方式，这样子它们定义的变量就不会跟全局变量或者用户自定义的变量发生命名冲突。
 
 
-## 私有变量和模块模式
+### 私有变量和模块模式
 
 &emsp;&emsp;函数具有私有作用域，因此可以使用函数和闭包来模拟私有变量：
 
@@ -210,82 +383,6 @@ console.log(obj.name); // undefined
 &emsp;&emsp;这也是实现模块模式的一种方法。
 
 
-
-## 函数中的 this
-
-**函数的 this：** 取决于调用函数所在的环境。
-
-```js
-var obj = {
-  name: 'Alice',
-  getName: function() {
-    console.log(this.name);
-  },
-};
-
-obj.getName(); // Alice
-var getName = obj.getName;
-getName(); // undefined
-```
-
-&emsp;&emsp;当在 `obj` 中调用时，`this` 会绑定为 `obj`，而在全局中调用时，`this` 绑定为全局对象。
-
-**this 绑定的规则:**
-
-+ 默认绑定：函数调用时没有任何修饰，仅仅以 `funcName()` 的形式调用，`this` 会默认绑定至全局对象；严格模式下为 `undefined`，尝试使用 `this` 获取属性将会报错。
-
-```js
-var obj = {
-  name: 'Alice',
-  getName: function() {
-    console.log(this.name);
-  },
-};
-
-var getName = obj.getName;
-getName(); // undefined
-
-```
-
-+ 隐式绑定：在某个上下文中调用函数，`this` 会绑定至该执行上下文。
-
-```js
-var obj = {
-  name: 'Alice',
-  getName: function() {
-    console.log(this.name);
-  },
-};
-// this 绑定至 obj
-obj.getName(); // Alice
-
-var obj = {
-  name: 'Alice',
-  obj2: {
-    name: 'Anna',
-    getName: function() {
-      console.log(this.name);
-    },
-  },
-};
-// this 绑定至 obj2
-obj.obj2.getName(); // Anna
-```
-
-+ 显式绑定：使用 `call()`, `apply()`, `bind()` 修改 `this` 的绑定。
-
-```js
-var obj = {
-  name: 'Alice',
-};
-
-function getName() {
-  console.log(this.name);
-}
-
-getName(); //undefined
-getName.call(obj); // Alice
-```
 
 
 ## 高阶函数

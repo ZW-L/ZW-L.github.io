@@ -21,6 +21,7 @@ module.exports = {
           { text: 'BOM',  link: '/base/javascript/bom/' },
           { text: 'DOM',  link: '/base/javascript/dom/' },
           { text: 'ECMAScript',  link: '/base/javascript/es/' },
+          { text: 'Node', link: '/base/node/' },
         ]
       },
       {
@@ -58,7 +59,7 @@ module.exports = {
           { text: 'PS',  link: '/other/tips/ps' },
           { text: 'Sublime Text 3',  link: '/other/tips/sublime-text3' },
           { text: '技术之外',  link: '/other/suggest' },
-          { text: '成长图谱',  link: '/other/growth-map/' },
+          { text: '保持学习',  link: '/other/growth/' },
         ]
       },
     ],
@@ -122,63 +123,53 @@ module.exports = {
             ['attributes/unit', '单位'],
           ]
         },
-        {
-          title: '响应式设计',
-          collapsable: false,
-          children: [
-            ['css3/new-selector', '新增选择器'],
-            ['css3/border', '边框相关'],
-            ['css3/text', '文本效果'],
-            ['css3/gradient', '渐变'],
-            ['css3/flex', '弹性布局'],
-            ['css3/grid', '网格布局'],
-            ['css3/responsive-design', '响应式设计'],
-          ]
-        },
-        {
-          title: '特效',
-          collapsable: false,
-          children: [
-            ['css3/transform', '转换'],
-            ['css3/transition', '过渡'],
-            ['css3/animation', '动画'],
-          ]
-        },
       ],
       '/base/javascript/bom/': [
-        ['window', 'window'],
-        ['console', 'console'],
-        ['document', 'document'],
-        ['frames', 'frames'],
-        ['history', 'history'],
-        ['location', 'location'],
-        ['navigator', 'navigator'],
-        ['screen', 'screen'],
+        {
+          title: '常用接口',
+          collapsable: false,
+          children: [
+            ['window', 'window'],
+            ['console', 'console'],
+            ['document', 'document'],
+            ['frames', 'frames'],
+            ['history', 'history'],
+            ['location', 'location'],
+            ['navigator', 'navigator'],
+            ['screen', 'screen'],
+          ]
+        },
       ],
       '/base/javascript/dom/': [
         ['', '介绍'],
-        ['event-target', 'EventTarget'],
-        ['node', 'Node'],
-        ['document', 'Document'],
-        ['html-document', 'HTMLDocument'],
-        ['document-fragment', 'DocumentFragment'],
-        ['element', 'Element'],
-        ['html-element', 'HTMLElement'],
-        ['attr', 'Attr'],
-        ['node-list', 'NodeList'],
-        ['html-collection', 'HTMLCollection'],
-        ['child-node', 'ChildNode'],
-        ['parent-node', 'ParentNode'],
-        ['non-cnode', 'NonDocumentTypeChildNode'],
-        ['document-type', 'DocumentType'],
-        ['character-data', 'CharacterData'],
-        ['sub-character-data', 'CharacterData 子类'],
-        ['event', 'Event'],
-        ['sub-event', 'Event 子类'],
+        {
+          title: 'DOM 接口',
+          collapsable: false,
+          children: [
+            ['event-target', 'EventTarget'],
+            ['node', 'Node'],
+            ['document', 'Document'],
+            ['html-document', 'HTMLDocument'],
+            ['document-fragment', 'DocumentFragment'],
+            ['element', 'Element'],
+            ['html-element', 'HTMLElement'],
+            ['attr', 'Attr'],
+            ['node-list', 'NodeList'],
+            ['html-collection', 'HTMLCollection'],
+            ['child-node', 'ChildNode'],
+            ['parent-node', 'ParentNode'],
+            ['non-cnode', 'NonDocumentTypeChildNode'],
+            ['document-type', 'DocumentType'],
+            ['character-data', 'CharacterData'],
+            ['sub-character-data', 'CharacterData 子类'],
+            ['event', 'Event'],
+            ['sub-event', 'Event 子类'],
+          ]
+        },
       ],
       '/base/javascript/es/': [
         {
-          title: 'ECMAScript',
+          title: 'ECMAScript 基础',
           collapsable: false,
           children: [
             ['es5/syntax', '语法'],
@@ -186,10 +177,25 @@ module.exports = {
             ['es5/operator', '操作符'],
             ['es5/process-control', '流程控制语句'],
             ['es5/scope', '作用域和内存'],
-            ['es5/reference-type', '引用类型'],
             ['es5/oop', '面向对象编程基础'],
             ['es5/fp', '函数式编程基础'],
             ['es5/json&ajax', 'JSON & Ajax'],
+          ]
+        },
+        {
+          title: '内置对象',
+          collapsable: false,
+          children: [
+            ['bio/function', 'Function'],
+            ['bio/object', 'Object'],
+            ['bio/array', 'Array'],
+            ['bio/string', 'String'],
+            ['bio/number', 'Number'],
+            ['bio/boolean', 'Boolean'],
+            ['bio/math', 'Math'],
+            ['bio/date', 'Date'],
+            ['bio/regexp', 'RegExp'],
+            ['bio/global', 'Global'],
           ]
         },
         {
@@ -221,10 +227,62 @@ module.exports = {
           ]
         }
       ],
+      '/base/node/': [
+        {
+          title: '全局属性',
+          collapsable: false,
+          children: [
+            ['global/buffer', 'Buffer'],
+            ['global/dirname', '__dirname'],
+            ['global/filename', '__filename'],
+            ['global/console', 'console'],
+            ['global/timer', 'timer'],
+            ['global/process', 'process'],
+          ]
+        },
+        {
+          title: '缓冲 & 流',
+          collapsable: false,
+          children: [
+            ['bs/buffer', 'Buffer'],
+            ['bs/stream', 'Stream'],
+          ]
+        },
+        {
+          title: '其他原生模块',
+          collapsable: false,
+          children: [
+            ['native/assert', 'assert'],
+            ['native/child-process', 'child_process'],
+            ['native/cluster', 'cluster'],
+            ['native/crypto', 'crypto'],
+            ['native/dgram', 'dgram'],
+            ['native/dns', 'dns'],
+            ['native/events', 'events'],
+            ['native/fs', 'fs'],
+            ['native/os', 'os'],
+            ['native/http', 'http'],
+            ['native/http2', 'http2'],
+            ['native/https', 'https'],
+            ['native/net', 'net'],
+            ['native/inspector', 'inspector'],
+            ['native/path', 'path'],
+            ['native/url', 'url'],
+            ['native/util', 'util'],
+            ['native/zlib', 'zlib'],
+          ]
+        }
+      ],
       // 深入
       '/deep/html/': [
-        ['html', 'HTML'],
-        ['html5', 'HTML5'],
+        {
+          title: '深入 HTML',
+          collapsable: false,
+          children: [
+            ['html', 'HTML'],
+            ['html5', 'HTML5'],
+          ]
+        },
       ],
       '/deep/css/': [
         {
@@ -234,11 +292,32 @@ module.exports = {
             ['knowledge/selectors', '选择器'],
             ['knowledge/attributes', '属性'],
             ['knowledge/weird', '怪异行为'],
-            ['knowledge/responsive-design', '响应式设计'],
           ]
         },
         {
-          title: '实现效果',
+          title: '专题：响应式',
+          collapsable: false,
+          children: [
+            ['responsive/new-selector', '新增选择器'],
+            ['responsive/border', '边框相关'],
+            ['responsive/text', '文本效果'],
+            ['responsive/gradient', '渐变'],
+            ['responsive/flex', '弹性布局'],
+            ['responsive/grid', '网格布局'],
+            ['responsive/responsive-design', '响应式设计'],
+          ]
+        },
+        {
+          title: '专题：动画特效',
+          collapsable: false,
+          children: [
+            ['animation/transform', '转换'],
+            ['animation/transition', '过渡'],
+            ['animation/animation', '动画'],
+          ]
+        },
+        {
+          title: '专题：实现效果',
           collapsable: false,
           children: [
             ['effect/horizontal-center', '水平居中'],
@@ -248,7 +327,7 @@ module.exports = {
           ]
         },
         {
-          title: '其他',
+          title: '专题：开发技巧',
           collapsable: false,
           children: [
             ['dev/compatibility', '兼容性'],
@@ -575,10 +654,24 @@ module.exports = {
         },
       ],
       // 更多
-      '/other/growth-map/': [
-        ['front-end', '前端'],
-        ['back-end', '后端'],
-        ['devops', 'DevOps'],
+      '/other/growth/': [
+        {
+          title: '成长图谱',
+          collapsable: false,
+          children: [
+            ['growth-map/front-end', '前端'],
+            ['growth-map/back-end', '后端'],
+            ['growth-map/devops', 'DevOps'],
+          ]
+        },
+        {
+          title: '学无止境',
+          collapsable: false,
+          children: [
+            ['learn/books', '书单'],
+            ['learn/link', '链接'],
+          ]
+        },
       ]
     }
   }

@@ -2,4 +2,4 @@
 [developer-roadmap](https://github.com/kamranahmedse/developer-roadmap)
 :::
 
-![后端](./back-end.png)
+![DevOps](./imgs/devops.png)
