@@ -364,6 +364,16 @@ module.exports = {
           ]
         },
         {
+          title: '专题：面向对象编程',
+          collapsable: false,
+          children: [
+            ['es-oop/introduction', '简介'],
+            ['es-oop/create', '创建对象的方式'],
+            ['es-oop/extend', '实现继承的方式'],
+            ['es-oop/stop', '防篡改对象'],
+          ]
+        },
+        {
           title: '专题：高性能 Javascript',
           collapsable: false,
           children: [
