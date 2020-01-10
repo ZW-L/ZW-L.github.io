@@ -640,26 +640,71 @@ module.exports = {
       ],
       '/back-end/algorithm/': [
         {
-          title: '数据结构',
-          collapsable: false,
-          children: [
-            ['data-structures/linked-list', '链表'],
-          ]
-        },
-        {
-          title: '算法简介',
-          collapsable: false,
+          title: '概念',
           children: [
             ['introduction/time-complexity', '时间复杂度'],
             ['introduction/space-complexity', '空间复杂度'],
           ]
         },
         {
-          title: '排序算法',
-          collapsable: false,
+          title: '数据结构',
           children: [
+            ['data-structures/string', '字符串(String)'],
+            ['data-structures/array', '数组(Array)'],
+            ['data-structures/linked-list', '链表(LinkedList)'],
+            ['data-structures/stack', '栈(Stack)'],
+            ['data-structures/queen', '队列(Queue)'],
+            ['data-structures/heap', '堆(Heap)'],
+            ['data-structures/set', '集合(Set)'],
+            ['data-structures/hash-table', '哈希表(HashTable)'],
+            ['data-structures/tree', '树(Tree)'],
+            ['data-structures/trie', '字典树(Trie)'],
+            ['data-structures/graph', '图(Graph)'],
+            ['data-structures/bloom-filter', '布隆过滤器(BloomFilter)'],
+            ['data-structures/disjoint-set', '并查集(DisjointSet)'],
+          ]
+        },
+        {
+          title: '排序算法',
+          children: [
+            ['sort/', '概览'],
             ['sort/bubble-sort', '冒泡排序'],
+            ['sort/insert-sort', '插入排序'],
+            ['sort/select-sort', '选择排序'],
+            ['sort/merge-sort', '归并排序'],
             ['sort/quick-sort', '快速排序'],
+            ['sort/heap-sort', '堆排序'],
+            ['sort/bucket-sort', '桶排序'],
+            ['sort/radix-sort', '基数排序'],
+          ]
+        },
+        {
+          title: '查找算法',
+          children: []
+        },
+        {
+          title: '字符串算法',
+          children: []
+        },
+        {
+          title: '位算法',
+          children: []
+        },
+        {
+          title: '树算法',
+          children: []
+        },
+        {
+          title: '图算法',
+          children: []
+        },
+        {
+          title: '算法设计思想',
+          children: [
+            ['design/recursion', '递归'],
+            ['design/recall', '回溯'],
+            ['design/merge', '分治'],
+            ['design/dp', '动态规划'],
           ]
         },
       ],
