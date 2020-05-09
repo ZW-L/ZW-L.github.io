@@ -289,37 +289,36 @@ module.exports = {
           title: '深入 CSS',
           collapsable: false,
           children: [
-            ['knowledge/selectors', '选择器'],
-            ['knowledge/attributes', '属性'],
-            ['knowledge/weird', '怪异行为'],
+            ['knowledge/difference', '区分属性'],
+            ['knowledge/questions', '常见问题'],
           ]
         },
         {
           title: '专题：响应式',
           collapsable: false,
           children: [
-            ['responsive/new-selector', '新增选择器'],
-            ['responsive/border', '边框相关'],
-            ['responsive/text', '文本效果'],
-            ['responsive/gradient', '渐变'],
-            ['responsive/flex', '弹性布局'],
-            ['responsive/grid', '网格布局'],
-            ['responsive/responsive-design', '响应式设计'],
+            ['responsive/media-query', '使用媒体查询的方式'],
+            ['responsive/responsive-design', '响应式设计方案'],
           ]
         },
         {
-          title: '专题：动画特效',
+          title: '专题：效果和动画',
           collapsable: false,
           children: [
-            ['animation/transform', '转换'],
-            ['animation/transition', '过渡'],
-            ['animation/animation', '动画'],
+            ['special-effects/text', '文本'],
+            ['special-effects/border', '边框'],
+            ['special-effects/background', '背景'],
+            ['special-effects/transform', '转换'],
+            ['special-effects/transition', '过渡'],
+            ['special-effects/animation', '动画'],
           ]
         },
         {
-          title: '专题：实现效果',
+          title: '专题：布局和效果',
           collapsable: false,
           children: [
+            ['effect/flex', '弹性布局'],
+            ['effect/grid', '网格布局'],
             ['effect/horizontal-center', '水平居中'],
             ['effect/vertical-center', '垂直居中'],
             ['effect/layout', '常用布局'],

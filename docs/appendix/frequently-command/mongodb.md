@@ -2,24 +2,39 @@
 
 **步骤：**
 
-1. 下载并解压缩 MongoDB 文件到指定目录，如 'H:\Users\mongodb'
-2. 把 'H:\Users\mongodb\bin' 目录添加到系统路径，这样就可以在任何地方使用 MongoDB 命令
-3. 创建数据文件目录 'H:\Users\mongodb\data'，用于保存数据库
-4. 在控制台使用命令启动 MongoDB：
+1. 官网下载并解压缩 MongoDB 文件夹到指定目录，如 `/usr/local/mongodb`
+2. 创建目录 `/usr/local/mongodb/data`，用于保存数据库文件
+3. 创建目录 `/usr/local/mongodb/log/mongodb.log`，用于保存数据库日志
+4. 配置用户写入权限
 
-```powershell
-mongod -dbpath H:/Users/mongodb/data
+```sh
+sudo chown -R seven /usr/local/mongodb
 ```
+
+3. 两种方式启动 MongoDB：
 
 ## 启动和停止
 
-**启动命令：**
-
-```powershell
-mongod -dbpath H:/Users/mongodb/data
+**启动：** 两种方式启动 MongoDB
++ 通过指定存取数据库文件的路径
+```sh
+mongod --dbpath /usr/local/mongodb/data
 ```
 
-**停止命令：**
++ 通过指定配置文件启动（建议），可自定义配置更多选项
+```sh
+# 配置 /etc/mongodb.conf
+dbpath = /Users/mongodb/data
+logpath = /Users/mongodb/log/mongodb.log
+logappend = true
+port = 27017
+
+# 启动
+mongod --config=/etc/mongodb.conf # 或 mongod -f /etc/mongodb.conf
+```
+
+
+**停止：**
 
 ```powershell
 use admin

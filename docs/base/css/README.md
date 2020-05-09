@@ -1,21 +1,5 @@
-## TODO
+# 简介
 
-+ 新增选择器 - new-selector
-
-+ 边框相关 - border
-
-+ 渐变 - gradient
-
-+ 文本效果 - text
-
-+ 转换 - transform
-
-+ 过渡 - transition
-
-+ 动画 - animation
-
-+ 弹性布局 - flex
-
-+ 网格布局 - grid
-
-+ 媒体查询 - media-query
++ CSS(Cascading Style Sheets，层叠样式表语言)，在 Web 中用于控制 HTML 元素的样式和动画
++ CSS 可以被 JavaScript 脚本控制，从而设计出各种特效
++ CSS3 新增了许多新特性，以及动画等，只使用 CSS 也能创建出优美的特效
