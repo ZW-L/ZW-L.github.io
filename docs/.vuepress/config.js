@@ -32,6 +32,7 @@ module.exports = {
           { text: 'Javascript',  link: '/deep/javascript/' },
           { text: '前端工程化',  link: '/deep/engineering/' },
           { text: '开发技巧',  link: '/deep/business-related/' },
+          { text: '开发流程', link: '/deep/project-setup/'},
           { text: '计算机基础',  link: '/deep/basis-of-computer/' },
         ]
       },
@@ -433,10 +434,13 @@ module.exports = {
           ]
         },
         {
-          title: '框架',
+          title: 'Vue',
           collapsable: false,
           children: [
-            ['fw/vue', 'Vue']
+            ['vue/vue-cli', 'Cli 详解'],
+            ['vue/vue-router', 'Router 详解'],
+            ['vue/vuex', 'Vuex 详解'],
+            ['vue/vue', '面试题'],
           ]
         },
         {
@@ -455,7 +459,17 @@ module.exports = {
         ['cross-platform', '跨平台'],
         ['business-related', '业务相关'],
         ['performance-optimization', '性能优化'],
-        ['ci&cd', 'CI & CD'],
+        ['ci&cd', 'CI & CD']
+      ],
+      '/deep/project-setup/': [
+        {
+          title: 'Vue SPA',
+          collapsable: false,
+          children: [
+            ['spa/flow', '流程介绍'],
+            ['spa/router', '路由配置']
+          ]
+        }
       ],
       '/deep/basis-of-computer/': [
         ['computed-network', '计算机网络'],
