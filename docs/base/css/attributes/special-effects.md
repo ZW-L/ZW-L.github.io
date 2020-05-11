@@ -1,14 +1,9 @@
-## 简介
-
-+ `transition`：过渡。设置 CSS 属性的过渡
-+ `transform`：2D/3D 变换。可进行旋转、平移、扭曲的变换
-+ `animation`：动画。设置在不同的时间内状态的变化，相当于一个更复杂的 `transition`
-
-
 ## transition
 
-**CSS 属性：**
++ transition 用于描述元素的属性过渡，即从一个状态到另一个状态
++ 当元素的样式属性发生变化时才能出现过渡，此时需要配合**CSS伪类**或**JS事件**
 
+**CSS 属性：**
 |属性|说明|取值|
 |-|-|-|
 |`transition`|过渡，快速定义所有值|-|
@@ -17,11 +12,8 @@
 |`transition-timing-function`|设置过渡使用的速度函数|`ease`<br>`linear`<br>`ease-in`<br>`ease-out`<br>`ease-in-out`<br>`cubiz-besier()`|
 |`transition-delay`|设置延迟过渡的时间|`<time>`|
 
-::: tip 注意：
-使用 `transition` 属性时，需要配合 `CSS伪类` 或 `JS事件` 等才能显示效果
-:::
 
-**使用`CSS伪类`实现的过渡效果是单向的：**
+**Demo：** 鼠标悬浮在元素上时触发渐变，离开时再反向触发渐变
 
 ```html
 <div id="content"></div>
@@ -32,43 +24,88 @@
   width: 100px;
   height: 100px;
   background-color: #ccc;
+  transition: all .8s;
 }
-/* 鼠标悬停至元素上方时会发生过渡；离开元素时过渡马上消失，直接回到元素初始状态 */
 #content:hover {
   border-radius: 50%;
   background-color: red;
-  transition: all 2s;
 }
 ```
 
-**使用一些 `Javascript` 事件可以使过渡效果是双向的：**
 
+
+## animation
+
++ animation 是增强的 transition，是真正意义上的动画
++ 可以将 transition 理解为 animation 的一个帧
++ 需要先使用 `@keyframes` 定义动画，再对动画名称进行引用
+
+**CSS 属性：**
+|属性|说明|取值|
+|-|-|-|
+|`animation`|动画，快速定义以下 8 个值|-|
+|`animation-name`|设置使用的动画名称|`none`<br>`<identifier>`|
+|`animation-duration`|设置动画持续的时间|`<time>`|
+|`animation-timing-function`|设置动画的速度函数|`ease`<br>`linear`<br>`ease-in`<br>`ease-out`<br>`ease-in-out`<br>`cubiz-besier()`|
+|`animation-delay`|设置延迟动画的时间|`<time>`|
+|`animation-iteration-count`|设置动画循环的次数|`infinity`<br>`<number>`|
+|`animation-direction`|设置动画是否反向运动|`normal`<br>`alternate`|
+|`animation-play-state`|设置动画的状态|`running`<br>`paused`|
+|`animation-fill-mode`|设置动画时间之外的状态|`none`<br>`forwards`<br>`backwards`<br>`both`|
+|`@key-frames identifier`|定义动画效果|-|
+
+
+::: tip 两种方式定义 @keyframes
++ 使用 `from...to` 指定开始和结束状态(只能定义两个状态)
+```css
+@keyframes my-animation {
+  from {
+    border-radius: 0;
+    background-color: #ccc;
+  }
+  to {
+    border-radius: 50%;
+    background-color: red;
+  }
+}
+```
++ 使用百分比指定多个时间帧(可以定义多个状态)
+```css
+@keyframes my-animation {
+  0% {
+    border-radius: 0;
+    background-color: #ccc;
+  }
+  100% {
+    border-radius: 50%;
+    background-color: red;
+  }
+}
+```
+:::
+
+**Demo：**
 ```html
 <div id="content"></div>
 ```
-
 ```css
 #content {
   width: 100px;
   height: 100px;
   background-color: #ccc;
+  animation: my-animation 1s 0s infinite alternate;
 }
-```
 
-```js
-const content = document.getElementById('content');
-// 鼠标悬停在元素上方时，发生过渡
-content.addEventListener('mouseover', () => {
-  content.style.backgroundColor = 'red';
-  content.style.borderRadius = '50%';
-  content.style.transition = 'all 1s';
-});
-// 鼠标离开元素时，也发生过渡
-content.addEventListener('mouseout', () => {
-  content.style.backgroundColor = '#ccc';
-  content.style.borderRadius = '0';
-  content.style.transition = 'all .5s';
-});
+@keyframes my-animation {
+  from {
+    border-radius: 0;
+    background-color: #ccc;
+  }
+  to {
+    border-radius: 50%;
+    background-color: red;
+  }
+}
 ```
 
 
@@ -76,8 +113,10 @@ content.addEventListener('mouseout', () => {
 
 ## transform
 
-**CSS 属性：**
++ 
++ 
 
+**CSS 属性：**
 + `transform`：定义对象的 2D/3D 变换(平移，拉伸，旋转)，取值为：
   + 平移：
     + `translateX()`：
@@ -115,120 +154,3 @@ content.addEventListener('mouseout', () => {
 + `transform-style` 需要在父级元素中设置，默认为 `flat(2D)`
 + 除了设置 `transform-style`，还需要将舞台(父元素)旋转一定的角度，才能观察到子元素的 3D 变化
 :::
-
-
-## animation
-
-::: tip 说明：
-animation 可以说对 transition 的强化，它可以轻松实现纯 CSS 的动画，可以不需要由 JS 控制。
-:::
-
-**CSS 属性：**
-
-|属性|说明|取值|
-|-|-|-|
-|`animation`|动画，快速定义所有值|-|
-|`animation-name`|设置使用的动画名称|`none`<br>`<identifier>`|
-|`animation-duration`|设置动画持续的时间|`<time>`|
-|`animation-timing-function`|设置动画的速度函数|`ease`<br>`linear`<br>`ease-in`<br>`ease-out`<br>`ease-in-out`<br>`cubiz-besier()`|
-|`animation-delay`|设置延迟动画的时间|`<time>`|
-|`animation-iteration-count`|设置动画循环的次数|`infinity`<br>`<number>`|
-|`animation-direction`|设置动画是否反向运动|`normal`<br>`alternate`|
-|`animation-play-state`|设置动画的状态|`running`<br>`paused`|
-|`animation-fill-mode`|设置动画时间之外的状态|`none`<br>`forwards`<br>`backwards`<br>`both`|
-|`@key-frames identifier`|定义动画效果|-|
-
-::: warning 注意：
-需要先使用 `@keyframes` 定义动画，再对动画名称进行引用
-:::
-
-**使用 `@keyframes`：**
-
-```css
-/* 用法1：使用 from ... to 指定开始和结束状态 */
-@keyframes my-animation {
-  from {
-    border-radius: 0;
-    background-color: #ccc;
-  }
-  to {
-    border-radius: 50%;
-    background-color: red;
-  }
-}
-
-/* 用法2：使用百分比指定多个时间帧 */
-@keyframes my-animation {
-  0% {
-    border-radius: 0;
-    background-color: #ccc;
-  }
-  100% {
-    border-radius: 50%;
-    background-color: red;
-  }
-}
-```
-
-
-
-## animation 和 transition
-
-**实现简单的 `animation`：**
-
-```html
-<div id="content"></div>
-```
-
-```css
-#content {
-  width: 100px;
-  height: 100px;
-  background-color: #ccc;
-  animation: my-animation 1s 0s 2 alternate;
-}
-
-@keyframes my-animation {
-  from {
-    border-radius: 0;
-    background-color: #ccc;
-  }
-  to {
-    border-radius: 50%;
-    background-color: red;
-  }
-}
-```
-
-**用 `transition` 实现相同的效果：**
-
-```html
-<div id="content"></div>
-```
-
-```css
-#content {
-  width: 100px;
-  height: 100px;
-  background-color: #ccc;
-}
-```
-
-```js
-const content = document.getElementById('content');
-
-window.addEventListener('load', () => {
-  content.style.backgroundColor = 'red';
-  content.style.borderRadius = '50%';
-  content.style.transition = 'all 1s';
-  timer = setInterval(() => {
-    console.log('In interval');
-    content.style.backgroundColor = '#ccc';
-    content.style.borderRadius = '0';
-    content.style.transition = 'all 1s';
-  }, 1000);
-  setTimeout(() => {
-    clearInterval(timer);
-  }, 200);
-});
-```

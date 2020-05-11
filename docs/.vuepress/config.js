@@ -298,8 +298,9 @@ module.exports = {
           title: '专题：响应式',
           collapsable: false,
           children: [
-            ['responsive/media-query', '使用媒体查询的方式'],
-            ['responsive/responsive-design', '响应式设计方案'],
+            ['responsive/media-query', '使用媒体查询'],
+            ['responsive/responsive-design', '响应式设计'],
+            ['responsive/design-schema', '设计方案'],
           ]
         },
         {
@@ -308,7 +309,7 @@ module.exports = {
           children: [
             ['special-effects/text', '文本'],
             ['special-effects/border', '边框'],
-            ['special-effects/background', '背景'],
+            ['special-effects/gradient', '渐变'],
             ['special-effects/transform', '转换'],
             ['special-effects/transition', '过渡'],
             ['special-effects/animation', '动画'],
@@ -318,10 +319,12 @@ module.exports = {
           title: '专题：布局和效果',
           collapsable: false,
           children: [
-            ['effect/flex', '弹性布局'],
-            ['effect/grid', '网格布局'],
+            ['effect/flex', 'Flex 详解'],
+            ['effect/grid', 'Grid 详解'],
+            ['effect/grid-system', '栅格系统详解'],
             ['effect/horizontal-center', '水平居中'],
             ['effect/vertical-center', '垂直居中'],
+            ['effect/horizontal-vertical-center', '水平垂直居中'],
             ['effect/layout', '常用布局'],
             ['effect/more', '常见效果'],
           ]
@@ -331,7 +334,16 @@ module.exports = {
           collapsable: false,
           children: [
             ['dev/compatibility', '兼容性'],
-            ['dev/tips', '开发中'],
+            ['dev/tips', '技巧'],
+          ]
+        },
+        {
+          title: '专题：未分类',
+          collapsable: false,
+          children: [
+            ['unclassified/css-reset', '初始化样式'],
+            ['unclassified/bfc&ifc', 'BFC 和 IFC 详解'],
+            ['unclassified/float', '解决浮动引起的高度塌陷'],
           ]
         },
       ],

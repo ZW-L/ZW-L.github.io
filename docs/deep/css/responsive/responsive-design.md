@@ -1,148 +1,253 @@
 ## 简介
 
+就目前来说，实现响应式离不开以下几个方面：
++ 预设 `viewport`(必须)
++ 多数情况下，都需要配置端优先的媒体查询模板(建议)
++ 使用响应式的 CSS 属性
++ 选择页面布局方式
 
 
-响应式涉及需要依赖的内容：
+## 预设 viewport
 
-+ `viewport`：通过 `<meta>` 的 `viewport` 属性设置页面的缩放模式
-+ 媒体查询：使用媒体查询功能使页面在不同的设备、尺寸下有不同的显示效果
-+ 响应式属性：使用响应式的长度单位(`%`, `em`, `rem`, `vw`, `vh` 等)设置元素盒子的尺寸，配合媒体查询使用
-+ 弹性布局：通过 `flex`/`grid` 布局快速排列元素，并具有响应式
-
-
-## viewport
-
-
+设置网页宽度为设备宽度、缩放始终为 1、且不允许用户缩放：
+```html
+<meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no'>
+```
 
 
 ## 媒体查询
 
-### 使用方式
-
-+ 在样式中使用
-+ 在 `@import` 中使用
-+ 在 `<link>` 中使用
-
-
-### 在样式中使用
-
-
-
-
-
-
-
-## CSS媒体查询
-
-**注意**
-
-+ 媒体查询相当于 `if` ，可以匹配使用多个符合条件的样式/样式文件
-+ 媒体查询会覆盖之前定义的相同的 CSS 样式，也会被在媒体查询后定义的 CSS 样式覆盖（为了保证媒体查询不被覆盖，应该放在样式文件的最后面）
-+ 可以用 `@import` 配合媒体查询选择性地引入样式文件，组织样式结构
-+ 使用 `Sass` 等工具使媒体查询更简便，更清晰
-
-## 关键字
-
-### and
-
-条件且，可以有多个
-
-### only
-
-区分设备
-
-### not
-
-对表达式的否定
-
-### ,
-
-**条件或**，可以有多个
-
-## 查询属性
-
-### 页面可见宽高
-
-最大/最小宽高，**与分辨率有关，与设备屏幕大小无关**
-
-+ width 
-+ min-width
-+ max-width
-+ height
-+ min-height
-+ max-height
-
++ 使用媒体查询功能使页面在不同的设备、尺寸下有不同的显示效果
++ 以下为一套移动端优先的媒体查询模板：
 ```css
-
-@media screen and (min-width: 300px) {
-	/* 可见宽度大于 300px */
+/* iPhone 6/7/8 */
+body { background-color: red; }
+/* iPhone 5/5s/se */
+@media screen and (max-width: 320px) {
+	body { background-color: red; }
 }
-@media screen and (max-width: 300px) {
-	/* 可见宽度小于 300px */
+/* iPhone X */
+@media screen and (min-width: 375px) and (-webkit-device-pixel-ratio: 3) {
+  body { background-color: red; }
 }
-@media screen and (min-width: 300px) and (max-width: 600px) {
-   /* 可见宽度大于 300px 且 小于 600px */
+/* iPhone 6/7/8 plus */
+@media screen and (min-width: 414px) {
+  body { background-color: red; }
+}
+/* iPad */
+@media screen and (min-width: 768px) {
+  body { background-color: red; }
+}
+/* iPad pro */
+@media screen and (min-width: 1024px) {
+  body { background-color: red; }
+}
+/* PC */
+@media screen and (min-width: 1100px) {
+  body { background-color: red; }
+}
+```
++ 以下为一套 PC 端优先的媒体查询模板：
+```css
+/* pc width > 1024px */
+body { background-color: red; }
+/* iPad pro */
+@media screen and (max-width: 1024px) {
+	body { background-color: red; }
+}
+/* iPad */
+@media screen and (max-width: 768px) {
+  body { background-color: red; }
+}
+/* iPhone 6/7/8 plus */
+@media screen and (max-width: 414px) {
+  body { background-color: red; }
+}
+/* iPhone X */
+@media screen and (max-width: 375px) and (-webkit-device-pixel-ratio: 3) {
+  body { background-color: red; }
+}
+/* iPhone 6/7/8 */
+@media screen and (max-width: 375px) and (-webkit-device-pixel-ratio: 2) {
+  body { background-color: red; }
+}
+/* iPhone 5/5s/se */
+@media screen and (max-width: 320px) {
+  body { background-color: red; }
 }
 ```
 
-### 设备屏幕宽高
 
-最大/最小设备宽高，这个是**设备实际的宽高，与分辨率无关**
 
-+ device-width
-+ min-device-width
-+ max-device-width
-+ device-height
-+ min-device-height
-+ max-device-height
+## 响应式属性
 
++ `rem` 相对于根元素的 `font-size` 属性，可以配合媒体查询修改 `font-size`
 ```css
-@media screen and (min-device-width: 300px) {
-	/* 设备宽度大于 300px */
+/* 随着屏幕尺寸变化，页面字体也发生变化 */
+html { font-size: 50px; }
+body { font-size: .5rem; }
+
+/* 平板 */
+@media screen and (max-width: 1024px) {
+  html { font-size: 40px; }
 }
-@media screen and (max-device-width: 300px) {
-	/* 设备宽度小于 300px */
+/* 普通或大屏手机 */
+@media screen and (max-width: 375px) {
+  html { font-size: 30px; }
 }
-@media screen and (min-device-width: 300px) and (max-device-width: 600px) {
-   /* 设备宽度大于 300px 且 小于 600px */
+/* 小屏手机 */
+@media screen and (max-width: 320px) {
+  html { font-size: 28px; }
 }
 ```
 
-### 页面高度是否大于等于宽度
-
-值 `portrait` 表示是，值 `landscape` 表示否，可以用于检测横屏（landscape）和竖屏（portrait）
-
-+  `orientation: portrait` ：竖屏
-+  `orientation: landscape` ：横屏
-
++ 图片的 `max-width` 属性控制图片的最大放大倍数，高度设为 `auto` 控制图片等比缩放
 ```css
-/* 竖屏 */
-@media screen and (orientation: portrait) {
-	#box1 {
-		background-color: pink;
-	}
-}
-/* 横屏 */
-@media screen and (orientation: landscape) {
-	#box1 {
-		background-color: purple;
-	}
+/* 屏幕缩小时，图片随之缩小，但放大时最大尺寸为图片自身尺寸 */
+img {
+  max-width: 100%;
+  height: auto;
 }
 ```
 
-### aspect-ratio
 
 
+## 页面布局
 
-### device-aspect-ratio
++ 使用百分比进行页面布局
+```html
+<div class="container">
+  <div class="nav"></div>
+  <div class="sidebar"></div>
+  <div class="main"></div>
+</div>
+```
+```css
+/* 随着屏幕尺寸的变化，页面所展示的内容也发生变化
+  1. 大屏幕会显示完整的导航条和边栏
+  2. 小屏幕会将导航条变小(或收起只显示一个图标)，并隐藏边栏
+*/
+* { margin: 0; padding: 0; }
+.container {
+  width: 100%;
+  height: 500px;
+}
+.nav {
+  height: 100px;
+  background-color: #ace;
+}
+.sidebar {
+  float: left;
+  width: 30%;
+  height: 400px;
+  background-color: #eee;
+}
+.main {
+  float: right;
+  width: 70%;
+  height: 400px;
+  background-color: #ccc;
+}
 
+/* 在小屏幕、手机上，隐藏或缩小部分区域 */
+@media screen and (max-width: 400px) {
+  .nav { height: 50px; }
+  .sidebar { width: 0; }
+  .main { width: 100%; }
+}
+```
 
++ 使用视窗单位(`vw`/`vh`)代替百分比进行页面布局
+```css
+/* 设计思想与百分比布局类似 */
+* { margin: 0; padding: 0; }
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+.nav {
+  height: 10vh;
+  background-color: #ace;
+}
+.sidebar {
+  float: left;
+  width: 30vw;
+  height: 90vh;
+  background-color: #eee;
+}
+.main {
+  float: right;
+  width: 70vw;
+  height: 90vh;
+  background-color: #ccc;
+}
 
-## 弹性布局
+/* 在小屏幕、手机上，隐藏或缩小部分区域 */
+@media screen and (max-width: 400px) {
+  .nav { height: 5vh; }
+  .sidebar { width: 0; }
+  .main { width: 100vh; height: 95vh; }
+}
+```
 
++ 使用 flex 布局
+```html
+<div class="container">
+  <div class="nav"></div>
+  <div class="section">
+    <div class="sidebar"></div>
+    <div class="main"></div>
+  </div>
+</div>
+```
+```css
+/* flex 配置简单，虽然页面在不同屏幕下内容大小不同，但各部分比例是一致的
+  优点：只需适配移动端时，flex 是非常好的一种布局，不用写太多(设置不写)媒体查询逻辑
+  缺点：在屏幕比例差别较大的设备上，显示效果差别较大，若是移动端优先，在 PC 端一般都会拉伸变形
+*/
+* { margin: 0; padding: 0; }
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+.nav {
+  width: 100%;
+  height: 10%;
+  background-color: #ace;
+}
+.section {
+  display: flex;
+  flex: 1;
+}
+.section .sidebar {
+  width: 30%;
+  height: auto;
+  background-color: #eee;
+}
+.section .main {
+  flex: 1;
+  height: auto;
+  background-color: #ccc;
+}
+```
 
++ 使用 grid 布局
+```css
+/* 是一种类似 table 表格和栅格布局的布局方式
+  优点：
+  缺点：语法比较复杂，
+*/
 
-## 视口
+/* todo */
+```
 
++ 使用栅格布局
+```css
+/* 参考的 Bootstrap，将页面宽度细分为12等份的栅格，以栅格作单位进行布局
+  优点：配合媒体查询，基于栅格继续嵌套栅格，能够实现任何的布局
+  缺点：代码逻辑嵌套过多，在小型页面上显得冗余
+*/
 
-
+/* todo */
+```

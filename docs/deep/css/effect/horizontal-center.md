@@ -1,31 +1,66 @@
-## 固定宽度
+## margin: auto
+
++ 适用范围：static/relative 定位的元素
++ 原理：将居中块的左右 margin 设置为 auto
+
+```html
+<div class="container">
+  <div class="box"></div>
+</div>
+```
 
 ```css
 .box {
-  width: 100px; /* 或百分比 */
+  width: 100px;
   height: 100px;
   margin: 0 auto;
 }
 ```
 
-## 非 static 定位
+
+## absolute + 负 margin
+
++ 适用范围：absolute 定位的元素
++ 原理：先设置 `left: 50%` 将居中块偏移，再用负 `margin` 拉正
 
 ```css
-/* 会显示 margin 边距 */
-.box {
-  position: absolute; /* absolute 或 relative */
-  width: 50%;
-  height: 100px;
-  margin-left: 50%; /* 先固定偏移 50%，再用 left 负值拉正 */
-  left: -25%; /* 负值，width 的一半 */
-}
-
-/* 不会显示 margin 边距 */
 .box {
   position: absolute;
   width: 50%;
   height: 100px;
-  left: 50%; /* 先固定偏移 50%，再用 margin 负值拉正 */
-  margin-left: -25%; /* 负值，width 的一半 */
+  left: 50%;
+  margin-left: -25%;
+}
+```
+
+
+## absolute + margin
+
++ 适用范围：absolute 定位的元素
++ 原理：
+  + 先将父元素设置为非 `static` 定位，再将居中元素设置为 `absolute` 定位
+  + 先设置 `margin: auto`，再通过 `top`/`bottom` 调整 `margin` 值
+
+```html
+<div class="container">
+  <div class="box"></div>
+</div>
+```
+
+```css
+.container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #000;
+}
+.box {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  background-color: #ccc;
 }
 ```

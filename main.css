@@ -1,0 +1,17 @@
+#content {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  animation: my-animation 1s 0s infinite alternate;
+}
+
+@keyframes my-animation {
+  from {
+    border-radius: 0;
+    background-color: #ccc;
+  }
+  to {
+    border-radius: 50%;
+    background-color: red;
+  }
+}

@@ -69,9 +69,9 @@
 }
 ```
 
-+ 块级元素(block)可以设置宽高，独占一行
-+ 行内元素(inline)不可设置宽高，会在一行中按顺序排列，排满时会换行
-+ 行内块级元素(inline-block)具有两者的属性
++ 块级元素(block)可以设置宽高，独占一行，常见：`h1~h6`,`p`,`div`,`dl`,`dt`,`hr`,`ol`,`ul`,`li`,`form`,`pre`,`table`,`td`,`th`
++ 行内元素(inline)不可设置宽高，会在一行中按顺序排列，排满时会换行，常见：`span`,`button`,`input`,`label`,`select`,`img`,`textarea`以及 `strong` 等文本类标签
++ 行内块级元素(inline-block)具有两者的特点
 
 
 ## 伪类 & 伪元素
@@ -86,6 +86,14 @@
 
 ## 可继承样式 & 不可继承的样式
 
++ 大多数样式是不可继承的，但所有元素都可以继承这两个样式：`visibility`/`cursor`
++ 块状元素可继承：`text-indent`/`text-align`
++ 内联元素可继承较多类型的样式：
+  + 字体类样式：`font`/`font-family`/`font-size`/`font-style`/`font-variant`/`font-weight`
+  + 文本颜色、描述等：`color`/`text-decoration`/`text-transform`/`direction`
+  + 词间间隔、行高等：`letter-spacing`/`word-spacing`/`white-space`/`line-height`
++ 列表元素可继承：`list-style`/`list-style-type`/`list-style-position`/`list-style-image`
++ 表格元素可继承：`border-collapse`
 
 
 ## BFC, IFC, GFC, FFC

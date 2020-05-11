@@ -1,7 +1,15 @@
-## 依赖高度
+## relative + 负 margin
+
++ 适用范围：需要依赖居中块的高度
++ 通过 `relative` 定位将自身向顶部偏移 50%，再用负 margin 拉正
+
+```html
+<div class="container">
+  <div class="box"></div>
+</div>
+```
 
 ```css
-/* 非 static 定位，可以通过负 margin 居中 */
 .box {
   position: relative;
   width: 100px;
@@ -11,18 +19,33 @@
 }
 ```
 
-## 不依赖高度
+## absolute + margin
+
++ 适用范围：不需要依赖居中块的高度
++ 原理：
+  + 先将父元素设置为非 `static` 定位，再将居中元素设置为 `absolute` 定位
+  + 先设置 `margin: auto`，再通过 `right`/`left` 调整 `margin` 值
+
+```html
+<div class="container">
+  <div class="box"></div>
+</div>
+```
 
 ```css
-/* 使用 absolute 水平垂直居中，设置对边的 margin 为 auto，且对边的偏移都为 0 */
+.container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #000;
+}
 .box {
   position: absolute;
   width: 100px;
   height: 100px;
   margin: auto;
-  top: 0; /* top, bottom 用于垂直居中 */
+  top: 0;
   bottom: 0;
-  left: 0; /* left, right 用于水平居中 */
-  right: 0;
+  background-color: #ccc;
 }
 ```
