@@ -1,7 +1,6 @@
-## http
+## 简介
 
-[http](http://nodejs.cn/api/http.html) 模块用于实现 HTTP 服务器和客户端。主要包含：
-
++ [http](http://nodejs.cn/api/http.html) 模块用于实现 HTTP 服务器和客户端
 + `http API`：
 + `http.Agent` 类：
 + `http.ClientRequest` 类：
@@ -9,14 +8,13 @@
 + `http.ServerResponse` 类：
 + `http.IncomingMessage` 类：
 
-### API
+## API
 
 + **属性：**
   + `http.METHODS: string[]`：解析器支持的 HTTP 方法列表
   + `http.STATUS_CODES: object`：所有标准 HTTP 响应状态码的集合，以及每个状态码的简短描述
   + `http.globalAgent: Agent`：Agent 的全局实例，作为所有 HTTP 客户端请求的默认值
   + `http.maxHeaderSize: number`：设置 HTTP 消息头的最大容量（以字节为单位），默认 8KB
-
 + **方法：**
   + `http.createServer(options?: object, requestListener?: function): Server`：创建一个 HTTP 服务器
   + `http.get(options: object, callback?: function): ClientRequest`：
@@ -49,13 +47,14 @@
 :::
 
 
-### Agent
+
+
+## Agent
 
 + **介绍：**
   + `Agent` 负责管理 HTTP 客户端的连接持久性和重用
   + 它为给定的主机和端口维护一个待处理请求队列，为每个请求重用单独的套接字连接，直到队列为空，此时套接字被销毁或放入连接池，以便再次用于请求到同一个主机和端口
   + 销毁还是放入连接池取决于 keepAlive 选项
-
 + **构造函数：**
   + `new Agent(options?: object): Agent`：创建一个 Agent 实例
 
@@ -74,7 +73,6 @@
   + `agent.freeSockets: object`：包含当启用 keepAlive 时代理正在等待使用的套接字数组
   + `agent.requests: object`：包含尚未分配给套接字的请求队列
   + `agent.sockets: object`：包含当前代理正在使用的套接字数组
-
 + **方法：**
   + `agent.createConnection(options[, callback])`：生成用于 HTTP 请求的套接字或流
   + `agent.keepSocketAlive(socket)`：当 socket 与请求分离并且可以由 Agent 保留时调用
@@ -83,14 +81,15 @@
   + `agent.getName(options)`：获取一组请求选项的唯一名称
 
 
-### ClientRequest
+
+
+## ClientRequest
 
 + **介绍：**
   + 继承自 `Stream`
   + 由 `http.request()` 创建并返回，代表正在进行中的请求，其请求头已进入队列
   + 要为请求对象添加 `response` 事件监听以获得响应，否则响应将会被完全地丢弃
   + 如果响应过早关闭，则 `response` 会触发 `aborted` 事件而不是 `error` 事件
-
 + **事件：**
   + `abort`：当请求被客户端中止时触发
   + `connect`：当服务器使用 `CONNECT` 方法响应请求时都会触发
@@ -100,7 +99,6 @@
   + `socket`：将套接字分配给此请求后触发
   + `timeout`：当底层套接字因不活动而超时时触发
   + `upgrade`：每次服务器响应升级请求时触发
-
 + **属性：**
   + `request.aborted: boolean`：指示请求是否已终止
   + `request.connection`：
@@ -110,7 +108,6 @@
   + `request.socket`：指向底层套接字
   + `request.writableEnded`：在调用 `request.end()` 之后为 true
   + `request.writableFinished`：如果在触发 `finish` 事件之前所有数据都已刷新到底层系统，则为 true
-
 + **方法：**
   + `request.abort()`：将请求标记为中止，响应中剩余的数据会被丢弃且套接字被销毁
   + `request.flushHeaders()`：刷新请求头
@@ -124,11 +121,13 @@
   + `request.setTimeout(timeout?: number, callback?: function): ClientRequest`：一旦将套接字分配给此请求并且连接了套接字，便立即调用 socket.setTimeout()
 
 
-### Server
+
+
+
+## Server
 
 + **介绍：**
   + 继承自 `net.Server`
-
 + **事件：**
   + `checkContinue`：
   + `checkExpectation`：
@@ -138,29 +137,27 @@
   + `connection`：
   + `request`：
   + `upgrade`：
-
 + **属性：**
   + `server.headersTimeout`：
   + `server.listening`：
   + `server.maxHeadersCount`：
   + `server.timeout`：
   + `server.keepAliveTimeout`：
-
 + **方法：**
   + `server.close([callback])`：
   + `server.listen()`：
   + `server.setTimeout([msecs][, callback])`：
 
 
-### ServerResponse
+
+
+## ServerResponse
 
 + **介绍：**
   + 继承自 `Stream`
-
 + **事件：**
   + `close`：
   + `finish`：
-
 + **属性：**
   + `response.connection`：
   + `response.finished`：
@@ -171,7 +168,6 @@
   + `response.statusMessage`：
   + `response.writableEnded`：
   + `response.writableFinished`：
-
 + **方法：**
   + `response.addTrailers(headers)`：
   + `response.end([data[, encoding]][, callback])`：
@@ -189,15 +185,15 @@
   + `response.writeProcessing()`：
 
 
-### IncomingMessage
+
+
+## IncomingMessage
 
 + **介绍：**
   + 继承自 `stream.Readable`
-
 + **事件：**
   + `aborted`：
   + `close`：
-
 + **属性：**
   + `message.aborted`：
   + `message.complete`：
@@ -211,10 +207,6 @@
   + `message.statusMessage`：
   + `message.trailers`：
   + `message.url`：
-
 + **方法：**
   + `message.destroy([error])`：
   + `message.setTimeout(msecs[, callback])`：
-
-
-

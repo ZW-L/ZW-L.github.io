@@ -1,12 +1,12 @@
-## 介绍
+## 简介
 
 + `let` 用于声明变量，`const` 用于声明常量，取代以前的 `var` 声明
 
 
+
 ## let/const 与 var
 
-+ **块级作用域**
-
++ **块级作用域：** `let`/`const` 有块级作用域，`var` 没有
 ```js
 // var 声明
 for (var i = 0; i < 10; i++) {}
@@ -17,8 +17,7 @@ for (let i = 0; i < 10; i++) {}
 console.log(i) // ReferenceError: i is not defined
 ```
 
-+ **暂时性死区(TDZ)**: 如果区块中存在 `let` 和 `const` 命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域，凡是在声明之前就使用这些变量都会报 `ReferenceError` 错误
-
++ **暂时性死区(TDZ)**: 如果区块中存在 `let`/`const`，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域，凡是在声明之前就使用这些变量都会报 `ReferenceError` 错误
 ```js
 if (true) {
   // TDZ开始
@@ -34,7 +33,6 @@ if (true) {
 ```
 
 + **不存在变量提升**
-
 ```js
 // var 声明
 console.log(foo) // undefined
@@ -46,7 +44,6 @@ let bar = 2
 ```
 
 + **不允许重复声明**
-
 ```js
 // var 声明
 var a = 10
@@ -60,7 +57,6 @@ console.log(b)
 ```
 
 + **全局声明的属性不再挂载在顶层对象**
-
 ```js
 // 在浏览器中
 var a = 1
@@ -69,10 +65,12 @@ let b = 2
 console.log(window.a, window.b) // 1 undefined
 ```
 
+
+
 ## let 与 const
 
-+ `let` 用于声明变量；`const` 用于声明常量，且声明时必须赋值
-
++ `let` 用于声明变量
++ `const` 用于声明常量，且声明时必须赋值
 ```js
 let a
 console.log(a) // undefined

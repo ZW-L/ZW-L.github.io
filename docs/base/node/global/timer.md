@@ -1,26 +1,28 @@
-## timer
+## 简介
 
 + [timer](http://nodejs.cn/api/timers.html)模块暴露了一些全局的 API，用于预定在将来某个时间段调用的函数
 + 定时器函数与 Web 浏览器类似，但使用了不同的内部实现（基于 Node.js 事件循环）
 
 
-### Immediate
+
+
+## Immediate
 
 `setImmediate()` 返回一个 `Immediate` 实例：
++ `immediate.hasRef()`：
++ `immediate.ref()`：
++ `immediate.unref()`：
 
-+ [immediate.hasRef()](http://nodejs.cn/api/timers.html#timers_immediate_hasref)：
-+ [immediate.ref()](http://nodejs.cn/api/timers.html#timers_immediate_ref)：
-+ [immediate.unref()](http://nodejs.cn/api/timers.html#timers_immediate_unref)：
 
 
-### Timeout
+
+## Timeout
 
 `setTimeout()`/`setInterval()` 返回一个 `Timeout` 实例：
-
-+ [timeout.hasRef()](http://nodejs.cn/api/timers.html#timers_timeout_hasref)：
-+ [timeout.ref()](http://nodejs.cn/api/timers.html#timers_timeout_ref)：
-+ [timeout.unref()](http://nodejs.cn/api/timers.html#timers_timeout_unref)：
-+ [timeout.refresh()](http://nodejs.cn/api/timers.html#timers_timeout_refresh)：
++ `timeout.hasRef()`：
++ `timeout.ref()`：
++ `timeout.unref()`：
++ `timeout.refresh()`：
 
 ::: tip 说明：
 + `unref()` 用于自动清除 `Interval` 定时器：
@@ -41,15 +43,16 @@ setTimeout(() => {
 :::
 
 
-### 设置/清除定时器
 
-+ [setImmediate(callback[, ...args])](http://nodejs.cn/api/timers.html#timers_setimmediate_callback_args)：在 I/O 事件的回调之后立即执行 callback
-+ [setTimeout(callback, delay[, ...args]))](http://nodejs.cn/api/timers.html#timers_settimeout_callback_delay_args)：在指定延迟后执行一次 callback
-+ [setInterval(callback, delay[, ...args]))](http://nodejs.cn/api/timers.html#timers_setinterval_callback_delay_args)：每隔指定延迟执行一次 callback
-+ [clearImmediate(immediate)](http://nodejs.cn/api/timers.html#timers_clearimmediate_immediate)：取消由 `setImmediate()` 创建的 `Immediate` 对象
-+ [clearTimeout(timeout)](http://nodejs.cn/api/timers.html#timers_cleartimeout_timeout)：取消由 `setTimeout()` 创建的 `Timeout` 对象
-+ [clearInterval(timeout)](http://nodejs.cn/api/timers.html#timers_clearinterval_timeout)：取消由 `setInterval()` 创建的 `Timeout` 对象
 
+## 设置/清除定时器
+
++ `setImmediate(callback[, ...args])`：在 I/O 事件的回调之后立即执行 callback
++ `setTimeout(callback, delay[, ...args]))`：在指定延迟后执行一次 callback
++ `setInterval(callback, delay[, ...args]))`：每隔指定延迟执行一次 callback
++ `clearImmediate(immediate)`：取消由 `setImmediate()` 创建的 `Immediate` 对象
++ `clearTimeout(timeout)`：取消由 `setTimeout()` 创建的 `Timeout` 对象
++ `clearInterval(timeout)`：取消由 `setInterval()` 创建的 `Timeout` 对象
 
 ::: tip 说明：
 + 当 `delay` 不在区间 [1, 2147483647] 内时将设置为 1，非整数值会被截断为整数

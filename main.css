@@ -1,51 +1,13 @@
-body {
-  background-color: rgb(67, 62, 62);
-}
 .container {
-  margin: 100px 100px;
-  perspective: 2000px;
-  transform-style: preserve-3d;
-  transform: rotate3d(1, 1, 1, 30deg);
-  animation: cube-rotate 3s infinite alternate;
+  display: flex;
+  width: 600px;
+  height: 400px;
 }
-.face {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  font-size: 20px;
-  text-align: center;
-  line-height: 100px;
-  border: 1px solid pink;
-  box-shadow: 0px 0px 10px 3px rgb(169, 25, 49);
+.left {
+  flex: 1 1 400px;
+  background-color: #ace;  
 }
-
-.face1 {
-  transform: rotateY(90deg) translateZ(50px);
-}
-.face3 {
-  transform: rotateY(90deg) translateZ(-50px);
-}
-.face2 {
-  transform: rotateX(90deg) translateZ(50px);
-}
-.face4 {
-  transform: rotateX(90deg) translateZ(-50px);
-}
-.face5 {
-  transform: translateZ(50px);
-}
-.face6 {
-  transform: translateZ(-50px);
-}
-
-@keyframes cube-rotate {
-  0% {
-    transform: rotate3d(1, 1, 1, 0deg);
-  }
-  50% {
-    transform: rotateY(45deg) rotateX(45deg);
-  }
-  100% {
-    transform: rotate3d(1, 1, 1, 180deg);
-  }
+.right {
+  flex: 1 2 500px;
+  background-color: #ccc;
 }

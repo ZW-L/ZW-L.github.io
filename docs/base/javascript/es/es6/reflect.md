@@ -9,7 +9,6 @@
 ## 方法
 
 **目前有 13 个方法:**
-
 + `Reflect.construct(target, args)`: 相当于 `new` 操作符
 + `Reflect.deleteProperty(target, name)`: 相当于 `delete` 操作符
 + `Reflect.has(target, name)`: 相当于 `in` 操作符

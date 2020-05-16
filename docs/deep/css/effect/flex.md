@@ -1,40 +1,93 @@
-## flex 布局
+## 简介
 
-更多参考 [Flex](https://www.runoob.com/w3cnote/flex-grammar.html)
-
-使用 flex 布局需要分别在父元素和子元素中设置选项，需要注意的是：
 + 块级元素和行内元素都能设置 flex 布局
-+ 定义 flex 布局后，子元素的 float, clear, vertical-align 属性会失效
-+ flex 布局存在一个 flex 容器的概念，父元素作为容器，子元素作为项目
++ 定义 flex 布局后，子元素的 `float`/`clear`/`vertical-align` 属性会失效
++ flex 布局中，父元素和子元素有不同的设置选项。其中有父元素作为容器，子元素作为项目
   + 容器默认存在两根轴线：水平的主轴（`main axis`）和垂直的交叉轴（`cross axis`）
-  + 项目默认沿主轴排列，单个项目占据的主轴空间叫做`main size`，占据的交叉轴空间叫做 `cross size`
+  + 项目默认沿主轴排列，单个项目占据的主轴空间/交叉轴空间叫做`main size`/`cross size`
 
-![flex 容器](imgs/flex_01.png)
+![flex 容器](./imgs/flex_01.png)
 
-父元素（容器）：第一个为默认值
+
+**参考：**
++ [菜鸟教程 Flex](https://www.runoob.com/w3cnote/flex-grammar.html)
+
+
+## 属性
+
+**容器属性：**
+|属性|描述|取值|
+|-|-|-|
+|`flex-flow`|`flex-direction`/`flex-wrap` 的简写|默认：row nowrap<br>`<direction> <wrap>`|
+|`flex-direction`|项目排列的方向|默认：row<br>row-reverse<br>column<br>column-reverse|
+|`flex-wrap`|项目排满一行时的换行方式|默认：nowrap<br>wrap<br>wrap-reverse|
+|`justify-content`|项目在主轴上的伸缩方式|默认：flex-start<br>flex-end<br>center<br>space-between<br>space-around|
+|`align-content`|项目在交叉轴上的伸缩方式|默认：stretch<br>flex-start<br>flex-end<br>center<br>space-between<br>space-around|
+|`align-items`|定义项目在主轴上的对齐方式|默认：stretch<br>flex-start<br>flex-end<br>center<br>baseline|
+
+::: tip 说明：
++ `justify-content`/`align-content` 类似，主要用于处理轴线上空隙的显示
++ 当容器只有一根交叉轴(项目都排在一行)时，`align-content` 的值不起作用
++ `align-items` 有点类似行内元素的对齐，会被项目属性 `align-self` 的值覆盖
++ 当一个容器作为另一个容器的项目时，它还可以设置项目的各个属性
+:::
+
+
+**项目属性：**
+|属性|描述|取值|
+|-|-|-|
+|`order`|项目的排列顺序，小值优先，可以为负|`<number>`|
+|`flex`|`flex-flow`/`flex-shrink`/`flex-basis` 三者的简写|默认：(0 1 auto)<br>auto(1 1 auto)<br>none(0 0 auto)|
+|`flex-grow`|定义项目的放大比例|默认：0<br>`<number>`|
+|`flex-shrink`|定义项目的缩小比例|默认：1<br>`<number>`|
+|`flex-basis`|定义分配多余空间前项目占据的主轴空间|`<length>`|
+|`align-self`|定义自身的对齐方式|默认：auto<br>flex-start<br>flex-end<br>center<br>baseline<br>stretch|
+
+::: tip 说明：
++ 某个项目设置 `flex: 1;`，表示它将占据容器主轴的剩余空间
 ```css
+/* 应用：一列定宽，另一列动态宽度的快捷布局 */
 .container {
-  display: flex || inline-flex; /* 将容器定义为 flex 布局 */
-  flex-direction: row || row-reverse || column || column-reverse; /* 项目排列的方向 */
-  flex-wrap: nowrap || wrap || wrap-reverse; /* 一行排满时换行方式 */
-  flex-flow: row nowrap; /* 一组 flex-direction 和 flex-wrap 的缩写 */
-  justify-content: flex-start || flex-end || center || space-between || space-around; /* 项目在主轴上的对齐方式 */
-  align-content: flex-start || flex-end || center || space-between || space-around || stretch; /* 多根轴线的对齐方式，只有一根轴线时不起作用 */
-  align-items: flex-start || flex-end || center || baseline || stretch; /* 定义项目在交叉轴上的对齐方式 */
+  display: flex;
+  height: 600px;
+}
+.left {
+  width: 300px;
+  background-color: #ace;  
+}
+.right {
+  flex: 1;
+  background-color: #ccc;
 }
 ```
-
-子元素（项目）：第一个为默认值
++ 当主轴的空间大于各项目的总和时，`flex-grow` 属性会起作用，它会按照放大的权重分配剩余空间；当主轴的空间小于各项目的总和时，`flex-shrink` 属性会起作用，它会按照缩小的权重将各项目缩小。计算方式如下：
 ```css
-.item {
-  order: 0 || <整数>; /* 项目的排列顺序，数值越小，排列越靠前 */
-  flex-grow: 0 || <正数>; /* 定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大 */
-  flex-shrink: 1 || <正数>; /* 定义项目的缩小比例，默认为1，即如果空间不足，该项目将缩小 */
-  flex-basis: auto || <length>; /* 定义分配多余空间前项目占据的主轴空间，默认 auto */
-  flex: 0 1 auto; /* flex-grow, flex-shrink, flex-basis 三者的简写，默认为：0 1 auto，后两个属性可选；有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)*/
-  align-self: auto || flex-start || flex-end || center || baseline || stretch; /* 定义自身的对齐，覆盖父元素设置的 align-items 属性，默认 auto 继承自父元素，无父元素时为 stretch */
+/* 计算 left 和 right 最终的宽度 */
+.container {
+  display: flex;
+  width: 600px;
+  height: 400px;
 }
-```
+.left {
+  flex: 1 1 400px;
+  background-color: #ace;  
+}
+.right {
+  flex: 1 2 500px;
+  background-color: #ccc;
+}
+/* 
+600 - (400 + 500) = -300，子项目将会按照权重进行缩小
+总权重：400*1 + 500*2 = 1400
+缩小量：权重占比 * 总缩小量
+left：(400*1/1400) * 300 = 85.7
+right：(500*2/1400) * 300 = 214.3
+最终宽度：
+left：400 - 85.7 = 314.3
+right：500 - 214.3 = 285.7
 
-**使用技巧：**
-+ 保持一个项目的属性 `flex: 1;`，它将占据容器主轴的剩余空间
+备注：由于最终结果是缩小，所以应用的是 flex-shrink 参数，放大时则应用 flex-grow
+*/
+```
++ 同样地，当项目作为一个容器时，它还可以设置容器的属性
+:::

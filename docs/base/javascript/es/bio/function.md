@@ -1,8 +1,11 @@
-## Function
+## 简介
 
-&emsp;&emsp;所有数据参考自 [MDN Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)。
++ 参考自 [MDN Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function)。
 
-### 属性
+
+
+
+## 属性
 
 |属性|描述|版本|
 |-|-|-|
@@ -10,7 +13,10 @@
 |`Function.name`|获取函数的名称|-|
 |`Function.prototype`|获取声明函数的原型构造方法|-|
 
-### 方法
+
+
+
+## 方法
 
 |方法|描述|版本|
 |-|-|-|
@@ -19,5 +25,3 @@
 |`Function.prototype.apply()`|将函数的调用绑定至另一个对象|-|
 |`Function.prototype.toSource()`|获取函数的实现源码的字符串|-|
 |`Function.prototype.toString()`|获取函数的实现源码的字符串|-|
-
-

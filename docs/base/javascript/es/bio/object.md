@@ -1,8 +1,11 @@
-## Object
+## 简介
 
-&emsp;&emsp;所有数据参考自 [MDN Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)。
++ 参考自 [MDN Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)。
 
-### 属性
+
+
+
+## 属性
 
 |属性|描述|版本|
 |-|-|-|
@@ -10,7 +13,10 @@
 |`__proto__`|指向当对象被实例化的时候，用作原型的对象-|
 |`Object.prototype.constructor`|返回创建实例对象的 `Object` 构造函数的引用-|
 
-### 方法
+
+
+
+## 方法
 
 |方法|描述|版本|
 |-|-|-|

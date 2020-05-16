@@ -28,6 +28,7 @@ function*foo(x, y) { ··· }
 + 用 `next()` 或 `for...of` 获得相应的状态
 
 ```js
+// 实现 fibonacci 数列
 const fibonacciGenerator = function* () {
   let [prev, next] = [1, 1]
   for(;;) {
@@ -69,7 +70,7 @@ const obj = {
     yield 'hello'
     yield 'world'
   }
-};
+}
 
 for (const i of obj) {
   console.log(i)
@@ -78,11 +79,9 @@ for (const i of obj) {
 
 
 
-## 方法
 
-+ `next()`: 
-+ `return()`: 
-+ `throw()`: 
+
+## 方法
 
 ### next()
 
@@ -91,9 +90,9 @@ for (const i of obj) {
 
 ```js
 function* f(x) {
-  const y = yield(x + 10);
-  const z = yield(y / 2);
-  return (x + y+ z);
+  const y = yield(x + 10)
+  const z = yield(y / 2)
+  return (x + y+ z)
 }
 
 const a = f(10)  // x = 10
@@ -120,7 +119,7 @@ function* gen() {
   yield 3;
 }
 
-var g = gen();
+var g = gen()
 
 g.next()        // { value: 1, done: false }
 g.return('foo') // { value: "foo", done: true }
@@ -142,18 +141,18 @@ var g = function* () {
   try {
     yield;
   } catch (e) {
-    console.log('内部捕获', e);
+    console.log('内部捕获', e)
   }
-};
+}
 
-var i = g();
-i.next();
+var i = g()
+i.next()
 
 try {
-  i.throw('a');
-  i.throw('b');
+  i.throw('a')
+  i.throw('b')
 } catch (e) {
-  console.log('外部捕获', e);
+  console.log('外部捕获', e)
 }
 // 内部捕获 a
 // 外部捕获 b
@@ -162,9 +161,11 @@ try {
 ::: tip 说明：
 + 如果 `Generator` 函数内部没有部署 `try...catch` 代码块，那么 `throw` 方法抛出的错误，将被外部 `try...catch` 代码块捕获
 + 如果 `Generator` 函数内部和外部都没有部署 `try...catch` 代码块，那么程序将报错，直接中断执行
-+ `throw` 方法被捕获以后，会附带执行下一条 `yield` 表达式。也就是说，会附带执行一次 next 方法
++ `throw` 方法被捕获以后，会附带执行下一条 `yield` 表达式。也就是说，会附带执行一次 `next()` 方法
 + 一旦 `Generator` 执行过程中抛出错误且没有被内部捕获，就不会再执行下去
 :::
+
+
 
 
 
@@ -221,20 +222,20 @@ console.log([...bar(foo)])  // [ 'start', 'hello', 'world', 'Awesome Javascript!
 
 ```js
 function* gen() {
-  this.a = 1;
-  yield this.b = 2;
-  yield this.c = 3;
+  this.a = 1
+  yield this.b = 2
+  yield this.c = 3
 }
 
 function F() {
-  return gen.call(gen.prototype);
+  return gen.call(gen.prototype)
 }
 
-var f = new F();
+var f = new F()
 
-f.next();  // Object {value: 2, done: false}
-f.next();  // Object {value: 3, done: false}
-f.next();  // Object {value: undefined, done: true}
+f.next()  // Object {value: 2, done: false}
+f.next()  // Object {value: 3, done: false}
+f.next()  // Object {value: undefined, done: true}
 
 f.a // 1
 f.b // 2
@@ -243,12 +244,13 @@ f.c // 3
 
 
 
+
+
 ## 应用
 
 ### 异步操作的同步化表达
 
-&emsp;&emsp;可以将回调函数的嵌套改写成同步的形式。
-
++ 将回调函数的嵌套改写成同步的形式
 + 逐行读取文件：
 ```js
 function* numbers() {
@@ -263,12 +265,11 @@ function* numbers() {
 }
 ```
 
+
 ### 控制流管理
 
-&emsp;&emsp;逐步执行任务，当一个任务里面还有步骤，递归执行步骤。
-
++ 逐步执行任务，当一个任务里面还有步骤，递归执行步骤
 + 一个多步骤任务的执行：
-
 ```js
 let jobs = [job1, job2, job3]
 
@@ -284,12 +285,11 @@ for (let step of iterateJobs(jobs)){
 }
 ```
 
+
 ### 部署 Iterator 接口
 
-&emsp;&emsp;可以为对象部署 `Iterator` 接口或修改具备 `Iterator` 接口的数据结构的默认行为。
-
++ 可以为对象部署 `Iterator` 接口或修改具备 `Iterator` 接口的数据结构的默认行为
 + 部署 `Iterator` 接口：
-
 ```js
 const obj = { name: 'Alice', age: 24 }
 obj[Symbol.iterator] = function* () {
@@ -307,7 +307,6 @@ for (const i of obj) {
 ```
 
 + 修改数组的 `Iterator` 接口：
-
 ```js
 function* makeArrayGenerator(arr) {
   for (let i=0; i<arr.length; i++) {

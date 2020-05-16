@@ -1,8 +1,11 @@
-## RegExp
+## 简介
 
-&emsp;&emsp;所有数据参考自 [MDN RegExp](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp)。
++ 参考自 [MDN RegExp](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp)。
 
-### 属性
+
+
+
+## 属性
 
 |属性|描述|版本|
 |-|-|-|
@@ -26,7 +29,10 @@
 |`RegExp.prototype.sticky`|表明是否开启粘滞匹配|<font color="orange">ES6</font>|
 |`get RegExp[@@species]`|返回 `RegExp` 的构造器|<font color="orange">ES6</font>|
 
-### 方法
+
+
+
+## 方法
 
 |方法|描述|版本|
 |-|-|-|

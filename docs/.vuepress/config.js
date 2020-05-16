@@ -560,17 +560,7 @@ module.exports = {
           title: '异步编程',
           collapsable: false,
           children: [
-            ['async-theory', '原理'],
-            ['async-event-manage', '事件处理方式'],
-            ['async-process-control', '异步流程控制'],
-          ],
-        },
-        {
-          title: '异步编程',
-          collapsable: false,
-          children: [
             ['async/concept', '原理和概念'],
-            ['async/timer', '定时器和 nextTick()'],
             ['async/callback', 'Callback - 回调地狱'],
             ['async/thunk', 'Thunk - 回调的链式执行'],
             ['async/promise', 'Promise - 更优雅的 Thunk'],

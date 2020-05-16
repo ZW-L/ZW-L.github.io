@@ -1,8 +1,11 @@
-## Number
+## 简介
 
-&emsp;&emsp;所有数据参考自 [MDN Number](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number)。
++ 参考自 [MDN Number](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number)。
 
-### 属性
+
+
+
+## 属性
 
 |属性|描述|版本|
 |-|-|-|
@@ -17,7 +20,10 @@
 |`Number.prototype.constructor`|返回 `Number` 的构造函数|-|
 |`Number.EPSILON`|两个可表示(representable)数之间的最小间隔|<font color="orange">ES6</font>|
 
-### 方法
+
+
+
+## 方法
 
 |方法|描述|版本|
 |-|-|-|

@@ -1,13 +1,18 @@
-## console
+## 简介
 
 + `Console` 类
 
-### 构造函数
+
+
+## 构造函数
 
 + `new Console(stdout[, stderr][, ignoreErrors])`: 
 + `new Console(options)`: 
 
-### 其他
+
+
+
+## 其他
 
 + `console.log([data][, ...args])`: 
 + `console.warn([data][, ...args])`: 
@@ -29,7 +34,10 @@
 + `console.timeLog([label][, ...data])`: 
 + `console.trace([message][, ...args])`: 
 
-### 仅用于调试的方法
+
+
+
+## 仅用于调试的方法
 
 + `console.markTimeline([label])`: 
 + `console.profile([label])`: 
@@ -37,5 +45,3 @@
 + `console.timeStamp([label])`: 
 + `console.timeline([label])`: 
 + `console.timelineEnd([label])`: 
-
-

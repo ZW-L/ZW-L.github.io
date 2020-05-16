@@ -1,8 +1,11 @@
-## Global
+## 简介
 
-&emsp;&emsp;所有数据参考自 [MDN Global](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects)。
++ 参考自 [MDN Global](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects)。
 
-### 属性
+
+
+
+## 属性
 
 |属性|描述|版本|
 |-|-|-|
@@ -12,7 +15,10 @@
 |`null`|特指对象的值未设置|-|
 |`globalThis`|获取全局对象|提案 Stage 3|-|
 
-### 方法
+
+
+
+## 方法
 
 |方法|描述|版本|
 |-|-|-|

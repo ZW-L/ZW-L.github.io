@@ -1,8 +1,11 @@
-## Math
+## 简介
 
-&emsp;&emsp;所有数据参考自 [MDN Math](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math)。
++ 参考自 [MDN Math](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math)。
 
-### 属性
+
+
+
+## 属性
 
 |属性|描述|版本|
 |-|-|-|
@@ -15,7 +18,10 @@
 |`Math.SQRT1_2`|1/2 的平方根, 约等于 0.707|-|
 |`Math.SQRT2`|2 的平方根, 约等于 1.414|-|
 
-### 方法
+
+
+
+## 方法
 
 |方法|描述|版本|
 |-|-|-|

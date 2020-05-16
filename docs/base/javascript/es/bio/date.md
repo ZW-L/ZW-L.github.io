@@ -1,6 +1,9 @@
-## Date
+## 简介
 
-&emsp;&emsp;所有数据参考自 [MDN Date](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date)。
++ 参考自 [MDN Date](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date)。
+
+
+
 
 ### 属性
 
@@ -9,6 +12,9 @@
 |`Date.length`|值是 7，这是该构造函数可接受的参数个数|-|
 |`Date.prototype`|返回 `Date` 的原型对象|-|
 |`Date.prototype.constructor`|返回 `Date` 的构造函数|-|
+
+
+
 
 ### 方法
 

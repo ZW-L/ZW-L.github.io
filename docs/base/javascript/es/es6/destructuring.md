@@ -216,9 +216,9 @@ console.log(id, status, number) // 42, 'OK', [867, 5309]
 ```js
 jQuery.ajax = function (url, {
   async = true,
-  beforeSend = function () {},
+  beforeSend = function () { /* ... */ },
   cache = true,
-  complete = function () {},
+  complete = function () { /* ... */ },
   crossDomain = false,
   global = true,
   // ... more config

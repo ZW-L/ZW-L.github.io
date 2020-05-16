@@ -131,7 +131,6 @@ for (const i of str) {
 
 ## return() & throw()
 
-&emsp;&emsp;除了 `next()` 方法，还能使用可选的 `return()` 和` throw()` 方法:
-
+除了 `next()` 方法，还能使用可选的 `return()` 和` throw()` 方法:
 + `return()`：`for...of` 提前退出或者完成时调用，且其必须返回一个对象
 + `throw()`：主要是配合 `Generator` 函数使用，一般的遍历器对象用不到

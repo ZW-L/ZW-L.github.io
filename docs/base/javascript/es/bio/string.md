@@ -1,8 +1,11 @@
-## String
+## 简介
 
-&emsp;&emsp;所有数据参考自 [MDN String](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String)。
++ 参考自 [MDN String](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String)。
 
-### 属性
+
+
+
+## 属性
 
 |属性|描述|版本|
 |-|-|-|
@@ -10,7 +13,10 @@
 |`String.prototype`|返回返回字符串的原型对象|-|
 |`Array.prototype.constructor`|返回字符串的构造函数|-|
 
-### 方法
+
+
+
+## 方法
 
 |方法|描述|版本|
 |-|-|-|

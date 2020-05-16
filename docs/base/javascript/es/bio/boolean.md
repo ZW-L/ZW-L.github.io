@@ -1,6 +1,9 @@
-## Boolean
+## 简介
 
-&emsp;&emsp;所有数据参考自 [MDN Boolean](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Boolean)。
++ 参考自 [MDN Boolean](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Boolean)。
+
+
+
 
 ### 属性
 
@@ -9,6 +12,9 @@
 |`Boolean.length`|值为 1|-|
 |`Boolean.prototype`|返回 `Boolean` 的原型对象|-|
 |`Boolean.prototype.constructor`|返回 `Boolean` 的构造函数|-|
+
+
+
 
 ### 方法
 

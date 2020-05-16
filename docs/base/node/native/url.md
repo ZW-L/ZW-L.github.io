@@ -1,14 +1,16 @@
-## url
+## 简介
 
-[url](http://nodejs.cn/api/url.html) 模块用于处理与解析 URL。包含两个类（`URL`, `URLSearchParams`）和一些方法。
++ [url](http://nodejs.cn/api/url.html) 模块用于处理与解析 URL。包含两个类（`URL`, `URLSearchParams`）和一些方法。
 
-### URL
 
-&emsp;&emsp;浏览器兼容的 URL 类，根据 WHATWG URL 标准实现。
+
+## URL
+
++ **简介：**
+  + 浏览器兼容的 URL 类，根据 WHATWG URL 标准实现。
 
 + **构造函数**：
   + `new URL(input: string, base?: string): URL`：创建一个 URL 对象，当 `input` `是相对路径是，base` 是必须的
-
 + **属性**：
   + `url.hash: string`：获取/设置的哈希片段
   + `url.host: string`：获取/设置的主机名和端口
@@ -22,7 +24,6 @@
   + `url.search: string`：获取/设置的查询字符串
   + `url.href: string`：获取/设置 URL，等同于 `url.toString()`
   + `url.searchParams: readonly URLSearchParams`：表示 URL 查询参数的 `URLSearchParams` 对象
-
 + **方法**：
   + `url.toString()`：返回序列化的 URL
   + `url.toJSON()`：返回序列化的 URL
@@ -37,16 +38,19 @@
   + `https`/`wss`: 443
 :::
 
-### URLSearchParams
 
-&emsp;&emsp;URLSearchParams 提供对 URL 查询部分的读写权限，有四个不同的构造函数，并且可以在全局对象上使用。
+
+
+## URLSearchParams
+
++ **简介：**
+  + 提供对 URL 查询部分的读写权限，有四个不同的构造函数，并且可以在全局对象上使用。
 
 + **构造函数**：
   + `new URLSearchParams(): URLSearchParams`：创建一个空的查询字符串
   + `new URLSearchParams(str: string): URLSearchParams`：将字符串解析成一个查询字符串
   + `new URLSearchParams(obj: object): URLSearchParams`：将对象解析成一个查询字符串
   + `new URLSearchParams(iter: iterator): URLSearchParams`：将迭代器解析成一个查询字符串
-
 + **方法**：
   + `urlSearchParams.append(name: string, value: string)`：在查询字符串中添加一个新的键值对
   + `urlSearchParams.delete(name: string)`：删除所有指定名字的字符串
@@ -68,7 +72,9 @@
 :::
 
 
-### 其他方法
+
+
+## 其他
 
 + `url.domainToASCII(domain: string): string`：返回 Punycode ASCII 序列化后的域名
 + `url.domainToUnicode(domain: string): string`：返回 Unicode 序列化后的的域名
