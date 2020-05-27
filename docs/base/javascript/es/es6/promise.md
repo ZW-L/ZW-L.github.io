@@ -134,3 +134,54 @@ const preloadImage = function (path) {
   })
 }
 ```
+
+### 失败重试函数
+
+实现 `Promise.retry`，成功后 `resolve` 结果，失败后重试，尝试超过一定次数才真正的 `reject`
+
+```js
+// 方法一：在 catch() 中再次执行函数
+Promise.retry = function (fn, times) {
+  fn().then(console.log)
+    .catch(e => {
+      if (times > 0) {
+        console.log('try again...')
+        Promise.retry(fn, times - 1)
+      } else {
+        console.log('Error: No more times, now rejected.')
+      }
+    })
+}
+
+// 方法二：async 函数，结合 while 循环和 try...catch
+Promise.retry = async function (fn, times) {
+  while (times > 0) {
+    try {
+      const res = await fn()
+      console.log(res)
+      return
+    } catch(e) {
+      console.log('try again...')
+      times--
+    }
+  }
+  console.log('Error: No more times, now rejected.')
+}
+```
+```js
+const test = function () {
+  return new Promise((resolve, reject) => {
+    const num = Math.floor(Math.random() * 10)
+    if (num > 7) {
+      resolve(num)
+    } else {
+      reject(new Error(num))
+    }
+  })
+}
+
+Promise.retry(test, 5)
+// try again...
+// try again...
+// 9
+```

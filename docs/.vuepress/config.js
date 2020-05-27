@@ -562,11 +562,10 @@ module.exports = {
           children: [
             ['async/concept', '原理和概念'],
             ['async/callback', 'Callback - 回调地狱'],
-            ['async/thunk', 'Thunk - 回调的链式执行'],
-            ['async/promise', 'Promise - 更优雅的 Thunk'],
-            ['async/generator', 'Generator - 生成一切'],
+            ['async/promise', 'Promise - 状态机 1'],
+            ['async/generator', 'Generator - 状态机 2'],
+            ['async/thunk&&co', 'thunk && oo - 回调的链式执行'],
             ['async/async&await', 'async & await - 终极杀器'],
-            ['async/best', '最优美的异步'],
           ]
         },
         {

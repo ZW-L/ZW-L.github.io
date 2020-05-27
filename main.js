@@ -1,15 +1,9 @@
-const EventEmitter = require('events')
+function testable(target) {
+  target.prototype.isTestable = true;
+}
 
-const emitter = new EventEmitter()
-emitter.once('log', () => console.log('只记录一次'))
+@testable
+class MyTestableClass {}
 
-const listeners = emitter.listeners('log')
-const rawListeners = emitter.rawListeners('log')
-
-// 执行时不会影响 emitter 的 log 事件
-// listeners[0]()
-// emitter.emit('log')
-
-// 相当于执行 emitter.emit('log')
-rawListeners[0]()
-emitter.emit('log')
+let obj = new MyTestableClass();
+obj.isTestable // true

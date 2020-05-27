@@ -11,25 +11,30 @@ sidebarDepth: 2
 **常见微任务：**
 + process.nextTick()
 + promise
++ Object.observe()
++ MutationObserve
 
 **常见宏任务：**
 + setTimeout()
 + setInterval()
 + setImmediate()
 + I/O
++ UI rendering
 
 
 
 ## 定时器
 
-
++ `setTimeout()`/`setInterval()` 和 Javascript 类似，但是其内部是基于 Node.js 事件循环的
++ `setImmediate()`
 
 
 
 
 ## nextTick()
 
-
++ 全局属性 `process` 的一个方法，用于将回调添加到当前事件循环的尾部
++ 若无限调用该方法，本轮 EventLoop 将不会结束
 
 
 
