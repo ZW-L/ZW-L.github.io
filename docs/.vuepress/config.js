@@ -37,6 +37,16 @@ module.exports = {
         ]
       },
       {
+        text: '开源库入门',
+        items: [
+          { text: '简介', link: '/open-repo/'  },
+          { text: 'Vue',  link: '/open-repo/vue/' },
+          { text: 'TypeScript',  link: '/open-repo/ts/' },
+          { text: 'Webpack',  link: '/open-repo/webpack/' },
+          { text: '其他库',  link: '/open-repo/other/' },
+        ]
+      },
+      {
         text: '了解后端',
         items: [
           { text: 'Node',  link: '/back-end/node/' },
@@ -488,6 +498,18 @@ module.exports = {
         ['design-patterns', '设计模式'],
         ['fundamentals-of-compiling', '编译原理'],
         ['software-engineering', '软件工程'],
+      ],
+      // 开源库入门
+      '/open-repo/vue/': [{
+        title: '组件开发技巧',
+        collapsable: false,
+        children: [
+          ['component-skills/svg-component', 'SVG 组件']
+        ]
+      }],
+      '/open-repo/other/': [
+        ['mock', 'Mock - 数据模拟'],
+        ['echarts', 'Echarts - 数据图表化']
       ],
       // 文章
       '/post/': [
