@@ -10,7 +10,7 @@ module.exports = {
     },
   },
   themeConfig: {
-    repo: '',
+    // repo: '',
     // 导航栏
     nav: [
       {
@@ -305,6 +305,20 @@ module.exports = {
           ]
         },
         {
+          title: '专题：布局和效果',
+          collapsable: false,
+          children: [
+            ['effect/flex', 'Flex 详解'],
+            ['effect/grid', 'Grid 详解'],
+            ['effect/grid-system', '栅格系统详解'],
+            ['effect/horizontal-center', '水平居中'],
+            ['effect/vertical-center', '垂直居中'],
+            ['effect/horizontal-vertical-center', '水平垂直居中'],
+            ['effect/layout', '常用布局'],
+            ['effect/more', '常见效果'],
+          ]
+        },
+        {
           title: '专题：响应式',
           collapsable: false,
           children: [
@@ -323,20 +337,6 @@ module.exports = {
             ['special-effects/transform', '转换'],
             ['special-effects/transition', '过渡'],
             ['special-effects/animation', '动画'],
-          ]
-        },
-        {
-          title: '专题：布局和效果',
-          collapsable: false,
-          children: [
-            ['effect/flex', 'Flex 详解'],
-            ['effect/grid', 'Grid 详解'],
-            ['effect/grid-system', '栅格系统详解'],
-            ['effect/horizontal-center', '水平居中'],
-            ['effect/vertical-center', '垂直居中'],
-            ['effect/horizontal-vertical-center', '水平垂直居中'],
-            ['effect/layout', '常用布局'],
-            ['effect/more', '常见效果'],
           ]
         },
         {
@@ -359,7 +359,7 @@ module.exports = {
       ],
       '/deep/javascript/': [
         {
-          title: 'ECMAScript',
+          title: '深入 ECMAScript',
           collapsable: false,
           children: [
             ['ecmascript/data-type', '数据类型'],
@@ -368,6 +368,25 @@ module.exports = {
             ['ecmascript/oop', '面向对象程序设计'],
             ['ecmascript/fp', '函数式编程'],
             ['ecmascript/es6+', 'ES6+'],
+          ]
+        },
+        {
+          title: '深入 BOM & DOM',
+          collapsable: false,
+          children: [
+            ['bom', 'BOM'],
+            ['dom', 'DOM'],
+            ['browser', '浏览器'],
+          ]
+        },
+        {
+          title: '专题：面向对象编程',
+          collapsable: false,
+          children: [
+            ['es-oop/introduction', '简介'],
+            ['es-oop/create', '创建对象的方式'],
+            ['es-oop/extend', '实现继承的方式'],
+            ['es-oop/stop', '防篡改对象'],
           ]
         },
         {
@@ -386,13 +405,15 @@ module.exports = {
           ]
         },
         {
-          title: '专题：面向对象编程',
+          title: '专题：编码能力',
           collapsable: false,
           children: [
-            ['es-oop/introduction', '简介'],
-            ['es-oop/create', '创建对象的方式'],
-            ['es-oop/extend', '实现继承的方式'],
-            ['es-oop/stop', '防篡改对象'],
+            ['es-power/native', '实现原生功能'],
+            ['es-power/array', '数组相关'],
+            ['es-power/util', '常用工具函数'],
+            ['es-power/validate', '正则和验证'],
+            ['es-power/fw', '深入框架思想'],
+            ['es-power/other', '其他'],
           ]
         },
         {
@@ -406,26 +427,7 @@ module.exports = {
             ['es-hp/data', '数据'],
             ['es-hp/apply', '应用'],
           ]
-        },
-        {
-          title: '专题：编码能力',
-          collapsable: false,
-          children: [
-            ['es-power/native', '实现原生功能'],
-            ['es-power/array', '实现数组方法'],
-            ['es-power/util', '常用工具函数'],
-            ['es-power/fw', '深入框架思想'],
-          ]
-        },
-        {
-          title: '其他',
-          collapsable: false,
-          children: [
-            ['bom', 'BOM'],
-            ['dom', 'DOM'],
-            ['browser', '浏览器'],
-          ]
-        },
+        }
       ],
       '/deep/engineering/': [
         {
@@ -500,13 +502,22 @@ module.exports = {
         ['software-engineering', '软件工程'],
       ],
       // 开源库入门
-      '/open-repo/vue/': [{
-        title: '组件开发技巧',
-        collapsable: false,
-        children: [
-          ['component-skills/svg-component', 'SVG 组件']
-        ]
-      }],
+      '/open-repo/vue/': [
+        {
+          title: '使用技巧',
+          collapsable: false,
+          children: [
+
+          ]
+        },
+        {
+          title: '组件开发技巧',
+          collapsable: false,
+          children: [
+            ['component-skills/svg-component', 'SVG 组件']
+          ]
+        }
+      ],
       '/open-repo/other/': [
         ['mock', 'Mock - 数据模拟'],
         ['echarts', 'Echarts - 数据图表化']

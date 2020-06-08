@@ -150,10 +150,77 @@ function uniq(arr) {
     return accu
   }, [])
 }
+
 console.log(uniq([1, 2, 3, 3, 1]))  // [1, 2, 3]
 ```
 
 
+## 深拷贝
 
++ 简单实现：利用循环和 `Array.isArray()` 判断，对深层数组进行递归拷贝
+  + 这种方法不能处理数组元素为对象的拷贝
+```js
+const deepClone = arr => {
+  const ret = []
+  let len = arr.length
+  for (let i = 0; i < len; i++) {
+    if (Array.isArray(arr[i])) {
+      ret.push(deepClone(arr[i]))
+    } else {
+      ret.push(arr[i])
+    }
+  }
 
+  return ret
+}
 
+deepClone([1, [2, 3, [4]], 5])
+```
++ 使用 `JSON.stringify()` 和 `JSON.parse()` 进行二次转换
+  + 不能处理 `NaN` / `undefined` / 函数，它们都会变为 `null`
+```js
+const deepClone = arr => {
+  return JSON.parse(JSON.stringify(arr))
+}
+
+const arr = [1, [NaN, null, undefined, { name: 'Alice' }, function () {}, [4]], 5]
+deepClone(arr) // [1, [null, null, null, { name: 'Alice' }, null, [4]], 5]
+```
++ 类型判断和递归
+  + 适用于任意数组、对象，并且不会丢失/修改属性
+```js
+const deepClone = obj => {
+  // 只处理数组和对象，其他直接返回
+  if (typeof obj !== 'object' || obj === null) {
+    return obj
+  }
+
+  let copy = obj instanceof Array ? [] : {}
+  for (let i in obj) {
+    // 不拷贝原型链上的属性
+    if (obj.hasOwnProperty(i)) {
+      copy[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i]
+    }
+  }
+
+  return copy
+}
+
+const arr = [1, [NaN, null, undefined, { name: 'Alice' }, function () {}, [4]], 5]
+deepClone(arr) // [1, [null, null, null, { name: 'Alice' }, null, [4]], 5]
+```
+
+::: tip 熟悉 typeof 运算符
+```js
+console.log(typeof 1)           // 'number'
+console.log(typeof '1')         // 'string'
+console.log(typeof true)        // 'boolean'
+console.log(typeof NaN)         // 'number'
+console.log(typeof undefined)   // 'undefined'
+console.log(typeof Symbol(1))   // 'symbol'
+console.log(typeof (() => {}))  // 'function'
+console.log(typeof null)        // 'object'
+console.log(typeof [])          // 'object'
+console.log(typeof {})          // 'object'
+```
+:::
