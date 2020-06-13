@@ -18,21 +18,21 @@
 
 **实现：**
 
-```js
+```js{12}
 function createPerson(name, age) {
-  var obj = new Object();
-  obj.name = name;
-  obj.age = age;
+  var obj = new Object()
+  obj.name = name
+  obj.age = age
   obj.sayName = function() {
-    return this.name;
-  };
+    return this.name
+  }
 
-  return obj;
+  return obj
 }
 
-var person = createPerson('Alice', 24);
-console.log(person.name, person.age); // Alice 24
-console.log(person.sayName()); // Alice
+var person = createPerson('Alice', 24)
+console.log(person.name, person.age) // Alice 24
+console.log(person.sayName()) // Alice
 ```
 
 **解决的问题：** 
