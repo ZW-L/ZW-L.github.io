@@ -15,4 +15,4 @@ after_success:
 - git push -f "git@github.com:ZW-L/web-docs.git" master
 before_install:
 - openssl aes-256-cbc -K $encrypted_4e26a7ec6acd_key -iv $encrypted_4e26a7ec6acd_iv
-  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
