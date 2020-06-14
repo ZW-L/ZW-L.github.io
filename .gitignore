@@ -1,3 +1,4 @@
-node_modules
-docs/.vuepress/dist
-deploy.sh
+/node_modules
+/docs/notes
+/docs/.vuepress/dist
+/deploy.sh

@@ -10,7 +10,7 @@ module.exports = {
     },
   },
   markdown: {
-    lineNumbers: true, // 显示代码块行号
+    // lineNumbers: true, // 显示代码块行号
     lastUpdate: '最后更新', // 显示最后更新时间
     // smoothScroll: true,
   },
@@ -384,7 +384,28 @@ module.exports = {
         },
       ],
       '/base/git/': [
-        ['command', '命令']
+        {
+          title: 'Git 命令分类剖析',
+          collapsable: false,
+          children: [
+            ['command/init', '初始化和配置'],
+            ['command/commit', '文件操作和提交'],
+            ['command/status', '状态日志和比较'],
+            ['command/reset', '撤销和回滚'],
+            ['command/branch', '分支管理'],
+            ['command/remote', '连接远程仓库'],
+            ['command/tag', '标签管理'],
+          ]
+        },
+        {
+          title: '参考',
+          collapsable: false,
+          children: [
+            ['ref/about', '简介'],
+            ['ref/config', '自定义配置'],
+            ['ref/gitignore', '.gitignore'],
+          ]
+        }
       ],
       '/base/mongodb/': [
         ['command', '命令']
@@ -720,7 +741,6 @@ module.exports = {
           title: '其他',
           collapsable: false,
           children: [
-            ['git&github', 'Git & GitHub 初探'],
             ['module-history', '模块化规范发展史'],
             ['webpack-loader&plugin', 'Webpack - Loader & Plugin'],
           ]

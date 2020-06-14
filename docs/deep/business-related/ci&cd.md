@@ -5,7 +5,7 @@
 + CD：持续交付(Continuous Delivery), 持续部署(Continuous Deployment)
 
 **意义：**
-+ 
++ d18076a89e0b51cc16a84516bdfd89fc
 
 
 ## 可以独立完成(架构设计、技术选型、环境搭建、全流程开发、部署上线)等一套完整的开发流程(包括 Web 应用、移动客户端应用、PC 客户端应用、小程序、H5 等)

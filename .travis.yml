@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - '12'
+
+install:
+  - npm install
+
+script:
+  - npm run build
+
+after_success:
+  - cd ./docs/.vuepress/dist
+  - git init
+  - git config --global user.name "{U_NAME}"
+  - git config --global user.email "{U_EMAIL}"
+  - git add .
+  - git commit -m "Automatically update from travis-ci"
+  - git push -f "git@github.com:ZW-L/web-docs.git" master:${P_BRANCH}
