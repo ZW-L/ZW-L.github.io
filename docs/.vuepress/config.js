@@ -673,7 +673,14 @@ module.exports = {
         ['cross-platform', '跨平台'],
         ['business-related', '业务相关'],
         ['performance-optimization', '性能优化'],
-        ['ci&cd', 'CI & CD']
+        {
+          title: '持续集成 & 持续交互',
+          collapsable: false,
+          children: [
+            ['ci-cd/', '简介'],
+            ['ci-cd/travis', 'Travis'],
+          ]
+        }
       ],
       '/deep/project-setup/': [
         {
