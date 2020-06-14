@@ -1,18 +1,18 @@
 language: node_js
 node_js:
-  - '12'
-
+- '12'
 install:
-  - npm install
-
+- npm install
 script:
-  - npm run docs:build
-
+- npm run docs:build
 after_success:
-  - cd ./docs/.vuepress/dist
-  - git init
-  - git config --global user.name "Seven"
-  - git config --global user.email "1041214157@qq.com"
-  - git add .
-  - git commit -m "Automatically update from travis-ci"
-  - git push -f "git@github.com:ZW-L/web-docs.git" master
+- cd ./docs/.vuepress/dist
+- git init
+- git config --global user.name "Seven"
+- git config --global user.email "1041214157@qq.com"
+- git add .
+- git commit -m "Automatically update from travis-ci"
+- git push -f "git@github.com:ZW-L/web-docs.git" master
+before_install:
+- openssl aes-256-cbc -K $encrypted_4e26a7ec6acd_key -iv $encrypted_4e26a7ec6acd_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
