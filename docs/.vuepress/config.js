@@ -382,6 +382,14 @@ module.exports = {
             ['command/net', '网络设置与维护'],
           ],
         },
+        {
+          title: '软件和包安装',
+          collapsable: false,
+          children: [
+            ['install/node', 'node'],
+            ['install/nginx', 'nginx'],
+          ],
+        },
       ],
       '/base/git/': [
         {
