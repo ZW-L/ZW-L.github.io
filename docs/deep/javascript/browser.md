@@ -14,6 +14,7 @@ sidebarDepth: 2
 ![浏览器渲染流程](./imgs/browser-render.png)
 
 
+
 ### 重绘和回流
 
 **说明：**
@@ -52,6 +53,7 @@ sidebarDepth: 2
   + 使用变量将会触发回流或重绘的属性缓存
 
 
+
 ### 从输入网址到渲染完成经历了什么
 
 1. 输入 `URL` 并回车后, 浏览器先查找当前 `URL` 是否存在缓存, 确认缓存是否过期
@@ -60,6 +62,7 @@ sidebarDepth: 2
 4. 三次握手完成, 浏览器开始发起 `HTTP` 请求, 服务器处理并响应请求(也可能返回错误或重定向), 浏览器接收 HTTP 响应数据和信息
 5. 浏览器根据服务器返回的数据(`html`, `js`, `css` 等)构建 `DOM` 树, 渲染页面
 6. 关闭 `TCP` 连接(四次握手)
+
 
 
 
@@ -117,19 +120,48 @@ sidebarDepth: 2
 
 
 
+
 ## 跨域
 
 ### 同源策略
 
++ 参考：
+  + [阮一峰 - 浏览器同源政策及其规避方法](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
++ 1995年由 Netscape 公司引入浏览器，目前所有浏览器都实行这个政策。最初含义是指两个不同“源”的网页不能共享 Cookie，同源是指协议、域名和端口都相同
++ 与 `http://www.example.com/dist/index.html` 是否同源：
+
+|URL|同源|说明|
+|-|-|-|
+|http://www.example.com/dist/a/index.html|✅|协议、域名、端口相同|
+|http://www.example.com/a/index.html|✅|协议、域名、端口相同|
+|https://www.example.com/dist/index.html|❌|协议不同：http 和 https|
+|http://example.com/dist/index.html|❌|域名不同：一级域名和二级域名|
+|http://v2.example.com/dist/index.html|❌|域名不同：二级域名不同|
+|http://www.example.com:81/dist/index.html|❌|端口不同：80 和 81|
 
 
-### 跨域的方式
 
-+ jsonp
+### 跨域的种类和方式
+
++ Cookie
+  + `document.domain`：客户端设置，适用于一级域名相同的两个网站，均设置相同的值，即可以访问
+  + `domain=.example.com`：服务端设置 Cookie 字段，适用于二级/三级域名，客户端不用设置
++ iframe
+  + 片段标识符
+  + `window.name`
+  + `poseMessage`
++ localeStorage
+  + `poseMessage`
++ ajax
+  + CROS：需要服务端配置允许响应的 URL 列表；支持所有请求
+  + JSONP：客户端动态添加 `<script>` 标签，并在里面设置请求的 URL 和名为回调函数的查询参数；兼容性好，但仅支持 GET 请求
+  + WebSocket：需要服务端支持和配置
 
 
 
-### Ajax 的过程和实现
+
+
+### 实现 Ajax
 
 **过程：**
 
@@ -177,3 +209,7 @@ function _ajax(url) {
 + 3: 
 + 4: 
 :::
+
+
+
+### 实现 JSONP
