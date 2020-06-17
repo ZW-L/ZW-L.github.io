@@ -1,6 +1,6 @@
 module.exports = {
   title: 'Web Docs', // 文档标题
-  description: '一份以手册为主的关于 Web 开发文档',
+  description: '一份以手册为主的 Web 开发文档',
   base: '/web-docs/', // 设置打包后的基础路径
   configureWebpack: {
     resolve: {
@@ -11,52 +11,47 @@ module.exports = {
   },
   markdown: {
     // lineNumbers: true, // 显示代码块行号
-    lastUpdate: '最后更新', // 显示最后更新时间
     // smoothScroll: true,
   },
   themeConfig: {
     // repo: '',
+    lastUpdate: '最后更新于', // 显示最后更新时间
     // 导航栏
     nav: [
       {
         text: '基础',
         items: [
-          { text: 'HTML 标签',  link: '/base/html/' },
-          { text: 'CSS 属性',  link: '/base/css/' },
-          { text: 'BOM API',  link: '/base/javascript/bom/' },
-          { text: 'DOM API',  link: '/base/javascript/dom/' },
-          { text: 'ECMAScript API',  link: '/base/javascript/es/' },
-          { text: 'Node API', link: '/base/node/' },
-          { text: '算法',  link: '/base/algorithm/' },
+          { text: '计算机网络',  link: '/base/computed-network/' },
           { text: 'HTTP',  link: '/base/http/' },
-          { text: 'Linux',  link: '/base/linux/' },
+          { text: '设计模式',  link: '/base/design-patterns/' },
+          { text: '编译原理',  link: '/base/fundamentals-of-compiling/' },
+          { text: '软件工程',  link: '/base/software-engineering/' },
           { text: 'Git',  link: '/base/git/' },
-          { text: 'MongoDB',  link: '/base/mongodb/' },
-          { text: 'MySQL',  link: '/base/mysql/' },
+          { text: '算法',  link: '/base/algorithm/' },
         ]
       },
       {
-        text: '深入',
+        text: '前端',
         items: [
-          { text: 'HTML',  link: '/deep/html/' },
-          { text: 'CSS',  link: '/deep/css/' },
-          { text: 'Javascript',  link: '/deep/javascript/' },
-          { text: 'Node',  link: '/deep/node/' },
-          { text: '前端工程化',  link: '/deep/engineering/' },
-          { text: '开发技巧',  link: '/deep/business-related/' },
-          { text: '开发流程', link: '/deep/project-setup/'},
-          { text: '计算机基础',  link: '/deep/basis-of-computer/' },
-        ]
+          { text: 'HTML',  link: '/front-end/html/' },
+          { text: 'CSS',  link: '/front-end/css/' },
+          { text: 'JavaScript',  link: '/front-end/javascript/' },
+          { text: 'Node', link: '/front-end/node/' },
+          { text: 'Vue', link: '/front-end/vue/' },
+          { text: '前端工程化',  link: '/front-end/engineering/' },
+          { text: '开发技巧',  link: '/front-end/business-related/' },
+          { text: '开发流程', link: '/front-end/project-setup/'},
+        ],
       },
       {
-        text: '开源库',
+        text: '后端',
         items: [
-          { text: 'Vue',  link: '/open-repo/vue/' },
-          { text: 'TypeScript',  link: '/open-repo/ts/' },
-          { text: 'Webpack',  link: '/open-repo/webpack/' },
-          { text: '其他库',  link: '/open-repo/other/' },
-          { text: '服务器运维',  link: '/open-repo/om/' },
-        ]
+          { text: 'Linux',  link: '/back-end/linux/' },
+          { text: 'Nginx',  link: '/back-end/nginx/' },
+          { text: 'Docker',  link: '/back-end/docker/' },
+          { text: 'MongoDB',  link: '/back-end/mongodb/' },
+          { text: 'MySQL',  link: '/back-end/mysql/' },
+        ],
       },
       {
         text: '博文',
@@ -65,224 +60,16 @@ module.exports = {
       {
         text: '更多',
         items: [
-          { text: 'Win10',  link: '/other/tips/win10' },
-          { text: 'PS',  link: '/other/tips/ps' },
-          { text: 'Sublime Text 3',  link: '/other/tips/sublime-text3' },
-          { text: '技术之外',  link: '/other/suggest' },
           { text: '保持学习',  link: '/other/growth/' },
+          { text: '常用工具',  link: '/other/tools/' },
+          { text: '技术之外',  link: '/other/expect-tech/' },
+          { text: '关于',  link: '/other/' },
         ]
       },
     ],
     // 边栏
     sidebar: {
       // 基础
-      '/base/html/': [
-        ['', '标签概览'],
-        {
-          title: 'HTML 分类概述',
-          collapsable: false,
-          children: [
-            ['categories/base', '基础类'],
-            ['categories/layout', '布局类'],
-            ['categories/format', '格式类'],
-            ['categories/list&table', '列表/表格类'],
-            ['categories/form', '表单类'],
-            ['categories/media', '多媒体类'],
-            ['categories/container', '容器类'],
-          ],
-        },
-        {
-          title: 'HTML5',
-          collapsable: false,
-          children: [
-            ['html5/tags-change', '标签的变动'],
-            ['html5/mathml', 'MathML'],
-            ['html5/drag', 'Drag & Drop'],
-            ['html5/audio', 'Audio'],
-            ['html5/video', 'Video'],
-            ['html5/canvas', 'Canvas'],
-            ['html5/svg', 'SVG'],
-            ['html5/geolocation', 'Geolocation'],
-            ['html5/storage', 'Storage'],
-            ['html5/indexeddb', 'IndexedDB'],
-            ['html5/app-cache', 'AppCache'],
-            ['html5/service-worker', 'Service Worker'],
-            ['html5/manifest', 'Manifest'],
-            ['html5/web-worker', 'Web Worker'],
-            ['html5/websocket', 'WebSocket'],
-            ['html5/sse', 'Service-Sent Events'],
-          ],
-        },
-      ],
-      '/base/css/': [
-        {
-          title: 'CSS 属性',
-          collapsable: false,
-          children: [
-            ['attributes/selectors', '选择器'],
-            ['attributes/position&layout', '定位 & 布局'],
-            ['attributes/box-model', '盒子模型'],
-            ['attributes/color&background', '颜色 & 背景'],
-            ['attributes/font&text', '字体 & 文本'],
-            ['attributes/list&table', '列表 & 表格'],
-            ['attributes/special-effects', '特效'],
-            ['attributes/media-query', '媒体查询'],
-            ['attributes/content', '内容'],
-            ['attributes/syntax-rules', '语法规则'],
-            ['attributes/value', '取值'],
-            ['attributes/unit', '单位'],
-          ]
-        },
-      ],
-      '/base/javascript/bom/': [
-        {
-          title: '常用接口',
-          collapsable: false,
-          children: [
-            ['window', 'window'],
-            ['console', 'console'],
-            ['document', 'document'],
-            ['frames', 'frames'],
-            ['history', 'history'],
-            ['location', 'location'],
-            ['navigator', 'navigator'],
-            ['screen', 'screen'],
-          ]
-        },
-      ],
-      '/base/javascript/dom/': [
-        ['', '介绍'],
-        {
-          title: 'DOM 接口',
-          collapsable: false,
-          children: [
-            ['event-target', 'EventTarget'],
-            ['node', 'Node'],
-            ['document', 'Document'],
-            ['html-document', 'HTMLDocument'],
-            ['document-fragment', 'DocumentFragment'],
-            ['element', 'Element'],
-            ['html-element', 'HTMLElement'],
-            ['attr', 'Attr'],
-            ['node-list', 'NodeList'],
-            ['html-collection', 'HTMLCollection'],
-            ['child-node', 'ChildNode'],
-            ['parent-node', 'ParentNode'],
-            ['non-cnode', 'NonDocumentTypeChildNode'],
-            ['document-type', 'DocumentType'],
-            ['character-data', 'CharacterData'],
-            ['sub-character-data', 'CharacterData 子类'],
-            ['event', 'Event'],
-            ['sub-event', 'Event 子类'],
-          ]
-        },
-      ],
-      '/base/javascript/es/': [
-        {
-          title: 'ECMAScript 基础',
-          collapsable: false,
-          children: [
-            ['es5/syntax', '语法'],
-            ['es5/variables&data-type', '变量和数据类型'],
-            ['es5/operator', '操作符'],
-            ['es5/process-control', '流程控制语句'],
-            ['es5/scope', '作用域和内存'],
-            ['es5/oop', '面向对象编程基础'],
-            ['es5/fp', '函数式编程基础'],
-            ['es5/json&ajax', 'JSON & Ajax'],
-          ]
-        },
-        {
-          title: '内置对象',
-          collapsable: false,
-          children: [
-            ['bio/function', 'Function'],
-            ['bio/object', 'Object'],
-            ['bio/array', 'Array'],
-            ['bio/string', 'String'],
-            ['bio/number', 'Number'],
-            ['bio/boolean', 'Boolean'],
-            ['bio/math', 'Math'],
-            ['bio/date', 'Date'],
-            ['bio/regexp', 'RegExp'],
-            ['bio/global', 'Global'],
-          ]
-        },
-        {
-          title: 'ES6',
-          collapsable: false,
-          children: [
-            ['es6/let&const', 'let & const'],
-            ['es6/destructuring', '解构赋值'],
-            ['es6/object-extensions', '内置对象的扩展'],
-            ['es6/symbol', 'Symbol'],
-            ['es6/set&map', 'Set & Map'],
-            ['es6/proxy', 'Proxy'],
-            ['es6/reflect', 'Reflect'],
-            ['es6/promise', 'Promise'],
-            ['es6/iterator', 'Iterator'],
-            ['es6/generator', 'Generator'],
-            ['es6/class', 'Class'],
-            ['es6/module', 'Module'],
-          ]
-        },
-        {
-          title: 'ES6+',
-          collapsable: false,
-          children: [
-            ['es7', 'ES7'],
-            ['es8', 'ES8'],
-            ['es9', 'ES9'],
-            ['es10', 'ES10'],
-          ]
-        }
-      ],
-      '/base/node/': [
-        {
-          title: '全局属性',
-          collapsable: false,
-          children: [
-            ['global/buffer', 'Buffer'],
-            ['global/dirname', '__dirname'],
-            ['global/filename', '__filename'],
-            ['global/console', 'console'],
-            ['global/timer', 'timer'],
-            ['global/process', 'process'],
-          ]
-        },
-        {
-          title: '缓冲 & 流',
-          collapsable: false,
-          children: [
-            ['bs/buffer', 'Buffer'],
-            ['bs/stream', 'Stream'],
-          ]
-        },
-        {
-          title: '其他原生模块',
-          collapsable: false,
-          children: [
-            ['native/assert', 'assert'],
-            ['native/child-process', 'child_process'],
-            ['native/cluster', 'cluster'],
-            ['native/crypto', 'crypto'],
-            ['native/dgram', 'dgram'],
-            ['native/dns', 'dns'],
-            ['native/events', 'events'],
-            ['native/fs', 'fs'],
-            ['native/os', 'os'],
-            ['native/http', 'http'],
-            ['native/http2', 'http2'],
-            ['native/https', 'https'],
-            ['native/net', 'net'],
-            ['native/inspector', 'inspector'],
-            ['native/path', 'path'],
-            ['native/url', 'url'],
-            ['native/util', 'util'],
-            ['native/zlib', 'zlib'],
-          ]
-        }
-      ],
       '/base/algorithm/': [
         {
           title: '概念',
@@ -368,29 +155,6 @@ module.exports = {
           ],
         },
       ],
-      '/base/linux/': [
-        ['', '常用命令'],
-        ['shell', 'Shell'],
-        {
-          title: 'Linux 命令',
-          collapsable: false,
-          children: [
-            ['command/sys', '系统管理与维护'],
-            ['command/file', '文件管理与维护'],
-            ['command/zip', '压缩与解压'],
-            ['command/disc', '磁盘管理与维护'],
-            ['command/net', '网络设置与维护'],
-          ],
-        },
-        {
-          title: '软件和包安装',
-          collapsable: false,
-          children: [
-            ['install/node', 'node'],
-            ['install/nginx', 'nginx'],
-          ],
-        },
-      ],
       '/base/git/': [
         {
           title: 'Git 命令分类剖析',
@@ -415,27 +179,71 @@ module.exports = {
           ]
         }
       ],
-      '/base/mongodb/': [
-        ['command', '命令']
-      ],
-      '/base/mysql/': [
-        ['command', '命令']
-      ],
-      // 深入
-      '/deep/html/': [
+
+      // 前端
+      '/front-end/html/': [
+        ['', '标签概览'],
+        {
+          title: 'HTML 分类概述',
+          children: [
+            ['categories/base', '基础类'],
+            ['categories/layout', '布局类'],
+            ['categories/format', '格式类'],
+            ['categories/list&table', '列表/表格类'],
+            ['categories/form', '表单类'],
+            ['categories/media', '多媒体类'],
+            ['categories/container', '容器类'],
+          ],
+        },
+        {
+          title: 'HTML5',
+          children: [
+            ['html5/tags-change', '标签的变动'],
+            ['html5/mathml', 'MathML'],
+            ['html5/drag', 'Drag & Drop'],
+            ['html5/audio', 'Audio'],
+            ['html5/video', 'Video'],
+            ['html5/canvas', 'Canvas'],
+            ['html5/svg', 'SVG'],
+            ['html5/geolocation', 'Geolocation'],
+            ['html5/storage', 'Storage'],
+            ['html5/indexeddb', 'IndexedDB'],
+            ['html5/app-cache', 'AppCache'],
+            ['html5/service-worker', 'Service Worker'],
+            ['html5/manifest', 'Manifest'],
+            ['html5/web-worker', 'Web Worker'],
+            ['html5/websocket', 'WebSocket'],
+            ['html5/sse', 'Service-Sent Events'],
+          ],
+        },
         {
           title: '深入 HTML',
-          collapsable: false,
           children: [
             ['html', 'HTML'],
             ['html5', 'HTML5'],
           ]
         },
       ],
-      '/deep/css/': [
+      '/front-end/css/': [
+        {
+          title: 'CSS 属性',
+          children: [
+            ['attributes/selectors', '选择器'],
+            ['attributes/position&layout', '定位 & 布局'],
+            ['attributes/box-model', '盒子模型'],
+            ['attributes/color&background', '颜色 & 背景'],
+            ['attributes/font&text', '字体 & 文本'],
+            ['attributes/list&table', '列表 & 表格'],
+            ['attributes/special-effects', '特效'],
+            ['attributes/media-query', '媒体查询'],
+            ['attributes/content', '内容'],
+            ['attributes/syntax-rules', '语法规则'],
+            ['attributes/value', '取值'],
+            ['attributes/unit', '单位'],
+          ]
+        },
         {
           title: '深入 CSS',
-          collapsable: false,
           children: [
             ['knowledge/difference', '区分属性'],
             ['knowledge/questions', '常见问题'],
@@ -443,7 +251,6 @@ module.exports = {
         },
         {
           title: '专题：布局和效果',
-          collapsable: false,
           children: [
             ['effect/flex', 'Flex 详解'],
             ['effect/grid', 'Grid 详解'],
@@ -457,7 +264,6 @@ module.exports = {
         },
         {
           title: '专题：响应式',
-          collapsable: false,
           children: [
             ['responsive/media-query', '使用媒体查询'],
             ['responsive/responsive-design', '响应式设计'],
@@ -466,7 +272,6 @@ module.exports = {
         },
         {
           title: '专题：效果和动画',
-          collapsable: false,
           children: [
             ['special-effects/text', '文本'],
             ['special-effects/border', '边框'],
@@ -478,7 +283,6 @@ module.exports = {
         },
         {
           title: '专题：开发技巧',
-          collapsable: false,
           children: [
             ['dev/compatibility', '兼容性'],
             ['dev/tips', '技巧'],
@@ -486,7 +290,6 @@ module.exports = {
         },
         {
           title: '专题：未分类',
-          collapsable: false,
           children: [
             ['unclassified/css-reset', '初始化样式'],
             ['unclassified/bfc&ifc', 'BFC 和 IFC 详解'],
@@ -494,22 +297,110 @@ module.exports = {
           ]
         },
       ],
-      '/deep/javascript/': [
+      '/front-end/javascript/': [
         {
-          title: '深入 ECMAScript',
-          collapsable: false,
+          title: 'BOM',
           children: [
-            ['ecmascript/data-type', '数据类型'],
-            ['ecmascript/strict-mode', '严格模式'],
-            ['ecmascript/syntax', '语法'],
-            ['ecmascript/oop', '面向对象程序设计'],
-            ['ecmascript/fp', '函数式编程'],
-            ['ecmascript/es6+', 'ES6+'],
+            ['bom/window', 'window'],
+            ['bom/console', 'console'],
+            ['bom/document', 'document'],
+            ['bom/frames', 'frames'],
+            ['bom/history', 'history'],
+            ['bom/location', 'location'],
+            ['bom/navigator', 'navigator'],
+            ['bom/screen', 'screen'],
+          ]
+        },
+        {
+          title: 'DOM',
+          children: [
+            ['dom/event-target', 'EventTarget'],
+            ['dom/node', 'Node'],
+            ['dom/document', 'Document'],
+            ['dom/html-document', 'HTMLDocument'],
+            ['dom/document-fragment', 'DocumentFragment'],
+            ['dom/element', 'Element'],
+            ['dom/html-element', 'HTMLElement'],
+            ['dom/attr', 'Attr'],
+            ['dom/node-list', 'NodeList'],
+            ['dom/html-collection', 'HTMLCollection'],
+            ['dom/child-node', 'ChildNode'],
+            ['dom/parent-node', 'ParentNode'],
+            ['dom/non-cnode', 'NonDocumentTypeChildNode'],
+            ['dom/document-type', 'DocumentType'],
+            ['dom/character-data', 'CharacterData'],
+            ['dom/sub-character-data', 'CharacterData 子类'],
+            ['dom/event', 'Event'],
+            ['dom/sub-event', 'Event 子类'],
+          ]
+        },
+        {
+          title: 'ECMAScript 基础',
+          children: [
+            ['es/es5/syntax', '语法'],
+            ['es/es5/variables&data-type', '变量和数据类型'],
+            ['es/es5/operator', '操作符'],
+            ['es/es5/process-control', '流程控制语句'],
+            ['es/es5/scope', '作用域和内存'],
+            ['es/es5/oop', '面向对象编程基础'],
+            ['es/es5/fp', '函数式编程基础'],
+            ['es/es5/json&ajax', 'JSON & Ajax'],
+          ]
+        },
+        {
+          title: 'ECMAScript 深入',
+          children: [
+            ['es/deep/data-type', '数据类型'],
+            ['es/deep/strict-mode', '严格模式'],
+            ['es/deep/syntax', '语法'],
+            ['es/deep/oop', '面向对象程序设计'],
+            ['es/deep/fp', '函数式编程'],
+            ['es/deep/es6+', 'ES6+'],
+          ]
+        },
+        {
+          title: '内置对象',
+          children: [
+            ['es/bio/function', 'Function'],
+            ['es/bio/object', 'Object'],
+            ['es/bio/array', 'Array'],
+            ['es/bio/string', 'String'],
+            ['es/bio/number', 'Number'],
+            ['es/bio/boolean', 'Boolean'],
+            ['es/bio/math', 'Math'],
+            ['es/bio/date', 'Date'],
+            ['es/bio/regexp', 'RegExp'],
+            ['es/bio/global', 'Global'],
+          ]
+        },
+        {
+          title: 'ES6',
+          children: [
+            ['es/es6/let&const', 'let & const'],
+            ['es/es6/destructuring', '解构赋值'],
+            ['es/es6/object-extensions', '内置对象的扩展'],
+            ['es/es6/symbol', 'Symbol'],
+            ['es/es6/set&map', 'Set & Map'],
+            ['es/es6/proxy', 'Proxy'],
+            ['es/es6/reflect', 'Reflect'],
+            ['es/es6/promise', 'Promise'],
+            ['es/es6/iterator', 'Iterator'],
+            ['es/es6/generator', 'Generator'],
+            ['es/es6/class', 'Class'],
+            ['es/es6/module', 'Module'],
+          ]
+        },
+        {
+          title: 'ES6+',
+          children: [
+            ['es/es7', 'ES7'],
+            ['es/es8', 'ES8'],
+            ['es/es9', 'ES9'],
+            ['es/es10', 'ES10'],
           ]
         },
         {
           title: '深入 BOM & DOM',
-          collapsable: false,
           children: [
             ['bom', 'BOM'],
             ['dom', 'DOM'],
@@ -518,7 +409,6 @@ module.exports = {
         },
         {
           title: '专题：面向对象编程',
-          collapsable: false,
           children: [
             ['es-oop/introduction', '简介'],
             ['es-oop/create', '创建对象的方式'],
@@ -528,7 +418,6 @@ module.exports = {
         },
         {
           title: '专题：函数式编程',
-          collapsable: false,
           children: [
             ['es-fp/introduction', '简介'],
             ['es-fp/scope&closure', '作用域和闭包'],
@@ -543,7 +432,6 @@ module.exports = {
         },
         {
           title: '专题：编码能力',
-          collapsable: false,
           children: [
             ['es-power/native', '实现原生功能'],
             ['es-power/array', '数组相关'],
@@ -555,7 +443,6 @@ module.exports = {
         },
         {
           title: '专题：高性能 Javascript',
-          collapsable: false,
           children: [
             ['es-hp/load', '脚本加载和执行'],
             ['es-hp/syntax', 'JS 语法'],
@@ -564,13 +451,53 @@ module.exports = {
             ['es-hp/data', '数据'],
             ['es-hp/apply', '应用'],
           ]
-        }
+        },
       ],
-      '/deep/node/': [
+      '/front-end/node/': [
+        {
+          title: '全局属性',
+          children: [
+            ['global/buffer', 'Buffer'],
+            ['global/dirname', '__dirname'],
+            ['global/filename', '__filename'],
+            ['global/console', 'console'],
+            ['global/timer', 'timer'],
+            ['global/process', 'process'],
+          ]
+        },
+        {
+          title: '缓冲 & 流',
+          children: [
+            ['bs/buffer', 'Buffer'],
+            ['bs/stream', 'Stream'],
+          ]
+        },
+        {
+          title: '其他原生模块',
+          children: [
+            ['native/assert', 'assert'],
+            ['native/child-process', 'child_process'],
+            ['native/cluster', 'cluster'],
+            ['native/crypto', 'crypto'],
+            ['native/dgram', 'dgram'],
+            ['native/dns', 'dns'],
+            ['native/events', 'events'],
+            ['native/fs', 'fs'],
+            ['native/os', 'os'],
+            ['native/http', 'http'],
+            ['native/http2', 'http2'],
+            ['native/https', 'https'],
+            ['native/net', 'net'],
+            ['native/inspector', 'inspector'],
+            ['native/path', 'path'],
+            ['native/url', 'url'],
+            ['native/util', 'util'],
+            ['native/zlib', 'zlib'],
+          ]
+        },
         ['', '简介'],
         {
           title: '异步编程',
-          collapsable: false,
           children: [
             ['async/concept', '原理和概念'],
             ['async/callback', 'Callback - 回调地狱'],
@@ -582,7 +509,6 @@ module.exports = {
         },
         {
           title: '缓冲 & 流',
-          collapsable: false,
           children: [
             ['bs-buffer', 'Buffer'],
             ['bs-stream', 'Stream'],
@@ -590,7 +516,6 @@ module.exports = {
         },
         {
           title: '模块系统',
-          collapsable: false,
           children: [
             ['module-standard', '模块化规范'],
             ['module-global-property', '内置全局属性'],
@@ -600,14 +525,12 @@ module.exports = {
         },
         {
           title: '使用技巧',
-          collapsable: false,
           children: [
             ['tips/npm-module', '使用 npm 开发模块'],
           ],
         },
         {
           title: '框架',
-          collapsable: false,
           children: [
             ['fw/express', 'Express'],
             ['fw/koa', 'Koa'],
@@ -616,7 +539,6 @@ module.exports = {
         },
         {
           title: 'MongoDB',
-          collapsable: false,
           children: [
             ['mongodb/start', '开始'],
             ['mongodb/db&collection', '数据库和集合'],
@@ -627,7 +549,43 @@ module.exports = {
           ],
         },
       ],
-      '/deep/engineering/': [
+      '/front-end/vue/': [
+        {
+          title: 'Vue',
+          collapsable: false,
+          children: [
+            ['vue-cli', 'Cli 详解'],
+            ['vue-router', 'Router 详解'],
+            ['vuex', 'Vuex 详解'],
+            ['vue', '面试题'],
+          ]
+        },
+        {
+          title: 'Vue 功能特性',
+          collapsable: false,
+          children: [
+            ['feature/base', '指令和简写'],
+            ['feature/component', '组件特性'],
+            ['feature/effect', '特效'],
+            ['feature/render', '渲染函数'],
+            ['feature/reuse', '功能复用'],
+            ['feature/api', 'API 简介'],
+            ['feature/router', 'vue-router'],
+            ['feature/vuex', 'vuex'],
+            ['feature/ssr', 'ssr'],
+            ['feature/cli', 'vue-cli'],
+            ['feature/loader', 'vue-loader'],
+          ]
+        },
+        {
+          title: 'Vue 组件开发技巧',
+          collapsable: false,
+          children: [
+            ['component-skills/svg-component', 'SVG 组件']
+          ]
+        },
+      ],
+      '/front-end/engineering/': [
         {
           title: '工程化',
           collapsable: false,
@@ -656,26 +614,18 @@ module.exports = {
           ]
         },
         {
-          title: 'Vue',
-          collapsable: false,
-          children: [
-            ['vue/vue-cli', 'Cli 详解'],
-            ['vue/vue-router', 'Router 详解'],
-            ['vue/vuex', 'Vuex 详解'],
-            ['vue/vue', '面试题'],
-          ]
-        },
-        {
           title: '其他工具库',
           collapsable: false,
           children: [
             ['libraries/element', 'Element'],
             ['libraries/bootstrap', 'Bootstrap'],
             ['libraries/vue-awesome-swiper', 'vue-awesome-swiper'],
+            ['libraries/mock', 'Mock - 数据模拟'],
+            ['libraries/echarts', 'Echarts - 数据图表化']
           ]
         },
       ],
-      '/deep/business-related/': [
+      '/front-end/business-related/': [
         ['speedup', '开发提速'],
         ['debug', '调试'],
         ['cross-platform', '跨平台'],
@@ -690,7 +640,7 @@ module.exports = {
           ]
         }
       ],
-      '/deep/project-setup/': [
+      '/front-end/project-setup/': [
         {
           title: 'Vue SPA',
           collapsable: false,
@@ -700,48 +650,43 @@ module.exports = {
           ]
         }
       ],
-      '/deep/basis-of-computer/': [
-        ['computed-network', '计算机网络'],
-        ['design-patterns', '设计模式'],
-        ['fundamentals-of-compiling', '编译原理'],
-        ['software-engineering', '软件工程'],
-      ],
-      // 开源库入门
-      '/open-repo/vue/': [
+
+      // 后端
+      '/back-end/linux/': [
+        ['', '常用命令'],
+        ['shell', 'Shell'],
         {
-          title: '功能特性',
+          title: 'Linux 命令',
           collapsable: false,
           children: [
-            ['feature/base', '指令和简写'],
-            ['feature/component', '组件特性'],
-            ['feature/effect', '特效'],
-            ['feature/render', '渲染函数'],
-            ['feature/reuse', '功能复用'],
-            ['feature/api', 'API 简介'],
-            ['feature/router', 'vue-router'],
-            ['feature/vuex', 'vuex'],
-            ['feature/ssr', 'ssr'],
-            ['feature/cli', 'vue-cli'],
-            ['feature/loader', 'vue-loader'],
-          ]
+            ['command/sys', '系统管理与维护'],
+            ['command/file', '文件管理与维护'],
+            ['command/zip', '压缩与解压'],
+            ['command/disc', '磁盘管理与维护'],
+            ['command/net', '网络设置与维护'],
+          ],
         },
         {
-          title: '组件开发技巧',
+          title: '软件',
           collapsable: false,
           children: [
-            ['component-skills/svg-component', 'SVG 组件']
-          ]
-        }
+            ['install/node', 'node'],
+          ],
+        },
       ],
-      '/open-repo/other/': [
-        ['mock', 'Mock - 数据模拟'],
-        ['echarts', 'Echarts - 数据图表化']
+      '/back-end/docker/': [
+        ['base', '基础']
       ],
-      '/open-repo/om/': [
-        ['docker', 'Docker'],
-        ['nginx', 'Nginx'],
-        ['pm2', 'pm2'],
+      '/back-end/nginx/': [
+        ['base', '基础']
       ],
+      '/back-end/mongodb/': [
+        ['command', '命令']
+      ],
+      '/back-end/mysql/': [
+        ['command', '命令']
+      ],
+
       // 文章
       '/post/': [
         {
@@ -761,6 +706,7 @@ module.exports = {
           ]
         }
       ],
+
       // 更多
       '/other/growth/': [
         {
@@ -780,6 +726,13 @@ module.exports = {
             ['learn/link', '链接'],
           ]
         },
+      ],
+      '/other/tools/': [
+        ['ps', 'PS'],
+        ['editor', '编辑器'],
+      ],
+      '/other/expect-tech/': [
+        ['', '技术之外'],
       ]
     }
   }

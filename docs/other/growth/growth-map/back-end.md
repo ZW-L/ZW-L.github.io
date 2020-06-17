@@ -2,4 +2,4 @@
 [developer-roadmap](https://github.com/kamranahmedse/developer-roadmap)
 :::
 
-![后端](./imgs/back-end.png)
+![后端](./imgs/be.png)
