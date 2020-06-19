@@ -8,6 +8,8 @@
 
 ![事件对象关系图](./imgs/event.png)
 
+
+
 ## 属性
 
 |属性|类型|描述|
@@ -28,6 +30,8 @@
 + `returnValue: Boolean`: 获取/设置是否应该事件的默认行为，效果相当于 `preventDefault()`
 + `cancelBubble: Boolean`: 获取/设置是否允许事件冒泡，效果相当于 `stopPropagation()`
 :::
+
+
 
 
 ## 方法
@@ -62,6 +66,8 @@ list.addEventListener('click', function() {
 :::
 
 
+
+
 ## 事件绑定的方式
 
 **事件绑定的方式有两种：**
@@ -88,6 +94,9 @@ list.addEventListener('click', e => {
 })
 ```
 :::
+
+
+
 
 ## 事件进行的阶段
 

@@ -1,23 +1,10 @@
-## 常用命令
-
-+ `ifconfig`
-+ `scp`
-+ `netstat`
-+ `traceroute`
-+ `telnet`
-+ `wget`
-
 ## ifconfig
 
-&emsp;&emsp;用于配置网络或显示当前网络接口。
-
-**语法：**
-
-```powershell
++ 配置网络或显示当前网络接口
+```sh
 ifconfig [option] [interface] [inet|up|down|netmask|addr|broadcast]
 ```
-
-**选项：**
++ **选项：**
 
 选项|说明
 -|-
@@ -26,7 +13,6 @@ ifconfig [option] [interface] [inet|up|down|netmask|addr|broadcast]
 -v|若某个网络接口发生错误，则返回错误信息
 
 **说明：**
-
 + `interface`: 网络接口名
 + `inet`:
 + `up`: 激活一个网络接口
@@ -36,31 +22,11 @@ ifconfig [option] [interface] [inet|up|down|netmask|addr|broadcast]
 + `broadcast`: 为指定的接口设置广播地址
 
 
-## scp
-
-&emsp;&emsp;即 `secure copy`，用于将文件或目录从一个 Linux 系统复制到另一个 Linux 系统，传输数据时使用 `SSH` 协议。
-
-**语法：**
-
-+ 将远程 `Linux` 系统上某个文件或目录复制到本地 `Linux` 系统：
-
-```powershell
-scp 远程用户名@ip地址:文件的绝对路径 本地Linux系统路径 
-```
-
-+ 将本地的某个文件或者目录复制到远程 `Linux` 系统的某个路径下
-
-```powershell
-scp 本地Linux系统文件路径 远程用户名@ip地址:远程系统文件的绝对路径
-```
 
 ## netstat
 
-&emsp;&emsp;用于显示本机网络连接、运行端口和路由表等信息。
-
-**语法：**
-
-```powershell
++ 显示本机网络连接、运行端口和路由表等信息
+```sh
 netstat [option]
 ```
 
@@ -80,13 +46,14 @@ netstat [option]
 -l|仅显示连接状态为 `LISTEN` 的服务的网络状态
 -p|显示连接对应的 PID 与程序名
 
+
+
+
+
 ## traceroute
 
-&emsp;&emsp;用于显示网络数据包传输到指定主机的路径信息，追踪数据传输路由状况。
-
-**语法：**
-
-```powershell
++ 显示网络数据包传输到指定主机的路径信息，追踪数据传输路由状况
+```sh
 traceroute [option] [远程主机名/IP地址] [数据包大小]
 ```
 
@@ -102,22 +69,75 @@ traceroute [option] [远程主机名/IP地址] [数据包大小]
 -s<来源 ip>|设置本地主机发送数据包的 IP 地址
 -g<网关地址>|设置来源的路由网关，最多可设置 8 个
 
+
+
+
 ## telnet
 
-&emsp;&emsp;通过 telnet 协议与远程主机通信或者获取远程主机对应端口的信息。
-
-**语法：**
-
-```powershell
++ 通过 telnet 协议与远程主机通信或者获取远程主机对应端口的信息
+```sh
 telnet 主机名或IP地址 端口
 ```
 
+
+
+## scp
+
++ `secure copy`：在两个主机之间复制文件或目录，传输数据时使用 `SSH` 协议
+```sh
+# 将远程系统上某个文件或目录复制到本地系统
+scp username@host:/remote/path /local/path
+
+# 将本地的某个文件或者目录复制到远程系统的某个路径下
+scp /local/path username@host:/remote/path
+```
+
+
+
 ## wget
 
-&emsp;&emsp;用于从网络上下载某个软件。
++ 从网络上下载某个软件，支持 ftp 和 Recursive，在下载文件方面更擅长
+```sh
+# 下载文件
+wget http://www.linuxde.net/text.iso
 
-**语法：**
+# 下载并重命名
+wget -O rename.zip http://www.linuxde.net/text.iso
 
-```powershell
-wget [下载的软件的url]
+# 断点续传
+wget -c http://www.linuxde.net/text.iso 
+
+# 限速下载
+wget --limit-rate=50k http://www.linuxde.net/text.iso
+
+# 显示响应头
+wget --server-response http://www.linuxde.net/test.iso
+
+# 打包下载网站
+wget --mirror -p --convert-links -P /var/www/html http://man.linuxde.net/
+```
+
+
+
+## curl
+
++ 可自定义各种请求参数所以在模拟 web 请求方面更擅长
+```sh
+# 打印请求内容，可用于检测一个网站是否能正常访问
+curl zwlife.top
+
+# 下载文件
+curl -O http://man.linuxde.net/text.iso
+
+# 重命名
+curl -o rename.iso http://man.linuxde.net/text.iso
+
+# 断点续传
+curl -O -C - http://man.linuxde.net/text.iso
+
+# 限速下载
+curl --limit-rate 50k -O http://man.linuxde.net/text.iso
+
+# 显示响应头
+curl -I http://man.linuxde.net/text.iso
 ```

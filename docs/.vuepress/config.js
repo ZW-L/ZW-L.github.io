@@ -21,13 +21,16 @@ module.exports = {
       {
         text: '基础',
         items: [
+          // { text: '数学',  link: '/base/math/' },
+          // { text: 'C 语言',  link: '/base/c/' },
+          { text: '数据结构和算法',  link: '/base/algorithm/' },
           { text: '计算机网络',  link: '/base/computed-network/' },
-          { text: 'HTTP',  link: '/base/http/' },
-          { text: '设计模式',  link: '/base/design-patterns/' },
+          // { text: '计算机组成',  link: '/base/computed-organization/' },
+          // { text: '操作系统',  link: '/base/os/' },
           { text: '编译原理',  link: '/base/fundamentals-of-compiling/' },
+          { text: '设计模式',  link: '/base/design-patterns/' },
           { text: '软件工程',  link: '/base/software-engineering/' },
           { text: 'Git',  link: '/base/git/' },
-          { text: '算法',  link: '/base/algorithm/' },
         ]
       },
       {
@@ -73,6 +76,7 @@ module.exports = {
       '/base/algorithm/': [
         {
           title: '概念',
+          collapsable: false,
           children: [
             ['introduction/time-complexity', '时间复杂度'],
             ['introduction/space-complexity', '空间复杂度'],
@@ -80,6 +84,7 @@ module.exports = {
         },
         {
           title: '数据结构',
+          collapsable: false,
           children: [
             ['data-structures/string', '字符串(String)'],
             ['data-structures/array', '数组(Array)'],
@@ -101,6 +106,7 @@ module.exports = {
         },
         {
           title: '排序算法',
+          collapsable: false,
           children: [
             ['sort/', '概览'],
             ['sort/bubble-sort', '冒泡排序'],
@@ -115,26 +121,32 @@ module.exports = {
         },
         {
           title: '查找算法',
+          collapsable: false,
           children: []
         },
         {
           title: '字符串算法',
+          collapsable: false,
           children: []
         },
         {
           title: '位算法',
+          collapsable: false,
           children: []
         },
         {
           title: '树算法',
+          collapsable: false,
           children: []
         },
         {
           title: '图算法',
+          collapsable: false,
           children: []
         },
         {
           title: '算法设计思想',
+          collapsable: false,
           children: [
             ['design/recursion', '递归'],
             ['design/recall', '回溯'],
@@ -143,15 +155,40 @@ module.exports = {
           ]
         },
       ],
-      '/base/http/': [
+      '/base/computed-network/': [
         {
-          title: 'HTTP 参考',
+          title: 'TCP/IP',
           collapsable: false,
           children: [
-            ['status-code', '状态码'],
-            ['mime-type', 'MIME-TYPE'],
-            ['head-fields', '头部字段'],
-            ['body-fields', '主体字段'],
+            ['tcp-ip/intro', '简介'],
+          ],
+        },
+        {
+          title: 'HTTP',
+          collapsable: false,
+          children: [
+            ['http/intro', '简介'],
+            ['http/status-code', '状态码'],
+            ['http/mime-type', 'MIME-TYPE'],
+            ['http/head-fields', '头部字段'],
+            ['http/url', 'URL'],
+            ['http/cdn', 'CDN'],
+            ['http/cookie', 'Cookie'],
+            ['http/api', 'API 服务'],
+          ],
+        },
+        {
+          title: 'DNS',
+          collapsable: false,
+          children: [
+            ['dns/intro', '简介'],
+          ],
+        },
+        {
+          title: 'WebSocket',
+          collapsable: false,
+          children: [
+            ['websocket/intro', '简介'],
           ],
         },
       ],
@@ -182,9 +219,9 @@ module.exports = {
 
       // 前端
       '/front-end/html/': [
-        ['', '标签概览'],
         {
-          title: 'HTML 分类概述',
+          title: 'HTML 标签分类',
+          collapsable: false,
           children: [
             ['categories/base', '基础类'],
             ['categories/layout', '布局类'],
@@ -196,7 +233,8 @@ module.exports = {
           ],
         },
         {
-          title: 'HTML5',
+          title: 'HTML5 简介',
+          collapsable: false,
           children: [
             ['html5/tags-change', '标签的变动'],
             ['html5/mathml', 'MathML'],
@@ -217,7 +255,8 @@ module.exports = {
           ],
         },
         {
-          title: '深入 HTML',
+          title: 'HTML 深入',
+          collapsable: false,
           children: [
             ['html', 'HTML'],
             ['html5', 'HTML5'],
@@ -227,6 +266,7 @@ module.exports = {
       '/front-end/css/': [
         {
           title: 'CSS 属性',
+          collapsable: false,
           children: [
             ['attributes/selectors', '选择器'],
             ['attributes/position&layout', '定位 & 布局'],
@@ -243,7 +283,8 @@ module.exports = {
           ]
         },
         {
-          title: '深入 CSS',
+          title: 'CSS 深入',
+          collapsable: false,
           children: [
             ['knowledge/difference', '区分属性'],
             ['knowledge/questions', '常见问题'],
@@ -251,6 +292,7 @@ module.exports = {
         },
         {
           title: '专题：布局和效果',
+          collapsable: false,
           children: [
             ['effect/flex', 'Flex 详解'],
             ['effect/grid', 'Grid 详解'],
@@ -264,6 +306,7 @@ module.exports = {
         },
         {
           title: '专题：响应式',
+          collapsable: false,
           children: [
             ['responsive/media-query', '使用媒体查询'],
             ['responsive/responsive-design', '响应式设计'],
@@ -272,6 +315,7 @@ module.exports = {
         },
         {
           title: '专题：效果和动画',
+          collapsable: false,
           children: [
             ['special-effects/text', '文本'],
             ['special-effects/border', '边框'],
@@ -283,6 +327,7 @@ module.exports = {
         },
         {
           title: '专题：开发技巧',
+          collapsable: false,
           children: [
             ['dev/compatibility', '兼容性'],
             ['dev/tips', '技巧'],
@@ -290,6 +335,7 @@ module.exports = {
         },
         {
           title: '专题：未分类',
+          collapsable: false,
           children: [
             ['unclassified/css-reset', '初始化样式'],
             ['unclassified/bfc&ifc', 'BFC 和 IFC 详解'],
@@ -335,6 +381,14 @@ module.exports = {
           ]
         },
         {
+          title: 'BOM & DOM 深入',
+          children: [
+            ['bom', 'BOM'],
+            ['dom', 'DOM'],
+            ['browser', '浏览器'],
+          ]
+        },
+        {
           title: 'ECMAScript 基础',
           children: [
             ['es/es5/syntax', '语法'],
@@ -356,21 +410,6 @@ module.exports = {
             ['es/deep/oop', '面向对象程序设计'],
             ['es/deep/fp', '函数式编程'],
             ['es/deep/es6+', 'ES6+'],
-          ]
-        },
-        {
-          title: '内置对象',
-          children: [
-            ['es/bio/function', 'Function'],
-            ['es/bio/object', 'Object'],
-            ['es/bio/array', 'Array'],
-            ['es/bio/string', 'String'],
-            ['es/bio/number', 'Number'],
-            ['es/bio/boolean', 'Boolean'],
-            ['es/bio/math', 'Math'],
-            ['es/bio/date', 'Date'],
-            ['es/bio/regexp', 'RegExp'],
-            ['es/bio/global', 'Global'],
           ]
         },
         {
@@ -397,14 +436,6 @@ module.exports = {
             ['es/es8', 'ES8'],
             ['es/es9', 'ES9'],
             ['es/es10', 'ES10'],
-          ]
-        },
-        {
-          title: '深入 BOM & DOM',
-          children: [
-            ['bom', 'BOM'],
-            ['dom', 'DOM'],
-            ['browser', '浏览器'],
           ]
         },
         {
@@ -442,7 +473,7 @@ module.exports = {
           ]
         },
         {
-          title: '专题：高性能 Javascript',
+          title: '专题：性能优化',
           children: [
             ['es-hp/load', '脚本加载和执行'],
             ['es-hp/syntax', 'JS 语法'],
@@ -452,28 +483,38 @@ module.exports = {
             ['es-hp/apply', '应用'],
           ]
         },
+        {
+          title: '附录：ES 内置对象',
+          children: [
+            ['es/bio/function', 'Function'],
+            ['es/bio/object', 'Object'],
+            ['es/bio/array', 'Array'],
+            ['es/bio/string', 'String'],
+            ['es/bio/number', 'Number'],
+            ['es/bio/boolean', 'Boolean'],
+            ['es/bio/math', 'Math'],
+            ['es/bio/date', 'Date'],
+            ['es/bio/regexp', 'RegExp'],
+            ['es/bio/global', 'Global'],
+          ]
+        },
       ],
       '/front-end/node/': [
         {
           title: '全局属性',
+          collapsable: false,
           children: [
-            ['global/buffer', 'Buffer'],
             ['global/dirname', '__dirname'],
             ['global/filename', '__filename'],
             ['global/console', 'console'],
             ['global/timer', 'timer'],
             ['global/process', 'process'],
+            ['global/buffer', 'Buffer'],
+            ['global/stream', 'Stream'],
           ]
         },
         {
-          title: '缓冲 & 流',
-          children: [
-            ['bs/buffer', 'Buffer'],
-            ['bs/stream', 'Stream'],
-          ]
-        },
-        {
-          title: '其他原生模块',
+          title: '原生模块一览',
           children: [
             ['native/assert', 'assert'],
             ['native/child-process', 'child_process'],
@@ -495,9 +536,9 @@ module.exports = {
             ['native/zlib', 'zlib'],
           ]
         },
-        ['', '简介'],
         {
-          title: '异步编程',
+          title: '专题：异步编程',
+          collapsable: false,
           children: [
             ['async/concept', '原理和概念'],
             ['async/callback', 'Callback - 回调地狱'],
@@ -508,29 +549,15 @@ module.exports = {
           ]
         },
         {
-          title: '缓冲 & 流',
-          children: [
-            ['bs-buffer', 'Buffer'],
-            ['bs-stream', 'Stream'],
-          ],
-        },
-        {
-          title: '模块系统',
-          children: [
-            ['module-standard', '模块化规范'],
-            ['module-global-property', '内置全局属性'],
-            ['module-native', '原生模块'],
-            ['module-third-party', '第三方模块'],
-          ],
-        },
-        {
-          title: '使用技巧',
+          title: '专题：使用技巧',
+          collapsable: false,
           children: [
             ['tips/npm-module', '使用 npm 开发模块'],
           ],
         },
         {
-          title: '框架',
+          title: '框架介绍',
+          collapsable: false,
           children: [
             ['fw/express', 'Express'],
             ['fw/koa', 'Koa'],
@@ -539,6 +566,7 @@ module.exports = {
         },
         {
           title: 'MongoDB',
+          collapsable: false,
           children: [
             ['mongodb/start', '开始'],
             ['mongodb/db&collection', '数据库和集合'],
@@ -654,16 +682,25 @@ module.exports = {
       // 后端
       '/back-end/linux/': [
         ['', '常用命令'],
-        ['shell', 'Shell'],
+        {
+          title: 'shell',
+          collapsable: false,
+          children: [
+            ['shell/intro', '简介'],
+            ['shell/syntax', '语法'],
+            ['shell/program', '编程'],
+          ],
+        },
         {
           title: 'Linux 命令',
           collapsable: false,
           children: [
-            ['command/sys', '系统管理与维护'],
-            ['command/file', '文件管理与维护'],
+            ['command/sys', '系统管理'],
+            ['command/file', '文件目录管理'],
             ['command/zip', '压缩与解压'],
             ['command/disc', '磁盘管理与维护'],
-            ['command/net', '网络设置与维护'],
+            ['command/net', '网络设置和连接'],
+            ['command/pkg', '包管理'],
           ],
         },
         {
@@ -675,10 +712,35 @@ module.exports = {
         },
       ],
       '/back-end/docker/': [
-        ['base', '基础']
+        {
+          title: 'Docker 入门',
+          collapsable: false,
+          children: [
+            ['base/intro', '简介'],
+            ['base/command', '基础命令'],
+            ['base/dockerfile', 'Dockerfile'],
+          ]
+        }
       ],
       '/back-end/nginx/': [
-        ['base', '基础']
+        {
+          title: 'Nginx 入门',
+          collapsable: false,
+          children: [
+            ['base/intro', '简介'],
+            ['base/module', '模块简介'],
+          ]
+        },
+        {
+          title: '服务器配置实例',
+          collapsable: false,
+          children: [
+            ['demo/static-resource', '静态资源'],
+            ['demo/reverse-proxy', '反向代理'],
+            ['demo/load-balance', '负载均衡'],
+            ['demo/anti-stealing-link', '防盗链'],
+          ]
+        }
       ],
       '/back-end/mongodb/': [
         ['command', '命令']

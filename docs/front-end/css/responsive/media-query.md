@@ -89,9 +89,9 @@ sidebarDepth: 2
 }
 ```
 
-### ,
+### or(,)
 
-+ 逻辑或(or)，用于指定并列关系的查询属性，相当于两条独立的查询语句的复合写法
++ 逻辑或(,)，用于指定并列关系的查询属性，相当于两条独立的查询语句的复合写法
 ```css
 /* 屏幕尺寸小于 500px 或大于 800px 时 */
 @media screen and (max-width: 500px), screen and (min-width: 800px) {

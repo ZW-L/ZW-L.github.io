@@ -1,38 +1,4 @@
----
-sidebarDepth: 2
----
-
-## 简介
-
-
-
-## 安装
-
-+ Centos 环境下：
-```sh
-# 添加 nginx 存储库
-sudo yum install epel-release
-# 安装
-sudo yum install nginx
-# 启动
-sudo systemctl start nginx
-# 查看是否安装成功
-ps -ef | grep nginx
-# 浏览器访问服务器 ip 地址查看
-```
-
-
-## 常用命令
-
-```sh
-# 查看所应用的配置文件及其路径
-nginx -t
-```
-
-
-## 应用
-
-### 反向代理服务器
+## 代理多个应用
 
 **原理**：用 `Nginx` 代理服务器的 80 端口，服务器内部在 8021/8022 端口启动的程序都会映射在 80 端口下，并且分别为 8021/8022 端口赋予不同的域名，就可以实现部署多个不同功能的应用。
 + 浏览器访问 `api.domain.com` 相当于访问服务器内 `http://127.0.0.1:8021` 启动的应用
@@ -40,7 +6,6 @@ nginx -t
 
 **配置**：
 ```sh
-# nginx.conf
 http {
   # other setting
   server {
@@ -85,16 +50,3 @@ api.shop.domain.com  # api 服务
 ```
 + 使用一个域名和一个服务器就可以搭建很多的小应用，但是应用变大就要拆分了
 :::
-
-
-
-
-
-### 静态资源服务器
-
-
-```conf
-http {
-  
-}
-```
