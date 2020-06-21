@@ -101,7 +101,7 @@ for (let key in obj) {
 
 ::: tip 说明：
 + 通过对象实例或字面量对象添加的属性，**除 `[[value]]` 外**的三个描述符默认值为 `true`
-+ `defineProperty()` 添加的属性若无显式设置，这三个描述符默认值为 `false`
++ `defineProperty()` 添加的属性若无显式设置，除 `[[value]]` 外三个描述符默认值为 `false`
 :::
 
 
@@ -125,16 +125,17 @@ Object.defineProperty(obj, 'name', {
   },
 })
 
-console.log(obj.name) // 'Alice'
+console.log(obj.name)   // 'Alice'
 obj.name = 'Anna'
-delete obj.name
-console.log(obj.name)  // 'Anna'
+delete obj.name         // 删除失败
+console.log(obj.name)   // 'Anna'
 for (let key in obj) {
-  console.log(key) // '_name'
+  console.log(key)      // '_name'
 }
 ```
 
 ::: tip 说明：
++ 同样，调用 `defineProperty()` 会将 `[[configurable]]` 和 `[[enumerable]]` 的默认值设为 `false`
 + 不一定要同时指定 `getter` 和 `setter`，它们的默认值为 `undefined`
 + 没有定义 `getter` 时，读取的属性是 `undefined`(严格模式下会报错)
 + 没有定义 `setter` 时，写入操作会被忽略(严格模式下会报错)
@@ -171,11 +172,11 @@ function foo() {
 }
 
 const p = Person()
-console.log(p) // undefined
-foo() // Alice
+console.log(p)  // undefined
+foo()           // Alice
 ```
 
-+ 只要使用 `new` 调用函数，函数中的 `this` 就会改变（指向当前函数的一个实例，并且能使用该函数原型上的属性）：
++ 只要使用 `new` 调用函数，函数中的 `this` 就会改变(指向当前函数的一个实例，并且能使用该函数原型上的属性)
 ```js
 function P() {
   this.sayHi()
@@ -187,32 +188,43 @@ P.prototype.sayHi = function() {
 
 const p = new P() // Hi
 ```
-+ **结论**：构造函数只是一个普通的函数，首字母大写只是一个约定；`new` 操作符是一个语法糖，它用来构造类的概念
-
++ 所以，**构造函数只是一个普通的函数，首字母大写只是一个约定；`new` 操作符是一个语法糖，它用来构造类的概念**
 
 ::: tip 使用 new 调用函数时，返回值也要依情况而定：
++ 默认返回 `this`
+```js
+// 1.默认返回 this
+function Foo() {
+  this.name = 'foo'
+}
+
+const f = new Foo()
+console.log(f)  // Foo { name: 'foo' }
+```
 + 如果函数的返回值不是一个对象，返回 `this`
 ```js
-// 1.返回值不是对象
-function foo() {
+// 2.返回值不是对象
+function Foo() {
   this.name = 'foo'
-  return 1 // new 调用时将返回 this 而不是 1
+  return 1      // new 调用时将返回 this 而不是 1
 }
 
-console.log(f) // foo { name: 'foo' }
+const f = new Foo()
+console.log(f)  // Foo { name: 'foo' }
 ```
-
 + 如果函数的返回值是一个对象，返回值维持不变
 ```js
-// 2.返回值是对象
-function foo() {
+// 3.返回值是对象
+function Foo() {
   this.name = 'foo'
-  return {} // new 调用时将直接返回
+  return {}     // new 调用时将直接返回
 }
 
-console.log(f) // {}
+const f = new Foo()
+console.log(f)  // {}
 ```
 :::
+
 
 
 ### 理解和实现
@@ -230,40 +242,50 @@ function _new(Constructor, ...args) {
     throw '_new: The first param must be a function'
   }
   const obj = {}
-  obj.__proto__ = Constructor.prototype // 继承原型上的属性
-  const ret = Person.apply(obj, args) // 执行构造函数，使用 apply() 绑定 this 为 obj
-  return ret instanceof Object ? ret : obj // 若构造函数返回的不是对象则返回 obj
+  obj.__proto__ = Constructor.prototype     // 继承原型上的属性
+  const ret = Person.apply(obj, args)       // 执行构造函数，使用 apply() 绑定 this 为 obj
+  return ret instanceof Object ? ret : obj  // 若构造函数返回的不是对象则返回 obj
 }
 
-// 使用
 function Person(name, age) {
   this.name = name
   this.age = age
 }
-
 Person.prototype.getName = function() {
   console.log(this.name)
 }
 
 const p = _new(Person, 'Alice', 24)
-console.log(p.name, p.age) // Alice 24
-p.getName() // Alice
+console.log(p.name, p.age)  // Alice 24
+p.getName()                 // Alice
 ```
 
-::: tip 说明：
-+ ES6 建议使用 `Object.setPrototypeOf()` 来代替访问 `__proto__` 属性：
-```js
+::: tip ES6 建议：
++ 使用 `Object.setPrototypeOf()` 来代替直接设置 `__proto__`：
+```js{6}
 function _new(Constructor, ...args) {
   if (typeof Constructor !== 'function') {
     throw '_new function: The first param must be a function'
   }
   const obj = {}
-  Object.setPrototypeOf(obj, Constructor.prototype) // 使用 Object.setPrototypeOf()
+  Object.setPrototypeOf(obj, Constructor.prototype)
   const ret = Person.apply(obj, args)
   return ret instanceof Object ? ret : obj
 }
 ```
++ 使用 `Object.getPrototypeOf()` 获取 `__proto__`：
+```js{5}
+function Person() {}
+
+const p = new Person()
+console.log(p.__proto__ === Person.prototype)               // true
+console.log(Object.getPrototypeOf(p) === Person.prototype)  // true
+```
 :::
+
+
+
+
 
 
 ## constructor
@@ -295,12 +317,24 @@ console.log(s.constructor) // [Function: Student]
 ## instanceof
 
 + `instanceof` 运算符用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上
++ 严格来说，"若 `p instanceof Person === true`，则 `p` 是 `Person` 的实例" **是一个充要条件**
 ```js
 function Person() {}
 
 const p = new Person()
-console.log(p instanceof Person) // true
+console.log(p instanceof Person)      // true
+console.log(p instanceof Object)      // true
 console.log(Person instanceof Object) // true
-console.log(p instanceof Object) // true
 ```
-+ 严格来说，"若 `p instanceof Person === true`，则 `p` 是 `Person` 的实例" **是一个充要条件**
+
+::: tip 备注
++ ES6 新增 `Object.prototype.isPrototypeOf()` 的功能与 `instanceof` 一样：
+```js
+function Person() {}
+
+const p = new Person()
+console.log(Person.prototype.isPrototypeOf(p))      // true
+console.log(Object.prototype.isPrototypeOf(p))      // true
+console.log(Object.prototype.isPrototypeOf(Person)) // true
+```
+:::

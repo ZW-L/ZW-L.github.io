@@ -441,7 +441,8 @@ module.exports = {
         {
           title: '专题：面向对象编程',
           children: [
-            ['es-oop/introduction', '简介'],
+            ['es-oop/introduction', '基础'],
+            ['es-oop/prototype', '趣说-原型和原型链'],
             ['es-oop/create', '创建对象的方式'],
             ['es-oop/extend', '实现继承的方式'],
             ['es-oop/stop', '防篡改对象'],
@@ -752,9 +753,10 @@ module.exports = {
       // 文章
       '/post/': [
         {
-          title: 'Javascript',
+          title: 'Javascript - 趣说 OOP',
           collapsable: false,
           children: [
+            ['prototype', '原型和原型链'],
             ['es-create-object-patterns', '创建对象的方式'],
             ['es-implement-extend-patterns', '实现继承的方式'],
           ]
