@@ -345,165 +345,163 @@ module.exports = {
       ],
       '/front-end/javascript/': [
         {
-          title: 'BOM',
-          children: [
-            ['bom/window', 'window'],
-            ['bom/console', 'console'],
-            ['bom/document', 'document'],
-            ['bom/frames', 'frames'],
-            ['bom/history', 'history'],
-            ['bom/location', 'location'],
-            ['bom/navigator', 'navigator'],
-            ['bom/screen', 'screen'],
-          ]
-        },
-        {
-          title: 'DOM',
-          children: [
-            ['dom/event-target', 'EventTarget'],
-            ['dom/node', 'Node'],
-            ['dom/document', 'Document'],
-            ['dom/html-document', 'HTMLDocument'],
-            ['dom/document-fragment', 'DocumentFragment'],
-            ['dom/element', 'Element'],
-            ['dom/html-element', 'HTMLElement'],
-            ['dom/attr', 'Attr'],
-            ['dom/node-list', 'NodeList'],
-            ['dom/html-collection', 'HTMLCollection'],
-            ['dom/child-node', 'ChildNode'],
-            ['dom/parent-node', 'ParentNode'],
-            ['dom/non-cnode', 'NonDocumentTypeChildNode'],
-            ['dom/document-type', 'DocumentType'],
-            ['dom/character-data', 'CharacterData'],
-            ['dom/sub-character-data', 'CharacterData 子类'],
-            ['dom/event', 'Event'],
-            ['dom/sub-event', 'Event 子类'],
-          ]
-        },
-        {
-          title: 'BOM & DOM 深入',
-          children: [
-            ['bom', 'BOM'],
-            ['dom', 'DOM'],
-            ['browser', '浏览器'],
-          ]
-        },
-        {
           title: 'ECMAScript 基础',
           children: [
-            ['es/es5/syntax', '语法'],
-            ['es/es5/variables&data-type', '变量和数据类型'],
-            ['es/es5/operator', '操作符'],
-            ['es/es5/process-control', '流程控制语句'],
-            ['es/es5/scope', '作用域和内存'],
-            ['es/es5/oop', '面向对象编程基础'],
-            ['es/es5/fp', '函数式编程基础'],
-            ['es/es5/json&ajax', 'JSON & Ajax'],
-          ]
-        },
-        {
-          title: 'ECMAScript 深入',
-          children: [
-            ['es/deep/data-type', '数据类型'],
-            ['es/deep/strict-mode', '严格模式'],
-            ['es/deep/syntax', '语法'],
-            ['es/deep/oop', '面向对象程序设计'],
-            ['es/deep/fp', '函数式编程'],
-            ['es/deep/es6+', 'ES6+'],
+            ['es5/syntax', '语法'],
+            ['es5/variables&data-type', '变量和数据类型'],
+            ['es5/operator', '操作符'],
+            ['es5/process-control', '流程控制语句'],
+            ['es5/scope', '作用域和内存'],
+            ['es5/json&ajax', 'JSON & Ajax'],
           ]
         },
         {
           title: 'ES6',
           children: [
-            ['es/es6/let&const', 'let & const'],
-            ['es/es6/destructuring', '解构赋值'],
-            ['es/es6/object-extensions', '内置对象的扩展'],
-            ['es/es6/symbol', 'Symbol'],
-            ['es/es6/set&map', 'Set & Map'],
-            ['es/es6/proxy', 'Proxy'],
-            ['es/es6/reflect', 'Reflect'],
-            ['es/es6/promise', 'Promise'],
-            ['es/es6/iterator', 'Iterator'],
-            ['es/es6/generator', 'Generator'],
-            ['es/es6/class', 'Class'],
-            ['es/es6/module', 'Module'],
+            ['es6/let&const', 'let & const'],
+            ['es6/destructuring', '解构赋值'],
+            ['es6/object-extensions', '内置对象的扩展'],
+            ['es6/symbol', 'Symbol'],
+            ['es6/set&map', 'Set & Map'],
+            ['es6/proxy', 'Proxy'],
+            ['es6/reflect', 'Reflect'],
+            ['es6/promise', 'Promise'],
+            ['es6/iterator', 'Iterator'],
+            ['es6/generator', 'Generator'],
+            ['es6/class', 'Class'],
+            ['es6/module', 'Module'],
           ]
         },
         {
           title: 'ES6+',
           children: [
-            ['es/es7', 'ES7'],
-            ['es/es8', 'ES8'],
-            ['es/es9', 'ES9'],
-            ['es/es10', 'ES10'],
+            ['esp/es7', 'ES7'],
+            ['esp/es8', 'ES8'],
+            ['esp/es9', 'ES9'],
+            ['esp/es10', 'ES10'],
+          ]
+        },
+        {
+          title: '深入：BOM & DOM',
+          children: [
+            ['deep/bom', 'BOM'],
+            ['deep/dom', 'DOM'],
+            ['deep/browser', '浏览器'],
+          ]
+        },
+        {
+          title: '深入：ECMAScript',
+          children: [
+            ['deep/es/data-type', '数据类型'],
+            ['deep/es/strict-mode', '严格模式'],
+            ['deep/es/syntax', '语法'],
+            ['deep/es/oop', '面向对象程序设计'],
+            ['deep/es/fp', '函数式编程'],
+            ['deep/es/es6+', 'ES6+'],
           ]
         },
         {
           title: '专题：面向对象编程',
           children: [
-            ['es-oop/introduction', '基础'],
-            ['es-oop/prototype', '趣说-原型和原型链'],
-            ['es-oop/create', '创建对象的方式'],
-            ['es-oop/extend', '实现继承的方式'],
-            ['es-oop/stop', '防篡改对象'],
+            ['subject/oop/intro', '基础'],
+            ['subject/oop/prototype', '趣说-原型和原型链'],
+            ['subject/oop/create', '创建对象的方式'],
+            ['subject/oop/extend', '实现继承的方式'],
+            ['subject/oop/stop', '防篡改对象'],
           ]
         },
         {
           title: '专题：函数式编程',
           children: [
-            ['es-fp/introduction', '简介'],
-            ['es-fp/scope&closure', '作用域和闭包'],
-            ['es-fp/high-order-function', '高阶函数'],
-            ['es-fp/currying', '柯里化'],
-            ['es-fp/recursion', '递归'],
-            ['es-fp/rules', '规则'],
-            ['es-fp/flow', '基于流'],
-            ['es-fp/non-class', '无类编程'],
-            ['es-fp/referrence', '参考：相关函数'],
+            ['subject/fp/intro', '简介'],
+            ['subject/fp/scope', '作用域'],
+            ['subject/fp/closure', '闭包'],
+            ['subject/fp/higher', '高阶函数'],
+            ['subject/fp/currying', '柯里化'],
+            ['subject/fp/recursion', '递归'],
+            ['subject/fp/rules', '规则'],
+            ['subject/fp/flow', '基于流'],
+            ['subject/fp/non-class', '无类编程'],
+            ['subject/fp/referrence', '参考：相关函数'],
           ]
         },
         {
           title: '专题：编码能力',
           children: [
-            ['es-power/native', '实现原生功能'],
-            ['es-power/array', '数组相关'],
-            ['es-power/util', '常用工具函数'],
-            ['es-power/validate', '正则和验证'],
-            ['es-power/fw', '深入框架思想'],
-            ['es-power/other', '其他'],
+            ['subject/power/native', '实现原生功能'],
+            ['subject/power/array', '数组相关'],
+            ['subject/power/util', '常用工具函数'],
+            ['subject/power/validate', '正则和验证'],
+            ['subject/power/fw', '深入框架思想'],
+            ['subject/power/other', '其他'],
           ]
         },
         {
           title: '专题：性能优化',
           children: [
-            ['es-hp/load', '脚本加载和执行'],
-            ['es-hp/syntax', 'JS 语法'],
-            ['es-hp/bom', 'BOM'],
-            ['es-hp/dom', 'DOM'],
-            ['es-hp/data', '数据'],
-            ['es-hp/apply', '应用'],
+            ['subject/hp/load', '脚本加载和执行'],
+            ['subject/hp/syntax', 'JS 语法'],
+            ['subject/hp/bom', 'BOM'],
+            ['subject/hp/dom', 'DOM'],
+            ['subject/hp/data', '数据'],
+            ['subject/hp/apply', '应用'],
           ]
         },
         {
-          title: '附录：ES 内置对象',
+          title: '附录：BOM 接口',
           children: [
-            ['es/bio/function', 'Function'],
-            ['es/bio/object', 'Object'],
-            ['es/bio/array', 'Array'],
-            ['es/bio/string', 'String'],
-            ['es/bio/number', 'Number'],
-            ['es/bio/boolean', 'Boolean'],
-            ['es/bio/math', 'Math'],
-            ['es/bio/date', 'Date'],
-            ['es/bio/regexp', 'RegExp'],
-            ['es/bio/global', 'Global'],
+            ['appendix/bom/window', 'window'],
+            ['appendix/bom/console', 'console'],
+            ['appendix/bom/document', 'document'],
+            ['appendix/bom/frames', 'frames'],
+            ['appendix/bom/history', 'history'],
+            ['appendix/bom/location', 'location'],
+            ['appendix/bom/navigator', 'navigator'],
+            ['appendix/bom/screen', 'screen'],
+          ]
+        },
+        {
+          title: '附录：DOM 接口',
+          children: [
+            ['appendix/dom/event-target', 'EventTarget'],
+            ['appendix/dom/node', 'Node'],
+            ['appendix/dom/document', 'Document'],
+            ['appendix/dom/html-document', 'HTMLDocument'],
+            ['appendix/dom/document-fragment', 'DocumentFragment'],
+            ['appendix/dom/element', 'Element'],
+            ['appendix/dom/html-element', 'HTMLElement'],
+            ['appendix/dom/attr', 'Attr'],
+            ['appendix/dom/node-list', 'NodeList'],
+            ['appendix/dom/html-collection', 'HTMLCollection'],
+            ['appendix/dom/child-node', 'ChildNode'],
+            ['appendix/dom/parent-node', 'ParentNode'],
+            ['appendix/dom/non-cnode', 'NonDocumentTypeChildNode'],
+            ['appendix/dom/document-type', 'DocumentType'],
+            ['appendix/dom/character-data', 'CharacterData'],
+            ['appendix/dom/sub-character-data', 'CharacterData 子类'],
+            ['appendix/dom/event', 'Event'],
+            ['appendix/dom/sub-event', 'Event 子类'],
+          ]
+        },
+        {
+          title: '附录：常用内置对象',
+          children: [
+            ['appendix/bio/function', 'Function'],
+            ['appendix/bio/object', 'Object'],
+            ['appendix/bio/array', 'Array'],
+            ['appendix/bio/string', 'String'],
+            ['appendix/bio/number', 'Number'],
+            ['appendix/bio/boolean', 'Boolean'],
+            ['appendix/bio/math', 'Math'],
+            ['appendix/bio/date', 'Date'],
+            ['appendix/bio/regexp', 'RegExp'],
+            ['appendix/bio/global', '全局属性'],
           ]
         },
       ],
       '/front-end/node/': [
         {
           title: '全局属性',
-          collapsable: false,
           children: [
             ['global/dirname', '__dirname'],
             ['global/filename', '__filename'],
@@ -515,7 +513,7 @@ module.exports = {
           ]
         },
         {
-          title: '原生模块一览',
+          title: '原生模块',
           children: [
             ['native/assert', 'assert'],
             ['native/child-process', 'child_process'],
@@ -539,7 +537,6 @@ module.exports = {
         },
         {
           title: '专题：异步编程',
-          collapsable: false,
           children: [
             ['async/concept', '原理和概念'],
             ['async/callback', 'Callback - 回调地狱'],
@@ -551,14 +548,12 @@ module.exports = {
         },
         {
           title: '专题：使用技巧',
-          collapsable: false,
           children: [
             ['tips/npm-module', '使用 npm 开发模块'],
           ],
         },
         {
-          title: '框架介绍',
-          collapsable: false,
+          title: '专题：框架',
           children: [
             ['fw/express', 'Express'],
             ['fw/koa', 'Koa'],
@@ -567,7 +562,6 @@ module.exports = {
         },
         {
           title: 'MongoDB',
-          collapsable: false,
           children: [
             ['mongodb/start', '开始'],
             ['mongodb/db&collection', '数据库和集合'],

@@ -1,31 +1,23 @@
-## TODO
-
-+ BOM
-+ DOM
-+ ECMAScript
-+ ES6
-+ ES6+
-
-
 ## Javascript 简介
 
-+ `javascript` 由三部分组成：`BOM`(Browser Object Model)、`DOM`(Document Object Model) 和 `ECMAScript`。
++ `javascript` 由三部分组成：`BOM`(Browser Object Model)、`DOM`(Document Object Model) 和 `ECMAScript`
 + `BOM` 能使用浏览器提供的基于客户端的存储、URL 定位等接口
 + `DOM` 能使用操作文档、修改样式、事件监听等接口
 + `ECMAScript` 是一门脚本语言，能无缝使用 `BOM` 和 `DOM` 提供的接口功能，而且还有自身丰富的语言特点:
-  + `ES3` 可以作为第一个 `ECMAScript` 版本的标准，它让 `ECMAScript` 更像一门编程语言
-  + `ES5` 对部分功能进行修订，并且添加了新的功能(JSON 对象，继承的方法，高级属性定义等)和严格模式
+  + `ES3` 可以作为第一个 `ECMAScript` 版本的标准
+  + `ES5` 对部分功能进行修订，并且添加了新的功能(JSON 对象，继承的方法，高级属性定义等)和**严格模式**
   + `ES6` 增加了众多新功能特性，是一个最为丰富的版本更新
   + `ES7/8/9/10` 等版本都增加了少部分的功能特性
 
+
+
 ## DOM
 
-&emsp;&emsp;DOM (Document Object Model, 文档对象模型)，是 HTML 和 XML 文档的编程接口。[DOM 介绍](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduction):
-
-+ 提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容；
-+ 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。简言之，它会将 web 页面和脚本或程序语言连接起来；
-+ DOM 是 Web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改；
-+ [W3C DOM](https://www.w3.org/DOM/) 和 [WHATWG DOM](https://dom.spec.whatwg.org/) 标准在绝大多数现代浏览器中都有对DOM的基本实现；许多浏览器提供了对W3C标准的扩展，所以在使用时必须注意，文档可能会在多种浏览器上使用不同的 DOM 来访问。
++ DOM (Document Object Model, 文档对象模型)，是 HTML 和 XML 文档的编程接口。[DOM 介绍](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduction)
++ 提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容
++ 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。简言之，它会将 web 页面和脚本或程序语言连接起来
++ DOM 是 Web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改
++ [W3C DOM](https://www.w3.org/DOM/) 和 [WHATWG DOM](https://dom.spec.whatwg.org/) 标准在绝大多数现代浏览器中都有对DOM的基本实现；许多浏览器提供了对W3C标准的扩展，所以在使用时必须注意，文档可能会在多种浏览器上使用不同的 DOM 来访问
 
 
 ### 节点类型
@@ -34,24 +26,24 @@
 
 类型|ID|描述|规范
 -|-|-|-
-ELEMENT_NODE|1|元素节点，<font color="red">可以有子节点</font>|-
+ELEMENT_NODE|1|元素节点，<font color="blue">可有子节点</font>|-
 TEXT_NODE|3|文本节点，无子节点|-
-CDATA_SECTION_NODE|4|一个 `CDATASection，如` `<~CDATA[[...]]>`
-PROCESSING_INSTRUCTION_NODE|7|一个 XML 文档的 `ProcessingInstruction`|-
+CDATA_SECTION_NODE|4|CDATASection: `<~CDATA[[...]]>`
+PROCESSING_INSTRUCTION_NODE|7|XML 文档的 `ProcessingInstruction`|-
 COMMENT_NODE|8|注释节点，无子节点|-
 DOCUMENT_NODE|9|Document 节点，代表整个文档|-
-DOCUMENT_TYPE_NODE|10|描述文档类型的 `DocumentType` 节点，如 `<!DOCTYPE html>`|-
-DOCUMENT_FRAGMENT_NODE|11|一个 `DocumentFragment` 节点，<font color="red">可以有子节点</font>|-
-ATTRIBUTE_NODE|2|属性节点，无子节点|DOM4 废弃
-ENTITY_REFERENCE_NODE|5|一个 XML 实体引用节点|DOM4 废弃
-ENTITY_NODE|6|一个 XML `<!ENTITY>` 节点|DOM4 废弃
-NOTATION_NODE|12|一个 XML `<!NOTATION>` 节点|DOM4 废弃
+DOCUMENT_TYPE_NODE|10|DocumentType 节点，如 `<!DOCTYPE html>`|-
+DOCUMENT_FRAGMENT_NODE|11|`DocumentFragment` 节点，<font color="blue">可有子节点</font>|-
+ATTRIBUTE_NODE|2|属性节点，无子节点|<font color="red">DOM4 废弃</font>
+ENTITY_REFERENCE_NODE|5|一个 XML 实体引用节点|<font color="red">DOM4 废弃</font>
+ENTITY_NODE|6|一个 XML `<!ENTITY>` 节点|<font color="red">DOM4 废弃</font>
+NOTATION_NODE|12|一个 XML `<!NOTATION>` 节点|<font color="red">DOM4 废弃</font>
 
 
 
 ### 接口关系图
 
-MDN 所有 [DOM 接口](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model)：
++ 参考：[MDN DOM 接口](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model)
 
 ![DOM 关系](./imgs/dom_01.png)
 
