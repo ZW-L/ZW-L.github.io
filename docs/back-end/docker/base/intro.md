@@ -65,12 +65,18 @@ rm -rf /var/lib/docker
 
 ## 问题解决
 
-+ 运行容器时报错
++ 安装提示：package docker-ce-3:19.03.11-3.el7.x86_64 requires containerd.io >= 1.2.2-3 but none of...
 ```sh
-# 错误信息
-Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+# 解析：需要更高版本的 containerd.io
+# 1.通过阿里云镜像库安装符合 docker-ce 最新版本的 containerd.io
+yum install -y https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.13-3.2.el7.x86_64.rpm
+# 2.再继续安装 docker-ce
+yum -y install docker-ce docker-ce-cli
+```
 
-# 解析：重启 docker 守护进程
++ 运行容器时报错：Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?...
+```sh
+# 解析：需要重启 docker 守护进程
 systemctl daemon-reload   # 重新加载守护进程
 service docker restart    # 重启 docker 服务
 service docker status     # 查看 docker 状态，若看到 Active: active(running) 则成功

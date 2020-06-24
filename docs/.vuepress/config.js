@@ -561,6 +561,12 @@ module.exports = {
           ],
         },
         {
+          title: 'MySQL',
+          children: [
+            ['mysql/start', '开始'],
+          ]
+        },
+        {
           title: 'MongoDB',
           children: [
             ['mongodb/start', '开始'],
@@ -570,6 +576,12 @@ module.exports = {
             ['mongodb/mongoose', 'Mongoose'],
             ['mongodb/mongodb-pro', '进阶'],
           ],
+        },
+        {
+          title: 'Redis',
+          children: [
+            ['redis/start', '开始'],
+          ]
         },
       ],
       '/front-end/vue/': [
@@ -738,10 +750,31 @@ module.exports = {
         }
       ],
       '/back-end/mongodb/': [
-        ['command', '命令']
+        {
+          title: '基础',
+          collapsable: false,
+          children: [
+            ['base/intro', '简介'],
+            ['base/type', '数据类型'],
+            ['base/manage', '管理语句'],
+            ['base/document', '文档操作'],
+          ]
+        },
       ],
       '/back-end/mysql/': [
-        ['command', '命令']
+        {
+          title: '基础',
+          collapsable: false,
+          children: [
+            ['base/intro', '简介'],
+            ['base/type', '数据类型'],
+            ['base/keyword', '关键字'],
+            ['base/manage', '管理语句'],
+            ['base/statement', 'CURD'],
+            ['base/sub-statement', '子句'],
+            ['base/common-statement', '日常语句'],
+          ]
+        },
       ],
 
       // 文章
