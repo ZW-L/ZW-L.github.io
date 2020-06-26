@@ -17,4 +17,4 @@ after_success:
 - git config --global user.email "1041214157@qq.com"
 - git add .
 - git commit -m "Automatically update from travis-ci"
-- git push -f "git@github.com:ZW-L/web-docs.git" master
+- git push -f "git@github.com:ZW-L/zw-l.github.io.git" master
