@@ -36,13 +36,19 @@ ps -ef | grep nginx
 
 ```sh
 # 检查配置文件是否有误
-nginx -t /path/to/nginx.conf
+nginx -t
+
+# 查看版本
+nginx -v
+
+# 查看已安装模块
+nginx -V
 
 # 重新加载配置文件
 nginx -s reload
 
 # 启动
-nginx -c /path/to/nginx.conf
+nginx -c
 
 # 关闭
 nginx -s stop

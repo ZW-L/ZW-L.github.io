@@ -9,8 +9,8 @@ sidebarDepth: 2
 mongoose 是一个更友好的 MongoDB 驱动，并增强了 mongodb 原生驱动：
 + 在某些方面，操作比 mongodb 更容易，如扩展了 Document 对象
 + 引入模式和模型的概念，使数据操作更安全
-+ 验证和类型转换功能
-+ 中间件函数
++ 支持验证和类型转换
++ 支持中间件函数
 
 
 新对象：
@@ -19,6 +19,20 @@ mongoose 是一个更友好的 MongoDB 驱动，并增强了 mongodb 原生驱�
 + Document：表示某一集合中的某个文档
 + Query：实现查询功能，并可以链式调用（类似 Cursor 和 query 的结合）
 + Aggregate：实现聚合功能（类似 aggregate 对象）
+
+
+### 对比
+
+mongodb|mongoose
+-|-
+Db|
+Admin|
+-|Schema
+Collection|Model
+-|Document
+Cursor|Query
+query|
+
 
 
 

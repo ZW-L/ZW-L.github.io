@@ -1,3 +1,25 @@
+## 简介
+
++ MongoDB 是热门的 NoSQL(非关系式数据库)，基于文档的数据库
++ 支持事务()
++ 可以嵌入文档(反规范化数据)或引用文档(规范化数据)
+
+
+
+
+## 对比
+
+MongoDB|MySQL
+-|-
+数据库(database)|数据库(database)
+集合(Collection)|表(Table)
+文档(Document)|行(Row)
+字段(Filed)|列(Column)
+
+
+
+
+
 ## 安装
 
 1. 官网下载并解压缩 MongoDB 文件夹到指定目录，如 `/usr/local/mongodb`
