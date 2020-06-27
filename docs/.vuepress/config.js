@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Web Docs', // 文档标题
   description: '一份以手册为主的 Web 开发文档',
-  base: '/web-docs/', // 设置打包后的基础路径
+  base: '/', // 设置打包后的基础路径
   configureWebpack: {
     resolve: {
       alias: {
