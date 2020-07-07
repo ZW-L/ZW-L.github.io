@@ -44,6 +44,7 @@ module.exports = {
           { text: '前端工程化',  link: '/front-end/engineering/' },
           { text: '开发技巧',  link: '/front-end/business-related/' },
           { text: '开发流程', link: '/front-end/project-setup/'},
+          { text: '小程序', link: '/front-end/applet/' }
         ],
       },
       {
@@ -685,6 +686,17 @@ module.exports = {
           ]
         }
       ],
+      '/front-end/applet/': [
+        {
+          title: '小程序基础',
+          collapsable: false,
+          children: [
+            ['base/intro', '介绍'],
+            ['base/config', '配置'],
+          ]
+        }
+      ],
+      
 
       // 后端
       '/back-end/linux/': [
