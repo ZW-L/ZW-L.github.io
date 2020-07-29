@@ -1,20 +1,27 @@
 module.exports = {
-  title: 'Web Docs', // 文档标题
+  title: 'Web Docs',
   description: '一份以手册为主的 Web 开发文档',
-  base: '/', // 设置打包后的基础路径
-  configureWebpack: {
-    resolve: {
-      alias: {
-        '@base': '/base/',
-      },
-    },
-  },
+  base: '/',  // '/' will deploy to http://my-server/; '/a' will deploy to http://my-server/a/
   markdown: {
-    // lineNumbers: true, // 显示代码块行号
-    // smoothScroll: true,
+    // lineNumbers: true
   },
+  plugins: [
+    '@vuepress/nprogress',  // A progress in top while skipping to other page
+    '@vuepress/back-to-top',  // Show back-to-top icon
+    'vuepress-plugin-smooth-scroll',  // Make scroll smoothly
+    // Zoom the pic, see https://vuepress.github.io/zh/plugins/zooming/
+    ['vuepress-plugin-zooming', {
+      selector: '.content__default img',
+      delay: 100,
+      // More options see https://desmonding.me/zooming/docs/#/configuration?id=options
+      options: {
+        bgColor: 'rgba(0, 0, 0, .6)',
+        zIndex: 999,
+        transitionDuration: 0.2
+      },
+    }],
+  ],
   themeConfig: {
-    // repo: '',
     lastUpdate: '最后更新于', // 显示最后更新时间
     // 导航栏
     nav: [
