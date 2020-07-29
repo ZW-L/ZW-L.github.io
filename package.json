@@ -2,6 +2,13 @@
   "name": "web-docs",
   "version": "0.0.1",
   "license": "MIT",
+  "description": "Web development documents.",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "author": "zw-l",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.5.2",
     "node-sass": "^4.14.1",
