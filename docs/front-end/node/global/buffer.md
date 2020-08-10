@@ -8,6 +8,7 @@ sidebarDepth: 2
 
 + [Buffer](http://nodejs.cn/api/buffer.html) 用来创建一个专门存放二进制数据的缓存区
 + `Buffer` 类似于一个整数数组，但它对应于 V8 堆内存之外的一块原始内存
++ 是 JavaScript 的 Uint8Array 类的子类，且继承时带上了涵盖额外用例的方法，只要支持 Buffer 的地方，Node.js API 都可以接受普通的 Uint8Array
 + `buffer` 模块提供了一些属性和方法，使用时需要 `require('buffer')` 引入
 
 ### 字符编码

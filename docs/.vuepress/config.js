@@ -621,7 +621,27 @@ module.exports = {
           ]
         },
         {
-          title: 'Vue 组件开发技巧',
+          title: 'Vue 源码学习',
+          collapsable: false,
+          children: [
+            ['source/responsive' , '响应式原理'],
+            ['source/vdom', '虚拟 DOM'],
+            // ['source/vuex', 'Vuex 原理'],
+            // ['source/router', 'Router 原理'],
+            // ['source/diff', 'diff 算法及实现'],
+            // ['source/next-tick', '$nextTick() 原理'],
+            // ['source/directive', '指令的实现'],
+          ]
+        },
+        {
+          title: '开发技巧',
+          collapsable: false,
+          children: [
+            ['tips/api', 'API 管理'],
+          ]
+        },
+        {
+          title: '组件开发',
           collapsable: false,
           children: [
             ['component-skills/svg-component', 'SVG 组件']
@@ -633,7 +653,7 @@ module.exports = {
           title: '工程化',
           collapsable: false,
           children: [
-            ['engine/npm&yarn', 'npm & yarn'],
+            ['engine/npm&yarn', '包管理'],
             ['engine/git', 'Git'],
             ['engine/webpack', 'Webpack'],
             ['engine/gulp', 'Gulp'],
@@ -649,11 +669,12 @@ module.exports = {
           collapsable: false,
           children: [
             ['ts/install', '安装使用'],
-            ['ts/strong-type', '强类型'],
-            ['ts/es6+', 'ES6+ 语法'],
-            ['ts/oop', '面向对象编程'],
-            ['ts/ts-file', '.d.ts 文件'],
-            ['ts/more', '更多特性'],
+            ['ts/type', '类型'],
+            ['ts/interface', '接口'],
+            ['ts/generic', '泛型'],
+            ['ts/function', '函数'],
+            ['ts/class', '类'],
+            ['ts/other', '其他'],
           ]
         },
         {
@@ -813,6 +834,7 @@ module.exports = {
           children: [
             ['module-history', '模块化规范发展史'],
             ['webpack-loader&plugin', 'Webpack - Loader & Plugin'],
+            ['libraries', '常用工具库']
           ]
         }
       ],

@@ -22,25 +22,22 @@
 
 ### 1.打包js文件
 
-
-
 1）下载
 
-```
-// 初始化 package.json
-$ npm init
-// 全局安装，使用 webpack3
-$ npm install webpack@3 -g
-$ npm install webpack-cli -g
-// 安装项目依赖
-$ npm install webpack@3 --save-dev
-$ npm install webpack-cli --save-dev
+```sh
+# 初始化 package.json
+npm init
+# 全局安装，使用 webpack3
+npm install webpack@3 -g
+npm install webpack-cli -g
+# 安装项目依赖
+npm install webpack@3 --save-dev
+npm install webpack-cli --save-dev
 ```
 
 2）项目基础目录
 
-&emsp;新建主文件 entry.js 和 模块文件 person.js，其中 entry.js 依赖于 person.js。
-
++ 新建主文件 entry.js 和 模块文件 person.js，其中 entry.js 依赖于 person.js
 ```
 |-project 
   |-dist
@@ -57,9 +54,8 @@ $ npm install webpack-cli --save-dev
 
 3）文件
 
-entry.js
-
-```javascript
++ entry.js
+```js
 // 引入 person 模块
 import person from './person.js';
 
@@ -68,9 +64,8 @@ console.log(person.obj.getMessage());
 
 ```
 
-person.js
-
-```javascript
++ person.js
+```js
 let obj = {
 	name: 'Alice',
 	age: 24,
@@ -83,15 +78,13 @@ let obj = {
 export default { obj };
 ```
 
-执行命令
-
++ 执行命令
+```sh
+webpack src/js/entry.js dist/js/bundle.js
+# 打包完成后自动创建 dist/js/bundle.js
 ```
-$ webpack src/js/entry.js dist/js/bundle.js
-// 打包完成后自动创建 dist/js/bundle.js
-```
 
-index.html
-
++ index.html
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -108,8 +101,7 @@ index.html
 
 
 4）输出
-
-```
+```sh
 In entry.js, use person module:
 Alice 24 developer
 ```
@@ -396,20 +388,20 @@ body {
 
 1）安装
 
-```
-// 初始化 package.json
-$ npm init
-// 全局安装依赖
-$ npm install webpack@3 -g
-$ npm install webpack-cli -g
-$ npm install css-loader -g
-$ npm install style-loader -g 
-// 安装项目依赖
-$ npm install webpack@3 --save-dev
-$ npm install css-loader -save-dev
-$ npm install style-loader -save-dev
-$ npm install html-webpack-plugin --save-dev   // 插件：生成html模板
-$ npm install clean-webpack-plugin --save-dev  // 插件：清理文件夹
+```sh
+# 初始化 package.json
+npm init
+# 全局安装依赖
+npm install webpack@3 -g
+npm install webpack-cli -g
+npm install css-loader -g
+npm install style-loader -g 
+# 安装项目依赖
+npm install webpack@3 --save-dev
+npm install css-loader -save-dev
+npm install style-loader -save-dev
+npm install html-webpack-plugin --save-dev   # 插件：生成html模板
+npm install clean-webpack-plugin --save-dev  # 插件：清理文件夹
 ```
 
 2）项目基础目录
@@ -434,8 +426,7 @@ $ npm install clean-webpack-plugin --save-dev  // 插件：清理文件夹
 
 3）文件
 
-entry.js
-
++ entry.js
 ```javascript
 // 引入 main.css 模块
 import '../css/main.css';
@@ -443,16 +434,14 @@ import '../css/main.css';
 document.write('In entry.js');
 ```
 
-main.css
-
++ main.css
 ```css
 body {
 	background-color: red;
 }
 ```
 
-webpack.config.js
-
++ webpack.config.js
 ```javascript
 // 引入模块
 let path = require('path');
@@ -480,8 +469,7 @@ module.exports = {
 }
 ```
 
-index.html
-
++ index.html
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -495,18 +483,13 @@ index.html
 </html>
 ```
 
-命令行
-
-```
-$ webpack
-```
 
 4）输出
 
-```
-// 在浏览器打开 dist/js/index.html 查看
+```sh
+# 在浏览器打开 dist/js/index.html 查看
 In entry.js
-// body 背景色为红色
-// clean-webpack-plugin  --> 其中整个 dist 文件夹先被删除，然后再被创建=
-// html-webpack-plugin --> 以指定的模板生成 html 文件，目录为 dist/js/index.html，并且自动引入了 bundle.js 文件
+# body 背景色为红色
+# clean-webpack-plugin  --> 其中整个 dist 文件夹先被删除，然后再被创建=
+# html-webpack-plugin --> 以指定的模板生成 html 文件，目录为 dist/js/index.html，并且自动引入了 bundle.js 文件
 ```
