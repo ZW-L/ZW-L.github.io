@@ -1,0 +1,24 @@
+## 过滤基本元素
+
++ [feBelend](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feBelend): 
++ [feColorMatrix](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feColorMatrix): 
++ [feComponentTransfer](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feComponentTransfer): 
++ [feComposite](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feComposite): 
++ [feConvolveMatrix](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feConvolveMatrix): 
++ [feDiffuseLighting](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDiffuseLighting): 
++ [feDisplacementMap](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDisplacementMap): 
++ [feDropShadow](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDropShadow): 
++ [feFlood](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFlood): 
++ [feFuncA](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncA): 
++ [feFuncB](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncB): 
++ [feFuncG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncG): 
++ [feFuncR](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncR): 
++ [feGaussianBlur](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feGaussianBlur): 
++ [feImage](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feImage): 
++ [feMerge](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMerge): 
++ [feMergeNode](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMergeNode): 
++ [feMorphology](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMorphology): 
++ [feOffset](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feOffset): 
++ [feSpecularLighting](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feSpecularLighting): 
++ [feTile](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTile): 
++ [teTurbulence](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/teTurbulence): 

@@ -44,6 +44,7 @@ module.exports = {
         text: '前端',
         items: [
           { text: 'HTML',  link: '/front-end/html/' },
+          { text: 'HTML5',  link: '/front-end/html5/' },
           { text: 'CSS',  link: '/front-end/css/' },
           { text: 'JavaScript',  link: '/front-end/javascript/' },
           { text: 'Node', link: '/front-end/node/' },
@@ -63,6 +64,21 @@ module.exports = {
           { text: 'MongoDB',  link: '/back-end/mongodb/' },
           { text: 'MySQL',  link: '/back-end/mysql/' },
         ],
+      },
+      {
+        text: 'Python',
+        items: [
+          { text: '语法',  link: '/python/syntax/' },
+          { text: '模块',  link: '/python/module/' },
+          { text: '爬虫',  link: '/python/crawler/' },
+          { text: '自动化',  link: '/python/automation/' },
+          // { text: '数据分析',  link: '/python/data-analysis/' },
+          // { text: '深度学习',  link: '/python/deep-learning/' },
+        ],
+      },
+      {
+        text: 'R 语言',
+        link: '/r/',
       },
       {
         text: '博文',
@@ -271,6 +287,33 @@ module.exports = {
           ]
         },
       ],
+      '/front-end/html5/': [
+        {
+          title: 'Canvas',
+          collapsable: false,
+          children: [
+            ['canvas/intro', '简介'],
+            ['canvas/graph&path', '图形和路径'],
+            ['canvas/style', '样式'],
+            ['canvas/effect&transform', '特效和变换'],
+            ['canvas/other', '其他'],
+          ]
+        },
+        {
+          title: 'SVG',
+          collapsable: false,
+          children: [
+            ['svg/intro', '简介'],
+            ['svg/shape', '形状'],
+            ['svg/container', '容器'],
+            ['svg/style', '样式'],
+            ['svg/effect&animation', '特效&动画'],
+            ['svg/filter', '过滤'],
+            ['svg/other', '其他'],
+          ]
+        },
+      ],
+
       '/front-end/css/': [
         {
           title: 'CSS 属性',
@@ -524,23 +567,23 @@ module.exports = {
           title: '原生模块',
           children: [
             ['native/assert', 'assert'],
+            ['native/inspector', 'inspector'],
+            ['native/path', 'path'],
+            ['native/util', 'util'],
+            ['native/crypto', 'crypto'],
+            ['native/url', 'url'],
             ['native/child-process', 'child_process'],
             ['native/cluster', 'cluster'],
-            ['native/crypto', 'crypto'],
+            ['native/events', 'events'],
+            ['native/os', 'os'], 
+            ['native/fs', 'fs'],
+            ['native/zlib', 'zlib'],
+            ['native/net', 'net'],
             ['native/dgram', 'dgram'],
             ['native/dns', 'dns'],
-            ['native/events', 'events'],
-            ['native/fs', 'fs'],
-            ['native/os', 'os'],
             ['native/http', 'http'],
             ['native/http2', 'http2'],
             ['native/https', 'https'],
-            ['native/net', 'net'],
-            ['native/inspector', 'inspector'],
-            ['native/path', 'path'],
-            ['native/url', 'url'],
-            ['native/util', 'util'],
-            ['native/zlib', 'zlib'],
           ]
         },
         {
@@ -597,14 +640,14 @@ module.exports = {
           title: 'Vue',
           collapsable: false,
           children: [
-            ['vue-cli', 'Cli 详解'],
-            ['vue-router', 'Router 详解'],
-            ['vuex', 'Vuex 详解'],
+            // ['vue-cli', 'Cli 详解'],
+            // ['vue-router', 'Router 详解'],
+            // ['vuex', 'Vuex 详解'],
             ['vue', '面试题'],
           ]
         },
         {
-          title: 'Vue 功能特性',
+          title: 'Vue 2.x',
           collapsable: false,
           children: [
             ['feature/base', '指令和简写'],
@@ -613,11 +656,11 @@ module.exports = {
             ['feature/render', '渲染函数'],
             ['feature/reuse', '功能复用'],
             ['feature/api', 'API 简介'],
+            ['feature/cli', 'vue-cli'],
+            ['feature/loader', 'vue-loader'],
             ['feature/router', 'vue-router'],
             ['feature/vuex', 'vuex'],
             ['feature/ssr', 'ssr'],
-            ['feature/cli', 'vue-cli'],
-            ['feature/loader', 'vue-loader'],
           ]
         },
         {
@@ -668,7 +711,7 @@ module.exports = {
           title: 'TypeScript',
           collapsable: false,
           children: [
-            ['ts/install', '安装使用'],
+            ['ts/install', '简介'],
             ['ts/type', '类型'],
             ['ts/interface', '接口'],
             ['ts/generic', '泛型'],
@@ -813,6 +856,97 @@ module.exports = {
             ['base/statement', 'CURD'],
             ['base/sub-statement', '子句'],
             ['base/common-statement', '日常语句'],
+          ]
+        },
+      ],
+
+      // Python
+      '/python/syntax/': [
+        {
+          title: '基础语法',
+          collapsable: false,
+          children: [
+            ['base/intro', '入门'],
+            ['base/operator', '运算符参考'],
+            ['base/control-flow', '控制流'],
+            ['base/function', '函数'],
+            ['base/class', '类'],
+          ]
+        },
+        {
+          title: '数据结构',
+          collapsable: false,
+          children: [
+            ['data-structure/intro', '简介'],
+            ['data-structure/number', '数值'],
+            ['data-structure/none', '空值'],
+            ['data-structure/boolean', '布尔值'],
+            ['data-structure/list&tuple', '列表和元组'],
+            ['data-structure/string', '字符串'],
+            ['data-structure/dictionary', '字典'],
+            ['data-structure/set', '集合'],
+            ['data-structure/iterator', '迭代器'],
+            ['data-structure/generator', '生成器'],
+          ]
+        },
+        {
+          title: '高级语法',
+          collapsable: false,
+          children: [
+            ['deep/fp', '函数式编程'],
+            ['deep/oop', '面向对象编程'],
+          ]
+        },
+      ],
+
+      '/python/module/': [
+        {
+          title: '模块简介',
+          collapsable: false,
+          children: [
+            ['intro', '概念'],
+            ['buildin', '内置模块概览'],
+            ['third', '第三方模块收集'],
+          ]
+        },
+        {
+          title: '常用内置模块详解',
+          collapsable: false,
+          children: [
+            ['buildin/os', 'os'],
+            ['buildin/re', 're'],
+            ['buildin/file', 'file'],
+            ['buildin/json', 'json'],
+            ['buildin/urllib', 'urllib'],
+          ]
+        },
+        {
+          title: '第三方模块详解',
+          collapsable: false,
+          children: [
+            ['third/beautiful-soup', 'beautifulsoup'],
+            ['third/selenium', 'selenium'],
+          ]
+        },
+      ],
+
+      '/r/': [
+        {
+          title: 'R 语言入门',
+          collapsable: false,
+          children: [
+            ['base/intro', '简介'],
+            ['base/dataset', '数据集和数据结构'],
+            ['base/data-input', '数据输入'],
+            ['base/data-manage', '数据管理'],
+            ['base/graph', '图形'],
+          ]
+        },
+        {
+          title: '分析方法',
+          collapsable: false,
+          children: [
+            // ['analysis/intro', '简介'],
           ]
         },
       ],

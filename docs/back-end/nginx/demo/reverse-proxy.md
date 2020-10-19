@@ -6,7 +6,7 @@
 
 **配置**：
 ```sh
-http {
+http {  
   # other setting
   server {
     listen 80;

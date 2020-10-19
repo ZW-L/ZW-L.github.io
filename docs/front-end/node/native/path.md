@@ -1,6 +1,6 @@
 ## 简介
 
-+ [path](http://nodejs.cn/api/path.html) 模块提供用于处理文件路径和目录路径的实用工具。
++ [path](http://nodejs.cn/api/path.html) 模块提供用于处理文件路径和目录路径的实用工具
 
 
 
@@ -28,4 +28,3 @@
 + `path.normalize(path: string): string`：将给定的路径规范化
 + `path.resolve(...path: string)`：将路径或路径片段的序列解析为绝对路径
 + `path.toNamespacedPath(path: string): string`：返回指定路径的等效名称空间前缀路径（Windows）
-

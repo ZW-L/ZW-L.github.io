@@ -1,7 +1,10 @@
+---
+sidebarDepth: 2
+---
+
 ## 变量声明
 
-&emsp;&emsp;使用关键字 `var` 声明一个变量：
-
++ 使用关键字 `var` 声明一个变量：
 ```js
 // 仅声明
 var name;
@@ -34,27 +37,22 @@ var name = 'Zed';
 
 ## 数据类型简介
 
-&emsp;&emsp;`ES5` 的数据类型包含简单数据类型和复杂数据类型。
-
-**简单数据类型：**
-+ `Undefined`
-+ `Null`
-+ `Boolean`
-+ `Number`
-+ `String`
-+ `Symbol`(ES6)
-+ `BigInt`(ES10)
-
-**复杂数据类型:**
-+ `Object`
++ `ES5` 的数据类型包含简单数据类型和复杂数据类型
++ 简单数据类型：
+  + `Undefined`
+  + `Null`
+  + `Boolean`
+  + `Number`
+  + `String`
+  + `Symbol`(ES6)
+  + `BigInt`(ES10)
++ 复杂数据类型: `Object`
 
 
 
 ## Undefined
 
-&emsp;&emsp;`Undefined` 类型只有一个取值：`undefined`，当变量声明但未初始化时，它的值就为 `undefined`。
-
-**一些案例：**
++ `Undefined` 类型只有一个取值：`undefined`，当变量声明但未初始化时，它的值就为 `undefined`
 ```js
 // 1.声明但未初始化时，初始值默认为 undefined
 var name = 'Zed';
@@ -74,11 +72,11 @@ console.log(typeof hello); // 'undefined'
 :::
 
 
+
 ## Null
 
-&emsp;&emsp;`Null` 类型只有一个取值：`null`，可以把 `null` 理解为空指针对象(这样解析为什么 `typeof` 操作 `null` 时返回 `object`)。
-
-**一些案例：**
++ `Null` 类型只有一个取值：`null`
++ 可以把 `null` 理解为空指针对象(这样解析为什么 `typeof` 操作 `null` 时返回 `object`)
 ```js
 // 1.undefined 派生自 null
 console.log(undefined == null); // true
@@ -94,10 +92,11 @@ obj = { name: 'Zed' };
 :::
 
 
+
 ## Boolean
 
-&emsp;&emsp;`Boolean` 类型有两个取值：`true` 和 `false`，但可以用 `Boolean()` 函数将任意数据类型转化为 `Boolean` 类型。
-
++ `Boolean` 类型有两个取值：`true` 和 `false`
++ 可以用 `Boolean()` 函数将任意数据类型转化为 `Boolean` 类型
 ```js
 // 1.手动进行类型转换
 var name = 'Zed';
@@ -110,7 +109,7 @@ if (age) {
 }
 ```
 
-**使用 `Boolean()` 函数的转换规则：**
++ 使用 `Boolean()` 函数的转换规则：
 
 数据类型|true|false
 -|-|-
@@ -128,15 +127,13 @@ if (age) {
 
 ## Number
 
-&emsp;&emsp;`Number` 类型使用 `IEEE754` 格式来表示整数和浮点数(或者叫双精度数)。ES 能表示几种进制的数：
-
+`Number` 类型使用 `IEEE754` 格式来表示整数和浮点数(或者叫双精度数)。ES 能表示几种进制的数：
 + 十进制：默认为十进制数字，且在算数计算时，任何进制的数字都会被转换为十进制数字
 + 八进制：以 `0` 开头，紧跟着若干个八进制字符序列(0~7)，不符合规则的将被当作十进制处理
 + 十六进制：以 `0x` 开头，紧跟着若干个十六进制字符序列(0~9、A~F)，
 
-**1.浮点数**
+### 浮点数
 
-**一些案例：**
 ```js
 // 1.以 0 为整数部分的浮点数可以省略小数点
 var a = .2;
@@ -165,22 +162,22 @@ console.log(0.1 + 0.2 == 0.3); // false
 不要省略浮点数的小数点，不要测试浮点数的值。
 :::
 
-**2.数值范围**
+
+### 数值范围
 
 + 最大值：保存在常量 `Number.MAX_VALUE`，绝大多数浏览器中为 1.7976931348623157e+308
 + 最小值：保存在常量 `Number.MIN_VALUE`，绝大多数浏览器中为 5e-324
 
-&emsp;&emsp;大于 ES 能表示的最大值被转换为 `Infinity`，小于 ES 能表示的最小值被转换为 `-Infinity`。但是，当一次结果返回 `Infinity` 后再参与运算，其结果将会是 `NaN`。
-
-::: tip 推荐使用：
+::: tip 备注：
++ 大于 ES 能表示的最大值被转换为 `Infinity`，小于 ES 能表示的最小值被转换为 `-Infinity`
++ 当一次结果返回 `Infinity` 后再参与运算，其结果将会是 `NaN`
 在进行大数值计算前，使用 `isFinite()` 判断数值是否超出范围
 :::
 
-**3.NaN**
 
-&emsp;&emsp;`NaN` 代表非数值(Not a Number)，是一个特殊的数值，用于表示一个本来要返回数值的操作但未返回数值(ES 属于弱类型语言，这样就不会抛出错误了)。
+### NaN
 
-**一些案例：**
++ 代表非数值(Not a Number)，是一个特殊的数值，用于表示一个本来要返回数值的操作但未返回数值(ES 属于弱类型语言，这样就不会抛出错误了)
 ```js
 // 1.ES 的特点
 console.log(10 / 0); // Infinite
@@ -210,20 +207,16 @@ var obj = {
 console.log(isNaN(obj));  // false
 ```
 
-**说明：**
-
+::: tip 说明：
 + `isNaN()` 传入任何能自动转换为数值的数据类型时，都会返回 `false`
 + `isNaN()` 传入对象时，会先调用对象的 `valueOf()` 方法，若不能转换为数值，会再调用对象的 `toString()` 方法，若还是不能转换为数值，则返回 `false`
+:::
 
-**4.数值转换**
 
-&emsp;&emsp;有 3 个函数能将非数值转换为数值元素：
+### 数值转换
 
-+ `Number()`: 适用于任何数据类型
-+ `parseInt()`: 仅适用字符串
-+ `parseFloat()`: 仅适用字符串
-
-**Number() 的转换规则：**
++ 有 3 个函数能将非数值转换为数值元素
++ `Number()`: 适用于任何数据类型，转换规则
 
 数据类型|规则
 -|-
@@ -234,7 +227,8 @@ console.log(isNaN(obj));  // false
 `String`|1.只包含数字(可以是浮点数，可以包括一个前导的正/负号) => 十进制数值，但忽略前导 '0'<br>2.有效的十六进制格式 => 相同大小的十进制数值<br>3.空串('') => 0<br>4.其他 => NaN
 `Object`|先调用对象的 valueOf() 方法，若结果是 NaN，再调用 toString() 方法返回结果
 
-**parseInt() 转换规则：**
+
++ `parseInt()`: 仅适用字符串，转换规则：
 
 场景|例子
 -|-
@@ -245,12 +239,7 @@ console.log(isNaN(obj));  // false
 至少有一个字符符合时，会一直读取到不符合条件的前一个字符|'123abc' => 123
 ES5 与 ES3 处理八进制有所不同，**建议都传递第二个参数**指定基数转换|parseInt('032', 8) => 26
 
-**parseFloat() 转换规则：**
-
-与 `parseInt()` 类似，但也有不同：
-+ 能识别第一个小数点
-+ 始终忽略前导 0
-+ 仅能转换十进制浮点数，不能传递第二个参数指定基数
++ `parseFloat()`: 仅适用字符串，转换规则：
 
 场景|例子
 -|-
@@ -260,15 +249,19 @@ ES5 与 ES3 处理八进制有所不同，**建议都传递第二个参数**指�
 能转换科学计数法|'3.1e-5' => 0.000031
 返回 `NaN`|'a12.34' => NaN, '-+12.34' => NaN, '' => NaN
 
+::: tip parseFloat() 与 parseInt() 的不同点：
++ 始终忽略前导 0
++ 能识别第一个小数点
++ 仅能转换十进制浮点数，不能传递第二个参数指定基数
+:::
+
 
 
 ## String
 
-&emsp;&emsp;`String` 类型用于表示零个或多个 16 位 Unicode 字符组成的字符序列，即字符串。可以用单引号(`''`)或双引号(`""`)包裹。
-
-**1.字符字面量**
-
-&emsp;&emsp;字符字面量，也叫转义序列，用于表示非打印字符或有其他用途的字符。
++ `String` 类型用于表示零个或多个 16 位 Unicode 字符组成的字符序列，即字符串
++ 可以用单引号(`''`)或双引号(`""`)包裹
++ **字符字面量**：也叫转义序列，用于表示非打印字符或有其他用途的字符
 
 |字面量|含义|
 |-|-|
@@ -283,30 +276,19 @@ ES5 与 ES3 处理八进制有所不同，**建议都传递第二个参数**指�
 |`\xnn`|以十六进制码 `nn` 表示的一个字符|
 |`\unnnn`|以十六进制码 `nnnn` 表示的一个 `Unicode` 字符|
 
-**2.length 属性**
-
-&emsp;&emsp;字符串的 length 属性能返回字符串的长度；但若字符串包含双字节字符，可能不会返回正确的字符数。
-
-**3.只读**
-
-&emsp;&emsp;字符串是只读的，即只能对其进行读操作，不能操作单个字符(除非重新赋值整个字符串)：
-
++ **`length` 属性**：返回字符串的长度，但若字符串包含双字节字符，可能不会返回正确的字符数
++ **只读**：字符串是只读的，即只能对其进行读操作，不能操作单个字符(除非重新赋值整个字符串)：
 ```js
 var str = 'hello world';
-console.log(str[0]); // 'h'
+console.log(str[0]);  // 'h'
 str[0] = 'l';
-console.log(str); // 'hello world'
+console.log(str);     // 'hello world'
 str = 'hello javascript';
-console.log(str); // 'hello javascript'
+console.log(str);     // 'hello javascript'
 ```
-
-**4.转换为字符串**
-
-&emsp;&emsp;两种方法将值转换为字符串：
-
-+ toString(): 通过从原型继承，基本上每个值都有一个该方法，转换数值时还能指定转换的基数
-+ String(): 与 `toString()` 类似，但能转换 `null` 和 `undefined`
-
++ **转换为字符串**：两种方法将值转换为字符串：
+  + `toString()`: 通过从原型继承，基本上每个值都有一个该方法，转换数值时还能指定转换的基数
+  + `String()`: 与 `toString()` 类似，但能转换 `null` 和 `undefined`
 ```js
 var a = 12;
 var b = false;
@@ -316,29 +298,29 @@ var n = null;
 var m = undefined;
 
 // toString()
-console.log(a.toString()); // '12'
-console.log(a.toString(8)); // '14'
-console.log(b.toString()); // 'false'
-console.log(obj.toString()); // '[object Object]'
-console.log(str.toString()); // 'hello'
-console.log(n.toString());  // 报错
-console.log(m.toString());  // 报错
+console.log(a.toString());    // '12'
+console.log(a.toString(8));   // '14'
+console.log(b.toString());    // 'false'
+console.log(obj.toString());  // '[object Object]'
+console.log(str.toString());  // 'hello'
+console.log(n.toString());    // 报错
+console.log(m.toString());    // 报错
 
 // String()
-console.log(String(a)); // '12'
-console.log(String(b)); // 'false'
-console.log(String(obj)); // '[object Object]'
-console.log(String(str)); // 'hello'
-console.log(String(n)); // 'null'
-console.log(String(m)); // 'undefined'
+console.log(String(a));       // '12'
+console.log(String(b));       // 'false'
+console.log(String(obj));     // '[object Object]'
+console.log(String(str));     // 'hello'
+console.log(String(n));       // 'null'
+console.log(String(m));       // 'undefined'
 ```
 
 
 ## Object
 
-&emsp;&emsp;`Object`(对象)是一组数据和功能的集合，能够通过 `new` 操作符创建一个对象实例。并且 `Object` 是所有实例的基础(原型链的顶端)。
-
-**所有实例都具有的属性/方法：**
++ `Object`(对象)是一组数据和功能的集合，能够通过 `new` 操作符创建一个对象实例
++ `Object` 是所有实例的基础(原型链的顶端)
++ 所有实例都具有的属性/方法：
 
 属性/方法|描述
 -|-
@@ -350,7 +332,7 @@ console.log(String(m)); // 'undefined'
 `toString()`|返回对象的字符串表示
 `valueOf()`|返回对象的字符串、数值或布尔值表示，通常与 `toString()` 的返回值相同
 
-**创建对象实例：**
++ 创建对象实例：
 ```js
 // 1.创建一个对象实例
 var o1 = new Object();
@@ -359,6 +341,29 @@ var o1 = new Object();
 var o2 = new Object;
 ```
 
-::: tip 推荐使用：
+::: tip 备注：
 + 即使无参数传入也不要省略 `()`
+:::
+
+
+
+## 包装器类型
+
++ 包装器类型不是一种新的类型，它是 `Boolean`, `Number`, `String` 三种类型的统称
++ 包装器类型作为基础数据类型，但是可以调用其对应的内置对象提供的方法，原因是 JS 内部对其进行了装箱/拆箱操作
+```js
+// 装箱
+true.toString()   // 'true'
+10..toString()    // '10'
+
+// 拆箱
+
+```
+
+::: tip 备注：
++ 数值调用方法时，必须携带两个点，因为第一个点会被 JS 解释器理解为小数点：
+```js
+10.toString()     // SyntaxError
+10..toString()    // '10'
+```
 :::
