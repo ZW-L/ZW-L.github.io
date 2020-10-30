@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主页</title>
+  <style>
+    .box {
+      width: 500px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <button id="btn">开始</button>
+    <svg viewBox="0 0 30 30" style="background: #ccc;">
+      <circle cx="15" cy="15" id="circle"
+        transform="rotate(-90, 15, 15)"
+        fill="none" stroke="#d62c39"
+      />
+      <text id="text" x="10" y="15" style="font-size: 5;">0%</text>
+    </svg>
+  </div>
+  <script>
+    function start () {
+      const circle = document.getElementById('circle')
+      const text = document.getElementById('text')
+      const btn = document.getElementById('btn')
+      
+      const R = 14.5
+      const strokeWidth = 1
+      const perimeter = 2 * Math.PI * R
+      let current = perimeter
+      let percent
+      
+      circle.setAttribute('r', R)
+      circle.setAttribute('stroke-width', strokeWidth)
+      circle.setAttribute('stroke-dasharray', perimeter)
+  
+      const timer = setInterval(() => {
+        current--
+        if (current < 0) {
+          current = 0
+          clearInterval(timer)
+          console.log('done!')
+        }
+        circle.setAttribute('stroke-dashoffset', current)
+        percent = Math.floor((perimeter-current)/perimeter*100)
+        text.textContent = percent + '%'
+      }, 30)
+    }
+
+    btn.addEventListener('click', start)
+  </script>
+</body>
+</html>

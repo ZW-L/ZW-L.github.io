@@ -31,7 +31,8 @@ export default {
 }
 </script>
 ```
-+ 也可以是一个 js 为后缀的文件
+
++ 也可以是一个 js 为后缀的文件：
 ```js
 export default {
   name: 'item',
@@ -45,24 +46,24 @@ export default {
   }
 }
 ```
-+ 渲染函数的参数有三个，它执行后返回一个 `VNode`
+
++ 渲染函数的参数有三个，它执行后返回一个 `VNode`：
 ```js
-// @returns {VNode}
+// @returns { VNode }
 createElement(
-  // {String | Object | Function}
-  // HTML 标签名、组件选项对象，或
-  // resolve 了上述任何一种的一个 async 函数。必填项。
+  // { String | Object | Function }，必填
+  // HTML 标签名、组件选项对象、resolve 上述任何一种的 async 函数
   'div',
 
-  // {Object}
-  // 一个与模板中 attribute 对应的数据对象。可选。
+  // { Object }，可选
+  // 与模板中 attribute 对应的数据对象
   {
     // (详情见下一节)
   },
 
-  // { String | Array }
-  // 子级虚拟节点 (VNodes)，由 `createElement()` 构建而成，
-  // 也可以使用字符串来生成“文本虚拟节点”。可选。
+  // { String | Array }，可选
+  // 子级虚拟节点 (VNodes)，由 createElement() 构建而成，
+  // 也可以使用字符串来生成“文本虚拟节点”
   [
     '先写一些文字',
     createElement('h1', '一则头条'),
@@ -80,6 +81,7 @@ createElement(
 
 
 
+
 ## JSX
 
 + JSX 能简化 `render` 函数的重复性书写
@@ -93,6 +95,7 @@ npm install @vue/babel-preset-jsx @vue/babel-helper-vue-jsx-merge-props
   "presets": ["@vue/babel-preset-jsx"]
 }
 ```
+
 + 使用
 ```js
 export default {

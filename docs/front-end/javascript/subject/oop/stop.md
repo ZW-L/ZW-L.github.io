@@ -1,4 +1,4 @@
-## 对比
+## 简介
 
 + 防篡改对象：
   + 不可扩展的对象：**不能添加成员**，但是仍**可以删除、修改已有成员**
@@ -22,7 +22,6 @@
 :::
 
 
-
 ## 不可扩展的对象
 
 ```js
@@ -36,7 +35,6 @@ person.age = 24         // 严格模式下会报错 TypeError
 console.log(person.age) // undefined
 console.log(Object.isExtensible(person))    // false
 ```
-
 
 
 ## 密封的对象
@@ -57,7 +55,6 @@ console.log(person.name)                  // Anna
 console.log(Object.isSealed(person))      // true
 console.log(Object.isExtensible(person))  // false
 ```
-
 
 
 ## 冻结的对象

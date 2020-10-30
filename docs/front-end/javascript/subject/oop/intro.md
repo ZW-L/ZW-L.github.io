@@ -61,6 +61,21 @@ console.log(obj['user-name'])
 
 
 
+## 原型设计模式 & 原型规则
+
+**原型设计模式：** 
++ 每个构造函数都有一个原型(prototype)属性，这个属性是一个指针，指向一个对象，这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法
++ 这种方式的好处是不必在构造函数中定义对象实例的信息，转为直接在原型对象上定义对象实例需要共享的属性和方法
+
+**原型规则：**
++ `prototype` 和 `constructor`：构造函数的 `prototype` 属性指向它的原型对象，同时该原型对象的 `constructor` 属性指向该构造函数
++ 实例的 `[[Prototype]]`：构造函数实例的 `[[Prototype]]` 属性(大多数浏览器实现了非标准的 `__proto__` 属性)也指向构造函数的原型对象，但是这个属性 **与构造函数无关**
++ 屏蔽而不是覆盖：当为对象实例添加一个属性时，该属性会屏蔽(并不是覆盖)原型对象中的同名属性
++ 在原型链上查找：当从一个对象或实例读取一个属性时，若在自身找不到该属性，便会在原型链上查找，都找不到时返回 `undefined`
++ 动态性：可以在原型上添加、删除、甚至是将一个新的对象引用赋值给原型，这样的影响会发生于在这之后新创建的实例中，但不会影响在这之前就创建的实例
+
+
+
 ## 属性描述符
 
 ### 说明
@@ -143,7 +158,30 @@ for (let key in obj) {
 
 
 
+## constructor
 
++ `Object.prototype.constructor` 属性指向一个对象的构造函数
+```js
+function Person(name) {
+  this.name = name
+}
+
+const p = new Person('Alice')
+console.log(p.constructor) // [Function: Person]
+console.log(p.constructor.prototype === Person.prototype) // true
+```
++ `constructor` 就是一个简单的属性，并且是惰性的，模拟继承时需要手动修改
+```js
+function Person() {}
+function Student() {}
+
+Student.prototype = new Person()
+const s = new Student()
+console.log(s.constructor) // [Function: Person]
+
+s.constructor = Student
+console.log(s.constructor) // [Function: Student]
+```
 
 
 
@@ -285,36 +323,9 @@ console.log(Object.getPrototypeOf(p) === Person.prototype)  // true
 
 
 
-
-
-
-## constructor
-
-+ `Object.prototype.constructor` 属性指向一个对象的构造函数
-```js
-function Person(name) {
-  this.name = name
-}
-
-const p = new Person('Alice')
-console.log(p.constructor) // [Function: Person]
-console.log(p.constructor.prototype === Person.prototype) // true
-```
-+ `constructor` 就是一个简单的属性，并且是惰性的，模拟继承时需要手动修改
-```js
-function Person() {}
-function Student() {}
-
-Student.prototype = new Person()
-const s = new Student()
-console.log(s.constructor) // [Function: Person]
-
-s.constructor = Student
-console.log(s.constructor) // [Function: Student]
-```
-
-
 ## instanceof
+
+### 揭秘
 
 + `instanceof` 运算符用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上
 + 严格来说，"若 `p instanceof Person === true`，则 `p` 是 `Person` 的实例" **是一个充要条件**
@@ -338,3 +349,37 @@ console.log(Object.prototype.isPrototypeOf(p))      // true
 console.log(Object.prototype.isPrototypeOf(Person)) // true
 ```
 :::
+
+
+### 理解和实现
+
++ instanceof 的底层实现原理：
+  1. `instanceof` 需要两个操作数：左操作数(L)和右操作数(R)，查找的是 R 的原型对象是否在 L 的原型链上
+  2. 若 L 不是一个 `Object` 类型，直接返回 `false`
+  3. 取得 L 的实例原型对象(`__proto__`)，比较是否等于 R 的原型对象，若相等则返回 `true`；若不相等，继续取 L 的上层实例原型对象
+  4. 若最后 L 到达原型链最上层(`null`)，仍然没有等于 R 的原型对象，说明 R 的原型对象不在 L 的原型链上，返回 `false` 
++ 实现 instanceof：
+```js
+function _instanceof (L, R) {
+  if (L === null || typeof L !== 'object') return false
+  const O = R.prototype
+  L = L.__proto__
+  while (true) {
+    if (L === null) return false
+    if (L === O) return true
+    L = L.__proto__
+  }
+}
+```
+
+
+## class & extends 的原理
+
+**class：** 实际上是构造函数的语法糖
++ `constructor` 构造方法内定义实例的属性
++ `static` 定义的方法会添加到构造函数的属性上
++ 其他方法会被添加到构造函数的原型对象上
+
+**extends：** 实际上是寄生组合继承的语法糖
++ 使用一个函数指定继承关系
++ 使用一个函数调用父类构造函数

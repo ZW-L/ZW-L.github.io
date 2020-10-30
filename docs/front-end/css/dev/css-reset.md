@@ -1,11 +1,11 @@
-## 初始化样式的方案
+## 方案
 
-**最简单的初始化：**
++ 最简单的初始化：
 ```css
 * { padding: 0; margin: 0; }
 ```
 
-**淘宝：**
++ 淘宝：
 ```css
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form,
 fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }

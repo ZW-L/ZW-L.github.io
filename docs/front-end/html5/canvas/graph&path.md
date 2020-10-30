@@ -14,6 +14,8 @@ ctx.clearRect(45, 45, 60, 60)
 ctx.strokeRect(50, 50, 50, 50)
 ```
 
+<!-- <Base-CanvasDemo></Base-CanvasDemo> -->
+
 ::: tip 备注：
 + `fillRect()` 绘制的是无边框有填充色的矩形，而 `strokeRect()` 刚好相反
 + `clearRect()` 类似 `fillRect()`，但是它的填充色是画布的颜色(或者说擦除了颜色)

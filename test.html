@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>主页</title>
+  <title>Document</title>
 </head>
 <body>
-  主页
+  <p class="para">hello</p>
+  <p class="para">world</p>
+  <script>
+    const dynamicList = document.getElementsByClassName('para')
+    const staticList = document.querySelectorAll('.para')
+
+    console.log(dynamicList.length, staticList.length)   // 2 2
+
+    document.body.removeChild(dynamicList[0])
+    console.log(dynamicList.length, staticList.length)   // 1 2
+  </script>
 </body>
 </html>

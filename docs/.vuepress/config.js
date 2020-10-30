@@ -89,6 +89,7 @@ module.exports = {
         items: [
           { text: '保持学习',  link: '/other/growth/' },
           { text: '常用工具',  link: '/other/tools/' },
+          { text: '编辑器', link: '/other/editor/' },
           { text: '技术之外',  link: '/other/expect-tech/' },
           { text: '关于',  link: '/other/' },
         ]
@@ -304,11 +305,10 @@ module.exports = {
           collapsable: false,
           children: [
             ['svg/intro', '简介'],
-            ['svg/shape', '形状'],
             ['svg/container', '容器'],
-            ['svg/style', '样式'],
+            ['svg/shape', '形状&路径'],
             ['svg/effect&animation', '特效&动画'],
-            ['svg/filter', '过滤'],
+            ['svg/filter', '过滤器'],
             ['svg/other', '其他'],
           ]
         },
@@ -317,7 +317,6 @@ module.exports = {
       '/front-end/css/': [
         {
           title: 'CSS 属性',
-          collapsable: false,
           children: [
             ['attributes/selectors', '选择器'],
             ['attributes/position&layout', '定位 & 布局'],
@@ -335,15 +334,13 @@ module.exports = {
         },
         {
           title: 'CSS 深入',
-          collapsable: false,
           children: [
             ['knowledge/difference', '区分属性'],
             ['knowledge/questions', '常见问题'],
           ]
         },
         {
-          title: '专题：布局和效果',
-          collapsable: false,
+          title: '专题：页面布局',
           children: [
             ['effect/flex', 'Flex 详解'],
             ['effect/grid', 'Grid 详解'],
@@ -352,12 +349,10 @@ module.exports = {
             ['effect/vertical-center', '垂直居中'],
             ['effect/horizontal-vertical-center', '水平垂直居中'],
             ['effect/layout', '常用布局'],
-            ['effect/more', '常见效果'],
           ]
         },
         {
           title: '专题：响应式',
-          collapsable: false,
           children: [
             ['responsive/media-query', '使用媒体查询'],
             ['responsive/responsive-design', '响应式设计'],
@@ -366,7 +361,6 @@ module.exports = {
         },
         {
           title: '专题：效果和动画',
-          collapsable: false,
           children: [
             ['special-effects/text', '文本'],
             ['special-effects/border', '边框'],
@@ -378,19 +372,19 @@ module.exports = {
         },
         {
           title: '专题：开发技巧',
-          collapsable: false,
           children: [
+            ['dev/css-reset', '初始化样式'],
             ['dev/compatibility', '兼容性'],
-            ['dev/tips', '技巧'],
+            ['dev/style-manage', '样式管理'],
+            ['dev/more', '实现常见效果'],
+            ['dev/tips', '其他技巧'],
           ]
         },
         {
-          title: '专题：未分类',
-          collapsable: false,
+          title: '专题：博文',
           children: [
-            ['unclassified/css-reset', '初始化样式'],
-            ['unclassified/bfc&ifc', 'BFC 和 IFC 详解'],
-            ['unclassified/float', '解决浮动引起的高度塌陷'],
+            ['post/bfc&ifc', 'BFC 和 IFC 详解'],
+            ['post/float', '解决浮动引起的高度塌陷'],
           ]
         },
       ],
@@ -398,12 +392,31 @@ module.exports = {
         {
           title: 'ECMAScript 基础',
           children: [
-            ['es5/syntax', '语法'],
-            ['es5/variables&data-type', '变量和数据类型'],
-            ['es5/operator', '操作符'],
-            ['es5/process-control', '流程控制语句'],
-            ['es5/scope', '作用域和内存'],
-            ['es5/json&ajax', 'JSON & Ajax'],
+            ['base/syntax', '语法'],
+            ['base/variables&data-type', '变量和数据类型'],
+            ['base/operator', '操作符'],
+            ['base/process-control', '流程控制语句'],
+            ['base/json&ajax', 'JSON & Ajax'],
+            ['base/type-convert', '总结：类型转换']
+          ]
+        },
+        {
+          title: 'ECMAScript 深入',
+          children: [
+            ['deep/es/syntax', '语法'],
+            ['deep/es/type&memory', '数据类型和内存'],
+            ['deep/es/async-programing', '异步编程'],
+            ['deep/es/module', '模块系统'],
+            ['deep/es/design-pattern', '设计模式'],
+            ['deep/es/es6+', 'ES6+'],
+          ]
+        },
+        {
+          title: 'BOM & DOM 深入',
+          children: [
+            ['deep/bom', 'BOM'],
+            ['deep/dom', 'DOM'],
+            ['deep/browser', '浏览器'],
           ]
         },
         {
@@ -433,22 +446,14 @@ module.exports = {
           ]
         },
         {
-          title: '深入：BOM & DOM',
+          title: '专题：函数式编程',
           children: [
-            ['deep/bom', 'BOM'],
-            ['deep/dom', 'DOM'],
-            ['deep/browser', '浏览器'],
-          ]
-        },
-        {
-          title: '深入：ECMAScript',
-          children: [
-            ['deep/es/data-type', '数据类型'],
-            ['deep/es/strict-mode', '严格模式'],
-            ['deep/es/syntax', '语法'],
-            ['deep/es/oop', '面向对象程序设计'],
-            ['deep/es/fp', '函数式编程'],
-            ['deep/es/es6+', 'ES6+'],
+            ['subject/fp/intro', '概念'],
+            ['subject/fp/closure', '闭包'],
+            ['subject/fp/higher', '高阶函数'],
+            ['subject/fp/hurry', '柯里化'],
+            ['subject/fp/recursion', '递归'],
+            ['subject/fp/other', '其他'],
           ]
         },
         {
@@ -459,21 +464,6 @@ module.exports = {
             ['subject/oop/create', '创建对象的方式'],
             ['subject/oop/extend', '实现继承的方式'],
             ['subject/oop/stop', '防篡改对象'],
-          ]
-        },
-        {
-          title: '专题：函数式编程',
-          children: [
-            ['subject/fp/intro', '简介'],
-            ['subject/fp/scope', '作用域'],
-            ['subject/fp/closure', '闭包'],
-            ['subject/fp/higher', '高阶函数'],
-            ['subject/fp/currying', '柯里化'],
-            ['subject/fp/recursion', '递归'],
-            ['subject/fp/rules', '规则'],
-            ['subject/fp/flow', '基于流'],
-            ['subject/fp/non-class', '无类编程'],
-            ['subject/fp/referrence', '参考：相关函数'],
           ]
         },
         {
@@ -593,7 +583,7 @@ module.exports = {
             ['async/callback', 'Callback - 回调地狱'],
             ['async/promise', 'Promise - 状态机 1'],
             ['async/generator', 'Generator - 状态机 2'],
-            ['async/thunk&&co', 'thunk && oo - 回调的链式执行'],
+            ['async/thunk&&co', 'thunk && co - 回调的链式执行'],
             ['async/async&await', 'async & await - 终极杀器'],
           ]
         },
@@ -637,16 +627,6 @@ module.exports = {
       ],
       '/front-end/vue/': [
         {
-          title: 'Vue',
-          collapsable: false,
-          children: [
-            // ['vue-cli', 'Cli 详解'],
-            // ['vue-router', 'Router 详解'],
-            // ['vuex', 'Vuex 详解'],
-            ['vue', '面试题'],
-          ]
-        },
-        {
           title: 'Vue 2.x',
           collapsable: false,
           children: [
@@ -661,10 +641,11 @@ module.exports = {
             ['feature/router', 'vue-router'],
             ['feature/vuex', 'vuex'],
             ['feature/ssr', 'ssr'],
+            ['feature/interview', '面试题'],
           ]
         },
         {
-          title: 'Vue 源码学习',
+          title: '源码学习',
           collapsable: false,
           children: [
             ['source/responsive' , '响应式原理'],
@@ -996,6 +977,15 @@ module.exports = {
       '/other/tools/': [
         ['ps', 'PS'],
         ['editor', '编辑器'],
+      ],
+      '/other/editor/': [
+        {
+          title: 'Vim',
+          collapsable: false,
+          children: [
+            ['vim/intro', '简介'],
+          ]
+        }
       ],
       '/other/expect-tech/': [
         ['', '技术之外'],

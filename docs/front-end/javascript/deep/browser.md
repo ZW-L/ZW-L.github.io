@@ -54,14 +54,28 @@ sidebarDepth: 2
 
 
 
-### 从输入网址到渲染完成经历了什么
+### 输入网址到渲染完成
 
-1. 输入 `URL` 并回车后, 浏览器先查找当前 `URL` 是否存在缓存, 确认缓存是否过期
-2. `URL` 经过 `DNS` 服务器解析为对应的 `IP` 地址
-3. 根据 `IP` 与服务器建立 `TCP` 连接(三次握手)
-4. 三次握手完成, 浏览器开始发起 `HTTP` 请求, 服务器处理并响应请求(也可能返回错误或重定向), 浏览器接收 HTTP 响应数据和信息
-5. 浏览器根据服务器返回的数据(`html`, `js`, `css` 等)构建 `DOM` 树, 渲染页面
-6. 关闭 `TCP` 连接(四次握手)
+1. **获取域名的 IP 地址**，[主要流程](../../../base/computed-network/dns/intro.html#解析过程)：
+    1. 浏览器先请求本地域名服务器，本地域名服务器查看其本地 IP 缓存列表，尝试读取已缓存的 IP
+    2. 没有已缓存的 IP 时，本地域名服务器会请求根域名服务器
+    3. 根域名服务器查询其本地记录表，取得域名所在的域名服务器，返回给本地域名服务器
+    4. 本地域名服务器拿到域名服务器后向其发起请求，后者查询其本地记录表得到 IP 地址，返回给本地域名服务器
+    5. 本地域名服务器将 IP 地址其添加到本地缓存表，最后再返回该 IP 地址给浏览器
+2. **浏览器使用 IP 地址与服务器建立 TCP 连接**(三次握手)：
+    1. 浏览器发送报文给服务器，请求建立连接
+    2. 服务器响应报文，回应浏览器可以建立连接，并处于等待连接状态
+    3. 浏览器再次发送报文给服务器，完成建立连接
+3. **浏览器的 Browser 进程向服务器请求资源**：
+    + Browser 进程发起 HTTP 请求, 服务器处理并响应请求(也可能返回错误或重定向)
+    + Browser 进程接收 HTTP 响应数据和信息，将其交由 Renderer 进程
+4. **浏览器的 Renderer 进程渲染页面**，[渲染流程](#渲染流程)：
+    + (中途可能继续需要 Browser 进程发起请求获取资源，或需要 GPU 进程来帮助渲染)
+    1. **构建 `DOM` 树**：`HTML` 解析器解析 `HTML` 文档，构建 `DOM` 树
+    2. **构建 `CSSOM` 树**：`CSS` 解析器解析 `CSS` 样式文件，构建 `CSSOM` 树
+    3. **合并为 `Render` 树**：从根节点递归调用，计算每一个元素的大小，位置等
+    4. **布局绘制**：遍历 `Render` 树，绘制每一个节点
+5. Browser 进程接收到渲染结果并将结果绘制出来，呈现给用户
 
 
 
@@ -88,34 +102,44 @@ sidebarDepth: 2
 
 
 
-
 ## 安全
 
-### XSS 攻击原理、分类、具体案例，前端如何防御
+### XSS
 
-### CSRF 攻击原理、具体案例，前端如何防御
++ **原理**：往 `Web` 页面插入恶意的 `html` 标签或者 `js` 代码
++ 分类：
++ 具体案例：
++ 前端如何防御：
+  + 尽量采用 `post` 而不使用 `get` 提交表单
+  + 避免 `cookie` 中泄漏用户的隐私
 
-### HTTP 劫持、页面劫持原理，防御措施
 
-### 常见的 Web 安全及防护原理
+### CSRF
 
-**SQL注入：** 将 `SQL` 代码伪装到输入参数中，传递到服务器解析并执行的一种攻击手法。防范：
-+ 对用户输入进行校验
-+ 不适用动态拼接 `SQL`
++ **原理**：通过伪装来自受信任用户的请求(如利用 `CSRF` 跨站请求伪装来获取服务器数据)
++ 具体案例：
++ 前端如何防御：
+  + 在客服端页面增加伪随机数、验证码
 
-**XSS(跨站脚本攻击)：** 往 `Web` 页面插入恶意的 `html` 标签或者 `js` 代码。防范：
-+ 尽量采用 `post` 而不使用 `get` 提交表单
-+ 避免 `cookie` 中泄漏用户的隐式
-
-**CSRF(跨站请求伪装)：** 通过伪装来自受信任用户的请求(例如利用 `CSRF` 跨站请求伪装来获取服务器数据)。防范：
-+ 在客服端页面增加伪随机数，通过验证码
-
-**点击劫持：**
 
 ### XSS 和 CSRF 的区别
 
 + `XSS` 是获取信息，不需要提前知道其他用户页面的代码和数据包
 + `CSRF` 代替用户完成指定的动作，需要知道其他页面的代码和数据包
+
+
+### HTTP 劫持
+
++ **原理**：
++ 前端如何防御：
+
+
+### SQL 注入
+
++ **原理**：将 `SQL` 代码伪装到输入参数中，传递到服务器解析并执行
++ 前端如何防御：
+  + 对用户输入进行校验
+  + 不使用动态拼接 `SQL`
 
 
 
@@ -140,7 +164,6 @@ sidebarDepth: 2
 |http://www.example.com:81/dist/index.html|❌|端口不同：80 和 81|
 
 
-
 ### 跨域的种类和方式
 
 + Cookie
@@ -163,53 +186,75 @@ sidebarDepth: 2
 
 ### 实现 Ajax
 
-**过程：**
-
-1. 创建 `XMLHttpRequest` 对象的实例
-2. 为实例添加 `onreadystatechange` 监听请求状态的变化
-3. 使用实例的 `open(method, url)` 方法创建一个请求
-4. 使用实例的 `send()` 方法发送请求
-
-**实现：**
-
++ 实现：
 ```js
 function _ajax(url) {
   let xmlhttp = null
+  // 1.创建 XMLHttpRequest 实例
   if (window.XMLHttpRequest) {
     xmlhttp = new XMLHttpRequest()
   } else if (window.ActiveXObject) {
-    // 不支持 XMLHttpRequest 对象的浏览器
     xmlhttp = new ActiveXObject('Microsoft.XMLHTTP')
   }
 
   if (!xmlhttp) {
     alert("Your browser does not support XMLHTTP.")
   } else {
-    // 添加 onreadystatechange 事件处理函数
+    // 2.添加 onreadystatechange 事件处理函数
     xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState === 4) { // 
-        if (xmlhttp.status === 200) { // 成功响应时
-          box.innerHTML = xmlhttp.responseText
+      if (xmlhttp.readyState === 4) {
+        if (xmlhttp.status === 200) {
+          // 成功响应时处理响应信息和数据
+          document.getElementById('app').innerHTML = xmlhttp.responseText
         }
       }
     }
-    // 创建 GET 请求
-    xmlhttp.open('GET', url, true)
-    // 同时可以给服务器附加信息
-    xmlhttp.send(null)
+
+    xmlhttp.open('GET', url, true)  // 3.创建 GET 请求
+    xmlhttp.send(null)              // 4.发送请求
   }
 }
 ```
 
-
-::: tip readyState：
-+ 0: 
-+ 1: 
-+ 2: 
-+ 3: 
-+ 4: 
+::: tip 过程：
+1. 创建 `XMLHttpRequest` 对象的实例(应考虑兼容性)
+2. 为实例添加 `onreadystatechange` 监听请求状态的变化(在状态变化时处理响应信息和数据)
+3. 使用实例的 `open(method, url)` 方法创建一个请求
+4. 使用实例的 `send()` 方法发送请求(同时可以给服务器附加信息)
 :::
 
++ Promise 封装：
+```js
+const getJSON = function(url) {
+  return new Promise(function(resolve, reject){
+    let client = null
+    if (window.XMLHttpRequest) {
+      client = new XMLHttpRequest()
+    } else if (window.ActiveXObject) {
+      client = new ActiveXObject('Microsoft.XMLHTTP')
+    }
+
+    if (!client) {
+      reject(new Error('Your browser does not support XMLHTTP.'))
+    }
+
+    client.onreadystatechange = function() {
+      if (this.readyState !== 4) return
+      if (this.status === 200) {
+        resolve(this.response)
+      } else {
+        reject(new Error(this.statusText))
+      }
+    }
+
+    client.responseType = 'json'
+    client.setRequestHeader('Accept', 'application/json')
+    client.open('GET', url)
+    client.send()
+  })
+}
+```
 
 
 ### 实现 JSONP
+

@@ -1,14 +1,9 @@
-## setInterval 使用时的注意事项
+## 定时器
 
-+ 避免内存泄漏，在退出当前页面前清除定时器
++ setInterval 使用的注意事项：
+  + 避免内存泄漏，在退出当前页面前清除定时器
 
-
-
-
-
-## 用 setTimeout 实现 setInterval
-
-**使用 setTimeout 实现 setInterval：**
++ 用 setTimeout 实现 setInterval：
 ```js
 // 递归实现
 function _setInterval(fn, delay) {
@@ -26,9 +21,7 @@ _setInterval(function() {
 
 
 
-
 ## 304 的缓存原理
-
 
 
 
@@ -45,8 +38,7 @@ _setInterval(function() {
 
 
 
-
 ## CDN 及其原理
 
-+ CDN：内容分发网络。尽可能的避开互联网有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快更稳定。
++ CDN：内容分发网络，尽可能的避开互联网有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快更稳定
 + 原理：广泛采用各种缓存服务器，将这些缓存服务器分布到用户访问相对的地区或者网络中；将用户的访问指向距离最近的缓存服务器，由缓存服务器直接响应用户的请求

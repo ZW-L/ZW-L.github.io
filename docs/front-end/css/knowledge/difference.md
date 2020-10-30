@@ -103,4 +103,3 @@
 + `IFC(Inline-FC)`：内联格式化上下文，内联盒子的高度由其包含行内元素中最高的实际高度计算而来，不受到垂直方向的 `padding`/`margin` 影响
 + `GFC(GridLayout-FC)`：网格布局格式化上下文，元素设置 `display` 属性的值为 `grid` 时产生
 + `FFC(Flex-FC)`：自适应格式化上下文，元素设置 `display` 属性的值为 `flex`/`inline-flex` 时产生
-

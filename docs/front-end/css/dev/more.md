@@ -1,36 +1,36 @@
 ## 超出文本显示省略号
 
-**单行文本省略号：**
++ 单行文本省略号：
 ```css
 .ellipsis {
-  overflow: hidden; /* 超出隐藏 */
-  text-overflow: ellipsis; /* 超出显示省略号 */
-  white-space: nowrap; /* 不换行 */
+  overflow: hidden;         /* 超出隐藏 */
+  text-overflow: ellipsis;  /* 超出显示省略号 */
+  white-space: nowrap;      /* 不换行 */
 }
 ```
 
-**多行文本省略号：**
++ 多行文本省略号：
 ```css
 .ellipsis-multi {
-  overflow: hidden; /* 超出隐藏 */
-  text-overflow: ellipsis; /* 超出显示省略号 */
-  display: -webkit-box; /* 或 display: -webkit-inline-box */
-  -webkit-box-orient: vertical; /* 垂直朝向 */
-  -webkit-line-clamp: 3; /* 指定行数 */
+  overflow: hidden;               /* 超出隐藏 */
+  text-overflow: ellipsis;        /* 超出显示省略号 */
+  display: -webkit-box;           /* 或 display: -webkit-inline-box */
+  -webkit-box-orient: vertical;   /* 垂直朝向 */
+  -webkit-line-clamp: 3;          /* 指定行数 */
 }
 ```
 
 ## 蒙版
-
-
 ## 倒影
-
-
 ## 淡入/淡出
-
 ## 图片瀑布流
+## 曲线运动(贝塞尔曲线)
 
-## 绘制圆形
+
+
+## 绘制几何图形
+
+### 圆形
 
 ```css
 /* 原理：盒子宽高相等，并将圆角属性设置为 50%(或者宽度的一半) */
@@ -42,7 +42,7 @@
 }
 ```
 
-## 绘制扇形
+### 扇形
 
 ```css
 /* 半圆 */
@@ -101,7 +101,8 @@
 }
 ```
 
-## 绘制三角形
+
+### 三角形
 
 ```css
 /* 
@@ -130,5 +131,3 @@
   transform: rotateZ(45deg) skew(5deg);
 }
 ```
-
-## 曲线运动(贝塞尔曲线)

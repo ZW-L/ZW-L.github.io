@@ -1,15 +1,3 @@
-## 全局函数 & 全局属性
-
-**全局属性：** `null`, `undefined`, `NaN`, `Infinity`
-**全局方法：** 
-+ `parseInt()`/`parseFloat()`
-+ `encodeURI()`/`decodeURI()`
-+ `encodeComponentURI()`/`decodeComponentURI()`
-+ `eval()`/`uneval()`
-+ `isNaN()`/`isFinite()`，同时作为 `Number` 对象的静态方法
-
-
-
 ## 正则 API & 解决常见问题
 
 **API：**
@@ -159,61 +147,4 @@ console.log(y) // 1function
 
 ## 解释 try 的 return 语句不能终止 finally
 
-**说明：** `finally` 块用于包含清理代码(关闭文件等)，因此始终执行 `finally` 语句块是有必要的
-
-
-
-## 宏任务 & 微任务
-
-**宏任务：**
-+ `I/O`
-+ `setTimeout/setInterval`
-+ `requestAnimationFrame`
-+ `setImmediate`(Node.js)
-
-**微任务：**
-+ `Promise.then/.catch/.finally`
-+ `MutationObserver`
-+ `process.nextTick`(Node.js)
-
-
-
-## 实现异步编程
-
-+ 回调函数
-  + 优点：简单、容易理解和部署
-  + 缺点：代码高度耦合，且每个人物只能指定一个回调
-+ 事件监听
-  + 优点：代码解耦且能绑定多个事件、每个事件可指定多个回调
-  + 缺点：整个程序变成事件驱动，运行流程变得不清晰
-+ 发布/订阅模式
-  + 优点：类似事件监听，但更优
-  + 缺点：
-+ Promise
-  + 优点：
-  + 缺点：
-
-
-
-## EventLoop
-
-在 `Javascript` 中，任务分为宏任务(`macrotask`)和微任务(`microtask`)，这两个任务分别维护一个队列(均采用先进先出的策略执行)，同步执行的任务都在宏任务上执行。具体的操作步骤如下(前四步构成了一个事件的循环检测机制(`EventLoop`))：
-
-1. 从宏任务的头部取出一个任务执行
-2. 执行过程中若遇到微任务则将其添加到微任务的队列中
-3. 宏任务执行完毕后，若微任务的队列中存在任务，则逐个执行至全部完成
-4. `GUI` 渲染
-5. 回到步骤 1，直到宏任务执行完毕
-
-
-
-## Node EventLoop & 浏览器 EventLoop
-
-
-
-
-
-## 如何分析复杂的异步嵌套逻辑
-
-1. 复杂的异步写法转换为简单写法(`async/await`) 
-2. 按照事件的循环机制进行分析
++ `finally` 块用于包含清理代码(关闭文件等)，因此始终执行 `finally` 语句块是有必要的
