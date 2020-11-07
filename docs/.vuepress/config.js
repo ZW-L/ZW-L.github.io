@@ -328,8 +328,7 @@ module.exports = {
             ['attributes/media-query', '媒体查询'],
             ['attributes/content', '内容'],
             ['attributes/syntax-rules', '语法规则'],
-            ['attributes/value', '取值'],
-            ['attributes/unit', '单位'],
+            ['attributes/value&unit', '取值和单位'],
           ]
         },
         {
@@ -342,13 +341,11 @@ module.exports = {
         {
           title: '专题：页面布局',
           children: [
-            ['effect/flex', 'Flex 详解'],
-            ['effect/grid', 'Grid 详解'],
-            ['effect/grid-system', '栅格系统详解'],
-            ['effect/horizontal-center', '水平居中'],
-            ['effect/vertical-center', '垂直居中'],
-            ['effect/horizontal-vertical-center', '水平垂直居中'],
-            ['effect/layout', '常用布局'],
+            ['layout/flex', 'Flex 详解'],
+            ['layout/grid', 'Grid 详解'],
+            ['layout/grid-system', '栅格系统详解'],
+            ['layout/center', '水平垂直居中'],
+            ['layout/dev', '常用布局'],
           ]
         },
         {
@@ -984,6 +981,20 @@ module.exports = {
           collapsable: false,
           children: [
             ['vim/intro', '简介'],
+            ['vim/cursor', '移动光标'],
+            ['vim/repeat', '重复'],
+            ['vim/curd', '增删改查'],
+            ['vim/macro', '宏'],
+            ['vim/visual', '可视化模式'],
+            ['vim/command', '命令模式'],
+          ]
+        },
+        {
+          title: '进阶',
+          collapsable: false,
+          children: [
+            ['vim/deep/split', '分屏'],
+            ['vim/deep/fold', '代码折叠'],
           ]
         }
       ],

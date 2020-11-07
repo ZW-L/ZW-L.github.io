@@ -1,20 +1,29 @@
+---
+sidebarDepth: 2
+---
+
+
 ## 颜色
 
-### CSS 属性
+### 属性说明
 
-属性|说明|兼容性
+属性|说明|备注
 -|-|-
-`color`|设置文本颜色。取值: <br>`<color>`: 颜色值(hex, rgb, rgba, hsl, hsla, transparent)|IE9 以下只支持 hex, rgb
-`opacity`|设置不透明度。取值：<br>`<number>`: <font color="orange">默认为 1。</font>取值范围 0~1|>IE8
+`color`|设置文本颜色。取值: <br>`<color>`: 颜色值(hex, rgb, rgba, hsl, hsla)<br>`transparent`: 透明|IE9 以下只支持 hex, rgb
+`opacity`|设置不透明度。取值：<br>`<number>`: <font color="orange">默认 1。</font>取值范围 0~1|IE9 以下不支持
 
 ::: warning 注意：
-IE9 以下 不支持 `opacity` ，但可用滤镜属性实现。
+IE9 以下 不支持 `opacity` ，但可用滤镜属性实现
 :::
+
+
+
+
 
 
 ## 背景
 
-### CSS 属性
+### 属性说明
 
 属性|说明|兼容性
 -|-|-

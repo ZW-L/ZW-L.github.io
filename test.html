@@ -4,18 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #box {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      top: 10px;
+      left: 10px;
+      padding: 10px;
+      /* border: 10px solid red; */
+      background-color: #ccc;
+    }
+  </style>
 </head>
 <body>
-  <p class="para">hello</p>
-  <p class="para">world</p>
+  <div id="box"></div>
   <script>
-    const dynamicList = document.getElementsByClassName('para')
-    const staticList = document.querySelectorAll('.para')
+    const box = document.getElementById('box')
+    
+    /* console.log('width:', box.style.width)
+    console.log('height:', box.style.height)
+    console.log('clientWidth:', box.clientWidth)
+    console.log('clientHeight:', box.clientHeight)
+    console.log('offsetWidth:', box.offsetWidth)
+    console.log('offsetHeight:', box.offsetHeight)
+    console.log('width:', window.getComputedStyle(box).width)
+    console.log('height:', window.getComputedStyle(box).height)
+    console.log(box.getBoundingClientRect()) */
 
-    console.log(dynamicList.length, staticList.length)   // 2 2
-
-    document.body.removeChild(dynamicList[0])
-    console.log(dynamicList.length, staticList.length)   // 1 2
+    console.log('top:', box.style.width)
+    console.log('left:', box.style.height)
+    console.log('clientLeft:', box.clientLeft)
+    console.log('clientTop:', box.clientTop)
+    console.log('offsetLeft:', box.offsetLeft)
+    console.log('offsetTop:', box.offsetTop)
+    console.log('left:', window.getComputedStyle(box).left)
+    console.log('top:', window.getComputedStyle(box).top)
+    console.log(box.getBoundingClientRect())
   </script>
 </body>
 </html>

@@ -224,3 +224,29 @@ para.setAttribute('class', classes.concat('active').join(' '))
 const classes = para.getAttribute('class').split(' ')
 para.className = classes.concat('active').join(' ')
 ```
+
+
+
+## 获取盒子的准确尺寸
+
++ 尺寸属性对比：
+
+|属性|类型|说明|
+|-|-|-|
+|el.style.width/height|string|内联宽高，非内联样式读取始终为 0|
+|el.clientWidth/clientHeight|readonly int|内部宽度，包括 padding|
+|el.offsetWidth/offsetHeight|readonly int|布局宽高，包括 padding, border, scrollBar|
+|el.scrollWidth/scrollHeight|readonly int|滚动宽高，包括 padding, ::before, ::after|
+|el.getBoundingClientRect().width/height|readonly number|盒子宽高，包括 padding, border|
+|window.getComputedStyle(el).width/height|readonly string|内容宽高，不包括 padding, border|
+
++ 相关属性对比：
+
+|属性|类型|说明|
+|-|-|-|
+|el.style.left/top/right/bottom|string|左上右下偏移距离，需要内联样式
+|el.clientLeft/Top|readonly number|左上边框厚度，包括 scrollBar
+|el.offsetLeft/Top|readonly number|左上偏移距离
+|el.scrollLeft/Top|number|左上部滚动距离
+|el.getBoundingRect().left/top/right/bottom|readonly number|盒子左上角/右下角的标识
+|window.getComputedStyle(el).left/top/right/bottom|readonly string|左上偏移距离
