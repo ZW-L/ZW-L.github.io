@@ -219,7 +219,7 @@ module.exports = {
       ],
       '/base/git/': [
         {
-          title: 'Git 命令分类剖析',
+          title: 'Git 常用命令',
           collapsable: false,
           children: [
             ['command/init', '初始化和配置'],
@@ -229,6 +229,13 @@ module.exports = {
             ['command/branch', '分支管理'],
             ['command/remote', '连接远程仓库'],
             ['command/tag', '标签管理'],
+          ]
+        },
+        {
+          title: '进阶',
+          collapsable: false,
+          children: [
+            ['deep/private', 'git 服务器'],
           ]
         },
         {
@@ -749,31 +756,38 @@ module.exports = {
 
       // 后端
       '/back-end/linux/': [
-        ['', '常用命令'],
         {
-          title: 'shell',
-          collapsable: false,
+          title: 'bash',
+          children: [
+            ['bash/intro', '简介'],
+            ['bash/redirect', '重定向'],
+            ['bash/pipe', '管道'],
+          ],
+        },
+        {
+          title: 'shell 编程',
           children: [
             ['shell/intro', '简介'],
-            ['shell/syntax', '语法'],
-            ['shell/program', '编程'],
-          ],
+            ['shell/process', '条件和循环'],
+            ['shell/function', '函数'],
+            ['shell/sed', 'sed'],
+            ['shell/awk', 'awk'],
+          ]
         },
         {
-          title: 'Linux 命令',
-          collapsable: false,
+          title: 'Linux 基础及命令',
           children: [
-            ['command/sys', '系统管理'],
+            ['command/users', '用户管理'],
             ['command/file', '文件目录管理'],
-            ['command/zip', '压缩与解压'],
-            ['command/disc', '磁盘管理与维护'],
+            ['command/disc', '磁盘管理与压缩'],
+            ['command/sys', '系统管理'],
+            ['command/pkg', '软件安装和管理'],
             ['command/net', '网络设置和连接'],
-            ['command/pkg', '包管理'],
+            ['command/other', '其他']
           ],
         },
         {
-          title: '软件',
-          collapsable: false,
+          title: '安装配置软件',
           children: [
             ['install/node', 'node'],
           ],
