@@ -814,6 +814,15 @@ module.exports = {
           ]
         },
         {
+          title: '内置模块',
+          collapsable:  false,
+          children: [
+            ['module/http-core', 'http 核心'],
+            ['module/http-proxy', 'http-proxy'],
+            ['module/http-rewrite', 'http-rewrite'],
+          ]
+        },
+        {
           title: '服务器配置实例',
           collapsable: false,
           children: [

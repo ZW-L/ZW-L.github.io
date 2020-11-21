@@ -1,37 +1,46 @@
+## 简介
+
+`proxy_pass` 参数用于配置反向代理：
++ 其值可以是一个域名，如在同一个服务器中开启了多个服务，使用 Nginx 来管理
++ 其值还可以是其他服务器提供的 web 服务，这完美实现了**跨域请求**
++ 其值可以是一组上游服务器，用来实现[负载均衡](./load-balance.md)
+
+
+
 ## 代理多个应用
 
-**原理**：用 `Nginx` 代理服务器的 80 端口，服务器内部在 8021/8022 端口启动的程序都会映射在 80 端口下，并且分别为 8021/8022 端口赋予不同的域名，就可以实现部署多个不同功能的应用。
-+ 浏览器访问 `api.domain.com` 相当于访问服务器内 `http://127.0.0.1:8021` 启动的应用
-+ 浏览器访问 `music.domain.com` 相当于访问服务器内 `http://127.0.0.1:8022` 启动的应用
-
-**配置**：
++ 域名可以增加三级、四级域名的解析，此时可以通过功能区分域名(二级域名为 `abc.com`)
+  + API 服务：`api.abc.com`
+  + 应用服务：`shop.abc.com`
++ 再用 Nginx 代理所有域名的 80 端口：
+  + 访问 `api.abc.com` 相当于访问服务器内 `http://127.0.0.1:8021` 启动的应用
+  + 访问 `shop.abc.com` 相当于访问服务器内 `http://127.0.0.1:8022` 启动的应用
 ```sh
-http {  
-  # other setting
-  server {
-    listen 80;
-    server_name api.domain.com;
-    location / {
-      proxy_set_header   Host      $http_host;
-      proxy_pass         http://127.0.0.1:8021;
-      proxy_redirect     off;
-      proxy_set_header   X-Real-IP       $remote_addr;
-      proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
+server {
+  listen 80;
+  server_name api.abc.com;    # api 服务
+  location / {
+    proxy_set_header   Host             $http_host;
+    proxy_set_header   X-Real-IP        $remote_addr;
+    proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    proxy_redirect     off;
+    proxy_pass         http://127.0.0.1:8021;
   }
-  server {
-    listen 80;
-    server_name music.domain.com;
-    location / {
-      proxy_set_header   Host      $http_host;
-      proxy_pass         http://127.0.0.1:8022;
-      proxy_redirect     off;
-      proxy_set_header   X-Real-IP       $remote_addr;
-      proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
+}
+
+server {
+  listen 80;
+  server_name shop.abc.com;   # 应用服务
+  location / {
+    proxy_set_header   Host             $http_host;
+    proxy_set_header   X-Real-IP        $remote_addr;
+    proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    proxy_redirect     off;
+    proxy_pass         http://127.0.0.1:8022;
   }
 }
 ```
+
 
 ::: tip 备注
 + 必须为使用的所有域名都解析到该服务器上(记录类型为 `A` 类型，并设置相应的记录值)
