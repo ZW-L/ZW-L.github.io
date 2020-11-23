@@ -16,6 +16,7 @@
 
 
 
+
 ## 安装配置
 
 + 安装 `docker-ce`
@@ -40,15 +41,15 @@ systemctl start docker
 cd /etc/docker
 # 打开/创建 daemon.json 文件
 vim daemon.json
-# 3.添加源
+# 添加源(不要带注释)
 {
-  "registry-mirrors": ["http://hub-mirror.c.163.com"]
+  "registry-mirrors": [
+    "http://hub-mirror.c.163.com",        # 网易
+    "https://cr.console.aliyun.com",      # 阿里云专属镜像源，需要登录配置生成(速度很快，配置也很简单)
+    "https://registry.docker-cn.com",     # Docker 官方中国区
+    "https://docker.mirrors.ustc.edu.cn", # 中科大
+  ]
 }
-# 其他源
-# https://cr.console.aliyun.com (阿里云专属镜像源，需要登录配置生成)
-# https://registry.docker-cn.com (Docker 官方中国区)
-# http://hub-mirror.c.163.com (网易)
-# https://docker.mirrors.ustc.edu.cn (ustc)
 
 # 重启 Docker 后台服务
 systemctl restart docker
@@ -88,6 +89,7 @@ docker run hello-world    # 重新运行
 # 解析：docker 的命令执行完成就会自动退出，为了防止线程退出，可以使用一些参数或命令将线程挂起
 docker run -dt --name nodeContainer ubuntu:18.04 /bin/bash
 ```
+
 
 
 

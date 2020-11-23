@@ -16,10 +16,9 @@ features:
   details: 或是从日常手记整理出来的博文，或是深入某部分的专栏博文
 - title: 更多
   details: 学习线路、学习之外、更多
-# footer: 粤ICP备20060883号-1 | Copyright © 2019-present ZhiWen Li
 ---
 
 
 ---
 
-[粤ICP备20060883号-1](http://www.miit.gov.cn/)  Copyright © 2019-present ZhiWen Li
+<PageFooter />

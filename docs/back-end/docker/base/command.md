@@ -14,7 +14,7 @@ sidebarDepth: 2
 
 ### docker pull
 
-+ 用于从相关镜像仓库拉取镜像或仓库
++ 从镜像仓库拉取镜像
 + 命令
 ```sh
 # 拉取镜像到本地，名字格式：用户仓库名/命名空间:标签
@@ -24,7 +24,7 @@ docker pull zhiwen93/node:v1
 
 ### docker search
 
-+ 用于从 Docker Hub 查找镜像
++ 从 Docker Hub 查找镜像
 + 命令
 ```sh
 # 查找镜像
@@ -34,13 +34,12 @@ docker search httpd
 
 ### docker images
 
-+ 用于查看本地镜像列表
++ 查看本地镜像列表
 + 命令
 ```sh
 # 显示本地镜像列表
 docker images
 ```
-
 
 
 ### docker commit
@@ -53,7 +52,6 @@ docker commit -m="my image" -a="zhiwen93" e218ed zhiwen93/node:v1
 ```
 
 
-
 ### docker build
 
 + 从 Dockerfile 构建镜像
@@ -64,7 +62,6 @@ docker build -t zhiwen93/node:v1 ./dockerfile/path
 ```
 
 
-
 ### docker tag
 
 + 修改镜像标签
@@ -72,7 +69,6 @@ docker build -t zhiwen93/node:v1 ./dockerfile/path
 ```sh
 docker tag 860c27 zhiwen93/node:v2
 ```
-
 
 
 ### docker push
@@ -89,7 +85,6 @@ docker logout
 # 推送本地镜像到仓库
 docker push zhiwen93/node:v1
 ```
-
 
 
 ### docker rmi
@@ -139,7 +134,6 @@ docker stats 7da8c1 da4612
 ```
 
 
-
 ### docker create
 
 + 创建新容器(并不会运行)
@@ -153,7 +147,6 @@ docker create --name centos7 centos:7
 ```
 
 
-
 ### docker start
 
 + 启动容器
@@ -164,19 +157,48 @@ docker start centos7 /bin/bash
 ```
 
 
-
 ### docker run
 
-+ 快捷创建并启动容器(相当于 create 和 start 结合)
++ 快捷创建并启动容器(相当于 create 和 start 结合)，**常用**
 + 命令
+```sh
+docker run [-itdpv] [--name [name]] <image> [command]
+
+# i: 
+# t: 
+# d: 指示容器在后台运行(不进入容器)
+# p: 接 端口映射，如 8080:3000(主机端口:容器端口)
+# v: 接 目录映射，如 /data/jenkins_home:/var/jenkins_home(主机目录:容器目录)
+# --name: 接 容器名，否则 Docker 会使用随机名字
+# image: 使用的镜像
+# command: 创建容器后执行的 shell 命令
+```
+
++ 参考
 ```sh
 # 创建并启动容器，默认会进入容器内(若从容器内退出会暂停容器)
 docker run -it --name centos7 centos:7 /bin/bash
 
-# 启动后不进入容器内
+# 添加 -d 参数，容器启动后在后台运行，不会进入容器
 docker run -itd --name centos7 centos:7 /bin/bash
+
+# 带 /bin/bash 命令是为了在容器开启一个 shell，用来将容器挂起，否则容器执行完任务后会自动暂停
+docker run -itd --name centos7 centos:7
+
+# 一些容器创建后会开启一个进程将容器挂起，容器不会自动暂停
+docker run -itd --name jenkins jenkins/jenkins
+
+# 添加端口映射，这样外网可以访问容器
+docker run -itd --name jenkins -p 9000:8080 jenkins/jenkins
+
+# 添加目录映射，该目录被宿主机和容器共享，修改文件十分方便
+docker run -itd --name jenkins -p 9000:8080 -v /data/jenkins_home:/var/jenkins_home jenkins/jenkins
 ```
 
+::: tip 备注：
++ docker 使用 iptables 作端口转发(其实在安装 docker 时会捆绑安装 iptables)
++ [官方](https://docs.docker.com/network/iptables/)不建议修改 iptables 的 DOCKER 链，建议修改 DOCKER-USER 链去实现一些限制
+:::
 
 
 ### docker stop
@@ -192,7 +214,6 @@ docker stop -t 60 7da8c1
 ```
 
 
-
 ### docker restart
 
 + 重启容器
@@ -205,10 +226,9 @@ docker restart -t 60 7da8c1
 ```
 
 
-
 ### docker rm
 
-+ 删除容器(在此之前要先暂停容器)
++ 删除容器(要先暂停容器)
 + 命令
 ```sh
 # 删除容器
@@ -232,11 +252,10 @@ docker rm -v 7da8c1
 ### docker attach
 
 + 进入指定容器，但退出后会关闭容器
-+ 命令
++ 参考
 ```sh
 docker attach 7da8c1
 ```
-
 
 
 ### docker exec
@@ -244,16 +263,31 @@ docker attach 7da8c1
 + 进入指定容器，退出后不会关闭容器
 + 命令
 ```sh
-# 进入容器
+docker [-it] <name> <command>
+
+# i:
+# t:
+# name: 容器名，可以是 hash
+# command: shell 命令
+```
+
++ 参考
+```sh
+# 初始化 jenkins 时，可以将 cat 命令传入 jenkins 容器来获取密码
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+# 通过 pm2 运行一个 node 服务(该容器已安装 pm2)
+docker exec api pm2 start /srv/www/app.js
+
+# 进入容器，创建一个 shell
 docker exec -it 7da8c1 /bin/bash
 ```
 
 
-
 ### docker cp
 
-+ 在宿主机和容器之间拷贝文件(以下命令都是在宿主机中使用，而且不要求容器必须启动)
-+ 命令：
++ 在宿主机和容器之间拷贝文件(命令在宿主机中使用，不要求容器启动)
++ 参考
 ```sh
 # 将宿主机文件拷贝至指定容器的目录下
 docker cp ~/hello.txt centos7:/root
