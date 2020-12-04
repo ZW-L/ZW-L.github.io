@@ -1,3 +1,7 @@
+---
+sidebarDepth: 2
+---
+
 ## 介绍
 
 **HTTP/1.1 规范定义了 47 种头部字段**：
@@ -9,6 +13,7 @@
 **一些特定的字段**：
 + 自定义头部: 自定义的头部字段，服务端和客户端都可根据需要进行扩展，通常以 `X` 开头的头部字段都是自定义的
 + Cookie 相关头部：为 Cookie 服务的字段
+
 
 
 ## 通用头部字段
@@ -26,47 +31,60 @@
 |Warning|错误通知，用于告知用户一些与缓存相关的警告|
 
 
+### Cache-Control
 
-+ **Cache-Control**：多个指令之间用 `,` 隔开
-  + 缓存请求指令：
++ 多个指令之间用 `,` 隔开
++ 缓存请求指令：
 
-  |指令|说明|
-  |-|-|
-  |no-cache|强制向源服务器再次验证，指的是不使用过期的资源|
-  |no-store|不缓存请求或响应的内容(敏感信息)|
-  |no-transform|代理不可更改媒体类型|
-  |max-age=秒|响应内容的过期时间，在 HTTP/1.1 中优先于 `Expires` 字段，在 HTTP/1.0 中刚好相反|
-  |max-stale[=秒]|接收不超过指定过期时间的资源；缺省参数时接收任意过期的资源|
-  |min-fresh=秒|要求服务器返回未经过指定时间的缓存资源|
-  |only-if-cached|仅从缓存服务器获取资源；资源不存在时会返回 504|
-  |cache-extension|新指令标记，仅对能理解的缓存服务器有效|
+|指令|说明|
+|-|-|
+|no-cache|强制向源服务器再次验证，指的是不使用过期的资源|
+|no-store|不缓存请求或响应的内容(敏感信息)|
+|no-transform|代理不可更改媒体类型|
+|max-age=秒|响应内容的过期时间，在 HTTP/1.1 中优先于 `Expires` 字段，在 HTTP/1.0 中刚好相反|
+|max-stale[=秒]|接收不超过指定过期时间的资源；缺省参数时接收任意过期的资源|
+|min-fresh=秒|要求服务器返回未经过指定时间的缓存资源|
+|only-if-cached|仅从缓存服务器获取资源；资源不存在时会返回 504|
+|cache-extension|新指令标记，仅对能理解的缓存服务器有效|
 
-  + 缓存响应指令：
++ 缓存响应指令：
 
-  |指令|说明|
-  |-|-|
-  |no-cache|缓存前必须先确定其有效性，指的是不使用过期的资源|
-  |no-store|不缓存请求或响应的内容(敏感信息)|
-  |no-transform|代理不可更改媒体类型|
-  |max-age=秒|响应内容的过期时间，在 HTTP/1.1 中优先于 `Expires` 字段，在 HTTP/1.0 中刚好相反|
-  |cache-extension|新指令标记，仅对能理解的缓存服务器有效|
-  |public|可向任意方提供响应的缓存|
-  |private|仅向特定用户返回响应|
-  |must-revalidate|可缓存但必须再向源服务器进行确认；会忽略 max-stale；失败时返回 504|
-  |proxy-revalidate|要求中间缓存服务器对缓存的响应有效性再进行确认|
-  |s-maxage=秒|公共缓存服务器响应的内容过期时间；使用后会忽略 `max-age` 指令和 `Expires` 字段|
+|指令|说明|
+|-|-|
+|no-cache|缓存前必须先确定其有效性，指的是不使用过期的资源|
+|no-store|不缓存请求或响应的内容(敏感信息)|
+|no-transform|代理不可更改媒体类型|
+|max-age=秒|响应内容的过期时间，在 HTTP/1.1 中优先于 `Expires` 字段，在 HTTP/1.0 中刚好相反|
+|cache-extension|新指令标记，仅对能理解的缓存服务器有效|
+|public|可向任意方提供响应的缓存|
+|private|仅向特定用户返回响应|
+|must-revalidate|可缓存但必须再向源服务器进行确认；会忽略 max-stale；失败时返回 504|
+|proxy-revalidate|要求中间缓存服务器对缓存的响应有效性再进行确认|
+|s-maxage=秒|公共缓存服务器响应的内容过期时间；使用后会忽略 `max-age` 指令和 `Expires` 字段|
 
-  
-+ **Connection**: 
-  + `keep-alive`: HTTP/1.1 默认值。保持持久的连接，下次发送消息时不需要再次建立连接
-  + `close`: 关闭此次连接
-+ **Pragma**：只用于客户端发送的请求中，用于兼容 HTTP/1.0
+
+### Connection
+
++ HTTP/1.1 默认值为 `keep-alive`
+```sh
+Connection: keep-alive  # 保持持久的连接，下次发送消息时不需要再次建立连接
+Connection: close       # 关闭此次连接
+```
+
+
+### Pragma
+
++ 只用于客户端发送的请求中，用于兼容 HTTP/1.0
 ```sh
 # 优先使用 Cache-Control
 Cache-Control: no-cache
 Pragma: no-cache
 ```
-+ **Trailer**：可应用于分块传输编码时
+
+
+### Trailer
+
++ 可应用于分块传输编码时
 ```sh
 HTTP/1.1 200 OK
 Cache-Control: private
@@ -79,11 +97,19 @@ Trailer: Expires      # 指定在报文主体中补充的字段
 0
 Expires: Thu, 18 Jun 2020 17:26:03 GMT  # 补充字段
 ```
-+ **Transfer-Encoding**：仅对分块传输有效
+
+
+### Transfer-Encoding
+
++ 仅对分块传输有效
 ```sh
 Transfer-Encoding: chunked
 ```
-+ **Upgrade**：可以指定更高版本的 HTTP 协议，或其他的通信协议
+
+
+### Upgrade
+
++ 可以指定更高版本的 HTTP 协议，或其他的通信协议
 ```sh
 # 请求头
 GET /index.html HTTP/1.1
@@ -95,10 +121,14 @@ HTTP/1.1 101 Switching Protocols  # 允许时响应 101
 Upgrade: TLS/1.0 HTTP/1.1
 Connection: Upgrade
 ```
-+ **Warning**：
+
+
+### Warning
+
 ```sh
 # 格式
 Warning: <警告码> <Host> <警告内容> [日期]
+
 # 示例
 Warning: 113 ge.hackr.jp:8080 "some message."
 ```
@@ -130,10 +160,15 @@ Warning: 113 ge.hackr.jp:8080 "some message."
 |TE|指定传输编码的优先级；类似 Accept-Encoding 的取值，和特殊值 trailers|
 |User-Agent|浏览器的种类信息；经过代理服务器时可能会添加，爬虫时也可自定义添加|
 
-
-
 ::: tip 说明
-+ **Accept-\***: 可以设置多个值，彼此之间用逗号隔开；还能用分号附加权重
++ **Host**：主要是为了当单个服务器部署多个域名时能识别出是哪个域名对应的请求；若服务器未设置主机名，可以传空值
++ **Max-Forwards**：常用于掌控传输路径的通信状态(如在哪一层请求失败、发生请求闭环时)
+:::
+
+
+### Accept-*
+
++ 可以设置多个值，彼此之间用逗号隔开；还能用分号附加权重
 ```sh
 # Accept：MIME类型/MINE子类型的格式
 Accept: image/webp
@@ -149,10 +184,13 @@ Accept-Encoding: gzip, deflate, br
 # Accept-Language
 Accept-Language: zh-CN,zh;q=0.9
 ```
-+ **Host**：主要是为了当单个服务器部署多个域名时能识别出是哪个域名对应的请求；若服务器未设置主机名，可以传空值
-+ **If-\***：条件请求
+
+
+### If-*
+
++ 一系列条件请求字段
 ```sh
-# If-Match：资源的实体标记(ETag)匹配时返回 200，否则返回 412
+# If-Match：资源的 ETag 匹配时返回 200，否则返回 412
 If-Match: "123456"
 If-Match: *
 
@@ -173,9 +211,8 @@ Range: bytes=5001-10000
 If-Range: "123456"      # ETag 不匹配时，返回全部资源和 200
 Range: bytes=5001-10000
 ```
-+ **If-Range**：只发送一次请求，性能优于 `If-Match`(当资源匹配失败时，会返回 412 提示客户端再次发送请求，这样客户端需要发送两个请求才能得到数据)
-+ **Max-Forwards**：常用于掌控传输路径的通信状态(如在哪一层请求失败、发生请求闭环时)
-:::
+
++ `If-Range`：只发送一次请求，性能优于 `If-Match`(当资源匹配失败时，会返回 412 提示客户端再次发送请求，这样客户端需要发送两个请求才能得到数据)
 
 
 
@@ -244,14 +281,15 @@ Content-Range bytes 5001-10000/10000
 
 ## 其他头部字段
 
-+ **X-Frame-Options**: 常用作响应头部字段，表示网站内容是否允许被嵌入其他网站的 iframe 中
++ `X-Frame-Options`: 常用作响应头部字段，表示网站内容是否允许被嵌入其他网站的 iframe 中
 ```sh
 # 禁止，能有效防止常见的点击劫持
 X-Frame-Options: deny
 # 仅允许同源页面
 X-Frame-Options: sameorigin
 ```
-+ **X-XSS-Protection**：控制浏览器防护 XSS
+
++ `X-XSS-Protection`：控制浏览器防护 XSS
 ```sh
 # 关闭 XSS 过滤
 X-XSS-Protection: 0
@@ -263,7 +301,7 @@ X-XSS-Protection: 1
 
 ## Cookie 相关头部
 
-+ Set-Cookie：用于响应头部，由服务器发送给客户端
++ `Set-Cookie`：用于响应头部，由服务器发送给客户端
 ```sh
 # 键值对：<name>=<value>
 token="some-token"
@@ -284,7 +322,8 @@ secure
 # 防窃取：HttpOnly；主要是防止 XSS 攻击，此后 document.cookie 无法读取 Cookie
 HttpOnly
 ```
-+ Cookie：用于请求头部，由客户端发送给服务器
+
++ `Cookie`：用于请求头部，由客户端发送给服务器
 ```sh
 # 多用于向服务器发送信息，用于验证客户端身份
 Cookie: token="some-token"

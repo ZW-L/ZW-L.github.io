@@ -2,135 +2,9 @@
 sidebarDepth: 2
 ---
 
+## 用户组
 
-## 概念
-
-### 简介
-
-+ **用户标识符**：每个登陆的用户至少有两个 ID，UID(User ID)和 GID(Group ID)
-+ **用户登录的过程**：
-  1. 查找 /etc/passwd 中是否有相关账号 -> 读出对应的 UID、GID(/etc/group)、用户 home、用户 shell 设置
-  2. 核对密码表：在 /etc/shadow 中找到账号和 UID，核对记录的密码是否相符
-  3. 登录成功，进入 shell 管理
-
-
-### /etc/passwd
-
-+ `/etc/passwd`：每一行代表一个账号，包括系统账号(bin, daemon, adm 等)和用户账号，不要随便删除
-```sh
-# head -n 4 /etc/passwd 
-root:x:0:0:root:/root:/bin/bash
-bin:x:1:1:bin:/bin:/sbin/nologin
-daemon:x:2:2:daemon:/sbin:/sbin/nologin
-adm:x:3:4:adm:/var/adm:/sbin/nologin
-
-# 按照顺序每行有 7 个值，使用 : 隔开
-# 1.账号名称：用来登录系统的用户名
-# 2.密码：为了安全，密码数据存放至 /etc/shadow 中，这里都显示 x
-# 3.UID：用户标识符，通常 root 为 0，1～999 为系统账号，1000～60000 为可登录账号(目前已支持42多亿的数值)
-# 4.GID：用户组标识符，与 /etc/group 有关
-# 5.用户信息说明
-# 6.用户 home 目录，默认为 /home/youName
-# 7.shell 目录：登录后启用的 shell
-```
-
-::: tip 提示：
-+ 将 UID 修改为 0 后，该用户会拥有 root 权限，但不建议滥用
-+ 当想禁止登录后获取 shell 环境，可以配置 shell 为 `/sbin/nologin`，常用来制作纯 pop 邮件账号的数据
-:::
-
-
-### /etc/shadow
-
-+ `/etc/shadow`：账号的密码相关记录
-```sh
-# head -n 4 /etc/shadow
-root:$1$kPXBoqUi$aCJQX1fw55EnrvydRrm3X0:18200:0:99999:7:::
-bin:*:17834:0:99999:7:::
-daemon:*:17834:0:99999:7:::
-adm:*:17834:0:99999:7:::
-
-# 按顺序每行有 9 个值
-# 1.账号名称
-# 2.密码摘要：当修改为 ! 或 * 时，可让密码暂时失效
-# 3.最近修改密码的日期：以天数为单位
-# 4.密码不可被修改的天数：对比 3 计算
-# 5.密码需要重新修改的天数：对比 3 计算，否则密码会被视为过期(需要重设密码才能登录)
-# 6.密码需要修改前的警告天数：对比 5 计算
-# 7.密码过期后的宽限天数：对比 5 计算
-# 8.密码失效日期：以天数为单位，过期后将无法使用，常用于收费服务中
-# 9.保留值
-```
-
-::: tip 提示：
-+ 当想要限制某个用户登录时，只需要修改它的密码为 ! 或 *
-+ 密码失效日期可用于收费服务中
-+ 查看 shadow 使用的加密机制：
-```sh
-authconfig --test | grep hashing
-# password hashing algorithm is md5
-```
-+ 一般用户忘记密码：通过 root 用户修改密码
-```sh
-# root 用户使用 passwd 命令修改指定用户的密码
-passwd tester
-```
-+ 忘记 root 密码：
-  + 重启进入单人维护模式，此时系统会给予 root 权限的 bash 接口，再使用 passwd 命令修改密码即可
-  + 以 Live CD 启动后挂载根目录，将 /etc/shadow 中 root 的密码清空，重启后不用密码即可登录，再使用 passwd 修改即可
-:::
-
-
-### /etc/group
-
-+ `/etc/group`：用户组配置
-```sh
-# head -n 4 /etc/group
-root:x:0:
-bin:x:1:
-daemon:x:2:
-sys:x:3:
-
-# 按顺序每行有 4 个值
-# 1.组名：基本上与 GID 对应
-# 2.用户组密码：很少使用，通常给用户组管理员使用，密码数据存放至 /etc/shadow 中，这里都显示 x
-# 3.GID：用户组标识符
-# 4.用户组支持的账号列表：需要加入该用户组的用户名，使用 , 隔开，不能有空格
-```
-
-::: tip 提示：
-+ 初始化用户组：用户登录后拥有的其对应用户组的权限，即用户自身的 `/etc/group` 的第四个值可以为空
-+ 有效用户组：`groups` 命令返回的第一个值，保证创建文件时的用户组归属
-:::
-
-
-### /etc/gshadow
-
-+ `/etc/gshadow`：与 `/etc/group` 基本一样
-```sh
-# head -n 4 /etc/gshadow
-root:::
-bin:::
-daemon:::
-sys:::
-
-# 按顺序每行有 4 个值
-# 1.组名
-# 2.密码：为空或 ! 时，表示该用户组没有用户组管理员
-# 3.用户组管理员的账号：相关信息在 gpasswd
-# 4.用户组支持的账号列表：与 /etc/group 相同
-```
-
-
-
-
-## 命令
-
-### 用户组
-
-<Base-BadgeList :list="['groups', 'newgrp', 'groupadd', 'groupmod', 'groupdel', 'gpasswd']"/>
-
-#### groups
+### groups
 
 + 当前用户支持的用户组
 ```sh
@@ -139,7 +13,7 @@ groups
 # 结果列表以空格分开，且第一个是有效用户组
 ```
 
-#### newgrp
+### newgrp
 
 + 切换有效用户组，会启用一个新的 shell 执行该命令，结束后应手动 exit 退出
 ```sh
@@ -148,7 +22,7 @@ touch hello.txt # 创建一个文件，所属会变为 users
 exit # 手动退出当前 shell
 ```
 
-#### groupadd
+### groupadd
 
 + 新建用户组
 ```sh
@@ -158,7 +32,7 @@ groupadd [-gr] <用户组名称>
 # -r：建立系统用户组，与 /etc/login.defs 的 GID_MIN 相关
 ```
 
-#### groupmod
+### groupmod
 
 + 修改用户组(不要随意修改，防止系统资源错乱)
 ```sh
@@ -168,14 +42,14 @@ groupmod [-gn] <用户组名称>
 # -n：接 旧用户组名称
 ```
 
-#### groupdel
+### groupdel
 
 + 删除用户组(当用账号使用该用户组为初始化用户组时，便不能直接删除)
 ```sh
 groupdel <用户组名称>
 ```
 
-#### gpasswd
+### gpasswd
 
 + 用户组管理员专用，用于将用户加入/移出用户组(需先添加用户组管理员)
 ```sh
@@ -202,11 +76,11 @@ gpasswd -a student team # tester 将 student 添加到用户组
 ```
 
 
-### 账号
 
-<Base-BadgeList :list="['useradd', 'usermod', 'userdel', 'passwd', 'change', 'id', 'finger', 'chfn', 'chsh']"/>
 
-#### useradd
+## 账号
+
+### useradd
 
 + 添加新用户
 ```sh
@@ -228,7 +102,7 @@ useradd -D  # 查看 useradd 的默认值
 cat /etc/login/defs  # 查看 UID/GID 的密码参数参考值
 ```
 
-#### usermod
+### usermod
 
 + 修改用户信息
 ```sh
@@ -248,7 +122,7 @@ usermod [-cdeg-GlsuLU] <用户名>
 # -U：解锁密码
 ```
 
-#### userdel
+### userdel
 
 + 删除用户
 ```sh
@@ -257,7 +131,7 @@ userdel [-r] <用户名>
 # -r：同时删除 home 目录，会删除该用户的所有数据！
 ```
 
-#### passwd
+### passwd
 
 + 修改用户密码
 ```sh
@@ -276,7 +150,7 @@ passwd  # 不加用户名为设置 root 的密码，要特别注意！
 echo '123abc' | passwd --stdin tester  # 通过管道设置密码，但不安全(命令会记录在 /root/.bash_history)
 ```
 
-#### change
+### change
 
 + 修改用户密码
 ```sh
@@ -296,7 +170,7 @@ echo 'student' | passwd --stdin student
 chage -d 0 student  # 用户登录时会要求重设密码
 ```
 
-#### id
+### id
 
 + 查询用户的 UID/GID 信息
 ```sh
@@ -306,21 +180,21 @@ id  # 查询当前用户
 id tester  # 查询指定用户
 ```
 
-#### finger
+### finger
 
 + 查看用户信息，大部分位于 /etc/passwd 中，因为比较危险，很多新版本默认不再安装
 ```sh
 finger [-sm] <用户名>
 ```
 
-#### chanfn
+### chanfn
 
 + change finger
 ```sh
 chfn [-foph] [用户名]
 ```
 
-#### chsh
+### chsh
 
 + change shell
 ```sh
@@ -331,11 +205,10 @@ chsh [-ls]
 ```
 
 
-### 切换用户
 
-<Base-BadgeList :list="['su', 'sudo']"/>
+## 切换用户
 
-#### su
+### su
 
 + 切换用户身份，每次切换后都可使用 exit 回到上层用户
 ```sh
@@ -348,7 +221,7 @@ su [-lmc] [用户名]
 # -c：接 命令内容，仅执行一次命令
 ```
 
-#### sudo
+### sudo
 
 + 以 root 身份执行命令，使用该命令的用户要先获得 root 的授权(`/etc/sudoers` 规定)，并输入自身的密码
 ```sh
@@ -405,9 +278,7 @@ ADMPW ALL=(root) /bin/su -
 
 
 
-### 用户信息
-
-<Base-BadgeList :list="['w', 'who', 'last', 'lastlog', 'write', 'wall', 'mail']"/>
+## 用户信息
 
 #### w
 
@@ -421,7 +292,7 @@ w [-hisV] [用户名]
 # -V：显示版本信息
 ```
 
-#### who
+### who
 
 + 显示目前登录到系统的用户
 ```sh
@@ -438,21 +309,21 @@ who [-ablmqrsuw] [文件名]
 # -w/-T：显示 tty 终端的状态(`+` 表示对任何人可写，`-` 表示仅对 root 用户可写，`?` 表示遇到终端故障)
 ```
 
-#### last
+### last
 
 + 显示目前与过去登入系统的用户相关信息
 ```sh
 last -10    # 显示最近 10 条记录
 ```
 
-#### lastlog
+### lastlog
 
 + 每个用户的最近登录事件，默认读取 `/var/log/lastlog` 文件
 ```sh
 lastlog
 ```
 
-#### write
+### write
 
 + 将信息传给其他在线用户
 ```sh
@@ -460,14 +331,14 @@ write tester pts/2  # 需要输入其他用户及其终端界面
 # 之后可输入内容，按 enter 发送信息，ctrl-d 停止发送
 ```
 
-#### wall
+### wall
 
 + 发出广播
 ```sh
 wall 'hello everybody!'
 ```
 
-#### mesg
+### mesg
 
 + 允许/禁止接受信息，但不能禁止 root 发出的信息
 ```sh
@@ -475,16 +346,9 @@ mesg n  # 不接收信息
 mesg y  # 接收信息
 ```
 
-#### mail
+### mail
 
 + 发送/读取邮件，不需要用户在线，一般来说邮件保存在 `/var/spool/mail/username` 中
 ```sh
 
 ```
-
-
-
-## ACL
-
-
-## PAM

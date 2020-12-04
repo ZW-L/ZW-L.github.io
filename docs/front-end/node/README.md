@@ -1,6 +1,6 @@
 ## 简介
 
-+ 不是一门编程语言或一个应用，而是**基于 Chrome V8 引擎的 Javascript 运行时环境**
++ Node.js 不是一门编程语言或一个应用，而是**基于 Chrome V8 引擎的 Javascript 运行时环境**
 + 使用 Node Bindings 层将 Chrome V8 引擎暴露的 C/C++ 接口转换成 Javascript API，在这些 API 的基础上编写 Node.js 标准库
 + 使用一个事件驱动、非阻塞 I/O 的模型
 + 使用 C/C++ 编写的 libuv 事件处理库来处理 I/O 操作，libuv 由事件循环和线程池组成
@@ -8,7 +8,6 @@
 + 架构图:
 
 ![Node.js 架构图](./imgs/node-fw.png)
-
 
 
 

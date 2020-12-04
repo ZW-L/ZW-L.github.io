@@ -2,29 +2,29 @@
 
 **创建型：**
 
-+ 抽象(Abstract): 
-+ 生成器(Builder): 
-+ 构造器(Constructor): 
-+ 工厂(Factory): 
-+ 原型(Prototype): 
-+ 单例(Singleton): 
++ 抽象(`Abstract`): 
++ 生成器(`Builder`): 
++ 构造器(`Constructor`): 
++ 工厂(`Factory`): 
++ 原型(`Prototype`): 
++ 单例(`Singleton`): 
 
 
 **结构型：**
 
-+ 适配器(Adapter): 
-+ 修饰器(Decorator): 
-+ 外观(Facade): 
-+ 享元(Flyweight): 
-+ 代理(Proxy): 
++ 适配器(`Adapter`): 
++ 修饰器(`Decorator`): 
++ 外观(`Facade`): 
++ 享元(`Flyweight`): 
++ 代理(`Proxy`): 
 
 
 **行为型：**
 
-+ 迭代器(Iterator): 
-+ 中介者(Mediator): 
-+ 观察者(Observer): 
-+ 访问器(Visitor): 
++ 迭代器(`Iterator`): 
++ 中介者(`Mediator`): 
++ 观察者(`Observer`): 
++ 访问器(`Visitor`): 
 
 
 **架构型：**

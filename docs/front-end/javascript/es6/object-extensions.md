@@ -289,6 +289,7 @@ for (let i of text) {
 // "𠮷"
 ```
 
+
 ### 模板字符串
 
 + 使用反引号包含字符串，并且能够折行
@@ -316,16 +317,26 @@ console.log(`foo ${fn()} bar`) // 'foo Hello World bar'
 
 ### 新增方法
 
-+ `String.fromCodePoint(num{1,}: Unicode): String`: 从 `Unicode` 码点返回对应字符(可以识别大于 `0xFFFF` 的字符)
-+ `String.raw(): String`: 作为处理模板字符串的基本方法，会将所有变量替换且对斜杠进行转义，方便下一步作为字符串来使用
-+ `String.prototype.codePointAt(pos: Number): Number`: 返回一个 `Unicode` 编码点值的非负整数
-+ `String.prototype.normalize(form='NFC': String): String`: 按照指定的一种 `Unicode` 正规形式将当前字符串正规化
-+ `String.prototype.repeat(count: Number): String`: 返回当前字符串重复指定次数的新字符串
-+ `String.prototype.includes(str: String, position=0: Number): Boolean`: 判断指定字符串是否包含在另一个字符串中
-+ `String.prototype.startsWith(str: String, position=0: Number): Boolean`: 判断当前字符串是否以给定的字符串开头
-+ `String.prototype.endsWith(str: String, position=0: Number): Boolean`: 判断当前字符串是否以给定的字符串结尾
-+ `String.prototype.trimStart(): String`: 从字符串的开头删除空格
-+ `String.prototype.trimEnd(): String`: 从字符串的结尾删除空格
++ `String.fromCodePoint(num{1,}: Unicode): String`
+  + 从 Unicode 码点返回对应字符(可以识别大于 `0xFFFF` 的字符)
++ `String.raw(): String`
+  + 作为处理模板字符串的基本方法，会将所有变量替换且对斜杠进行转义，方便下一步作为字符串来使用
++ `String.prototype.codePointAt(pos: Number): Number`
+  + 返回一个 `Unicode` 编码点值的非负整数
++ `String.prototype.normalize(form='NFC': String): String`
+  + 按照指定的一种 `Unicode` 正规形式将当前字符串正规化
++ `String.prototype.repeat(count: Number): String`
+  + 返回当前字符串重复指定次数的新字符串
++ `String.prototype.includes(str: String, position=0: Number): Boolean`
+  + 判断指定字符串是否包含在另一个字符串中
++ `String.prototype.startsWith(str: String, position=0: Number): Boolean`
+  + 判断当前字符串是否以给定的字符串开头
++ `String.prototype.endsWith(str: String, position=0: Number): Boolean`
+  + 判断当前字符串是否以给定的字符串结尾
++ `String.prototype.trimStart(): String`
+  + 从字符串的开头删除空格
++ `String.prototype.trimEnd(): String`
+  + 从字符串的结尾删除空格
 
 
 

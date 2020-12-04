@@ -179,11 +179,8 @@ import '@/icons'
 
 <script>
 import SvgIcon from '@/components/SvgIcon'
-
 export default {
-  components: {
-    SvgIcon
-  }
+  components: { SvgIcon }
 }
 </script>
 
@@ -201,14 +198,12 @@ export default {
   &:hover {
     color: #fff;
   }
-
   &--peoples {
     color: #065fe0;
     &:hover {
       background: #065fe0;
     }
   }
-
   &--message {
     color: #1ddae8;
     &:hover {

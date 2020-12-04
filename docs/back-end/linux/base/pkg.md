@@ -2,8 +2,36 @@
 sidebarDepth: 2
 ---
 
-## rpm
+## 简介
 
++ 软件管理/安装：rpm, dpkg
++ 软件在线安装：yum, apt-get
+
+|发行版代表|软件管理机制|命令|在线升级(命令)|
+|-|-|-|-|
+|Red Hat/Fedora|RPM|rpm, rpmbuild|YUM(yum)|
+|Debian/Ubuntu|DPKG|dpkg|APT(apt-get)|
+
+::: tip 备注：
++ 使用 RPM、DPKG 等软件管理机制可以安装管理本地软件
++ 当有网络的时候，yum 和 apt-get 的在线安装方式更常用
+:::
+
+
+
+## RPM
+
++ RPM(RedHat Package Manager)最新是由 RedHat 开发的 Linux 包管理器，现在是一种通用的 Linux 包管理方式
++ 
++ 安装简单方便：软件已经编译完成且打包完毕，安装只是个验证环境和解压的过程
++ 通过 RPM 安装的软件，会记录软件安装信息，方便以后的查询、升级和卸载
++ 缺点：对操作系统环境依赖很大，要求包的安装环境与封装时的环境一致或相当
+
+
+
+### RPM
+
++ rpm 包一般都是以 `.rpm` 作后缀的
 + 安装
 ```sh
 rpm [-ivh] [options] <file1.rpm> <file2.rpm> ...
@@ -20,6 +48,10 @@ rpm [-ivh] [options] <file1.rpm> <file2.rpm> ...
 # --includedocs: 安装包说明文件
 # --excludedocs: 不安装包的说明文件
 ```
+
+::: tip 备注
++ 若安装失败，会给出需要依赖的包以及版本，此时需要先安装相关的依赖包
+:::
 
 
 + 查询(query)
@@ -63,9 +95,21 @@ rpm -e [options] <file1.rpm> <file2.rpm> ...
 ```
 
 
+### SRPM
 
-## yum
 
+
+
+### yum
+
++ RedHat 系列(RedHat, CentOS, Fedora)Linux 系统的包管理工具
++ 安装方便，自动解决添加或删除 rpm 包时遇到的依赖问题
++ 可以同时配置多个资源库
++ 保持与 RPM 数据库的一致性
++ 配置简单
+  + `/etc/yum.conf`：主配置文件
+  + `/etc/yum.repos.d`：资源库配置目录
+  + `/etc/yum.repos.d/CentOS-Base.repo`：yum 源配置文件
 + 安装配置
 ```sh
 # 检测是否已安装 yum
@@ -136,8 +180,20 @@ yum clean oldheaders  # 清除暂存的旧的 rpm 头文件
 
 
 
-## apt-get
 
+
+
+## APT
+
++ 常见的安装包格式是 deb，可以使用 dpkg 命令安装包
+
+
+### DPKG
+
+
+### apt-get
+
++ Debian 系列(Debian, Ubuntu)Linux 系统的包管理工具
 ```sh
 # 安装包
 apt-get install

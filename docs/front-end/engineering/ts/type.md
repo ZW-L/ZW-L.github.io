@@ -47,6 +47,7 @@ b = 'hello'   // 报错
 let c: string = 'world'
 c = null      // 报错
 ```
+
 + 使用对象类型时必须指定每个成员的类型，更好的方法是使用[接口](./interface.md)来约束类型
 ```ts
 let o1: Object = { a: 'hello' }
@@ -82,7 +83,7 @@ s1 = 'world'  // 正常
 let s2: string = 'hello'
 s2 = new String('world')  // 报错
 
-// 结论：可以理解 string 等基础类型是其包装类类型的自类型
+// 结论：可以理解 string 等基础类型是其包装类类型的子类型
 ```
 + 更多的类类型介绍请看 [类](./class.md)
 
