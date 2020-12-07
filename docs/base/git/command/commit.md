@@ -3,8 +3,9 @@
 + `git add`：添加文件到暂存区
 ```sh
 git add hello.txt   # 添加单个文件到暂存区
-git add *.js        # 通过正则匹配添加多个文件到暂存区
-git add .           # 添加所有文件到暂存区
+git add src         # 添加目录到暂存区
+git add *.js        # 支持正则表达式
+git add .           # 通配符 . 代表所有文件
 ```
 
 + `git rm`：从暂存区删除文件(只有在用其他方式删除文件时，该命令才可用)
@@ -33,11 +34,17 @@ git status          # 暂存区只显示 new file：b.txt
 
 ## 提交修改
 
-+ `git commit`：提交修改，默认会弹出一个编辑器，用于书写提交说明
-  + -m 参数：快捷添加提交说明
-  + -a 参数：快捷添加文件到暂存区(文件必须是之前被跟踪但修改后被移出暂存区的)
++ `git commit`：提交修改，默认会弹出系统默认编辑器，用于书写提交说明，常用参数：
+  + `-m`：快捷添加提交说明
+  + `-a`：快捷添加文件到暂存区(文件必须是之前被跟踪但修改后被移出暂存区的)
+
 ```sh
+# 此时会弹出编辑器，提示输出提交说明
 git commit
-git commit -m "fix some problem"  # 快捷提交，同时添加提交说明
-git commit -am "fix some problem" # 将跟踪过的文件添加到暂存区，并快捷提交
+
+# 此时不会弹出编辑器，而是使用后面的字符串作提交说明
+git commit -m "fix some problem"
+
+# 提交前自动将跟踪过的文件添加到暂存区(此前不用再使用 git add 命令)
+git commit -am "fix some problem"
 ```

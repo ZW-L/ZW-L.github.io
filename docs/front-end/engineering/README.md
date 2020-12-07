@@ -80,10 +80,16 @@
 
 ### 函数库
 
-+ [jquery](https://www.jquery123.com/category/version/1.9/): 
+一些常用的函数工具库：
+
++ [jquery](https://www.jquery123.com/category/version/1.9/): 涵盖 DOM 操作、CSS 特效、Ajax 等功能的老一代工具库
 + [lodash](https://www.lodashjs.com/): 一致性、模块化、高性能的 JavaScript 实用工具库
 + [underscore](https://www.css88.com/doc/underscore/#each): lodash 的前身
-+ [moment](https://momentjs.com/): 日期格式化工具
++ [moment](https://momentjs.com/): 日期格式化工具库
+
+此外，还有一些值得参考和学习的工具库：
+
++ [fbjs](https://github.com/facebook/fbjs): facebook 内部使用的函数库
 
 
 
@@ -92,13 +98,17 @@
 
 ### 组件库
 
-+ Web 端
-  + [element-ui](https://element.eleme.cn/#/zh-CN/component/installation): 借鉴 Bootstrap 实现的 Vue 组件库，UI 精美，多用于后台管理系统
-  + [Bootstrap](https://v3.bootcss.com/getting-started/): 老牌响应式 UI 库，还有组件化的 Vue/React 版本
-+ 移动端
-  + [vant](https://vant-contrib.gitee.io/vant/#/zh-CN/home): 支持 H5 和 小程序，文档、Demo 丰富
-  + [weui](https://github.com/Tencent/weui): 微信官方设计的 UI 库
-  + [taro-ui](https://taro-ui.aotu.io/#/docs/introduction): taro 提供的组件库
+Web 端：
+
++ [element-ui](https://element.eleme.cn/#/zh-CN/component/installation): 借鉴 Bootstrap 实现的 Vue 组件库，UI 精美，多用于后台管理系统
++ [Bootstrap](https://v3.bootcss.com/getting-started/): 老牌响应式 UI 库，还有组件化的 Vue/React 版本
+
+
+移动端：
+
++ [vant](https://vant-contrib.gitee.io/vant/#/zh-CN/home): 支持 H5 和 小程序，文档、Demo 丰富
++ [weui](https://github.com/Tencent/weui): 微信官方设计的 UI 库
++ [taro-ui](https://taro-ui.aotu.io/#/docs/introduction): taro 提供的组件库
 
 
 ### 特效/动画
@@ -160,4 +170,3 @@
 + [Vuepress](https://vuepress.vuejs.org/zh/config/): 基于 Vue 的 markdown 文档生成器，可用于撰写开发文档、API 文档或个人博客等
 + [valine][https://valine.js.org/]: 一款快速、简洁且高效的无后端评论系统
 + [mermaid](https://github.com/mermaid-js/mermaid): 流程图生成工具
-+ 

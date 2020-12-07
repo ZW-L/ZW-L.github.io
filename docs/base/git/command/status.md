@@ -1,40 +1,23 @@
 ## 查看状态
 
-+ `git status`：查看当前文件状态
++ `git status`：查看当前工作区状态，包括一些文件的变更(增删改等)
 ```sh
 git status
 git status -s   # 状态简览，每行开头会用一个大写字母标记文件的更改
 ```
 
-
-
-## 查看历史
-
-+ `git log`：查看提交历史，但不会显示 `git reset` 回退的所有版本
-```sh
-git log         # 查看所有提交历史
-git log stat    # 显示每次提交修改的内容的简略信息
-git log -p -2   # 显示每次提交的差异，并且只显示最后两次的提交
-```
-
-+ `git reflog`：记录所有提交记录和 `git reset` 的记录，并且它们的开头会有标记该记录是 commit 还是 reset
-```sh
-git reflog
-# 打印：
-aff6c95 (HEAD -> master) HEAD@{0}: reset: moving to HEAD^^
-520e255 HEAD@{1}: commit: b
-83137a9 HEAD@{2}: commit: a
-aff6c95 (HEAD -> master) HEAD@{3}: reset: moving to aff6c95
-4ac3cbc HEAD@{4}: reset: moving to HEAD^
-aff6c95 (HEAD -> master) HEAD@{5}: commit: change
-4ac3cbc HEAD@{6}: commit (initial): first commit
-```
+::: tip 状态提示：
++ **Untracked files**：未跟踪的文件列表。即新建了文件，还未 `add` 到暂存区
++ **Changes not staged for commit**：已跟踪的文件发生更改。需要再次 `add` 到暂存区
++ **Changes to be committed**：等待提交。修改的文件已经添加到暂存区，可以使用 `commit` 提交
++ **Nothing to commit, working tree clean**：工作区无目录。`commit` 之后的状态
+:::
 
 
 
 ## 对比差异
 
-+ `git diff`：对比文件差异，默认对比的是工作区文件
++ `git diff`：对比文件差异，默认对比的是工作区和暂存区的所有文件
 ```sh
 git diff
 ```
@@ -62,4 +45,3 @@ git diff 0a2bce6 551146b  # 对比两个指定提交记录的差异
 ```sh
 git diff master dev
 ```
-
