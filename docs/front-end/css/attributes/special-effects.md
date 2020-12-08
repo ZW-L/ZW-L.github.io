@@ -21,6 +21,17 @@ sidebarDepth: 2
 
 
 ::: tip 备注：
+```css
+.box {
+  transition-property：all; /* 设置参与过渡的属性，多个属性用逗号分隔 */
+  transition-duration：.8s; /* 设置过渡持续的时间，多个属性用逗号分隔 */
+  transition-timing-function：ease; /* 设置过渡使用的速度函数 */
+  transition-delay：1s; /* 设置延迟过渡的时间 */
+  transition：all .8s ease 1s; /* 一次性设置上述值，按顺序 */
+}
+```
++ 设置 `transition` 属性后不会产生动画，需要在指定过渡的属性发生变化时才会看得到变化
++ 可以用 `CSS` 伪类(`:hover` 等)设置元素属性变化，或者通过 `js` 事件设置元素属性变化
 + 可以分别设置多组属性的过渡，它们用逗号隔开：
 ```css
 #content:hover {
@@ -51,6 +62,9 @@ sidebarDepth: 2
 
 
 
+
+
+
 ## animation
 
 ### 简介
@@ -58,6 +72,8 @@ sidebarDepth: 2
 + animation 是增强的 transition，是真正意义上的动画
 + 可以将 transition 理解为 animation 的一个帧
 + 需要先使用 `@keyframes` 定义动画，再对动画名称进行引用
++ 可以使用 `js` 控制元素的 `el.style.animationPlayState` 属性来控制动画的开始和暂停
+
 
 ### 属性
 
@@ -89,6 +105,7 @@ sidebarDepth: 2
   }
 }
 ```
+
 + 使用百分比指定多个时间帧(可以定义多个状态)
 ```css
 @keyframes my-animation {
@@ -137,13 +154,16 @@ sidebarDepth: 2
 
 + 用于旋转(rotate)，缩放(scale)，扭曲(skew)，平移(translate)元素
 + 既可以实现 2D 变换，也可以实现 3D 变换
++ `transform` 表示一个属性状态，能用于 `transition` 中
++ 设置 `3D` 变换时一定要设置属性 `transform-style: preserve-3d`，并控制视点的位置，才能较明显地看到变化
 + 当元素先旋转再执行其他变换时，要切记，其<font color="red">坐标轴也发生了平移</font>
 + 变换根据坐标轴进行：
   + x 轴：屏幕水平方向，以右为正向
   + y 轴：屏幕垂直方向，以下为正向
   + z 轴：视线与屏幕垂直的方向，向外为正向
 
-### 平移
+
+### 平移 - translate
 
 + `translateX(<length>)`：x 轴方向平移
 + `translateY(<length>)`：y 轴方向平移
@@ -156,7 +176,7 @@ sidebarDepth: 2
 :::
 
 
-### 缩放
+### 缩放 - scale
 
 + `scaleX(<number>)`：x 轴方向缩放
 + `scaleY(<number>)`：y 轴方向缩放
@@ -169,7 +189,7 @@ sidebarDepth: 2
 :::
 
 
-### 扭曲
+### 扭曲 - skew
 
 + `skewX(<angle>)`：x 轴方向扭曲，若以下边为底，正值时为向左倾斜
 + `skewY(<angle>)`：y 轴方向扭曲，若以左边为底，正值时为向下倾斜
@@ -180,7 +200,7 @@ sidebarDepth: 2
 :::
 
 
-### 旋转
+### 旋转 - rotate
 
 + `rotateX(<angle>)`：绕 x 轴旋转
 + `rotateY(<angle>)`：绕 y 轴旋转
@@ -206,7 +226,6 @@ rotate3d(0, 0, 1, 30deg) 相当于 rotateZ(30deg)
 
 
 
-
 ### 通用
 
 
@@ -223,7 +242,17 @@ rotate3d(0, 0, 1, 30deg) 相当于 rotateZ(30deg)
 
 ::: tip 备注：
 + `matrix()/matrix3d()` 定义的矩阵，其参数是按列排列的，`matrix(a, b, c, d, tx, ty)` 相当于 `matrix3d(a, b, 0, 0, c, d, 0, 0, 0, 0, 1, 0, tx, ty, 0, 1)`
+
 + 九宫格位置：由 [left, center, right] 和 [top, center, bottom] 两两组合的九种取值，可分别转化为 [0, 50%, 100%]
+
++ 2D 转换
+```css
+.box {
+  transform-origin: center center; /* 设置转换的原点，使用九宫格参数 */
+  transform: translateX(100px) translateY(100px) rotateX(50deg); /* 设置转换方式 */
+}
+```
+
 + 3D 变换的属性，一般都在父元素上进行设置：
 ```css
 /* 可以将父元素理解为画布 */
@@ -233,8 +262,16 @@ rotate3d(0, 0, 1, 30deg) 相当于 rotateZ(30deg)
   /* transform-origin */
   /* perspective-origin */
 }
+/* 子元素 */
+.box {
+  perspective: 100; /* 视距，视距越大，元素看起来越小 */
+  perspective-origin: left center; /* 视点位置，使用九宫格参数 */
+  backface-visibility: visible; /* 设置元素背面是否可见 */
+  transform-style: flat; /* 设置被嵌套元素如何在 3D 空间中显示，flat 为 2D 扁平化，preserve-3d 为 3D 空间 */
+}
 ```
 :::
+
 
 
 ### Demo
@@ -308,3 +345,4 @@ body {
 + 同个元素的多个变换属性，需要写在同一个 `transform` 中，若定义多个 `transform` 属性，只会应用后面的
 + 因为几个面是先旋转(坐标轴也会旋转)后平移，所以其平移属性都是 `translateZ()`
 :::
+

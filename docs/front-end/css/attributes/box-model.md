@@ -4,25 +4,32 @@ sidebarDepth: 2
 
 ## 简介
 
-DOM 中所有的元素都是一个个的盒子，每个元素均具有自己的 '盒子属性'，可能是显式声明的，也可能是继承或者默认的。一个盒子的尺寸会收到很多因素的影响：
-+ box-sizing
-+ width / height
-+ margin / padding
-+ border
-+ BFC
-+ flex
++ DOM 中所有的元素都是一个个的盒子，每个元素均具有自己的 '盒子属性'，可能是显式声明的，也可能是继承或者默认的
++ 一个盒子的尺寸会收到很多因素的影响：
+  + `box-sizing`
+
+  + `width` | `height`
+
+  + `margin` | `padding`
+
+  + `border`
+
+  + `BFC`
+
+  + `flex`
+
 
 
 ### 属性说明
 
 属性|取值|类似属性|说明
 -|-|-|-
-`box-sizing`|`content-box`<br>`border-box`|none|设置盒子的组成模式
-`width`|`<length>`<br>`<percentage>`|min-width, max-width, device-width|设置元素的宽度
-`height`|`<length>`<br>`<percentage>`|min-height, max-height, device-height|设置元素的高度
-`margin`|`<length>`<br>`<percentage>`|margin-[ top、right、bottom、left ]|设置元素的外边距，<font color='red'>可以为负值</font>
-`padding`|`<length>`<br>`<percentage>`|padding-[ top、right、bottom、left ]|设置元素的内边距
-`border`|`1px solid red`|border-[ top、left、bottom、right ]-[ width、style、color ]|设置边框的样式
+`box-sizing`|`content-box`<br><br>`border-box`|none|设置盒子的组成模式
+`width`|`<length>`<br><br>`<percentage>`|min-width, max-width, device-width|设置元素宽度
+`height`|`<length>`<br><br>`<percentage>`|min-height, max-height, device-height|设置元素高度
+`margin`|`<length>`<br><br>`<percentage>`|margin-[ top、right、bottom、left ]|设置元素外边距<br><br><Badge>支持负值</Badge>
+`padding`|`<length>`<br><br>`<percentage>`|padding-[ top、right、bottom、left ]|设置元素内边距
+`border`|`1px solid red`|border-[ top、left、bottom、right ]-[ width、style、color ]|设置边框样式
 
 ::: tip 区分 content-box 和 border-box：
 + `content-box`：没有受到 `flex` 等布局形式的影响时，设置 `padding/border` 均会撑大盒子的宽高，其盒子宽高为：
@@ -104,6 +111,102 @@ DOM 中所有的元素都是一个个的盒子，每个元素均具有自己的 
 
 
 
+### border-radius
+
++ 圆角属性可以将盒子的角弯曲，甚至将盒子变成一个圆或类椭圆
++ 将一个固定长宽的矩形对角线经过特定的扭曲，变成一段圆滑的曲线，而每个盒子都有四个角，因此会有四对值指定四个角的扭曲
++ 语法：
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border-radius: 1px 2px 3px 4px / 1px 2px 3px 4px;
+}
+```
+
+::: tip 说明：
++ 两组用 `/` 分隔的值，第一组用作四个角的长度，第二组用作四个角的宽度
++ 每组参数的值少于 4 个：缺省的参数取对角的值，如 `1px 2px 3px` 相当于 `1px 2px 3px 2px`
++ 只有一组值：第二组值与第一组相等，如上述可简写为 `1px 2px 3px 4px`
++ 只有一个值：应用于所有，如 `10px` 相当于 `10px 10px 10px 10px / 10px 10px 10px 10px`
+:::
+
+
+
+### border-image
+
++ 图片边框能使用图像构造盒子的边框
++ 语法
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border: 10px solid;
+  border-image: url('./border.png') 30 round;
+}
+```
+
+::: tip 说明：
++ 要先设置 `border` 属性，`border-image` 才会生效
++ `border-image-repeat` 属性的值为：`stretch`(默认), `round`, `repeat`
+:::
+
+
+### box-shadow
+
++ 盒子阴影能在盒子的周围添加一层阴影色，构造出一些立体效果，而且不会影响盒子的布局属性
++ 该属性和 background、border 一样，默认的
++ 语法
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  box-shadow: 0px 0px 10px 2px inset #333;
+}
+```
+
+::: tip 说明：
++ 该属性必须至少包含前两个参数
++ 前四个长度参数按照严格顺序，其他参数顺序不限制
++ `inset`(可选)：指定阴影为内阴影，即在 border 内侧显示
++ 颜色(可选)：默认为黑色(`#000`)
++ 四个长度参数分别为：
+  + 水平偏移：向右为正
+  + 垂直偏移：向下为正
+  + 模糊值(可选)：不允许负值，值越大颜色效果越模糊
+  + 外延值(可选)：不允许负值，值越大阴影范围越大
++ 构造一个边框
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  /* 阴影不偏移、不模糊，相当于在 border 外画一个 2px 的边框 */
+  box-shadow: 0px 0px 0px 2px #333;
+}
+```
+:::
+
+
+
+
+## 外边距重叠
+
+**介绍：**
++ 两个**普通文档流**中的**块级元素**的**垂直外边距**相遇时，两者的外边距会发生重叠，重叠后的高度为两者中的较大者
++ 发生外边距重叠的场景：
+  + 两元素上下相邻时
+  + 一个元素包围另一个元素，且两元素没有 `padding` 和 `border` 时
+  + 一个只有上下 `margin` 的空元素(`content` 为空)，自身的上下边距会重叠
+
+**解决：**
++ 将元素设置为非块级元素或脱离文档流
++ 两者是父子关系时，可以使用 `padding` 或透明的 `border`
+
+
 
 
 ## 层叠上下文
@@ -156,9 +259,17 @@ DOM 中所有的元素都是一个个的盒子，每个元素均具有自己的 
 
 ## BFC
 
-### 简介
+详细了解相关概念：
 
-+ `BFC`(Block Formatting Context)：格式化上下文。Web 页面中盒模型布局的 CSS 渲染模式，指一个独立的渲染区域或者说是一个隔离的独立容器。
++ `FC`(Formatting-Context)：W3C CSS2.1 规范中的一个概念，它规定页面中的一块渲染区域有一套渲染规则，决定了其子元素将如何定位，以及和其他元素的关系和相互作用
+
++ `BFC`(Block-FC)`：块级格式化上下文，页面上的一个独立的渲染区域，容器内子元素不会在布局上影响到外面的元素，反之也是如此
+
++ `IFC`(Inline-FC)：内联格式化上下文，内联盒子的高度由其包含行内元素中最高的实际高度计算而来，不受到垂直方向的 `padding`/`margin` 影响
+
++ `GFC`(GridLayout-FC)：网格布局格式化上下文，元素设置 `display` 属性的值为 `grid` 时产生
+
++ `FFC`(Flex-FC)：自适应格式化上下文，元素设置 `display` 属性的值为 `flex`/`inline-flex` 时产生
 
 
 ### 特点
@@ -181,38 +292,15 @@ DOM 中所有的元素都是一个个的盒子，每个元素均具有自己的 
 
 ### 应用 
 
-+ 防止父元素高度塌陷(当一个盒子没有设置固定的高度时，若它的唯一子元素设置浮动，则会出现高度塌陷)
-```html
-<div class="content">
-  <div class="box"></div>
-</div>
-```
-```css
-.content {
-  border: 1px solid red;
-}
-.box {
-  width: 300px;
-  height: 200px;
-  float: left;
-  background-color: #ccc;
-}
-```
++ [防止父元素高度塌陷](./position&layout.md#解决浮动引起的高度塌陷)
 
-![高度塌陷](./imgs/box-model_01.png)
 
-+ 为父元素创建 BFC，这样计算父元素高度时，浮动元素参与计算(除了设置 `position` 属性，还可以设置 `float`/`display`/`overflow` 等，实际效果可能有少许不同，但是都为父元素创建了 BFC 并且防止了高度塌陷)
-```css
-.content {
-  position: absolute;
-  border: 1px solid red;
-}
-.box {
-  width: 300px;
-  height: 200px;
-  float: left;
-  background-color: #ccc;
-}
-```
 
-![高度塌陷处理](./imgs/box-model_02.png)
+## IFC
+
+**创建：**
++ 设置 `display`：`inline` ｜ `inline-block`
+
+**应用：**
++ 水平居中：内联盒子可以使用 `text-align: center;` 实现水平居中
++ 垂直居中：设置一个空的 IFC 元素撑开父元素的高度，再设置属性 `vertical-align:middle`，使其他同级行内元素垂直居中

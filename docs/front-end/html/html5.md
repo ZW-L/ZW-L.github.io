@@ -6,6 +6,7 @@
 + 新增表单属性：见[表单类标签](./categories/form.md)；主要赋予表单更多的功能，以及更多 type 类型的 `<input>`
 
 
+
 ## 新特性 & 用途
 
 + **标签变化**：
@@ -13,13 +14,21 @@
   + 新增语义化结构标签：见[布局类标签](./categories/layout.md)；`<header>`, `<footer>`, `<nav>`, `<aside>`, `<section>`, `<article>`
   + 新增多媒体标签：见[多媒体类标签](./categories/media.md)；`<video>`, `<audio>`, `<source>` 等
   + 新增表单属性：见[表单类标签](./categories/form.md)；主要赋予表单更多的功能，以及更多 type 类型的 `<input>`
+
 + **Canvas**：2D 绘图，像素级别的控制
+
 + **SVG**：可伸缩矢量图形，大量应用于图标和动画
+
 + **Geolocation**：地理位置 API
+
 + **Storage**：浏览器存储，sessionStorage 和 localStorage(持久化存储)，可用于缓存数据和多页面间通信
+
 + **Drag & Drop**：拖放事件
+
 + **WebSocket**：对 WebSocket 协议的支持，提供更快捷、实时的全双工通信
+
 + **WebWorker**：在后台运行的独立的新线程，可用于处理复杂的运算(不影响页面)
+
 
 
 
@@ -117,6 +126,7 @@
 ## 多标签页间的通信
 
 + **Cookie**：在同源页面中共享数据，只能读取和设置，无法监听变化
+
 + **localStorage**：在同源页面中共享数据，并且可以对 window 添加 `storage` 事件监听属性的修改
 ```html
 <!-- a.html -->
@@ -154,6 +164,7 @@
 
 <!-- 提示：在本地安装 serve 包，启动一个服务测试 -->
 ```
+
 + **SharedWorker**：在同源页面中通信，Worker 线程使用 `onmessage` 事件监听客户端，两端均使用 `postMessage()` 发送信息
 ```html
 
@@ -161,4 +172,5 @@
 ```js
 
 ```
+
 + **WebSocket**：全双工通信

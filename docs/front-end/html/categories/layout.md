@@ -6,19 +6,19 @@
 
 ## 对比
 
-标签|描述|属性|版本|兼容性
--|-|-|-|-
-div|用于组合块级或行内元素|<font color="red">align</font>|-|均支持
-span|用于组合行内元素|-|-|均支持
-header|定义文档或者文档某区域的页眉|-|<font color="orange">HTML5</font>|IE8 及更早不支持
-nav|定义导航条|-|<font color="orange">HTML5</font>|均支持
-section|定义文档的某个区域|-|<font color="orange">HTML5</font>|IE8 及更早不支持
-aside|定义文档/文章的侧栏|-|<font color="orange">HTML5</font>|IE8 及更早不支持
-article|定义文章内容|-|<font color="orange">HTML5</font>|IE8 及更早不支持
-footer|定义文档或者文档的某区域的页脚|-|<font color="orange">HTML5</font>|IE8 及更早不支持
-details|定义用户可见或隐藏的补充细节|<font color="orange">open</font>|<font color="orange">HTML5</font>|`Chrome`, `Safari 6` 
-summary|作为 `<details>` 的可见的标题|-|<font color="orange">HTML5</font>|`Chrome`, `Safari 6` 
-dialog|定义一个对话框或窗口|<font color="orange">open</font>|<font color="orange">HTML5</font>|IE 不支持
+标签|描述|属性|版本
+-|-|-|-
+div|用于组合块级或行内元素|<font color="red">align</font>|-
+span|用于组合行内元素|-|-
+header|定义文档或者文档某区域的页眉|-|<font color="orange">HTML5</font>
+nav|定义导航条|-|<font color="orange">HTML5</font>
+section|定义文档的某个区域|-|<font color="orange">HTML5</font>
+aside|定义文档/文章的侧栏|-|<font color="orange">HTML5</font>
+article|定义文章内容|-|<font color="orange">HTML5</font>
+footer|定义文档或者文档的某区域的页脚|-|<font color="orange">HTML5</font>
+details|定义用户可见或隐藏的补充细节|<font color="orange">open</font>|<font color="orange">HTML5</font>
+summary|作为 `<details>` 的可见的标题|-|<font color="orange">HTML5</font>
+dialog|定义一个对话框或窗口|<font color="orange">open</font>|<font color="orange">HTML5</font>
 
 ::: tip 备注
 + `<div>` 和 `<span>` 是不具有严格语义化的布局元素，其中 `<div>` 用于组合块级或行内元素，`<span>` 用于组合行内元素
