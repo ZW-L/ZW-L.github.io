@@ -42,6 +42,14 @@ $ git fetch origin master && git merge
 ```
 
 
+::: tip 备注：
++ `git pull` 和 `git fetch` 都用于拉取远程仓库的变更
++ `git fetch` 只是执行拉取命令，并不会合并内容
++ `git pull` 相当于执行 `git fetch` 和 `git merge` 两个命令
++ 为了避免困惑，通常单独使用 `git fetch` 和 `git merge` 代替 `git pull`
+:::
+
+
 
 ## 推送
 

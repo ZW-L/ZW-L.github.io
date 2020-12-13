@@ -4,6 +4,7 @@
 npm install vue-awesome-swiper --save
 ```
 
+
 ## 使用
 
 简单的带 `paganation` 的效果：
@@ -26,7 +27,6 @@ npm install vue-awesome-swiper --save
 
 <script>
 export default {
-  
   data () {
     return {
       swiperOption: {
@@ -34,9 +34,10 @@ export default {
       }
     }
   }
-
 </script>
 ```
+
+
 
 ## 注意
 
@@ -51,13 +52,14 @@ export default {
 
 ## pagination
 
-（1）默认的 pagination 是绝对定位(absolute)，并设置了 `bottom: 10px;` ，要改变 pagination  的位置可以修改 `swiper-container` 的高度，在设置全屏的 swiper 时可以控制 pagination 在页面的底部，而图片调整再调整为垂直居中。
++ 默认的 pagination 是绝对定位(absolute)，并设置了 `bottom: 10px;`
++ 要改变 pagination 的位置可以修改 `swiper-container` 的高度，在设置全屏的 swiper 时可以控制 pagination 在页面的底部，而图片调整再调整为垂直居中
 
 
 
 ##  options
 
-调整参数，可以实现很多不同的效果。
+调整参数，可以实现很多不同的效果
 
 + pagination：指定 pagination 使用的元素，类似 jQuery 选择器
 + paginationType：pagination 显示的类型
@@ -67,10 +69,9 @@ export default {
 
 
 
-##  swiper对象
+##  swiper 对象
 
-在 swiper 组件标签上添加 `ref`，可以获取swiper 对象，获取了 swiper 对象后，能够调用 swiper 的相关方法：
-
++ 在 swiper 组件标签上添加 `ref`，可以获取swiper 对象，获取了 swiper 对象后，能够调用 swiper 的相关方法：
 ```vue
 <template>
   <swiper :options="swiperOption" ref="mySwiper">
@@ -85,7 +86,6 @@ export default {
 
 <script>
 export default {
-  
   data () {
     return {
       swiperOption: {
@@ -93,18 +93,16 @@ export default {
         pagination: '.swiper-pagination',
         paginationType: 'fraction',
         spaceBetween: 10,
-        observer:true,
-        observeParents:true
+        observer: true,
+        observeParents: true
       }
     }
   },
-  
   watch: {
     activeIndex (val) {
       // 点击相应索引的图片时，切换全屏 swiper，并且将 swiper 切换到对应图片的 slide
       this.$refs.mySwiper.swiper.slideTo(val)
     }
   }
-
 </script>
 ```

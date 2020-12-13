@@ -64,10 +64,9 @@ export function signBubble(arr) {
         temp = false
       }
 
-      if (temp) {
-        return arr
-      }
     }
+
+    if (temp) return arr
 
     temp = true
   }

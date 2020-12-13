@@ -9,45 +9,41 @@
 
 ```js
 /**
- * 指针 i, j 对应 left, right 的索引
- * 每个循环取出一个较小数 push 到 ret 中
- * 当一个指针到达最右侧时, 将另一个数组直接添加到 ret 尾部并返回
+ * 合并左右数组，返回已排序的数组
+ * 注意：这里的 left/right 必定是自身已排序的
  *
- * @param {int[]} left
- * @param {int[]} right
- * @returns {int[]}
+ * @param {number[]} left
+ * @param {number[]} right
+ * @returns {number[]} sortedArr
  */
-function merge(left, right) {
+export function merge(left, right) {
+  let i = 0, j = 0
   const ret = []
-  const ll = left.length
-  const lr = right.length
-  let i = 0
-  let j = 0
+  const ll = left.length, lr = right.length
 
   while (i < ll && j < lr) {
     if (left[i] < right[j]) {
-      ret.push(left[i])
-      i++
+      ret.push(left[i++])
     } else {
-      ret.push(right[j])
-      j++
+      ret.push(right[j++])
     }
   }
 
+  // 当某一个数组遍历完时，将另外一个数组的剩下部分拷贝到 res
   return i === ll ? ret.concat(right.slice(j)) : ret.concat(left.slice(i))
 }
 
 /**
- * 拆分：每次将数组对半拆分，当数组长度为 0 或 1 时，直接返回数组
- * 合并：调用 merge 从下至上合并
+ * 分治排序
+ * 拆分：递归拆分子问题
+ * 合并：合并子问题结果
  *
- * @param {int[]} arr
- * @returns {int[]}
+ * @param {number[]} arr
+ * @returns {number[]} sortedArr
  */
-function mergeSort(arr) {
-  if (arr.length < 2) {
-    return arr
-  }
+export function mergeSort(arr) {
+  // 递归退出条件
+  if (arr.length < 2) return arr
 
   const mid = arr.length / 2
   const left = mergeSort(arr.slice(0, mid))
@@ -55,6 +51,4 @@ function mergeSort(arr) {
 
   return merge(left, right)
 }
-
-export default mergeSort
 ```

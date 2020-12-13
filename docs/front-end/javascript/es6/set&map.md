@@ -4,8 +4,9 @@
 
 + Set 结构类似于数组，但是成员的值都是唯一的，没有重复的值
 + Set 结构可以用于去重，因为它的元素是唯一的
-+ Set 结构加入值的时候，不会发生类型转换，唯一的特点是它认为 NaN ==== NaN
++ Set 结构加入值的时候，不会发生类型转换，唯一的特点是它认为 `NaN === NaN`
 + 两个(空)对象总是不相等的
+
 
 ### 基本用法
 
@@ -23,21 +24,26 @@ s.has(2) // false
 ```
 
 
+
 ### 属性
 
 + `Set.prototype.constructor`：构造函数，默认就是 `Set` 函数
-+ `Set.prototype.size`：返回 `Set` 实例的成员总数
++ `Set.prototype.size: number`：返回 `Set` 实例的成员总数
+
+
 
 ### 方法
 
-+ `Set.prototype.add(value)`：添加某个值，返回 `Set` 结构本身
-+ `Set.prototype.delete(value)`：删除某个值，返回一个布尔值，表示删除是否成功
-+ `Set.prototype.has(value)`：返回一个布尔值，表示该值是否为 `Set` 的成员
-+ `Set.prototype.clear()`：清除所有成员，没有返回值
-+ `Set.prototype.keys()`：返回键名的遍历器，由于 `Set` 没有键名，所以等同于 `values()`
-+ `Set.prototype.values()`：返回键值的遍历器
-+ `Set.prototype.entries()`：返回键值对的遍历器
-+ `Set.prototype.forEach()`：使用回调函数遍历每个成员
++ `Set.prototype.add(value: any): Set`：添加某个值
++ `Set.prototype.delete(value: any): boolean`：删除某个值
++ `Set.prototype.has(value: any): boolean`：判断值是否为 `Set` 的成员
++ `Set.prototype.clear(): void`：清除所有成员
++ `Set.prototype.keys(): Iterator`：返回键名的遍历器，`Set` 没有键名，因此等同于 `values()`
++ `Set.prototype.values(): Iterator`：返回键值的遍历器
++ `Set.prototype.entries(): Iterator`：返回键值对的遍历器
++ `Set.prototype.forEach(cb: function)`：使用回调函数遍历每个成员
+
+
 
 ### 应用
 
@@ -219,3 +225,8 @@ const c = new Countdown(2, () => console.log('DONE'))
 c.dec()
 c.dec() // DONE
 ```
+
+
+
+## 对比
+

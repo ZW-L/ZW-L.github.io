@@ -83,129 +83,131 @@ function type(obj) {
 ```
 
 
+## 节流和防抖
 
-## 节流函数
+### 节流
 
-+ 函数在指定时间间隔内只会执行一次
-+ 一个典型应用场景为监听 DOM 的 `onscroll` / `onresize` 事件，为了保证页面的性能，我们需要控制事件的触发间隔不要太小
-+ 常用两种方法实现节流函数，且它们都依赖闭包
++ 描述：函数在指定时间间隔内只会执行一次，节流会稀释函数的执行频率
++ 实现：核心在于执行回调函数的开关
++ 应用场景：监听 `onscroll` / `onresize` 事件，为了保证页面的性能而需要控制事件的触发间隔
 ```js
-// 方法一：使用定时器实现
+// 两种方法实现节流函数，它们都依赖闭包
+// 方法一：使用定时器实现(建议)
 const throttle = (fn, timeout = 50) => {
-  let tag = true
-  return function() {
-    if function (...args) {
-      tag = false
-      setTimeout(() => {
-        fn.apply(this, args)
-        tag = true
-      }, timeout)
-    }
+  let canRun = true         // 第一次运行时为 true，表示可触发第一次事件
+  return (...args) => {
+    if (!canRun) return     // fn 还没执行，抛弃这次事件
+    canRun = false          // fn 执行了，重新标记为 false 直至下次 fn 执行
+    setTimeout(() => {
+      fn(...args)
+      canRun = true         // 在 fn 执行前始终为 false
+    }, timeout)
   }
 }
 
 // 方法二：使用时间差判断
 const throttle = (fn, timeout = 50) => {
-  let start = Date.now()
-  return function (...args) {
-    const now = Date.now()
+  let start = Date.now()    // 获取第一次运行时的时间戳
+  return (...args) => {
+    const now = Date.now()  // 获取触发事件的时间戳
+    // 计算时间差，符合 timeout 才执行 fn
     if (now - start >= timeout) {
-      fn.apply(this, args)
-      start = now
+      fn(...args)
+      start = now           // 执行 fn 后，更新 start 时间戳
     }
   }
 }
 
-const log = () => { console.log('resize...') }
+const log = () => console.log('resize...')
 window.addEventListener('resize', throttle(log, 300))
 ```
 
+::: tip 区分两种实现方式：
++ 定时器：当不再持续触发事件时，回调函数始终会触发最后一次(还存在定时器)
++ 时间差：当不再触发持续事件时，回调函数不会再触发(可能会在下次触发事件立即触发)
+:::
 
 
-## 防抖函数
+### 防抖
 
-+ 防抖函数类似节流，都是为了减少函数触发的次数，但它们有明显的区别：节流函数**在事件触发过程中会每隔一段时间触发一次**；而防抖函数只会**在停止触发事件后的一段时间后才会触发一次**，而如果在这个等待的时间内再次触发事件，防抖函数会自动重置
-+ 典型应用：在搜索框中监听 `input` 事件，为用户提供搜索建议，但只会在用户停止输入的若干毫秒后才触发该 `input` 事件；这样有利于减少发送请求的次数，减轻服务器
-+ 实现方法：通过定时器，重新触发事件时重置定时器
++ 描述：触发事件后 n 秒内函数只会执行一次，如果 n 秒内事件再次触发，则重新计算时间
++ 实现：核心在于定时器的清零
++ 典型应用：监听 `input` 事件提供搜索建议，在停止输入的若干毫秒后才触发事件；有利于减少请求次数
 ```js
 function debounce (fn, wait = 500) {
   let timer = null
-  return function (...args) {
-    if (timer) {
-      clearTimeout(timer)
-    }
-
-    timer = setTimeout(() => {
-      fn.apply(this, args)
+  return (...args) => {
+    timer && clearTimeout(timer)  // 清空之前的定时器
+    timer = setTimeout(() => {    // 重新设置定时器
+      fn(...args)
     }, wait)
   }
 }
 
-const log = () => { console.log('input...') }
-const input = document.getElementById('input')
-input.addEventListener('input', debounce(log, 1000))
+const log = () => console.log('input...')
+document.getElementById('input').addEventListener('input', debounce(log, 1000))
 ```
-+ **立即触发**：第一次触发事件时立即触发一次函数
+
++ **立即触发**：某些情况下需要第一次触发事件时立即触发一次函数
 ```js
 function debounce (fn, wait = 500, immediate = false) {
   let timer = null
-  return function (...args) {
-    if (timer) {
-      clearTimeout(timer)
-    }
-
-    // 立即触发一次
-    if (immediate && !timer) {
-      fn.apply(this, args)
-    }
-
-    timer = setTimeout(() => {
-      fn.apply(this, args)
+  return (...args) => {
+    timer && clearTimeout(timer)       // 清空之前的定时器
+    immediate && !timer && fn(...args) // 立即触发一次
+    timer = setTimeout(() => {         // 重新设置定时器
+      fn(...args)
     }, wait)
   }
 }
 
-const log = () => { console.log('input...') }
-const input = document.getElementById('input')
-input.addEventListener('input', debounce(log, 1000, true))
+const log = () => console.log('input...')
+document.getElementById('input').addEventListener('input', debounce(log, 1000, true))
 ```
 
+::: tip 备注：
++ 防抖函数类似节流，都是为了减少函数触发的次数，但它们有明显的区别：
+  + 节流函数**在事件触发过程中会每隔一段时间触发一次**
+  + 防抖函数只会**在停止触发事件后的一段时间后才会触发一次**，而如果在这个等待的时间内再次触发事件，防抖函数会自动重置
+:::
 
 
-## 结合节流和防抖
 
-+ 场景：在一个在线编辑器中，监听用户的 input 事件，需要在用户停止输入 3s 后发送请求保存至草稿(防抖)；但如果用户思路清晰且输入速度根本停不下来，这时候就需要定时将用户输入的内容保存至草稿(节流)
-+ 结合防抖和节流：与节流函数类似，在没到达指定时间间隔时添加防抖逻辑，并重置等待时间
+### 结合二者
+
++ 思路：与节流函数类似，在没到达指定时间间隔时添加防抖逻辑，并重置等待时间
++ 场景：在一个在线编辑器中监听 `input` 事件
+  + 若用户停止输入 3s 后发送请求保存至草稿(防抖)
+  + 若用户思路清晰且输入速度根本停不下来，设置一个特定的时间将内容保存至草稿(节流)
+  + (当然也可以只使用定时器的节流，取决于实现方式的容错性：如只使用节流时控制每 10s 保存一次；而结合二者时节流控制每 60s 保存一次，防抖控制 3s 内不再输入时保存一次)
 ```js
 const debounceWithThrottle = (fn, timeout = 3000, wait = 1000) => {
   let start = Date.now()
   let timer = null
-  return function (...args) {
+  return (...args) => {
     const now = Date.now()
-    // 1.持续触发事件时，每隔一段时间触发一次函数
     if (now - start >= timeout) {
-      start = now
+      // 1.持续触发事件时，每隔一段时间触发一次函数
       console.log('throttle...')
-      fn.apply(this. args)
+      start = now
+      fn(...args)
     } else {
-    // 2.停止触发事件并经过一段事件后，触发一次函数
-      if (timer) {
-        clearTimeout(timer)
-      }
+      // 2.停止触发事件并经过一段事件后，触发一次函数
+      timer && clearTimeout(timer)
       timer = setTimeout(() => {
         console.log('debounce...')
         // 重置时间，否则下次 throttle 触发的时间间隔为 timeout - wait
         start = now
-        fn.apply(this, args)
+        fn(...args)
       }, wait)
     }
   }
 }
 
-const log = () => { console.log('input...') }
-const input = document.getElementById('input')
-input.addEventListener('input', debounceWithThrottle(log))
+const log = () => console.log('input...')
+document.getElementById('input').addEventListener('input', debounceWithThrottle(log))
 ```
+
 
 
 

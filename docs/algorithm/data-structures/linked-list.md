@@ -15,11 +15,11 @@ sidebarDepth: 2
 + 属性
   + 头指针(`head`)
   + 尾指针(`tail`)
-+ 方法
-  + 添加节点：`append()`, `prepend()`, `insert()`
-  + 删除节点：`deleteHead()`, `deleteTail()`, `delete()`
-  + 查找节点：`find()`
-  + 反转链表：`reverse()`
++ 方法：前四个方法是最重要的，其中反转链表的考察率最高
+  + **添加节点**：主要为 `insert()`，可添加 `append()`, `prepend()` 做辅助
+  + **删除节点**：主要为 `delete()`，可添加 `deleteHead()`, `deleteTail()` 做辅助
+  + **查找节点**：`find()`
+  + **反转链表**：`reverse()`
   + 批量添加节点：`fromArray()`
   + 从数组生成链表：`static fromArray()`
   + 转换为数组：`toArray()`

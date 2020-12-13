@@ -55,7 +55,14 @@
 
 ## 对比
 
-::: warning 对比 sessionStorage 和 localStorage：
-+ 相同点：有相同的属性和方法
-+ 不同点： `sessionStorage` 会在关闭页面标签时消失，而 `localStorage` 会长期保留直至开发者或用户手动清除
-:::
+**相同的属性和方法**：
++ `length`：返回键值对的长度
++ `setItem(key, value)`：设置一个键值对
++ `getItem(key)`：获取一个键对应的值
++ `removeItem(key)`：删除一个键及值
++ `clear()`：删除所有键值对
+
+**区别**：
++ `sessionStorage`：会话级别的存储，在页面关闭后清除
++ `localStorage`：持久化的存储，可长期存储数据，除非用户手动清除
+

@@ -1,183 +1,152 @@
-## 分类
+---
+sidebarDepth: 2
+---
 
-+ 基础类-19个
-+ 布局类-11个
-+ 格式类-38个
-+ 列表/表格类-19个
-+ 表单类-13个
-+ 多媒体类-11个
-+ 对象/容器/框架类-8个
+## DOCTYPE
 
-::: tip 说明：
-按照以上规则对 HTML 标签进行分类，总共约 `119` 个常用标签。
-:::
++ [怪异模式和标准模式](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Quirks_Mode_and_Standards_Mode)
++ 在 HTML5 中，doctype 是为了防止浏览器切换到怪异模式；而更早的使用方法已经被废弃，没有必要再使用
++ **需要特别注意的是**：doctype 必须位于 HTML 的第一行，此前不能有任何内容(注释或 XML 声明)，否则会导致 IE9 或更早的浏览器触发怪异模式
 
 
-## 基础类
 
-+ `<basefont>`：<font color="red">HTML5 不支持</font>。页面文本的默认字体、颜色、尺寸
-+ `<hgroup>`：<font color="orange">HTML5</font>。对 `<h1>` ~ `<h6>` 进行分组
-+ `<!DOCTYPE>`：文档类型
-+ `<!-- -->`：注释
-+ `<html>`：根文档
-+ `<meta>`：关于文档的元信息
-+ `<base>`：页面中所有链接的默认地址
-+ `<style>`：样式信息
-+ `<link>`：文档与外部资源的关系
-+ `<head>`：关于文档的信息
-+ `<title>`：文档标题
-+ `<body>`：文档主体
-+ `<script>`：客户端脚本
-+ `<noscript>`：不支持客户端脚本的用户的替代内容
-+ `<h1>` ~ `<h6>`：文档主体的各级标题
-+ `<p>`：段落
-+ `<a>`：链接
-+ `<br>`：换行
-+ `<hr>`：水平线
+## HTML 和 XHTML
 
-::: tip 说明：
-该类标签包含了 HTML 的骨架标签(`<head>`、`<body>`)，存在于头部元素的标签(`<title>`、`<meta>`)，主体部分常用的标签(`<h1>`、`<p>`)等标签。
-:::
++ HTML(超文本标记语言)，
++ XHTML：使用了 XML 语法规则的 HTML，其对标签的规则更严格
+
+|比较|HTML|XHTML|
+|-|-|-|
+|根元素|-|必须|
+|标签名小写|-|必须|
+|标签名关闭|-|必须|
+|标签正确嵌套|-|必须|
 
 
-## 布局类
 
-+ `<header>`：<font color="orange">HTML5</font>。文档头部
-+ `<footer>`：<font color="orange">HTML5</font>。文档底部
-+ `<section>`：<font color="orange">HTML5</font>。文档的某个区域
-+ `<article>`：<font color="orange">HTML5</font>。文章内容
-+ `<aside>`：<font color="orange">HTML5</font>。 侧栏
-+ `<nav>`：<font color="orange">HTML5</font>。导航条
-+ `<details>`：<font color="orange">HTML5</font>。补充的细节
-+ `<summary>`：<font color="orange">HTML5</font>。点击 `<details>` 时显示的内容
-+ `<dialog>`：<font color="orange">HTML5</font>。对话框或窗口
-+ `<div>` ：块级布局元素
-+ `<span>` ：行内布局元素
 
-::: tip 说明：
-该类标签包含了传统的布局标签(`<div>`、`<span>`)，HTML5 新增的语义化布局标签(`<header>`、`<section>`)等标签。
-:::
+## iframe
 
-## 格式类
+### 优缺点
 
-+ `<acronym>`：<font color="red">HTML5 不支持</font>。首字母缩写
-+ `<big>`：<font color="red">HTML5 不支持</font>。大号文本
-+ `<center>`：<font color="red">HTML5 不支持</font>。居中文本
-+ `<font>`：<font color="red">HTML5 不支持</font>。定义文本的字体、尺寸、颜色
-+ `<strike>`：<font color="red">HTML5 不支持</font>。加删除线的文本
-+ `<tt>`：<font color="red">HTML5 不支持</font>。 打字机文本
-+ `<bdi>` ：<font color="orange">HTML5。</font>设置一段文本，使其脱离其父元素的文本方向设置
-+ `<mark>` ：<font color="orange">HTML5。</font>带有记号的文本
-+ `<meter>` ：<font color="orange">HTML5。</font>度量衡，仅用于已知最大和最小值的度量
-+ `<progress>` ：<font color="orange">HTML5。</font>进度条
-+ `<rp> `：<font color="orange">HTML5。</font>不支持 ruby 元素的浏览器所显示的内容
-+ `<rt>` ：<font color="orange">HTML5。</font>字符（中文注音或字符）的解释或发音
-+ `<ruby>` ：<font color="orange">HTML5。</font>ruby 注释（中文注音或字符）
-+ `<time>` ：<font color="orange">HTML5。</font>日期/时间
-+ `<wbr>` ：<font color="orange">HTML5。</font>约定文本换行的位置
-+ `<abbr>`：缩写
-+ `<address>`：文档作者/拥有者的联系信息
-+ `<bdo>`：文本方向
-+ `<cite>`：引用
-+ `<q>`：短引用
-+ `<blockquote>`：块引用
-+ `<pre>`：预格式
-+ `<del>`：删除
-+ `<ins>`：被插入
-+ `<b>`：粗体
-+ `<i>`：斜体
-+ `<s>`：加删除线
-+ `<u>`：下划线
-+ `<small>`：小号字体
-+ `<sub>`：下标
-+ `<sup>`：上标
-+ `<code>`：计算机代码
-+ `<dfn>`：定义项目
-+ `<em>`：强调
-+ `<strong>`：更强烈的强调
-+ `<kbd>`：键盘
-+ `<samp>`：计算机代码样本
-+ `<var>`：变量
+**优点：**
++ 能够原封不动的把嵌入的网页展现出来
++ 多个网页引用 iframe 时，可以增加代码的可重用
++ 解决加载缓慢的第三方内容如图标和广告
++ 可以实现安全沙箱
++ 可以并行加载脚本
 
-::: tip 说明：
-该类标签包含了短语类(`<code>`, `<dfn>`, `<em>`, `<strong>`, `<kbd>`, `<samp>`, `<var>`)，字符格式化类(`<b>`, `<i>`)，特殊功能类(`<time>`, `<progress>`)等标签。<br>在一百多个标签里，该类标签占了三分之一左右，主要是为了增强语义。
-:::
+**缺点：**
++ 会阻塞主页面的 `onload` 事件
++ 即使内容为空，也需要时间加载，而且不利于语义化
++ 会产生很多页面，不容易管理
++ 代码复杂，无法被一些搜索引擎索引到，不利于 SEO
 
-## 列表/表格类
 
-+ `<dir>`：<font color="red">HTML5 不支持</font>。目录列表
-+ `<command>`：<font color="orange">HTML5</font>。用户可能调用的命令
-+ `<menu>`：菜单列表
-+ `<ul>`：无序列表
-+ `<ol>`：有序列表
-+ `<li>`：列表项
-+ `<dl>`：创建一个定义列表
-+ `<dt>`：该定义列表的标题
-+ `<dd>`：该定义列表的描述
-+ `<table>`：表格
-+ `<caption>`：表格标题
-+ `<thead>`：表格头部
-+ `<tbody>`：表格主体
-+ `<tfoot>`：表格脚注
-+ `<tr>`：表格行
-+ `<th>`：表头单元格
-+ `<td>`：表体单元格
-+ `<col>`：规定表格列的属性
-+ `<colgroup>`：组合表格中的列
 
-::: tip 说明： 
-该类标签包含了列表(`<ul>`，`<ol>`)，定义列表(`<dl>`)，表格(`<table>`)等标签；其中大部分浏览器不支持 `<menu>` 和 `<command>` 标签。
-:::
 
-## 表单类
+## 区分属性
 
-+ `<datalist>`：<font color="orange">HTML5</font>。`<input>` 元素可能的选项列表
-+ `<keygen>`：<font color="orange">HTML5</font>。用于表单的密钥对生成字段
-+ `<output>`：<font color="orange">HTML5</font>。计算的结果
-+ `<form>`：表单
-+ `<input>`：输入控件
-+ `<textarea>`：多行文本输入控件
-+ `<button>`：按钮
-+ `<select>`：选择列表
-+ `<option>`：选择列表的选项
-+ `<optgroup>`：选择列表相关选项的组合
-+ `<label>`：`<input>` 元素的标注
-+ `<fieldset>`：围绕表单种元素的边框
-+ `<legend>`：`<fieldset>` 元素的标题
+### src 和 href
 
-::: tip 说明： 
-该类标签包含了表单控件相关的标签。
-:::
++ `src`：表示来源地址，用于引入资源，用在 `<img>`, `<script>`, `<iframe>` 等标签中
++ `href`：表示超文本引用，用于引用资源，用在 `<link>`, `<a>` 等标签中
 
-## 多媒体类
 
-+ `<canvas>`：<font color="orange">HTML5</font>。通过脚本来绘制图形
-+ `<figure>`：<font color="orange">HTML5</font>。对元素进行组合
-+ `<figcaption>`：<font color="orange">HTML5</font>。`<figure>` 的标题
-+ `<audio>`：<font color="orange">HTML5</font>。音频
-+ `<video>`：<font color="orange">HTML5</font>。视频
-+ `<picture>`：<font color="orange">HTML5</font>。图像
-+ `<source>`：<font color="orange">HTML5</font>。媒体（音频、视频、图像）资源
-+ `<track>`：<font color="orange">HTML5</font>。媒体元素的外部文本轨道
-+ `<img>`：图像
-+ `<map>`：图像映射
-+ `<area>`：图像地图内部的区域
+### img 的 alt 和 title
 
-::: tip 说明： 
-该类标签包含了图像(`<img>`，`<canvas>`)，音频(`<audio>`)，视频(`<video>`)等标签。
-:::
++ `title`：鼠标移动到元素上出现的文本提示
++ `alt`：在图片不能正常显示时出现的文本提示，有利于 SEO 优化
 
-## 对象/容器/框架类
 
-+ `<applet>`：<font color="red">HTML5 不支持</font>。嵌入的 java 程序
-+ `<frame>`：<font color="red">HTML5 不支持</font>。框架集的窗口或框架
-+ `<frameset>`：<font color="red">HTML5 不支持</font>。 框架集
-+ `<noframes>`：<font color="red">HTML5 不支持</font>。不支持框架的用户的替代内容
-+ `<iframe>`：内联框架
-+ `<embed>`：<font color="orange">HTML5</font>。用于嵌入外部应用的容器
-+ `<object>`：嵌入的对象
-+ `<param>`：对象的参数
+### 超链接
 
-::: tip 说明： 
-该类标签包含了框架(`<iframe>`)，容器(`<embed>`)，对象(`<object>`，`<param>`)等标签。
-:::
++ 表现形式：
+```html
+<!-- 用作锚点： -->
+<a href="#title">回到标题</a>
+
+<!-- 普通的跳转： -->
+<a href="example.com" target="_blank">主页</a>
+
+<!-- 下载链接： -->
+<a href="source.zip">下载</a>
+
+<!-- 电子邮件链接： -->
+<a href="mailto:seven@example.com">Email</a>
+
+<!-- 空链接： -->
+<a href="#">返回顶部</a>
+
+<!-- 实现代码功能： -->
+<a href="javascript:void(0)">hello</a>
+```
+
+
++ 区分 `href="#"` 和 `href="javascript:void(0)"`：
+```html
+<!-- 是一个锚点，会跳转到页面顶部 -->
+<a href="#">返回顶部</a>
+
+<!-- 是一个“死链接”，点击无任何反应，通常是为了保留链接的样式而不作任何操作 -->
+<a href="javascript:void(0)">hello</a>
+```
+
+
+
+## 废弃 & 新增的标签
+
++ 删除的标签：见[首页](./README.md)
++ 新增语义化结构标签：见[布局类标签](./categories/layout.md)；`<header>`, `<footer>`, `<nav>`, `<aside>`, `<section>`, `<article>`
++ 新增多媒体标签：见[多媒体类标签](./categories/media.md)；`<video>`, `<audio>`, `<source>` 等
++ 新增表单属性：见[表单类标签](./categories/form.md)；主要赋予表单更多的功能，以及更多 type 类型的 `<input>`
+
+
+
+## 新特性 & 用途
+
++ **标签变化**：
+  + 删除的标签：见[首页](./README.md)
+  + 新增语义化结构标签：见[布局类标签](./categories/layout.md)；`<header>`, `<footer>`, `<nav>`, `<aside>`, `<section>`, `<article>`
+  + 新增多媒体标签：见[多媒体类标签](./categories/media.md)；`<video>`, `<audio>`, `<source>` 等
+  + 新增表单属性：见[表单类标签](./categories/form.md)；主要赋予表单更多的功能，以及更多 type 类型的 `<input>`
+
++ **Canvas**：2D 绘图，像素级别的控制
+
++ **SVG**：可伸缩矢量图形，大量应用于图标和动画
+
++ **Geolocation**：地理位置 API
+
++ **Storage**：浏览器存储，sessionStorage 和 localStorage(持久化存储)，可用于缓存数据和多页面间通信
+
++ **Drag & Drop**：拖放事件
+
++ **WebSocket**：对 WebSocket 协议的支持，提供更快捷、实时的全双工通信
+
++ **WebWorker**：在后台运行的独立的新线程，可用于处理复杂的运算(不影响页面)
+
+
+## 标签语义化的目的 & 实现
+
+**目的**：
++ 丢失样式时，页面也会有较为清晰的结构
++ 代码结构清晰，方便阅读，有利于团队合作开发
++ 方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以语义的方式来渲染网页
++ 有利于搜索引擎优化（SEO）
+
+**实现**：
++ 不要滥用 `<div>`, `<span>`
++ 不要为了样式效果而使用特定的文本标签
++ 使用语义化的文本标签：`<em>`, `<strong>`, `<address>` 等
++ 使用 HTML5 新增的语义化结构标签：`<header>`, `<footer>`, `<nav>`, `<aside>`, `<section>`, `<article>`
+
+
+## 区别 Canvas & SVG
+
+|Canvas|SVG|
+|-|-|
+|依赖分辨率|不依赖分辨率，可无限放大而不模糊|
+|不支持事件处理器|支持事件处理器|
+|弱的文本渲染能力|适合带有大型渲染区域的应用(如谷歌地图)|
+|能够以 .png 或 .jpg 格式保存结果图像|复杂度高会减慢渲染速度(过度使用 DOM)|
+|适合图像密集型的游戏，许多对象会被频繁重绘|不适合游戏应用|
