@@ -5,120 +5,48 @@ sidebarDepth: 2
 ## 简介
 
 + [webpack](https://www.webpackjs.com/) 是一个 JavaScript 应用程序的静态模块打包器(module bundler)
-+ 当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle
++ 其通过模块之间的依赖，将这些模块打包成一个或多个 bundle
++ 在打包过程中，可使用 loader 代码进行压缩、提取等，或使用 plugin 配置开发服务器等
 
-::: tip 模块化解决的痛点以及为什么选择 webpack：
-+ 模块化解决的痛点
-  + 全局变量污染
-  + 引入 `js` 库时依赖模糊
-  + 项目壮大时 `js` 代码难以维护
-  + 不能做到代码分离和按需加载
-+ 构建工具的区别
-  + `Webpack`：专注于处理模块化的构建工具，有丰富的插件，开箱即用又可以高度配置
-  + `Rollup`：新兴的构建工具，有 `Tree Shaking` 等功能，但功能不如 `Webpack` 完善
-  + `Gulp`：基于流的构建工具
-  + `Grunt`：灵活且插件丰富的构建工具
-:::
++ 前端构建工具有很多，看一下他们的对比：
 
-
-
-### 基本概念
-
-+ `entry`：webpack 解析模块依赖的入口，但至少需要配置一个入口
-+ `output`：配置输出代码的位置以及如何输出，默认输出在 `./dist` 目录
-+ `loader`：转换器用于处理非 js 文件，将它们都当作模块处理(在 webpack 中一切文件皆可识别为模块)
-+ `plugins`：插件，能够扩展 webpack 用于处理各种任务
-+ `chunk`：代码块，一般由多个模块组合而成
-
-::: tip 说明
-+ 尽管官方文档内容多且乱，但 webpack 的使用主要围绕上述四个方面；在了解其配置方法及熟悉 webpack 的基本原理后，掌握 webpack 也不是什么难事
-+ webpack 和官方提供了很多的 loader 和 plugin，我们可以通过 npm 安装使用；但是随着 webpack 以及各 loader、plugin 的升级，配置方法可能会有所变化，因此要特别注意 loader/plugin 依赖的 webpack 版本(如 webpack4+ 中已不再支持 `extract-text-webpack-plugin`)
-:::
-
-
-
-### 常用 loader
-
-+ 列举一些常用的 loader，更多 loader 参考 [awesome webpack](https://github.com/webpack-contrib/awesome-webpack#loaders)
-
-|loader|描述|
+|工具|描述|
 |-|-|
-|<font color="blue">加载文件相关</font>||
-|raw-loader|加载文本文件
-|file-loader|将文件输出到一个文件夹，在代码中通过相当 `url` 去引用
-|url-loader|类似 `file-loader`，但能将小文件以 `base64` 的方式注入代码中
-|source-map-loader|加载额外的 SourceMap 文件
-|svg-inline-loader|将压缩后的 SVG 注入到代码中
-|node-loader|加载 Node.js 原生模块文件
-|image-loader|加载并压缩图片
-|json-loader|加载 JSON 文件
-|yaml-loader|加载 YAML 文件
-|<font color="blue">编译模板相关</font>||
-|haml-loader|将 `HAML` 代码转换成 `HTML`
-|markdown-loader|将 `Markdown` 文件转换成 `HTML`
-|pug-loader|将 `Pug` 模板转换成 `Javascript` 函数
-|ejs-loader|将 `EJS` 模板转换成 `Javascript` 函数
-|handlebars-loader|将 `Handlebars` 模板转换成 `Javascript` 函数
-|<font color="blue">转换脚本语言相关</font>||
-|babel-loader|将 `ES6` 转换成 `ES5`
-|ts-loader|将 `TypeScript` 转换成 `Javascript`
-|awesome-typescript-loader|将 `TypeScript` 转换成 `Javascript`，性能优于 `ts-loader`
-|coffee-loader|将 `CoffeeScript` 转换成 `Javascript`
-|<font color="blue">转换样式文件相关</font>||
-|css-loader|加载 `CSS`，支持模块化、压缩、文件导入等
-|style-loader|将 `CSS` 代码注入 `Javascript`，通过 `DOM` 操作去加载 `CSS`
-|less-loader|将 `Less` 代码转换成 `CSS`
-|sass-loader|将 `Scss/Sass` 代码转换成 `CSS`
-|stylus-loader|将 `Stylus` 代码转换成 `CSS`
-|postcss-loader|扩展 `CSS` 语法
-|<font color="blue">检查代码相关</font>||
-|eslint-loader|通过 `ESLint` 检查 `Javascript` 代码
-|tslint-loader|通过 `TypeScript` 检查 `Javascript` 代码
-|mocha-loader|加载 `Mocha` 测试用例代码
-|coverjs-loader|计算测试的覆盖率
-|<font color="blue">其他</font>||
-|vue-loader|加载 `Vue` 单文件组件
-|i18n-loader|加载多语言版本，支持国际化
-|ignore-loader|忽略部分文件
-|ui-component-loader|按需加载组件
+|Webpack|专注于处理模块化的构建工具，有丰富的插件，开箱即用又可以高度配置
+|Rollup|最早提出 Tree Shaking 的构建工具，常用与构建库
+|Gulp|基于流的构建工具
+|Grunt|灵活且插件丰富的构建工具
+
+> 另外，Webpack 不同于 Babel，后者专注于 ES 代码转译，而前者则是处理模块加载、压缩和构建
 
 
++ webpack 虽然配置项很多，但主要围绕以下几个基本概念：
+
+  + 入口(`entry`)：解析模块依赖的入口，至少要配置一个入口
+
+  + 出口(`output`)：输出代码的位置(默认为 `./dist` 目录)，以及如何输出(输出几个 `chunk` 等)
+
+  + 转换器(`loader`)：将非 js 文件当作模块处理(这就是为什么在 webpack 中所有文件都可识别为模块)
+
+  + 插件(`plugins`)：扩展 webpack 用于处理各种任务(做一些 loader 不能做的)
+
+  + 代码块(`chunk`)：webpack 打包后的代码块，一般由多个模块组合而成
 
 
-### 常用 plugin
-
-+ 列举一些常用的 plugin，更多 plugin 参考[awesome webpack](https://github.com/webpack-contrib/awesome-webpack#webpack-plugins)
-
-|loader|描述|
-|-|-|
-|<font color="blue">用于修改行为</font>||
-|`define-plugin`|定义环境变量
-|`context-replacement-plugin`|修改 `require` 语句在寻找文件时的默认行为
-|`ignore-plugin`|忽略部分文件
-|<font color="blue">用于优化</font>||
-|`commons-chunk-plugin`|提取公共代码
-|`extract-text-webpack-plugin`|提取 `Javascript` 中的 `CSS` 代码到单独的文件
-|`prepack-webpack-plugin`|优化输出的 `Javascript` 代码的性能
-|`uglifyjs-webpack-plugin`|通过 `UblifyJS` 压缩 `ES6` 代码
-|`webpack-parallel-uglify-plugin`|多线程执行 `UblifyJS` 代码压缩
-|`webpack-spritesmith`|制作雪碧图
-|`dll-plugin`|借鉴 DLL 思想大幅度提升构建速度
-|`hot-module-replacement-plugin`|开启模块热替换功能
-|`ModuleConcatenationPlugin`|开启 `WebpackScopeHoisting` 功能
-|<font color="blue">其他</font>||
-|`i18n-webpack-plugin`|国际化支持
-|`stylelint-webpack-plugin`|将 `stylelint` 集成到项目中
-|`serviceworker-webpack-plugin`|为网页应用增加离线缓存功能
-|`provide-plugin`|从环境中提供的全局变量中加载模块，而不用导入对应文件
-|`web-webpack-plugin`|为单页应用输出 `HTML`，比 `html-webpack-plugin` 好用
+::: tip 备注：
++ 官方提供很多的 loader 和 plugin，可以通过 npm 安装使用
++ 要注意 webpack 版本配置文件的变化，它们有可能有所变动，甚至被移除
++ 要注意 webpack 版本与 loader/plugin 的依赖关系，它们的配置方法可能会有所变化，甚至被移除
++ PS：中文官方文档中很多配置没有完全更新，当遇到问题是要善用搜索引擎或查看英文文档
+:::
 
 
 
 
 ## 配置简介
 
-+ 参考[完整配置](https://www.webpackjs.com/configuration/)
-+ 一般采用在项目根目录下创建 `webpack.config.js` 的方式来配置使用 webpack，其默认暴露一个对象：
++ Webpack 提供了非常完整的配置[配置](https://www.webpackjs.com/configuration/)，可以根据去求选择相应的配置
++ 一般在项目根目录下创建 `webpack.config.js` 来配置 webpack，其暴露一个对象：
 ```js
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -158,8 +86,17 @@ mode: 'development',
 ```
 
 ::: tip 备注
-+ development 下会启用插件：`NamedChunksPlugin`, `NamedModulesPlugin`
-+ production 下会启用插件：`FlagDependencyUsagePlugin`, `FlagIncludedChunksPlugin`, `ModuleConcatenationPlugin`, `NoEmitOnErrorsPlugin`, `OccurrenceOrderPlugin`, `SideEffectsFlagPlugin`, `UglifyJsPlugin`
++ development 下会启用插件：
+  + `NamedChunksPlugin`
+  + `NamedModulesPlugin`
++ production 下会启用插件：
+  + `FlagDependencyUsagePlugin`
+  + `FlagIncludedChunksPlugin`
+  + `ModuleConcatenationPlugin`
+  + `NoEmitOnErrorsPlugin`
+  + `OccurrenceOrderPlugin`
+  + `SideEffectsFlagPlugin`
+  + `UglifyJsPlugin`
 :::
 
 
@@ -210,14 +147,14 @@ output: {
   path: path.resolve(__dirname, 'dist'),
 
   // string，配置发布到线上资源的 URL 前缀，能使用 [hash] 变量
-  publicPath: '',         // 默认，使用相对路径
-  publicPath: '/assets/', // 
-  publicPath: 'https://cdn.example.com/', // CDN
+  publicPath: '',           // 默认，使用相对路径
+  publicPath: '/assets/',   // 
+  publicPath: 'https://cdn.example.com/',   // CDN
 
   // string，输出文件的名称，能使用 [id], [name], [hash], [chunkhash] 等变量
-  filename: 'bundle.js', // 只有一个输出文件时，也可以用 [name] 指定
-  filename: '[name].js', // 有多个入口时，[name] 对应入口文件名
-  filename: '[chunkhash].js', // 用于长效缓存
+  filename: 'bundle.js',    // 只有一个输出文件时，也可以用 [name] 指定
+  filename: '[name].js',    // 有多个入口时，[name] 对应入口文件名
+  filename: '[chunkhash].js',     // 用于长效缓存
 
   // 类似 filename，但用于配置无入口的 chunk 的输出文件名
   chunkFilename: '[id].js',
@@ -230,14 +167,19 @@ output: {
 ```
 
 
++ 可供使用的模版变量：
+
+|模板|描述|
+|-|-|
+|`[name]`|chunk 名称
+|`[id]`|chunk 标识，从 0 开始
+|`[hash]`|chunk 的唯一标识的 hash 值
+|`[chunkhash]`|chunk 内容的 hash 值
+|`[query]`|模块的查询字符串
+  
+
 ::: tip 说明：
-+ 可供使用的模版字符串：
-  + `[hash]`：chunk 的唯一标识的 hash 值
-  + `[chunkhash]`：chunk 内容的 hash 值
-  + `[name]`：chunk 名称
-  + `[id]`：chunk 标识，从 0 开始
-  + `[query]`：模块的查询字符串
-+ `[hash]`/`[chunkhash]` 的长度可以使用 `[hash:16]`(默认20)来指定
++ `[hash]`/`[chunkhash]` 的长度(默认20)可以使用 `[hash:16]` 的方式来指定
 :::
 
 
@@ -287,9 +229,10 @@ module: {
 ```
 
 ::: tip 备注
-+ `test` 和 `include` 都是必须匹配选项，`exclude` 是必不匹配选项(优先于 `test`/`include`)，最佳实践：
-  + 只在 test 和 文件名匹配 中使用正则表达式，在 `include` 和 `exclude` 中使用绝对路径数组
++ `test` 和 `include` 是必须匹配选项，`exclude` 是不匹配选项(优先于 `test`/`include`)
++ 最佳实践：
   + 尽量使用 `include` 代替 `exclude`
+  + 只在 test 和 文件名匹配 中使用正则表达式，在 `include` 和 `exclude` 中使用绝对路径数组
 :::
 
 
@@ -299,10 +242,10 @@ module: {
 + 使用非 webpack 默认插件，都需要导入
 + 插件是一个数组，每个需要使用的插件都要实例化
 ```js
-var webpack = require('webpack')
+const webpack = require('webpack')
 // 导入非 webpack 自带默认插件
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var DashboardPlugin = require('webpack-dashboard/plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 
 // 在配置中添加插件
 plugins: [
@@ -346,7 +289,7 @@ resolve: {
   // 模块解析时使用的扩展名，导入相关后缀的模块时可以省略后缀
   extensions: ['.js', '.json'], // 默认
   // 配置导入时优先解析 ts 文件
-  extensions: ['ts', '.js', '.json'],
+  extensions: ['.ts', '.js', '.json'],
 
   // 模块别名列表
   alias: {
@@ -364,60 +307,84 @@ resolve: {
 ```
 
 
-### devServer
 
-+ 配置本地开发服务器
+## 配置参考
+
+### 开始之前
+
++ 尽量使用规范的项目目录：
+```sh
+|- project/
+  |- dist/                # 打包后文件目录，自动生成
+  |- public/              # 公共资源
+    |- index.html
+  |- src/
+    |- assets/            # 静态资源
+    |- styles/            # css 样式
+    |- main.js            # 入口文件
+  |- webpack.config.js    # webpack 配置文件
+  |- package.json
+```
+
++ 先安装 webpack 和 webpack-cli
+```sh
+$ yarn add webpack webpack-cli -D
+```
+
++ 配置 `package.json`，添加一条构建命令，以后在项目根目录下使用 `yarn build` 即可构建
+```json
+"scripts": {
+  "build": "webpack"
+}
+```
+
++ 简单配置 `webpack.config.js` 的入口和出口
 ```js
-devServer: {
-  // 配置 devServer http 服务器的根目录，默认为当前执行目录，必须是静态的
-  contentBase: false, // 关闭暴露本地文件
-  contentBase: path.join(__dirname, 'public'), // 暴露 '/public' 目录
-  contentBase: [path.join(__dirname, 'public'), path.join(__dirname, 'assets')], // 暴露多个目录
+const path = require('path')
 
-  proxy: {
-    // 请求 /api/user 相当于请求 http://localhost:3000/user
-    '/api': 'http://localhost:3000',
-    // 请求可不带 /api 前缀
-    '/api': {
-      target: 'http://localhost:3000',
-      pathRewrite: { '^/api': '' }
-    },
-  },
- 
-  headers: {},        // 注入响应头
-  compress: false,    // 默认 false，禁用 Gzip 压缩
-  hot: false,         // 默认 false，关闭模块热替换
-  inline: true,       // 默认 true，开启网页实时预览
-  https: false,       // 默认 false，关闭 https
-  // ...
+module.exports = {
+  mode: 'none',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
 }
 ```
 
 
+### 处理 js
 
-
-## 配置参考
-
-### ES6 & ESLint
-
-+ 在 webpack 中配置 ES6 需要预先 [配置 babel]()
-+ 安装依赖：
++ 通常会使用 Babel 和 ESLint 来处理 js，添加相关 loader
 ```sh
-npm i -D babel-core babel-loader eslint-loader
+$ yarn add -D @babel/core babel-loader eslint-loader
+
+# @babel/core：babel 核心
+# babel-loader：解析 babel
+# eslint-loader：解析 eslint
 ```
-+ webpack.dev.js：
+
++ 然后按照需要配置 `babel.config.json`
+```json
+{
+  "presets": ["@babel/env"]
+}
+```
+
+::: details webpack.config.js
 ```js
 module.exports = {
+  // ...
   modules: {
     rules: [
       {
-        test: /.js$/,
+        test: /\.js$/,
         exclude: /node_modules/,      // 排除目录
         use: [
           'babel-loader',
           {
-            loader: 'eslint-loader',
-            enforce: 'pre',           // 在所有 loader 之前
+            loader: 'eslint-loader',  // 由于有其他配置项，可使用对象形式配置 loader
+            enforce: 'pre',           // 在所有 loader 之前，还可使用 post
           }
         ]
       }
@@ -426,77 +393,348 @@ module.exports = {
   devtool: 'source-map'               // 生成 source-map 用于调试
 }
 ```
+:::
 
-### Scss && PostCSS
 
-+ 安装依赖：
++ 或配置 TypeScript，安装相关依赖：
 ```sh
-npm i -D sass-loader css-loader style-loader postcss-loader
-npm i -D node-sass    # sass-loader 依赖 node-sass
+$ yarn add -D typescript ts-loader
 ```
-+ webpack.dev.js：
+
++ 再根据需要配置 `tsconfig.json`：
+```json
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true
+  }
+}
+```
+
+::: details webpack.config.js
+```js
+
+```
+:::
+
+
+
+
+### 静态资源
+
++ 安装 css 相关
+```sh
+yarn add -D sass-loader css-loader style-loader postcss-loader
+# 若没有安装 node-sass 则手动安装（PS：sass-loader 依赖 node-sass）
+yarn add -D node-sass
+
+# style-loader：
+# css-loader：
+# sass-loader：加载 sass/scss 文件，同类型的还有 less-loader
+# postcss-loader：加载 postcss 配置
+```
+
+::: details webpack.config.js
 ```js
 module.exports = {
   module: {
     rules: [
       { 
-        test: /.scss$/,
+        test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       }
     ]
   }
 }
 ```
+:::
+
++ 其他情况，安装需要使用的 loader：
+```sh
+yarn add -D file-loader url-loader csv-loader xml-loader
+
+# file-loader：加载图片资源，同时能处理 css 和 js 中引用的图片依赖
+# url-loader：处理
+# csv-loader：加载 CSV 文件
+# xml-loader：加载 XML 文件
+```
+
+::: details webpack.config.js
+```js
+const path = require('path')
+
+module.exports = {
+  mode: 'none',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,       // 处理图片的加载
+        use: ['file-loader']
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,  // 处理字体的加载
+        use: ['file-loader']
+      },
+      {
+        test: /\.xml$/,       // 处理 XML 的加载
+        use: ['xml-loader']
+      },
+      {
+        test: /\.(csv|tsv)/,  // 处理 CSV 的加载
+        use: ['csv-loader']
+      }
+    ]
+  }
+}
+```
+:::
+
+
+::: tip 备注：
++ html 文件中的图片加载需要配合 `html-loader`
++ 直接使用 `import` 能将加载 JSON 文件，因此不需要使用 loader
+:::
+
+
+### 多入口配置
+
++ 将 `entry` 配置为一个对象就可以配置多入口，并且 output 可以使用 `[name]` 引用其 chunkname
++ 通常会配合两个 html 相关插件使用，以动态修改 html 中的内容
+  + `clean-webpack-plugin`：构建前清空 `/dist` 目录
+  + `html-webpack-plugin`：可根据模板或选项动态生成新的 index.html
+
+::: details webpack.config.js
+```js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+module.exports = {
+  mode: 'none',
+  entry: {
+    app: './src/main.js',
+    print: './src/print.js'
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Set title in html-webpack-plugin'
+    })
+  ]
+}
+```
+:::
+
+::: tip 备注：
++ [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 还支持很多配置
++ [html-webpack-template](https://github.com/jaketrent/html-webpack-template) 除了默认模板之外，还提供了一些额外的功能
++ [webpack-manifest-plugin](https://github.com/shellscape/webpack-manifest-plugin) 可以直接将数据提取到一个 json 文件，以供使用
+:::
+
+
+
+### 配置不同环境
+
++ 由于开发环境和生产环境的配置不一样，经常会创建不同的配置文件，并通过 `webpack-merge` 合并：
+```sh
+|- config\
+  |- webpack.common.js  # 通用配置，包含 dev 和 prod 的公用部分
+  |- webpack.dev.js     # 开发环境配置
+  |- webpack.prod.js    # 生产环境配置
+```
+
++ 更新 package.json，serve 为启用 devServer，再通过 `--config` 参数指定配置文件
+```json
+"scripts": {
+  "dev": "webpack serve --config ./config/webpack.dev.js",
+  "build": "webpack --config ./config/webpack.prod.js"
+}
+```
+
++ 开发环境一般配备 devServer(安装 `webpack-dev-server`)，和开启模块热加载(HMR)
++ 生产环境会自动启用部分插件，也可安装配置更多插件
+
++ 更新各配置文件：
+
+::: details webpack.*.js
++ webpack.common.js
+```js
+const path = require('path')
+
+module.exports = {
+  mode: 'none',
+  entry: {
+    app: './src/main.js',
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, '../dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      }
+    ]
+  }
+}
+```
+
++ webpack.dev.js
+```js
+const merge = require('webpack-merge')
+const common = require('./webpack.common')
+
+module.exports = merge(common, {
+  mode: 'development',  // 开发环境
+  devServer: {
+    contentBase: './dist',
+    hot: true,          // 启用 HMR
+    port: 9000
+  }
+})
+```
+
++ webpack.prod.js
+```js
+const merge = require('webpack-merge')
+// 以下两个插件需要手动安装
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const common = require('./webpack.common')
+
+module.exports = merge(common, {
+  mode: 'production',         // 生产环境，自动启用部分插件，如 UglifyJsPlugin
+  devtool: 'source-map',
+  plugins: [
+    new CleanWebpackPlugin(), // 构建前删除 /dist 目录
+    new HtmlWebpackPlugin({   // 根据已有模板生成 index.html
+      title: 'Production'
+    })
+  ]
+})
+```
+:::
+
+
+
+::: tip 备注：
++ 如果保存后 webpack 没有工作，应该关闭编辑器的安全写入(safe write)功能
++ `webpack-dev-middleware` 适用于自由度更高的 devServer 配置
++ `NamedModulesPlugin` 插件用于在浏览器显示更新的文件名而不是一个 ID
++ 模块热替换(HMR)：webpack 会根据文件的依赖来 patch 部分更新，不会刷新整个页面
+:::
+
+
+
+
+### PWA
+
++ 安装 `workbox-webpack-plugin`
+```sh
+$ yarn add -D workbox-webpack-plugin
+```
+
+::: details webpack.config.js
+```js
+const merge = require('webpack-merge')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+
+const common = require('./webpack.common')
+
+module.exports = merge(common, {
+  mode: 'production',
+  plugins: [
+    new WorkboxWebpackPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
+    })
+  ]
+})
+```
+:::
+
++ 在 main.js 注册 `service-worker`
+```js
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then(registration => {
+      console.log('service-worker registered: ', registration)
+    }).catch(error => {
+      console.log('service-worker registered failed: ', error)
+    })
+  })
+}
+```
+
 
 
 ### 单页应用
+
+
 ### 同构应用
-### 构建 npm 模块
-### 构建离线应用
-### 结合 npm script
-### 加载图片
-### 加载 SVG
-### 加载 Source Map
+
 
 
 
 ## 性能优化
 
-### 打包的文件体积过大
+### 优化打包体积
 
-+ 异步加载模块
-+ 提取第三库
-+ 代码压缩
 + 去除不必要的插件
++ 提取公共代码：配置 `optimization.splitChunks` 将多个入口的公共代码提取到单独的文件
++ 压缩代码：压缩 js(`UglifyJsPlugin`)
++ 懒加载：使用 `import()` 按需加载模块
++ 异步加载模块
++ TreeShaking：“摇树”，Rollup 首先推出，Webpack 4 实现了该功能，现已默认开启该功能
++ 使用 DllPlugin
++ 使用 HappyPack
++ 使用 ParallelUglifyPlugin
++ Scope Hoisting
++ 分析输出
 
 
 
-### 打包速度过慢
+### 优化打包速度
 
-+ 减少代码体积 
-  + 使用 `CommonsChunksPlugin` 提取多个 `chunk` 之间的通用模块，减少总体代码体积
-	+ 把部分依赖转移到 `CDN` 上，避免每次编译过程都由 `Webpack` 处理
++ 减少 loader 的检索范围：合理使用 `exclude` / `include`(推荐)
++ 减少检索路经：对于比较深的解析路经，配置 `resolve.alias`
++ 减少代码体积
+  + 使用 `CommonsChunksPlugin` 提取多个 `chunk` 之间的通用模块
 	+ 对一些组件库采用按需加载，避免无用的代码
-+ 减少目录检索范围：在使用 `loader` 的时候，通过制定 `exclude` 和 `include` 选项，减少 `loader` 遍历的目录范围，从而加快 `Webpack` 编译速度
-+ 减少检索路经：`resolve.alias` 可以配置 `Webpack` 模块解析的别名，对于比较深的解析路经，可以对其配置 `alias`
 
-### 缩小文件搜索范围
-### 使用 DllPlugin
-### 使用 HappyPack
-### 使用 ParallelUglifyPlugin
-### 自动刷新
-### 模块热替换
-### 区分环境
-### 压缩代码
-### CDN 加速
-### Tree Shaking
-### 提取公共代码
-### 按需加载
-### Scope Hoisting
-### 分析输出
++ 使用 `DllPlugin` 将更改不频繁的代码进行单独编译
++ 使用 `cache-loader` 启用持久化缓存，使用 package.json 的 `postinstall` 清除缓存目录
++ 使用 `parallel-webpack` 启用多核编译
++ 不需要 source-map 时可取消
 
 
-## 原理
+
+### 优化开发环境
+
++ 增量编译
++ 在内存中编译：使用 `webpack-dev-server` / `webpack-dev-middleware` / `webpack-hot-middleware`
++ 修改 `devtool`：`eval-source-map` 性能最好，通常选择 `cheap-module-eval-source-map`
++ 避免使用开发环境下才使用的工具，如代码压缩等
++ 最小化入口 chunk
+
+
+
+## 深入
 
 ### 编译流程
 
@@ -527,9 +765,109 @@ module.exports = {
 :::
 
 
+
+### Tree Shaking
+
++ 原理是通过 ES6 模块的静态特性，去除上下文中未用到的代码，如使用 lodash 时只会打包用到的函数
+
+
+### HMR
+
+
+
+
+## 附录
+
+### 常用 loader
+
++ 列举一些常用的 loader，更多 loader 参考 [awesome webpack](https://github.com/webpack-contrib/awesome-webpack#loaders)
+
+::: details 常用 loader
+|loader|描述|
+|-|-|
+|<Badge>加载文件</Badge>||
+|raw-loader|加载文本文件
+|file-loader|将文件输出到一个文件夹，在代码中通过 `url` 引用
+|url-loader|类似 `file-loader`，但能将小文件以 `base64` 注入代码中
+|source-map-loader|加载额外的 SourceMap 文件
+|svg-inline-loader|将压缩后的 SVG 注入到代码中
+|node-loader|加载 Node.js 原生模块文件
+|image-loader|加载并压缩图片
+|json-loader|加载 JSON 文件
+|yaml-loader|加载 YAML 文件
+|<Badge>编译模板</Badge>||
+|haml-loader|将 `HAML` 代码转换成 `HTML`
+|markdown-loader|将 `Markdown` 文件转换成 `HTML`
+|pug-loader|将 `Pug` 模板转换成 `Javascript` 函数
+|ejs-loader|将 `EJS` 模板转换成 `Javascript` 函数
+|handlebars-loader|将 `Handlebars` 模板转换成 `Javascript` 函数
+|<Badge>转换脚本</Badge>||
+|babel-loader|将 `ES6` 转换成 `ES5`
+|ts-loader|将 `TypeScript` 转换成 `Javascript`
+|awesome-typescript-loader|将 `TypeScript` 转换成 `Javascript`，性能优于 `ts-loader`
+|coffee-loader|将 `CoffeeScript` 转换成 `Javascript`
+|<Badge>转换样式</Badge>||
+|css-loader|加载 `CSS`，支持模块化、压缩、文件导入等
+|style-loader|将 `CSS` 代码注入 `Javascript`，通过 `DOM` 操作去加载 `CSS`
+|less-loader|将 `Less` 代码转换成 `CSS`
+|sass-loader|将 `Scss/Sass` 代码转换成 `CSS`
+|stylus-loader|将 `Stylus` 代码转换成 `CSS`
+|postcss-loader|扩展 `CSS` 语法
+|<Badge>检查代码</Badge>||
+|eslint-loader|通过 `ESLint` 检查 `Javascript` 代码
+|tslint-loader|通过 `TypeScript` 检查 `Javascript` 代码
+|mocha-loader|加载 `Mocha` 测试用例代码
+|coverjs-loader|计算测试的覆盖率
+|<Badge>其他</Badge>||
+|vue-loader|加载 `Vue` 单文件组件
+|i18n-loader|加载多语言版本，支持国际化
+|ignore-loader|忽略部分文件
+|ui-component-loader|按需加载组件
+:::
+
+
+### 常用 plugin
+
++ 列举一些常用的 plugin，更多 plugin 参考[awesome webpack](https://github.com/webpack-contrib/awesome-webpack#webpack-plugins)
+
+::: details 常用 plugin
+|loader|描述|
+|-|-|
+|<Badge>用于修改行为</Badge>||
+|define-plugin|定义环境变量
+|context-replacement-plugin|修改 `require` 语句在寻找文件时的默认行为
+|ignore-plugin|忽略部分文件
+|<Badge>用于优化</Badge>||
+|commons-chunk-plugin|提取公共代码
+|extract-text-webpack-plugin|提取 `Javascript` 中的 `CSS` 代码到单独的文件
+|prepack-webpack-plugin|优化输出的 `Javascript` 代码的性能
+|uglifyjs-webpack-plugin|通过 `UblifyJS` 压缩 `ES6` 代码
+|webpack-parallel-uglify-plugin|多线程执行 `UblifyJS` 代码压缩
+|webpack-spritesmith|制作雪碧图
+|dll-plugin|借鉴 DLL 思想大幅度提升构建速度
+|hot-module-replacement-plugin|开启模块热替换功能
+|ModuleConcatenationPlugin|开启 `WebpackScopeHoisting` 功能
+|<Badge>其他</Badge>||
+|i18n-webpack-plugin|国际化支持
+|stylelint-webpack-plugin|将 `stylelint` 集成到项目中
+|serviceworker-webpack-plugin|为网页应用增加离线缓存功能
+|provide-plugin|从环境中提供的全局变量中加载模块，而不用导入对应文件
+|web-webpack-plugin|为单页应用输出 `HTML`，比 `html-webpack-plugin` 好用
+:::
+
+
+
 ### 编写 loader
 
-+ 简单来说，`loader` 是一个函数，它接受源代码或上一个 `loader` 返回的结果代码作为参数，最后返回一个结果代码
+参考自官方 [loader API](https://www.webpackjs.com/api/loaders)
++ `loader` 是一个函数；`loader runner` 会调用这个函数，然后把上一个 `loader` 产生的结果或者资源文件(`resource file`)传入进去
++ 函数的 `this` 上下文由 `webpack` 填充，并且 `loader runner` 具有一系列方法
++ `compiler` 需要得到最后一个 `loader` 产生的处理结果；这个处理结果应该是 `String` 或者 `Buffer`(被转换为一个 `String`)，代表了模块的 `JavaScript` 源码
++ 如果是单个处理结果，可以在同步模式中直接返回；如果有多个处理结果，则必须调用 `this.callback()`
++ 异步模式中必须调用 `this.async()`，指示 `loader runner` 等待异步结果，它会返回 `this.callback()`
+
+
++ `loader` 是一个函数，接受源代码或上一个 `loader` 返回的结果代码为参数，最后返回一个结果代码
 ```js
 function someSyncOperation(content) {
   // do some operation
@@ -541,9 +879,46 @@ module.exports = function (source) {
 ```
 
 
+::: tip 备注：
++ 因为 `Webpack` 是一个 `Node.js` 应用，所以编写 `loader` 时可以调用 `Node.js API` 或安装第三方模块并引入使用
++ 需要加载本地 `loader` 时可以使用 `npm` 的 `link` 命令或 `Webpack` 的 `resolveLoader` 选项来实现
+:::
+
+
+<!-- + API
+
+|语法|说明|
+|-|-|
+|`this.version`|`loader API` 版本号|
+|`this.context`|模块所在的目录|
+|`this.request`|被解析出来的 `request` 字符串|
+|`this.async`|`loader` 将会异步地回调，返回 `this.callback`|
+|`this.data`|在 `pitch` 阶段和正常阶段之间共享的 `data` 对象|
+|`this.loaders`|所有 `loader` 组成的数组|
+|`this.loaderIndex`|当前 `loader` 在 `loaders` 中的索引|
+|`this.resource`|`request` 中的资源部分，包括 `query` 参数|
+|`this.resourcePath`|资源文件的路径|
+|`this.resourceQuery`|资源的 `query` 参数|
+|`this.target`|编译的目标。从配置选项中传递过来的|
+|`this.webpack`|如果是由 `webpack` 编译的，这个布尔值会被设置为真|
+|`this.sourceMap`|生成一个 `source map`|
+|`this.fs`|用于访问 `compilation` 的 `inputFileSystem` 属性|
+|`this.callback()`|一个可以同步或者异步调用的可以返回多个结果的函数|
+|`this.cacheable()`|设置是否缓存|
+|`this.emitWarning()`|发出一个警告|
+|`this.emitError()`|发出一个错误|
+|`this.loadModule()`|解析 `request` 到一个模块，应用所有配置的 `loader`|
+|`this.resolve()`|解析一个 `request`|
+|`this.addDependency()`|加入一个文件作为产生 `loader` 结果的依赖，使它们的任何变化可以被监听到|
+|`this.addContextDependency()`|把文件夹作为 `loader` 结果的依赖加入|
+|`this.clearDependencies()`|移除 `loader` 结果的所有依赖|
+|`this.emitFile()`|产生一个文件| -->
+
+
+
 ### 编写 plugin
 
-+ 简单来说，`plugin` 是一个类，它初始化实例后会执行类的 `apply()` 方法为插件实例传入 `compiler` 对象，该对象内定义了回调钩子监听 `Webpack` 的变化
++ `plugin` 是一个类，初始化实例后会执行其 `apply()` 方法为插件实例传入 `compiler` 对象，该对象内定义了回调钩子监听 `Webpack` 的变化
 ```js
 class FirstPlugin {
   constructor (successHandler, failHandler) {
@@ -565,6 +940,10 @@ class FirstPlugin {
 module.exports = FirstPlugin
 ```
 
+::: tip 备注：
++ `compiler`：该对象包含了 `Webpack` 环境的所有配置信息(`options`, `loaders`, `plugins` 等)，在 `Webpack` 启动时就被实例化
++ `compilation`：该对象包含了当前的模块资源、编译生成资源、变化的文件等信息，每当检测到一个文件变化，就会生成一个新的该对象，它还能读取到 `compiler` 对象
++ `resolver`：
++ `parser`：
+:::
 
-### 热部署
-### 热更新

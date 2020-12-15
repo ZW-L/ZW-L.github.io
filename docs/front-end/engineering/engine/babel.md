@@ -42,29 +42,31 @@ sidebarDepth: 2
 
 ### 其他
 
++ 大多数情况下，我们使用一套简单的 `presets` 就好
 ```js
 {
-"presets": [
-  [
-  "@babel/env",
-    {
-      "targets": {
-        "edge": "17",
-        "firefox": "60",
-        "chrome": "67",
-        "safari": "11.1"
-        }
-      }
-    ]
-  ]
+  "presets": ["@babel/env"]
 }
 ```
+
+
+
+::: tip 备注：
++ Babel 7 已经支持 preset 和 plugin 的简写
+```js
+{
+  "presets": ["@babel/react"], // 等同于 ["@babel/preset-react"]
+  "plugins": ["@babel/transform-runtime"], // 等同于 ["@babel/plugin-transform-runtime"]
+}
+```
+:::
 
 
 
 
 ## 编写插件
 
++ [插件手册 - 中文版](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md)
 + 插件就是一个函数，来自官方的例子：
 ```js
 export default function() {
