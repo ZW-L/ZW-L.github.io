@@ -15,9 +15,10 @@
     "node-sass": "^4.14.1",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
-    "typescript": "^3.9.7",
     "valine": "^1.4.14",
     "vuepress": "^1.5.2",
+    "vuepress-plugin-element-tabs": "^0.2.8",
+    "vuepress-plugin-reading-progress": "^1.0.10",
     "vuepress-plugin-smooth-scroll": "^0.0.9",
     "vuepress-plugin-zooming": "^1.1.7"
   },

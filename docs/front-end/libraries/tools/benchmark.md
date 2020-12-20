@@ -5,7 +5,7 @@ sidebarDepth: 2
 ## 介绍和使用
 
 + [benchmark.js](https://github.com/bestiejs/benchmark.js)：基于 jsperf，上手简单，常用于测试比较函数性能
-+ 其高度依赖 [lodash](https://lodash.com/)，并使用了 [platform.js](https://github.com/bestiejs/platform.js#readme)
++ 其依赖 [lodash](https://lodash.com/)，并使用了 [platform.js](https://github.com/bestiejs/platform.js#readme)
 
 
 

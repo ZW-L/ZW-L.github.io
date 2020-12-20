@@ -72,7 +72,7 @@ npm install bootstrap@3
 
 + **栅格参数：**
 
-![栅格参数](./imgs/bootstrap_01.png)
+![栅格参数](../imgs/bootstrap_01.png)
 
 + **类名参考**：
   + 创建行：`.row`

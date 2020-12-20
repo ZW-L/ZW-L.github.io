@@ -2,17 +2,9 @@
 sidebarDepth: 2
 ---
 
-
 ## 快速使用
 
-&emsp;[Sass](https://www.sass.hk/)是一个强大的CSS扩展语言（预处理器）。特点：
-
-+ 兼容所有版本的CSS
-+ 丰富的功能特性
-+ 成熟的技术团队
-+ 行业认可
-+ 社区庞大
-
++ [Sass](https://www.sass.hk/)是一个强大的 CSS 扩展语言（预处理器）
 
 ### 安装
 

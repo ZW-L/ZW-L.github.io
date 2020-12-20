@@ -5,8 +5,18 @@
   2. 当问题足够小时，结束递归，开始合并小问题
 
 
+
 ## 实现
 
+
+:::: tabs
+
+::: tab 伪代码
+__markdown content__
+:::
+
+
+::: tab javascript
 ```js
 /**
  * 合并左右数组，返回已排序的数组
@@ -52,3 +62,14 @@ export function mergeSort(arr) {
   return merge(left, right)
 }
 ```
+:::
+
+
+::: tab c/c++
+```
+
+```
+:::
+
+::::
+

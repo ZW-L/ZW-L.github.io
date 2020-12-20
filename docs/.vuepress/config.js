@@ -10,8 +10,9 @@ module.exports = {
   head: headConfig,         // 注入到当前页面的 HTML <head> 中的标签
   plugins: pluginsConfig,   // 插件
   themeConfig: {
-    lastUpdated: '最后更新于',// 显示最后更新时间
-    nav: navConfig,         // 导航栏
-    sidebar: sidebarConfig, // 边栏
+    logo: '/image/logo.png',   // logo
+    lastUpdated: '最后更新于',  // 显示最后更新时间
+    nav: navConfig,           // 导航栏
+    sidebar: sidebarConfig,   // 边栏
   }
 }

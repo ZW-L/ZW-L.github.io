@@ -683,10 +683,6 @@ if ('serviceWorker' in navigator) {
 
 
 
-### 单页应用
-
-
-### 同构应用
 
 
 
@@ -697,6 +693,7 @@ if ('serviceWorker' in navigator) {
 
 + 去除不必要的插件
 + 提取公共代码：配置 `optimization.splitChunks` 将多个入口的公共代码提取到单独的文件
++ 提取 CSS 代码：使用 `MiniCssExtractPlugin` 提取 css 代码到独立的文件，还有利于线上资源并行加载
 + 压缩代码：压缩 js(`UglifyJsPlugin`)
 + 懒加载：使用 `import()` 按需加载模块
 + 异步加载模块
