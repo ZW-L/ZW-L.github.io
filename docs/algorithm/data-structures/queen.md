@@ -8,12 +8,14 @@ sidebarDepth: 2
 + 队列是一种先进先出（First-In-First-Out, FIFO）的链式存储结构
 + 优先队列的 FIFO 体现在同等优先级的元素
 
+
 ### 队列分类
 
 + 一般队列
 + 循环队列
 + 双端队列
 + 优先队列：最大优先队列、最小优先队列
+
 
 ### 队列的属性和方法
 
@@ -24,6 +26,7 @@ sidebarDepth: 2
   + `enqueue()`：入队
   + `dequeue()`：出队
   + `isEmpty()`：表示队列是否为空
++ 辅助方法
   + `toArray()`：将队列转换为数组
   + `toString()`：将队列转换为字符串
 
@@ -32,6 +35,7 @@ sidebarDepth: 2
 
 ## 一般队列
 
++ 链表实现：
 ```js
 import LinkedList from '../linked-list/LinkedList'
 
@@ -62,6 +66,8 @@ export default class Queue {
   }
 
   /**
+   * 时间复杂度：O(1)
+   * 
    * @param {*} val
    * @returns {Queue}
    */
@@ -71,13 +77,12 @@ export default class Queue {
   }
 
   /**
+   * 时间复杂度：O(1)
+   * 
    * @returns {*}
    */
   dequeue() {
-    if (this.isEmpty()) {
-      return null
-    }
-    return this.queue.deleteHead().value
+    return this.isEmpty() ? null : this.queue.deleteHead().value
   }
 
   /**
@@ -93,6 +98,38 @@ export default class Queue {
    */
   toString(callback) {
     return callback ? this.queue.toString(callback) : this.queue.toString()
+  }
+}
+```
+
++ 数组实现：性能较差，一般不使用
+```js
+class Queue {
+  constructor () {
+    this.data = []
+  }
+
+  // 时间复杂度：O(n)
+  enqueue (val) {
+    this.data.unshift(val)
+    return this
+  }
+
+  // 时间复杂度：O(n)
+  dequeue () {
+    return this.data.shift()
+  }
+
+  isEmpty () {
+    return !!this.data.length
+  }
+
+  get front () {
+    return this.isEmpty() ? null : this.data[0]
+  }
+
+  get back () {
+    return this.isEmpty() ? null : this.data[this.data.length - 1]
   }
 }
 ```
