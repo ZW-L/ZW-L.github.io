@@ -19,6 +19,7 @@ module.exports = {
     extendMarkdown: md => {
       md.use(require('markdown-it-sub'))
       md.use(require('markdown-it-sup'))
+      md.use(require('markdown-it-katex'))
     }
   }
 }
