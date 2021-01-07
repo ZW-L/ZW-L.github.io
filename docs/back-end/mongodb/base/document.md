@@ -1,73 +1,79 @@
 ## 获取句柄
 
-+ 方式1：使用 `getCollection()`
++ 对文档的增删改查都需要依次获取两个句柄：
 ```sh
-use testDB
-db.getCollection('newCollection')
-```
+# 1.获取数据库句柄
+$ use testDB
 
-+ 方式2：直接获取
-```sh
-use testDB
-db.newCollection
+# 2.获取文档句柄，有两种方式
+$ db.newCollection
+$ db.getCollection('newCollection')
 ```
 
 
 
 ## 增
 
-+ `insert(document)`
++ `insert(document)`：添加字段
++ `save(document)`：保存字段，但使用已存在的 `_id` 字段时会是覆盖已有文档
+
 ```sh
-use testDB
-coll = db.getCollection('newCollection')
-coll.insert({name: 'Anna', age: '20'})
-coll.insert({name: 'Alice', age: '22'})
-```
-+ `save(document)`
-```sh
-coll.save({name: 'Zed', age: '18'})
+# 获取句柄
+$ use testDB
+$ coll = db.getCollection('newCollection')
+
+# insert
+$ coll.insert({name: 'Anna', age: '20'})
+$ coll.insert({name: 'Alice', age: '22'})
+
+# save
+$ coll.save({name: 'Zed', age: '18'})
 ```
 
 
 
 ## 删
 
-+ `remove([query])`
++ `remove([query])`：
 ```sh
-use testDB
-db.newCollection.remove({name: 'Anna'})   # 删除匹配的文档
-db.newCollection.remove()   # 删除所有文档
+$ use testDB
+
+# remove
+$ db.newCollection.remove({name: 'Anna'})   # 删除匹配的文档
+$ db.newCollection.remove()                 # 删除集合中所有文档
 ```
-
-
 
 
 ## 改
 
-+ `save(object)`：文档中 `_id` 字段是唯一的，通过使用相同的 `_id` 字段去覆盖文档(并不是添加)
++ `save(document)`：文档中 `_id` 字段是唯一的，通过使用相同的 `_id` 字段去覆盖文档(并不是添加)
 ```sh
+$ use testDB
 
+# save
+$ db.newCollection.save({name: 'Zed', age: '18'})
 ```
 
 + `update(query, update, options)`
 ```sh
-use testDB
+$ use testDB
+
 # 以下命令将所有年龄为20的文档的 job 字段的值设置为 'student'
-db.newCollection.update(
+$ db.newCollection.update(
   {age: '20'},
   {$set: {job: 'student'},
   {upsert: false, multi: true}
 )
 
 # 以下命令将覆盖对应 _id 字段的文档
-db.newCollection.update(
+$ db.newCollection.update(
   {'_id': '5d594b30f464fc645f888fcf', age: '21'}
 )
 ```
 
 ::: tip update(query, update, options)
 + `query`：指定字段和值与集合中匹配的文档，相当于用 `find(query)` 查找到匹配的文档
-+ `update`：一个对象，指定再更新时使用的更新运算符
++ `update`：一个对象，指定在更新时使用的更新运算符
   + `$inc`：递增字段值
   + `$set`：设置字段值
   + `$push`：将一个条目推送到数组
@@ -78,12 +84,12 @@ db.newCollection.update(
 
 
 
-
 ## 查
 
 + `find([query])`
 ```sh
-use testDB
-db.newCollection.find({name: 'Anna'})   # 返回匹配的文档
-db.newCollection.find()   # 返回集合中所有文档
+$ use testDB
+
+$ db.newCollection.find({name: 'Anna'})   # 返回匹配的文档
+$ db.newCollection.find()                 # 返回集合中所有文档
 ```

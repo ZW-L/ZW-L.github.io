@@ -1,26 +1,10 @@
-/**
- * @param {string} s
- * @return {number[][]}
- */
-var largeGroupPositions = function(s) {
-  let res = [], len = s.length
+var rotate = function(nums, k) {
+  if (nums.length === 0 || nums.length === 1) return nums
 
-  for (let i = 0; i < len; i++) {
-    let j = i
-    while (s[i] === s[j + 1] && j < len) {
-      j++
-    }
-
-    if (j - i >= 2) {
-      res.push([i, j])
-    }
-
-    if (j > i) {
-      i = j
-    }
-  }
-
-  return res
+  const len = nums.length
+  const i = len - k % len
+  nums.splice(0, 0, ...nums.splice(i))
+  return nums
 };
 
-console.log(largeGroupPositions('abc'))
+console.log(rotate([99,-1,-100,3], 2))

@@ -14,11 +14,11 @@ mongoose 是一个更友好的 MongoDB 驱动，并增强了 mongodb 原生驱�
 
 
 新对象：
-+ Schema：定义结构化的模式集合的文档，允许设置字段及其类型、唯一性、索引和验证
-+ Model：表示某一集合中所有的文档（类似 Collection 对象）
-+ Document：表示某一集合中的某个文档
-+ Query：实现查询功能，并可以链式调用（类似 Cursor 和 query 的结合）
-+ Aggregate：实现聚合功能（类似 aggregate 对象）
++ **Schema**：定义结构化的模式集合的文档，允许设置字段及其类型、唯一性、索引和验证
++ **Model**：表示某一集合中所有的文档（类似 Collection 对象）
++ **Document**：表示某一集合中的某个文档
++ **Query**：实现查询功能，并可以链式调用（类似 Cursor 和 query 的结合）
++ **Aggregate**：实现聚合功能（类似 aggregate 对象）
 
 
 ### 对比
@@ -230,13 +230,12 @@ doc.toString()    // Alice is 26.
 + `mongoose.model()`：将 `Schema` 编译为` Model`(类似 Collection 对象)
 ```js
 mongoose.model(name, [schema], [collection], [skipInit])
+
+// name：String，之后可以通过 mongoose.model(name) 引用该模型
+// schema：模式(Schema)对象示例
+// collection：String，要连接的集合名。缺省时返回一个 Query 对象
+// skipInit：Boolean，默认 false。指定是否跳过初始化，跳过初始化则没有连接到数据库
 ```
-
-+ `name`：String，之后可以通过 `mongoose.model(name)` 引用该模型
-+ `schema`：模式(Schema)对象示例
-+ `collection`：String，要连接的集合名。缺省时返回一个 `Query` 对象
-+ `skipInit`：Boolean，默认 false。指定是否跳过初始化，跳过初始化则没有连接到数据库
-
 
 
 
