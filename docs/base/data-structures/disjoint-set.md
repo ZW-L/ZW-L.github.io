@@ -1,6 +1,110 @@
+---
+sidebarDepth: 2
+---
+
 ## 说明
 
-+ 并查集（DisjointSet）也叫不相交集
++ 并查集（UnionFind）也叫不相交集（DisjointSet），在图算法中应用广泛
++ 应用：
+  + 计算图的连通分量的个数
++ 两种启发式合并策略：
+  + 按秩合并
+  + 路径压缩
+
+
+
+## 实现
+
+:::: tabs
+::: tab 概述
+
++ 按秩合并：合并操作时，根据并查集（树）的高度，选择合并方和被合并方
++ 路径压缩：在查找的过程中动态调整并查集（树）的高度，使其查找的时间复杂度为 $O(1)$
++ `makeSet()`：构建并查集
++ `find()`：查找集合
++ `union()`：合并两个集合
+
+:::
+
+::: tab makeSet
++ 一般来说，使用数组来构建并查集：索引代表集合元素，值代表父元素；按秩合并时还需额外维护一个 `rank` 数组
+```js
+// 初始化时，每个元素的父元素指向自身
+f = new Array(n).fill(0).map((v, i) => i)
+rank = new Array(n).fill(1)
+```
+
++ 还可以映射为键值
+```js
+
+```
+:::
+
+::: tab find
++ find 使用递归实现，其自身包含了路径压缩，这也是一个很巧妙的递归
+```js
+find(x) {
+  if (f[x] === x) return x
+  f[x] = find(x)
+  return f[x]
+}
+```
+:::
+
+::: tab union
++ 为了判断 `union` 操作是否执行，通常会为其添加返回值标志
++ 一般合并
+```js
+union(x, y) {
+  const fx = find(x), fy = find(y)
+  if (fx === fy) return false
+  f[fx] = fy
+  return true
+}
+```
+
++ 按秩合并：通过比较集合元素的高度，始终将较低 `rank` 的元素指向较高 `rank` 的元素，并更新 `rank`
+```js
+union(x, y) {
+  let fx = find(x), fy = find(x, y)
+  if (fx === fy) return false
+  if (rank[fx] < rank[fy]) [fx, fy] = [fy, fx]
+  f[fy] = fx
+  rank[fx] += rank[fy]
+  return true
+}
+```
+:::
+
+::: tab 完整模板
+```js
+class UnionFind {
+  constructor(n) {
+    this.f = new Array(n).fill(0).map((v, i) => i)
+    this.rank = new Array(n).fill(1)
+  }
+  find(x) {
+    return this.f[x] === x ? x : (this.f[x] = this.find(this.f[x]))
+  }
+  union(x, y) {
+    let fx = this.find(x), fy = this.find(y)
+    if (fx === fy) return false
+    if (this.rank[fx] < this.rank[fy]) [fx, fy] = [fy, fx]
+    this.f[fy] = fx
+    this.rank[fx] += this.rank[fy]
+    return true
+  }
+}
+```
+:::
+::::
+
+
+
+
+## 应用
+
+
 
 
 ## DisjointSetItem 类

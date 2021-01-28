@@ -97,4 +97,13 @@ console.log(arr)  // [1, 2, 3]
 arr.length = 5
 console.log(arr)  // [ 1, 2, 3, <2 empty items> ]
 ```
+
++ 创建二维数组时，注意使用 `fill()` 的差异
+```js
+// 错误，board 的每个元素将会使用同样的引用
+const board = new Array(n).fill(new Array(n).fill(0))  
+
+// 正确
+const board = new Array(n).fill(null).map(() => new Array(n).fill(0))
+```
 :::

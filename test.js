@@ -1,10 +1,13 @@
-var rotate = function(nums, k) {
-  if (nums.length === 0 || nums.length === 1) return nums
+/**
+ * @param {number[][]} heights
+ * @return {number}
+ */
+var minimumEffortPath = function(heights) {
+  let height = Number.MAX_VALUE
 
-  const len = nums.length
-  const i = len - k % len
-  nums.splice(0, 0, ...nums.splice(i))
-  return nums
-};
 
-console.log(rotate([99,-1,-100,3], 2))
+  function dfs(heights, visited)
+}
+
+const heights = [[1,2,2],[3,8,2],[5,3,5]]
+console.log(minimumEffortPath(heights))
