@@ -6,18 +6,17 @@ sidebarDepth: 2
 
 + [Sass](https://www.sass.hk/)是一个强大的 CSS 扩展语言（预处理器）
 
-### 安装
-
+:::: tabs
+::: tab 安装
 1. 安装 Ruby，`sass` 是 Ruby 开发的
 2. 安装
 ```sh
 gem install sass
 gem install compass
 ```
+:::
 
-
-### 编译
-
+::: tab 编译
 + 命令行编译
 ```sh
 # 单文件
@@ -40,7 +39,6 @@ sass --watch input.scss:output.css --style expanded --sourcemap
 sass --watch input.scss:output.css --debug-info
 ```
 
-::: tip 编译选项
 + `--style` 可以指定四种格式：
   - `nested`（默认，带缩进未压缩）
   - `expanded `（不缩进未压缩）
@@ -48,7 +46,7 @@ sass --watch input.scss:output.css --debug-info
   - `compressed`（完全压缩）
 + `--sourcemap` 开启后，会生成一个 `.css.map` 后缀的文件
 :::
-
+::::
 
 
 
@@ -127,7 +125,8 @@ a:active { background-color: blue; }
 
 ## SassScript
 
-### 变量
+:::: tabs
+::: tab 变量
 
 + 用美元符号（$）开头声明一个变量
 ```scss
@@ -151,17 +150,13 @@ $width: 30px;
 #box { width: 30px; }
 ```
 
-::: tip 备注：
 + 变量功能很有用，可以使用变量 + 全局配置的方式去管控页面样式
 + 控制主题色
 + 控制页面换肤
 + 控制页面字体、布局大小
 :::
 
-
-
-### 数据类型
-
+::: tab 数据类型
 + 数字：`1, 2, 13, 10px`
 + 字符串，有引号字符串与无引号字符串：`"foo"` / `'bar'` / `baz`
 + 颜色：`blue` / `#04a3f9` / `rgba(255,0,0,0.5)`
@@ -169,23 +164,21 @@ $width: 30px;
 + 空值：`null`
 + 数组，无括号且用空格或逗号作分隔符：`1.5em 1em 0 2em`、 `Helvetica, Arial, sans-serif`
 + maps, 相当于 object：`(key1: value1, key2: value2)`
+:::
 
-
-
-### 运算
-
+::: tab 运算
 + 数值运算：`+` 、`-`、`*`、`/`
 + 颜色值运算：
 + 字符串运算：`+` 、插值 `#{}`
 + 布尔运算：`and`、 `or`、 `not`
-
-
+:::
+::::
 
 
 ## @-Rules
 
-### @import
-
+:::: tabs
+::: tab @import
 + 以下情况下，`@import` 仅作为普通的 CSS 语句，不会导入 Sass 文件
   - 文件拓展名是 `.css`
   - 文件名以 `http://` 开头
@@ -194,11 +187,9 @@ $width: 30px;
 + 其他情况下，若文件的拓展名是 `.scss`/`.sass`，则导入成功；没有指定拓展名时 Sass 将会试着寻找文件名相同，拓展名为 `.scss`/`.sass` 的文件导入
 + 若引入 Scss 文件但不需要编译为 CSS，在文件名前添加下划线即可，但导入语句中不需要添加下划线；不可以同时存在添加下划线与未添加下划线的同名文件，否则添加下划线的文件将会被忽略
 + 可以嵌套进 CSS 样式或者 `@media` 中，但**不可以在 mixin 或控制指令中嵌套使用**
+:::
 
-
-
-### @media
-
+::: tab @media
 + 在 CSS 的基础上增加了额外的功能
 + 可以使用 SassScript
 + 允许在嵌套中使用，编译时 `@media` 将被编译到文件的最外层，包含嵌套的父选择器
@@ -217,11 +208,9 @@ $width: 30px;
   .layout .sidebar { display: none; }
 }
 ```
+:::
 
-
-
-### @extend
-
+::: tab @extend
 + 将一个选择器下的所有样式继承给另一个选择器
 ```scss
 .error {
@@ -241,20 +230,20 @@ $width: 30px;
   border-width: 3px;
 }
 ```
+:::
 
-
-### @at-root
-
+::: tab @at-root
 + 将选择器样式跳出嵌套
 + @at-root(without: ...)
 + @at-root(with: ...)
-
+:::
+::::
 
 
 ## 控制指令
 
-### @if
-
+:::: tabs
+::: tab @if
 ```scss
 $type: monster;
 p {
@@ -272,10 +261,9 @@ p {
 // 编译为
 p { color: green; }
 ```
+:::
 
-
-### @for
-
+::: tab @for
 ```scss
 @for $i from 1 through 3 {
   .item-#{$i} { width: 2em * $i; }
@@ -286,10 +274,9 @@ p { color: green; }
 .item-2 { width: 4em; }
 .item-3 { width: 6em; }
 ```
+:::
 
-
-### @each
-
+::: tab @each
 + 基础 each，配合元组使用
 ```scss
 @each $animal in puma, sea-slug, egret, salamander {
@@ -348,11 +335,9 @@ h1 { font-size: 2em; }
 h2 { font-size: 1.5em; }
 h3 { font-size: 1.2em; }
 ```
+:::
 
-
-
-### @while
-
+::: tab @while
 ```scss
 $i: 6;
 @while $i > 0 {
@@ -365,18 +350,18 @@ $i: 6;
 .item-4 { width: 8em; }
 .item-2 { width: 4em;}
 ```
-
-
+:::
+::::
 
 
 ## 混合指令
 
 + 使用 `@mixin` 定义一段可复用的样式代码，使用 `@include` 引入指定的样式代码
 + 可以在 `mixins.scss` 中定义常用样式代码块，应用在类似的项目中
++ 是一个非常实用的功能，能够复用代码
 
-
-### @mixin
-
+:::: tabs
+::: tab @mixin
 + 清除浮动
 ```scss
 @mixin clearfix {
@@ -410,15 +395,9 @@ $i: 6;
   -webkit-box-orient: vertical;
 }
 ```
-
-
-::: tip 备注：
-+ 又是一个非常实用/常用的功能(只要能做到代码复用，就是好东西！)
 :::
 
-
-### @include
-
+::: tab @include
 + 这个语法主要是用来引入 mixin 的
 ```scss
 .page-title {
@@ -441,11 +420,9 @@ $i: 6;
   @include header-text;
 }
 ```
+:::
 
-
-
-### arguments 参数
-
+::: tab arguments 参数
 + mixin 允许像函数一样指定参数
 ```scss
 @mixin sexy-border($color, $width) {
@@ -504,7 +481,8 @@ $values: #ff0000, #00ff00, #0000ff;
   @include colors($values...);
 }
 ```
-
+:::
+::::
 
 
 ## 函数指令

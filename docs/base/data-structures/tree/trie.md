@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 ## 概念
 
-+ **字典树**（Trie），又名**前缀树、单词查找树**，是一种搜索树
++ **字典树**（Trie），又名**前缀树、单词查找树**，是一种（多叉）搜索树
 + 由于其内部复用了重复的节点值，使得存储空间大大减少
 + 内部通过一个哈希表记录子节点列表
 
@@ -32,7 +32,9 @@ sidebarDepth: 2
 
 ::: tip 备注：
 + `search()` 和 `startsWith()` 有同样的前提条件：**需包含完整的前缀**，可以创建一个辅助方法复用代码
++ 若需要返回前缀树中存在的单词，也可将 `isWord` 属性设置为所表示的单词，减少搜索时间
 :::
+
 
 ### 简易实现
 
@@ -112,6 +114,17 @@ class Trie {
 
 ## 算法
 
+### 数据结构设计
+
 + [LeetCode-208.实现 Trie 树](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
++ [LeetCode-677.键值映射](https://leetcode-cn.com/problems/map-sum-pairs/)
++ [LeetCode-211.添加与搜索单词 - 数据结构设计](https://leetcode-cn.com/problems/design-add-and-search-words-data-structure/)
+
+
+### 问题
+
 + [LeetCode-79.单词搜索](https://leetcode-cn.com/problems/word-search/)
 + [LeetCode-212.单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/)
++ [LeetCode-421.数组中两个数的最大异或值](https://leetcode-cn.com/problems/maximum-xor-of-two-numbers-in-an-array/)
++ [LeetCode-336.回文对](https://leetcode-cn.com/problems/palindrome-pairs/)
++ LeetCode-425.单词方块

@@ -10,6 +10,27 @@
 5xx|服务端错误类|服务端处理请求时出错
 
 
+## 常见状态码
+
+状态码|标识|含义
+-|-|-
+200|OK|服务器成功处理并响应客户端的请求。
+204|No Content|请求已经成功处理，但是响应主体不返回内容
+206|Partial Content|服务端成功处理并返回客户端指定某资源的某部分
+301|Moved Permanently|请求的资源被永久移动到指定的 URL 上
+302|Found|请求的资源暂时移动到指定的 URL 上
+304|Not Modified|请求访问的资源未被修改，可以使用缓存的内容
+307|Temporary Redirect|请求的资源暂时被移动到指定的 URL 上
+400|Bad Request|客户端请求有语法错误(或请求参数错误)，不能被服务器所理解
+401|Unauthorized|请求未经授权
+403|Forbidden|服务器有能力处理该请求，但是拒绝授权访问
+404|Not Found|服务器无法找到所请求的资源
+500|Internal Server Error|服务器遇到不知道如何处理的情况
+502|Bad Gateway|网关(或代理服务器)向上游服务器发起请求时得到无效的响应
+503|Service Unavailable|服务端暂时处于超负载或正在进行停机维护，无法处理请求
+504|Gateway Timeout|网关/代理服务器请求上游服务器/辅助服务器时未能收到响应
+
+
 ## 1xx
 
 |code|tag|explain|

@@ -5,6 +5,8 @@ sidebarDepth: 2
 ## 函数
 
 + [函数](https://typescript.bootcss.com/functions.html)支持 ES6 的所有语法，而且扩展了强类型、函数参数控制、函数重载等特性
+:::: tabs
+::: tab 参数类型和返回值类型
 + 显式指定参数类型和返回值类型：
 ```ts
 let myAdd = (x: number, y: number): number => x + y
@@ -21,9 +23,11 @@ function sayHi(name: string): void {
 ```ts
 // 根据参数推断返回值类型为 number
 let myAdd: (baseValue: number, increment: number) => number =
-    function(x, y) { return x + y }
+  function(x, y) { return x + y }
 ```
+:::
 
+::: tab 可选参数
 + 除了支持 ES6 的默认参数和剩余参数外，还支持可选参数：
 ```ts
 function sayHi(name?: string) {
@@ -43,7 +47,9 @@ function buildName(prefix = 'Hello ', firstName: string, ...restOfName: string[]
 let employeeName = buildName(undefined, 'Joseph', 'Samuel', 'Lucas', 'MacKinzie')
 console.log(employeeName)   // Hello Joseph Samuel Lucas MacKinzie
 ```
+:::
 
+::: tab 模拟函数重载
 + 另一个强大的功能是可以模拟函数重载：为同一个函数提供多个函数类型定义来进行函数重载，**但必须在返回值类型为 `any` 的函数进行处理并返回结果**
 ```ts
 function pickCard(x: { suit: string; card: number; }[]): number // 函数重载
@@ -71,6 +77,8 @@ console.log('card: ' + pickedCard1.card + ' of ' + pickedCard1.suit) // card: 4 
 let pickedCard2 = pickCard(15)
 console.log('card: ' + pickedCard2.card + ' of ' + pickedCard2.suit) // card: 2 of spades
 ```
+:::
+::::
 
 
 
@@ -139,30 +147,29 @@ class AccountingDepartment extends Department {
 + 该函数的参数分别为 `target`, `name`, `descriptor`
 + 执行该函数后，可能返回 `descriptor` 对象，用于配置 `target` 对象
 
+:::: tabs
+::: tab 类装饰器
+12
+:::
 
-### 类装饰器
-### 属性装饰器
-### 方法装饰器
-### 参数装饰器
+::: tab 属性装饰器
+12
+:::
 
+::: tab 方法装饰器
+12
+:::
 
-
-
-
-## 更多
-
-### 模块
-
-### 命名空间
-
-
-### 声明合并
-
-
-### 混入
-
-
-### JSX
+::: tab 参数装饰器
+12
+:::
+::::
 
 
 
+
+## 模块
+## 命名空间
+## 声明合并
+## 混入
+## JSX
