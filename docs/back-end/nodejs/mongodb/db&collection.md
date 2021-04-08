@@ -100,7 +100,8 @@ isClosed()|布尔值。检测 Cursor 对象是否已关闭|
 
 ## 操作数据库
 
-### 列表
+:::: tabs
+::: tab 列表
 
 + 使用 Admin 对象的 `listDatabases()` 方法，能够打印数据库列表
 ```js{7,9}
@@ -119,10 +120,9 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
-
-
-### 创建
+::: tab 创建
 
 + 先创建一个 Db 对象的实例，再在实例上使用 `createCollection()` 来创建数据库
 ```js{7,9}
@@ -144,10 +144,10 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
 
-
-### 删除
+::: tab 删除
 
 + 使用指向该数据库的 Db 对象上的 `dropDatabase()` 方法删除数据库
 ```js{7,9}
@@ -166,10 +166,10 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
 
-
-### 状态
+::: tab 状态
 
 + 使用 Admin() 对象的 `serverStatus()` 方法能获取有关 MongoDB 服务器的状态信息：主机名、版本、运行时间、打开的游标等
 ```js{7,9}
@@ -188,13 +188,15 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
-
+:::
+::::
 
 
 
 ## 操作集合
 
-### 列表
+:::: tabs
+::: tab 列表
 
 + 创建一个 Db 对象的实例后，调用它的 `collections()` 方法，可以获取当前数据库的集合列表
 ```js{7,9}
@@ -213,10 +215,10 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
 
-
-### 创建
+::: tab 创建
 
 + 创建一个 Db 对象的实例后，调用它的 `createCollection()` 方法
 ```js{7,9}
@@ -238,10 +240,10 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
 
-
-### 删除
+::: tab 删除
 
 + 方法1：在 Db 对象上调用 `dropCollections()` 方法
 ```js{7,9}
@@ -279,10 +281,10 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
 
-
-### 信息
+::: tab 信息
 
 + 使用 Collection 对象的 `stats()` 方法
 ```js{7,11}
@@ -304,3 +306,5 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
+::::

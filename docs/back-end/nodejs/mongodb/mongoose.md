@@ -4,7 +4,8 @@ sidebarDepth: 2
 
 ## 开始
 
-### 简介
+:::: tabs
+::: tab 简介
 
 mongoose 是一个更友好的 MongoDB 驱动，并增强了 mongodb 原生驱动：
 + 在某些方面，操作比 mongodb 更容易，如扩展了 Document 对象
@@ -19,9 +20,9 @@ mongoose 是一个更友好的 MongoDB 驱动，并增强了 mongodb 原生驱�
 + **Document**：表示某一集合中的某个文档
 + **Query**：实现查询功能，并可以链式调用（类似 Cursor 和 query 的结合）
 + **Aggregate**：实现聚合功能（类似 aggregate 对象）
+:::
 
-
-### 对比
+::: tab 对比
 
 mongodb|mongoose
 -|-
@@ -32,11 +33,11 @@ Collection|Model
 -|Document
 Cursor|Query
 query|
+:::
 
 
 
-
-### 连接
+::: tab 连接
 
 + `mongoose.connect(dbUrl, options, [callback])`：连接数据库
   + dbUrl：String
@@ -60,15 +61,16 @@ mongoose.connect(dbUrl, function(err, client) {
   mongoose.disconnect()
 })
 ```
-
+:::
+::::
 
 
 
 
 ## Schema
 
-### 模式
-
+:::: tabs
+::: tab 模式
 + 使用 mongoose 时，通常要实现模式，模式为集合中的文档定义字段和字段类型；其中，字段的值支持下列类型：
 
 |字段|描述|
@@ -83,14 +85,14 @@ mongoose.connect(dbUrl, function(err, client) {
 |Mixed|混合|
 |Decimal128||
 
-::: tip 建议
+建议
 1. 为每个不同的文档类型都定义一个模式
 2. 只在每个集合中存储一个文档类型
 :::
 
 
 
-### 路径
+::: tab 路径
 
 + mongoose 使用 path(路径) 定义访问子文档(嵌套文档)，即之前的句点语法，只是说法不一样
 
@@ -100,10 +102,10 @@ name.title  // 子文档字段
 name.first
 name.last
 ```
+:::
 
 
-
-### 创建模式
+::: tab 创建模式
 
 + 通过创建一个 Schema 对象的实例
 + `definition`：Object。用于描述模式的字段，字段中还能指定[模式类型](#模式类型)
@@ -120,9 +122,10 @@ const usersSchema = new Schema({
   collection: 'users'
 })
 ```
+:::
 
 
-### 模式选项
+::: tab 模式选项
 
 选项|说明
 -|-
@@ -135,10 +138,10 @@ strict|默认 true。不会将没定义在模式中的对象保存到数据库�
 capped|指定在封顶集合中支持的最大文档数
 collection|指定用于此 Schema 模型的集合名称(编译模型时会自动连接至该集合)
 read|副本的读取首选项(primary/primaryPreferred/secondary/secondaryPreferred/nearest)
+:::
 
 
-
-### 模式类型
+::: tab 模式类型
 
 + 在定义字段时，除了定义字段值的类型，还能对其定义一些 `schema type`
 + 若写入文档时字段值不能通过验证，会提示并报错
@@ -200,12 +203,10 @@ const mySchema = new Schema({
 // 此时，可以通过 Schema 对象的 requiredPaths() 获取必须字段列表
 mySchema.requiredPaths()
 ```
+:::
 
 
-
-
-
-### 添加方法
+::: tab 添加方法
 
 + 可以在 `Scheme.methods` 属性上添加自定义的方法，这样便可以利用 Document 对象调用这些方法:
 ```js
@@ -219,28 +220,27 @@ mySchema.methods.toString = function() { return `${this.name} is ${this.age}.` }
 // 在 Document 对象上使用方法
 doc.toString()    // Alice is 26.
 ```
-
+:::
+::::
 
 
 
 ## Model
 
-### 编译模型
-
+:::: tabs
+::: tab 编译模型
 + `mongoose.model()`：将 `Schema` 编译为` Model`(类似 Collection 对象)
 ```js
 mongoose.model(name, [schema], [collection], [skipInit])
-
 // name：String，之后可以通过 mongoose.model(name) 引用该模型
 // schema：模式(Schema)对象示例
 // collection：String，要连接的集合名。缺省时返回一个 Query 对象
 // skipInit：Boolean，默认 false。指定是否跳过初始化，跳过初始化则没有连接到数据库
 ```
+:::
 
 
-
-### 示例
-
+::: tab 示例
 ```js
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
@@ -269,10 +269,12 @@ Users.create([user1, user2, user3], function(err) {
   mongoose.disconnect()
 })
 ```
+:::
 
-::: tip 定义和编译 Schema 的步骤不需要连接数据库，因此可以分离 Model 和 Controller
-+ model.js
+::: tab 技巧
++ 定义和编译 Schema 的步骤不需要连接数据库，因此可以分离 Model 和 Controller
 ```js
+// model.js
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
@@ -282,9 +284,8 @@ const usersSchema = new Schema({
 })
 
 mongoose.model('users', usersSchema)
-```
-+ controller.js
-```js
+
+// controller.js
 const mongoose = require('mongoose')
 const test = require('assert')
 require('./model')    // 可在 main.js 引入
@@ -304,14 +305,15 @@ Users.create([user1, user2, user3], function(err) {
 })
 ```
 :::
-
+::::
 
 
 
 
 ## Query
 
-### 介绍
+:::: tabs
+::: tab 介绍
 
 + Query 对象允许链式执行一系列的数据库操作，直到使用 `exec(callback)` 退出
 + 在使用 Model 对象的过程中，回调函数是可以缺省的：
@@ -321,10 +323,10 @@ Users.create([user1, user2, user3], function(err) {
   + 使用 Model 对象的方法，但不指定回调函数
   + 从 Query 对象的方法返回另一个 Query 对象
 + <font color="red">注意</font>：Query 对象最后一定要调用 `exec()`，才会发出数据库请求触发更改
+:::
 
 
-
-### 获取
+::: tab 获取
 
 方法|回调函数第二个参数|操作多项
 -|-|-
@@ -338,9 +340,9 @@ findOneAndUpdate([query], [update], [options], [callback])|...
 remove([query], [options], [callback])|...
 update([query], [update], [options], [callback])|...
 aggregate(operators, [callback])|聚合结果的 js 对象数组
+:::
 
-
-### 查询选项
+::: tab 查询选项
 
 + 其中 options 可以设置以下方法(或在 Query 对象上使用)：
 
@@ -356,9 +358,9 @@ snapshot(Boolean)|为 true 时把查询设置为快照查询
 safe(Boolean)|为 true 时数据库请求对更新操作使用写入关注
 hint(hints)|指定查找文档时要使用或排除的索引
 comment(string)|将 string 连同查询添加到 MongoDB 的日志中
+:::
 
-
-### 查询运算符
+::: tab 查询运算符
 
 + 即查询子句：
 
@@ -381,7 +383,8 @@ regex([path], expression)|匹配指定正则表达式的文档
 all([path], array)|匹配包含在数组指定的字段的所有数组字段
 elemMatch([path], criteria)|匹配子文档的数组，criteria 为对象或函数
 size([path], value)|匹配数组字段为指定大小的文档
-
+:::
+::::
 
 
 
@@ -420,38 +423,39 @@ invalidate(path, msg, value)|验证失败并将路径标志为无效。msg 指�
 
 ## 操作文档
 
-### 增
+:::: tabs
+::: tab 增
 
 + 添加单个文档：Document 对象的 save()
 + 添加多个文档：Model 对象的 create()
+:::
 
 
-
-### 删
+::: tab 删
 
 + 删除单个文档：Document 对象的 remove()
 + 删除多个文档：Model 对象的 remove()
+:::
 
 
-
-### 改
+::: tab 改
 
 + 修改单个文档：Document 对象的 save()
 + 更新多个文档
   + Model 对象的 update()
   + Document 对象的 update()
+:::
 
 
-
-### 查
+::: tab 查
 
 + 可以在 Model 对象或 Query 对象上执行
   + find()
   + findOne()
+:::
 
 
-
-### 聚合
+::: tab 聚合
 
 + Model 对象提供了 aggregate() 方法进行聚合操作，同样回调函数是可选的，缺省时会返回一个 Aggregate 对象，可继续进行管道操作
 + Aggregate 对象上可用的方法：
@@ -468,7 +472,7 @@ read(preference)|指定用于集合的副本读取首选项。(primary|primaryPr
 skip(number)|指定跳过的文档数
 sort(fields)|追加排序操作
 unwind(arrFields)|通过为数组的每个值在聚合集中建立一个新的文档解除其 arrFields 参数
-
+:::
 
 
 
@@ -503,8 +507,8 @@ Users.mySchema.path('name').validate(function(val) {
 
 
 
-
-### pre
+:::: tabs
+::: tab pre
 
 + `pre` 函数可以被同步或异步执行，回调函数第一个参数为 `next` 函数
 + 同步：最后一步需要手动调用 `next`
@@ -523,10 +527,10 @@ mySchema.pre('save', true, function(next, done) {
   doAsync(done)
 })
 ```
+:::
 
 
-
-### post
+::: tab post
 
 + `post` 函数的回调函数接收 Document 对象(或对象数组)
 ```js
@@ -535,10 +539,10 @@ Users.mySchema.post('save', function(doc) {
   console.log('...')
 })
 ```
+:::
 
 
-
-### 示例
+::: tab 示例
 
 ```js
 const mongoose = require('mongoose')
@@ -575,3 +579,5 @@ Users.findOne({ name: 'Anna' }, function(err, doc) {
   })
 })
 ```
+:::
+::::

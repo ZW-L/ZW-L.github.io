@@ -56,13 +56,15 @@ partial|布尔值
 
 ## 操作技巧
 
-### 查找特定文档
+:::: tabs
+::: tab 查找特定文档
 
 ```js
 
 ```
+:::
 
-### 文档计数
+::: tab 文档计数
 
 + `count([query], [options], callback)`： Collection 对象的 count() 方法
 + query 和 options 参数等同于 find() 方法的参数
@@ -84,9 +86,9 @@ MongoClient.connect(dbUrl, function(err, client) {
     })
 })
 ```
+:::
 
-
-### 限制结果
+::: tab 限制结果
 
 1. 使用 options 的 `limit` 选项指定返回的条目数：
 ```js{9}
@@ -165,9 +167,9 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
-
-### 排序
+::: tab 排序
 
 1. 使用 options 对象的 `sort` 选项对结果进行排序
 ```js
@@ -189,9 +191,9 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
-
-### 查找不同字段值
+::: tab 查找不同字段值
 
 + `distinct(key, [query], [options], callback)`：Collection 对象的 distinct() 方法找到一组文档中单个字段的清单
 ```js{9}
@@ -211,7 +213,7 @@ MongoClient.connect(dbUrl, function(err, client) {
 })
 ```
 
-::: tip 备注
+备注
 + 举例：从一组文档中返回一个数组，该数组包含不同的 age 值
 + key 是一个字符串(字段)，就是上述的 age 等
 + callback 的第二个参数是一个数组
@@ -219,7 +221,7 @@ MongoClient.connect(dbUrl, function(err, client) {
 
 
 
-### 对结果进行分组
+::: tab 对结果进行分组
 
 + 使用 Collection 对象的 `group()` 方法：
 ```js
@@ -234,7 +236,8 @@ group(keys, query, initial, reduce, finalize, command, [options], callback)
 + command：Boolean，默认为 true。表示使用内部的 group 命令，而不是 eval()
 + options：Object，允许定义 readPreference 选项
 + callback：Function，第二个参数为分组结果(一个对象数组)
-
+:::
+::::
 
 
 

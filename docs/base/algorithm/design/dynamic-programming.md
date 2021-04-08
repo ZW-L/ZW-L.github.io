@@ -190,3 +190,41 @@ console.log(cutRodBottomUp(p, 4))  // 10
 :::
 ::::
 
+
+
+## LeetCode 题目
+
+### 编辑距离
+
+### 编辑距离II
+
+![编辑距离II](../imgs/dp_edit_distance.png)
+
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {number}
+ */ 
+ var edit_distance = function(s, t) {
+  if (t.length === 0) return m
+  const m = s.length, n = t.length
+  const dp = new Array(m+1).fill(0).map(v => new Array(n+1).fill(0))
+  // 初始化
+  for (let i = 1; i <= m; i++) dp[i][0] = i
+  // 状态转移
+  for(let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (i < j) {
+        dp[i][j] = n + 1 // 不能构成解，取最大值
+      } else {
+        const case1 = dp[i-1][j] + 1 // 由 dp[i-1][j] 转移得到，加上删去最后一个字符的操作
+        const case2 = dp[i-1][j-1] + (s[i-1] !== t[j-1]) // 由 dp[i-1][j-1] 转移得到，并分为尾字符是否相同的情况
+        dp[i][j] = Math.min(case1, case2)
+      }
+    }
+  }
+  // 返回结果
+  return dp[m][n]
+}
+```

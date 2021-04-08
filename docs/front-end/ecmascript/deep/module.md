@@ -666,6 +666,7 @@ import * as foo from './a.js'
 // foo = { default: function() {} }
 foo.default()
 ```
+
 + 由于 ES6 Module 是编译时确定输出接口，CommonJS Module 是运行时确定输出接口；这就说明了引入 CommonJS Module 时，要整体引入
 ```js
 // 法一
@@ -676,3 +677,21 @@ const app = express.default()
 import express from 'express'
 const app = express()
 ```
+
+
+### 在 Nodejs 中
+
++ `.mjs` 文件总是以 ES6 模块加载，`.cjs` 文件总是以 CommonJS 模块加载，`.js` 文件的加载取决于 package.json 里面 `type` 字段的设置
+
++ 规定 ES6 模块之中不能使用 CommonJS 模块的特有的一些内部变量，它们在 CommonJS 模块中都有自身的含义 
+  + `arguments`
+  + `require`
+  + `module`
+  + `exports`
+  + `__filename`
+  + `__dirname`
+
+
+
+
+### 循环加载

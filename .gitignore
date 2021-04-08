@@ -2,3 +2,5 @@
 /deploy.sh
 /notes
 /docs/.vuepress/*
+
+/test*.js

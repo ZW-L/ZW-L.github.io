@@ -50,7 +50,8 @@ $bit|对整数执行按位 AND 和 OR 更新
 
 ## 增
 
-### insertOne
+:::: tabs
+::: tab insertOne
 
 + `insertOne(doc, [options], callback)`：插入单个文档
 + doc 只能是一个对象，不同于 `insert()`
@@ -72,9 +73,9 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
-
-### insert
+::: tab insert
 
 + `insert(docs, [options], callback)`：插入单个或多个文档
 + docs 可以是一个对象或一个对象数组
@@ -96,17 +97,17 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
-
-### insertAny
+::: tab insertAny
 
 + `insertAny(docs, [options], callback)`：
 ```js
 
 ```
+:::
 
-
-### save
+::: tab save
 
 + `save(doc, [options], [callback])`：插入或更新单个文档；虽然效率不如 insert() 和 update()，但是在某些情况下 save() 更容易实现
 + doc 只能是一个对象，不能是对象数组
@@ -148,13 +149,14 @@ MongoClient.connect(dbUrl, function(err, client) {
     })
 })
 ```
-
-
+:::
+::::
 
 
 ## 删
 
-### findAndRemove
+:::: tabs
+::: tab findAndRemove
 
 + `findAndRemove(query, sort, [options], callback)`：删除单个文档
 + query 缺省(或者为{})时会删除第一个匹配的文档
@@ -175,10 +177,10 @@ MongoClient.connect(dbUrl, function(err, client) {
     })
 })
 ```
+:::
 
 
-
-### remove
+::: tab remove
 
 + `remove([query], [options], [callback])`：删除一个或多个文档
 + query 缺省(或者为{})时会删除该集合中的所有文档！
@@ -200,19 +202,22 @@ MongoClient.connect(dbUrl, function(err, client) {
     })
 })
 ```
+:::
 
 
-### findOneAndDelete
+::: tab findOneAndDelete
 
 ```js
 
 ```
-
+:::
+::::
 
 
 ## 改
 
-### update
+:::: tabs
+::: tab update
 
 + `update(query, update, [options], [callback])`：更新匹配的所有文档
 + query 缺省(或者为{})时匹配所有对象
@@ -235,9 +240,9 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
-
-### findAndModify
+::: tab findAndModify
 
 + `findAndModify(query, sort, update, [options], callback)`：在单个文档上执行**原子写操作**
 + sort 参数可用于指定排序的字段，并且可以指定多个。如 [['name', 1], ['age', -1]]，则将按名字升序、年龄降序排序。
@@ -262,17 +267,27 @@ MongoClient.connect(dbUrl, function(err, client) {
     })
 })
 ```
+:::
 
+::: tab updateOne
 
-### updateOne
-### updateMany
-### findOneAndUpdate
+:::
+
+::: tab updateMany
+
+:::
+
+::: tab findOneAndUpdate
+
+:::
+::::
 
 
 
 ## 查
 
-### findOne
+:::: tabs
+::: tab findOne
 
 + `findOne([query], [options], callback)`：查找文档，返回符合条件的第一个
 + query 缺省(或者为{})时，返回集合的第一个文档
@@ -294,10 +309,10 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
 
-
-### find
+::: tab find
 
 + `find([query], [options], callback)`：查找一个或多个符合的文档
 + query 缺省(或者为{})时，匹配所有的文档
@@ -322,8 +337,18 @@ MongoClient.connect(dbUrl, function(err, client) {
   })
 })
 ```
+:::
 
 
-### findOneAndDelete
-### findOneAndReplace
-### findOneAndUpdate
+::: tab findOneAndDelete
+
+:::
+
+::: tab findOneAndReplace
+
+:::
+
+::: tab findOneAndUpdate
+
+:::
+::::
