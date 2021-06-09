@@ -2,9 +2,7 @@
 sidebarDepth: 2
 ---
 
-## 介绍
-
-### 简介
+## 简介
 
 + [Buffer](http://nodejs.cn/api/buffer.html) 用来创建一个专门存放二进制数据的缓存区
 + `Buffer` 类似于一个整数数组，但它对应于 V8 堆内存之外的一块原始内存
@@ -12,7 +10,7 @@ sidebarDepth: 2
 + `buffer` 模块提供了一些属性和方法，使用时需要 `require('buffer')` 引入
 
 
-### 字符编码
+## 字符编码
 
 + 创建的 `Buffer` 实例一般用于表示编码字符的序列，通过使用显式的字符编码，就可以在 `Buffer` 实例与普通的 `JavaScript` 字符串之间进行相互转换
 + `Node` 支持的字符编码：
@@ -99,44 +97,33 @@ console.log(buf6.toString()) // AAA
 
 ## 方法
 
-### 写入
-
-+ `buf.write(string[, offset[, length]][, encoding])`: 将数据写入缓冲区
+:::: tabs
+::: tab 基本操作
++ 写入：`buf.write(string[, offset[, length]][, encoding])`
+  + 如果实例没有足够的空间，则只会写入 `string` 的一部分，只编码了一部分的字符不会被写入
 ```js
 const buf = Buffer.from([65, 66, 67])
 buf.write('Hi')
 console.log(buf.toString()) // HiC
 ```
 
-::: tip 说明：
-+ 如果实例没有足够的空间，则只会写入 `string` 的一部分，只编码了一部分的字符不会被写入
-:::
-
-
-### 填充
-
-+ `buf.fill(value[, offset[, end]][, encoding])`: 用指定值填充缓冲区
++ 填充：`buf.fill(value[, offset[, end]][, encoding])`
 ```js
 const buf = Buffer.from([65, 66, 67])
 buf.fill('H')
 console.log(buf.toString()) // HHH
 ```
 
-
-### 转化
-
-+ `buf.toString([encoding[, start[, end]]])`: 返回缓冲区数据的 `String` 格式(默认编码为 utf8)
-+ `buf.toJSON()`: 返回缓冲区数据的 `JSON` 格式
++ 转化
+  + `buf.toString([encoding[, start[, end]]])`: 返回缓冲区数据的 `String` 格式(默认编码为 utf8)
+  + `buf.toJSON()`: 返回缓冲区数据的 `JSON` 格式
 ```js
 const buf = Buffer.from([65, 66, 67])
 console.log(buf.toString()) // ABC
 console.log(buf.toJSON())   // { type: 'Buffer', data: [ 65, 66, 67 ] }
 ```
 
-
-### 合并
-
-+ `Buffer.concat(list[, totalLength])`: 将缓冲区列表合并成一个新的缓冲区
++ 合并：`Buffer.concat(list[, totalLength])`: 将缓冲区列表合并成一个新的缓冲区
 ```js
 const buf1 = Buffer.from([65, 66, 67])
 const buf2 = Buffer.from([68, 69, 70])
@@ -146,10 +133,7 @@ console.log(buf1.toString(), buf2.toString()) // ABC DEF
 console.log(buf3.toString())                  // ABCDE
 ```
 
-
-### 复制
-
-+ `buf1.copy(buf2[, buf2Start[, buf1Start[, buf1End]]])`: 拷贝缓冲区(将 buf1 拷贝部分到 buf2)
++ 复制：`buf1.copy(buf2[, buf2Start[, buf1Start[, buf1End]]])`: 拷贝缓冲区(将 buf1 拷贝部分到 buf2)
 ```js
 const buf1 = Buffer.from([65, 66, 67])
 const buf2 = Buffer.from([68, 69, 70])
@@ -158,10 +142,9 @@ buf1.copy(buf2, 1, 1, 2)
 console.log(buf1.toString(), buf2.toString()) // ABC DBF
 ```
 
-
-### 转码
-
-+ `buffer.transcode(source, fromEnc, toEnc)`: 更改缓冲区编码，返回新的缓冲区
++ 转码：`buffer.transcode(source, fromEnc, toEnc)`: 更改缓冲区编码，返回新的缓冲区
+  + 支持的字符编码有 'ascii'、 'utf8'、 'utf16le'、 'ucs2'、 'latin1'、'binary'
+  + 如果指定的字节序列无法用目标字符编码表示，则转码过程会使用替代的字符
 ```js
 const buffer = require('buffer')      // buffer 模块提供，需手动引入
 
@@ -172,23 +155,15 @@ buffer.transcode(buf, 'utf8', 'utf16le')
 console.log(buf.toString('utf16le'))  // 䈁
 ```
 
-::: tip 备注：
-+ 支持的字符编码有 'ascii'、 'utf8'、 'utf16le'、 'ucs2'、 'latin1'、'binary'
-+ 如果指定的字节序列无法用目标字符编码表示，则转码过程会使用替代的字符
-:::
-
-
-### 切片
-
-+ `buf.slice([start[, end]])`: 返回一个缓冲区切片
-+ `buf.subarray([start[, end]])`: 返回一个缓冲区切片，等同于 `buf.slice()`
++ 切片
+  + `buf.slice([start[, end]])`: 返回一个缓冲区切片
+  + `buf.subarray([start[, end]])`: 返回一个缓冲区切片，等同于 `buf.slice()`
 ```js
 const buf1 = Buffer.from([65, 66, 67])
 const buf2 = buf1.slice(1, 2)
 console.log(buf1.toString(), buf2.toString()) // ABC B
-```
-+ 生成的切片缓冲区是原缓冲区的一份复制，它们指向同一块内存：
-```js
+
+// 生成的切片缓冲区是原缓冲区的一份复制，它们指向同一块内存：
 const buf1 = Buffer.from([65, 66, 67])
 const buf2 = buf1.slice(1, 2)
 console.log(buf1.toString(), buf2.toString()) // ABC B
@@ -197,12 +172,11 @@ buf2[0] = 90
 console.log(buf1.toString(), buf2.toString()) // AZC Z
 ```
 
-
-### 交换
-
-+ `buf.swap16()`: 将缓冲区数据解析成无符号的 16 位整数的数组(`buf.length` 是 2 的倍数)
-+ `buf.swap32()`: 将缓冲区数据解析成无符号的 32 位整数的数组(`buf.length` 是 4 的倍数)
-+ `buf.swap64()`: 将缓冲区数据解析成 64 位数值的数组(`buf.length` 是 8 的倍数)
++ 交换
+  + `buf.swap16()`: 将缓冲区数据解析成无符号的 16 位整数的数组(`buf.length` 是 2 的倍数)
+  + `buf.swap32()`: 将缓冲区数据解析成无符号的 32 位整数的数组(`buf.length` 是 4 的倍数)
+  + `buf.swap64()`: 将缓冲区数据解析成 64 位数值的数组(`buf.length` 是 8 的倍数)
+  + 调用时必须保证 `buf.length` 的倍数关系，否则会抛出 `ERR_INVALID_BUFFER_SIZE` 异常
 ```js
 const buf = Buffer.from([65, 66, 67, 68, 69, 70, 71, 72])
 
@@ -212,16 +186,12 @@ console.log(buf.swap32().toString()) // CDABGHEF
 console.log(buf.swap64().toString()) // FEHGBADC
 ```
 
-::: tip 说明：
-+ 调用时必须保证 `buf.length` 的倍数关系，否则会抛出 `ERR_INVALID_BUFFER_SIZE` 异常
-:::
-
-
-### 比较
-
-+ `Buffer.compare(buf1, buf2)`: 比较缓冲区，相当于 `buf1.compare(buf2)`
-+ `buf.compare(target[, targetStart[, targetEnd[, sourceStart[, sourceEnd]]]])`：比较两个缓冲区
-+ `buf.equals(otherBuffer)`: 比较缓冲区的值是否相等
++ 比较
+  + `Buffer.compare(buf1, buf2)`: 比较缓冲区，相当于 `buf1.compare(buf2)`
+  + `buf.compare(target[, targetStart[, targetEnd[, sourceStart[, sourceEnd]]]])`：比较两个缓冲区
+  + `buf.equals(otherBuffer)`: 比较缓冲区的值是否相等
+  + `Buffer.compare()`/`buf.compare()` 返回的是 -1/0/1，主要用于排序
+  + `equals()` 返回一个布尔值
 ```js
 const buf1 = Buffer.from([66, 67, 68])
 const buf2 = Buffer.from([65, 66, 67])
@@ -234,15 +204,9 @@ const buf1 = Buffer.from([65, 66, 67])
 const buf2 = Buffer.from('ABC')
 console.log(buf1.equals(buf2)) // true
 ```
-
-::: tip 说明：
-+ `Buffer.compare()`/`buf.compare()` 返回的是 -1/0/1，主要用于排序
-+ `equals()` 返回一个布尔值
 :::
 
-
-### 迭代
-
+::: tab 迭代
 + 用 `for...of` 迭代
 + `buf.keys()`: 创建缓冲区的键迭代器
 + `buf.values()`: 创建缓冲区的值迭代器
@@ -261,10 +225,9 @@ for (const v of buf.keys()) { }
 for (const v of buf.values()) { }
 for (const v of buf.entries()) { }
 ```
+:::
 
-
-### 读取/写入
-
+::: tab 读取/写入
 + 关于数据类型、符号、大小端的概念可参考 [操作系统 - 信息的表示和处理]()
 + 读取方法：
 ```js
@@ -332,11 +295,9 @@ buf.writeFloatLE(value[, offset])
 buf.writeDoubleBE(value[, offset])
 buf.writeDoubleLE(value[, offset])
 ```
+:::
 
-
-
-
-### 其他
+::: tab 其他
 
 + `Buffer.isBuffer(obj)`: 判断是否为一个缓冲区对象
 + `Buffer.isEncoding(encoding)`: 判断是否支持指定字符编码
@@ -344,6 +305,10 @@ buf.writeDoubleLE(value[, offset])
 + `buf.indexOf(value[, byteOffset][, encoding])`: 返回该值在缓冲区中首次出现的索引(不存在时为 -1)
 + `buf.lastIndexOf(value[, byteOffset][, encoding])`: 类似 `indexOf()`，但从缓冲区末尾开始迭代
 + `buf.includes(value[, byteOffset][, encoding])`: 判断缓冲区是否包含值，相当于 `buf.indexOf() !== -1`
+:::
+::::
+
+
 
 
 

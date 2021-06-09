@@ -12,7 +12,7 @@ $ show dbs
 $ use testDB
 
 # 方式2: 使用 db.getSiblingDB() 方法
-$ db = db.getSiblingDB('testDB)
+$ db = db.getSiblingDB('testDB')
 ```
 
 
@@ -60,11 +60,10 @@ $ db.copyDatabase(origin, destination, [hostname])
 ## 集合
 
 + 对集合的操作都需要在数据库中进行，因此都需要切换句柄到相应数据库：`use testDB`
-
 + **显示集合：**
 ```sh
 $ use testDB
-$ show collections
+$ show collections  # 显示数据库 testDB 下的所有集合
 ```
 
 + **创建集合：**
@@ -73,10 +72,10 @@ $ show collections
 $ db.createCollection(name, [options])
 
 # options 选项对象有以下可选属性：
-#   capped：布尔值，默认 false。指定了集合是否是一个封顶集合(封顶集合不会增长到比 size 属性指定的最大规模更大)
 #   autoIndexID：布尔值，默认 true。表明是否自动为集合中的每个文档创建一个 _id 字段并实现该字段上的索引
 #   size：以字节为单位，用于封顶集合。最旧的文件被删除，腾出空间给新的文件
 #   max：在封顶集合中允许的最大文档数。最旧的文件被删除，腾出空间给新的文件
+#   capped：布尔值，默认 false。指定了集合是否是一个封顶集合(封顶集合不会增长到比 size 属性指定的最大规模更大)
 
 # 示例
 $ use testDB
@@ -88,5 +87,5 @@ $ db.createCollection('newCollection')
 ```sh
 $ use testDB
 $ coll = db.getCollection('newCollection')  # 获取集合句柄
-$ coll.drop()
+$ coll.drop()   # 删除
 ```

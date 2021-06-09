@@ -7,9 +7,7 @@ sidebarDepth: 2
 + MongoDB 是热门的 NoSQL(非关系式数据库)，基于文档的数据库
 + 支持事务()
 + 可以嵌入文档(反规范化数据)或引用文档(规范化数据)
-
-
-### 对比
++ 对比 MySQL：
 
 MongoDB|MySQL
 -|-
@@ -52,8 +50,8 @@ $ sudo chown -R user_name /usr/local/mongodb
 
 ### mongod 和 mongo
 
-+ `mongod`：启动 MongoDB 服务，类似启动一个 nodejs 服务，此后才能访问
-+ `mongo`：进入 MongoDB REPL，类似 Nodejs REPL，可以在里面使用 MongoDB 命令
++ `mongod`：启动 MongoDB 服务（类似启动一个 nodejs 服务），此后才能访问数据库
++ `mongo`：进入 MongoDB REPL（类似 Nodejs REPL），可以在里面使用 MongoDB 命令
 
 ::: warning 注意
 + 需要先使用 `mongod` 命令启动 MongoDB 服务，才能使用 `mongo` 命令进入 MongoDB REPL

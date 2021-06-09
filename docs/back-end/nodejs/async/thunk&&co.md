@@ -1,7 +1,3 @@
----
-sidebarDepth: 2
----
-
 ## 简介
 
 + 了解两种求值策略
@@ -15,16 +11,12 @@ sidebarDepth: 2
 
 ## thunk 函数
 
-### 简介
-
 + `thunk` 函数将多参数替换成单参数，贴近函数式编程，包含闭包、柯里化、高阶函数等概念
 + 任何函数只要参数中有回调函数，都能写成 `thunk` 函数的形式
 + `thunk` 函数用于结合 `Generator` 函数，并且在回调函数中交还执行权
 
-
-### 实现
-
-+ 简易实现
+:::: tabs
+::: tab 简易实现
 ```js
 // ES5
 var thunk = function(fn){
@@ -46,38 +38,46 @@ const thunk = function(fn) {
   }
 }
 ```
-+ 生产环境下的 thunkify 模块：引入检测机制，确保回调只执行一次
+:::
+
+::: tab thunkify 模块
++ 引入检测机制，确保回调只执行一次
 ```js
+var assert = require('assert');
+
+module.exports = thunkify;
+
 function thunkify(fn) {
+  assert('function' == typeof fn, 'function required');
   return function() {
-    var args = new Array(arguments.length)
-    var ctx = this
+    var args = new Array(arguments.length);
+    var ctx = this;
 
     for (var i = 0; i < args.length; ++i) {
-      args[i] = arguments[i]
+      args[i] = arguments[i];
     }
 
     return function (done) {
-      var called
+      var called;
 
       args.push(function () {
-        if (called) return
-        called = true
-        done.apply(null, arguments)
+        if (called) return;
+        called = true;
+        done.apply(null, arguments);
       })
 
       try {
-        fn.apply(ctx, args)
+        fn.apply(ctx, args);
       } catch (err) {
-        done(err)
+        done(err);
       }
-    }
+    };
   }
 }
 ```
+:::
 
-
-### 应用
+::: tab 应用
 
 + 用于 Generator 函数的自动流程管理
 ```js
@@ -112,14 +112,13 @@ const g = function* (){
 run(g)
 ```
 
-::: tip 说明
 + 运行解析：
   + 需要特别注意的是，`readFileThunk()` 是一个 Thunk 函数，也是一个高阶函数，并以柯里化的形式执行；传入第一个文件名参数时返回一个函数，还需继续传入回调，才会处理结果
   + `run()` 函数中，需要手动执行一个 `next()`，类似递归，但结束条件为 done 属性为 true
   + 调用生成器的 `next()` 时，必须传入当前的数据值，否则在生成器内部获取不到数据
 + 使用时，每一个异步操作都是 Thunk 函数，即在 yield 后的必须是 Thunk 函数
 :::
-
+::::
 
 
 
@@ -127,11 +126,12 @@ run(g)
 
 ## co 模块
 
-
-### 简介
-
+:::: tabs
+::: tab 简介
 + co 模块返回的是 `Promise`(在内部会将 Thunk 函数转为 `Promise`)
-+ co 可以作为 `Generator` 的执行器
++ 可以作为 `Generator` 的执行器
++ 可以搭配 `await` 使用(因为 `await` 后面可以接 `Promise`)
++ 不可以和 `async` 混用
 ```js
 const fs = require('fs')
 const co = require('co')
@@ -152,13 +152,13 @@ co(function* () {
   return [f1, f2, f3]
 }).then(console.log)
 ```
-+ co 可以搭配 `await` 使用(因为 `await` 后面可以接 `Promise`)
-+ co 不可以和 `async` 混用
+:::
 
-
-### 实现
-
+::: tab 简易实现
 + 基于 Promise 的自动执行
+  + 将异步处理包装成 `Promise` 对象，并不是包装为 thunk 函数
+  + 与使用 thunk 函数不同，此时 `yield` 后面是 `Promise`
+  + `run()` 的原理和使用 thunk 函数时相同
 ```js
 const fs = require('fs')
 
@@ -194,14 +194,12 @@ function run(gen) {
 
 run(gen)
 ```
-
-::: tip 说明
-+ 将异步处理包装成 `Promise` 对象，并不是包装为 thunk 函数
-+ 与使用 thunk 函数不同，此时 `yield` 后面是 `Promise`
-+ `run()` 的原理和使用 thunk 函数时相同
 :::
 
-+ co 模块核心代码
+::: tab co 模块
++ [源码](https://github.com/tj/co/blob/master/index.js)还包含一系列工具方法
++ `onFulfilled()`/`onRejected()` 添加一层包装主要用于捕获错误
++ 类似 thunk 函数，都要反复调用 `next()`，但 co 模块要考虑更多的边界以及数据的 `Promise` 化
 ```js
 function co(gen) {
   var ctx = this
@@ -256,22 +254,17 @@ function co(gen) {
   })
 }
 ```
-::: tip 说明
-+ [完整源码](https://github.com/tj/co/blob/master/index.js)还包含一系列工具方法
-+ `onFulfilled()`/`onRejected()` 添加一层包装主要用于捕获错误
-+ 和 thunk 函数的实现类似，都是要反复调用 `next()` 方法，但 co 模块要考虑更多的边界以及数据的 `Promise` 化
 :::
 
-
-
-
-### 应用
-
+::: tab 应用
 + 处理并发的异步操作
 ```js
 
 ```
+
 + 处理 Stream
 ```js
 
 ```
+:::
+::::

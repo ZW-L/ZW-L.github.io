@@ -38,7 +38,6 @@ query|
 
 
 ::: tab 连接
-
 + `mongoose.connect(dbUrl, options, [callback])`：连接数据库
   + dbUrl：String
   + options：
@@ -93,7 +92,6 @@ mongoose.connect(dbUrl, function(err, client) {
 
 
 ::: tab 路径
-
 + mongoose 使用 path(路径) 定义访问子文档(嵌套文档)，即之前的句点语法，只是说法不一样
 
 ```js

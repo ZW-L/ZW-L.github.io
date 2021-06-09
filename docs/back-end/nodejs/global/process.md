@@ -11,8 +11,10 @@ sidebarDepth: 2
 
 ## 事件
 
-### beforeExit
++ 一般事件
 
+:::: tabs
+::: tab beforeExit
 + 触发：当 Node.js 清空其事件循环并且没有其他工作要安排时
 + 回调参数：`process.exitCode` 属性指定的退出码
 + 通常，Node.js 进程将在没有调度工作时退出，但是在 `beforeExit` 事件上注册的监听器可以进行异步调用，从而导致 Node.js 进程继续
@@ -33,10 +35,9 @@ console.log('此消息最新显示')
 // 进程 beforeExit 事件的代码: 0
 // 进程 exit 事件的代码: 0
 ```
+:::
 
-
-### exit
-
+::: tab exit
 + 触发：显式调用 `process.exit()` 或 Node.js 事件循环不再执行其他工作时
 + 回调参数：`process.exitCode` 属性指定的退出码或传给 `process.exit()` 方法的 `exitCode` 参数
 + 此时无法阻止退出事件循环，一旦所有 `exit` 事件的监听器都已完成运行时，Node.js 进程将终止
@@ -48,60 +49,25 @@ process.on('exit', (code) => {
   }, 0)
 })
 ```
+:::
 
-
-### disconnect
-
+::: tab disconnect
 + 触发：使用 IPC 通道衍生了 Node.js 进程，在 IPC 通道关闭时
+:::
 
-
-### message
-
+::: tab message
 + 触发：使用 IPC 通道衍生了 Node.js 进程，当子进程收到父进程使用 `send()` 发送的消息时触发
 + 消息会进行序列化和解析，生成的消息可能与最初发送的消息不同
 + 如果在衍生进程时设置了 `serialization: advanced`，则 message 参数可以包含 JSON 无法表示的数据
+:::
 
-
-### multipleResolves
-
+::: tab multipleResolves
 + 触发：当 `Promise` 被 `resolve`/`reject` 不止一次或在两者之间切换时
 + 对于在使用 Promise 构造函数时跟踪应用程序中的潜在错误非常有用，因为会以静默方式吞没多个解决
 + 但事件的发生并不一定表示错误，如 `Promise.race()` 可以触发该事件
-
-
-### rejectionHandled
-
-+ 触发：当 `Promise` 被拒绝并且错误处理函数附加到晚于一个 Node.js 事件循环时
-
-
-
-### unhandledRejection
-
-+ 触发：当 `Promise` 被 reject 但它没有没有绑定错误处理器时
-+ 该事件在探测和跟踪 promise 被 reject 且未被处理的场景中是很有用的
-
-::: tip 备注：
-+ 使用 Promise 时，异常会以被 reject 的 promise 的形式封装
-+ reject 可以被 `promise.catch()` 捕获并处理，并且在 Promise 链中传播
 :::
 
-
-### uncaughtException
-
-+ 触发：未捕获的 JS 异常一直冒泡回到事件循环时
-+ 默认情况下，Node.js 通过将堆栈跟踪打印到 stderr 并使用 `exitCode: 1` 来处理此类异常(覆盖先前设置的 `process.exitCode`)
-+ 为该事件添加处理程序会覆盖默认行为
-+ 更改事件处理程序中的 `process.exitCode` 将导致进程退出并提供退出码，在存在这样的处理程序的情况下，进程将以 0 退出(避免出现无限循环的情况)
-+ 设置 `uncaughtExceptionMonitor` 监听器，可以监视该事件，而不会覆盖默认行为以退出该进程
-
-
-### uncaughtExceptionMonitor
-
-+ 触发：在 `uncaughtException` 事件触发前或调用 `process.setUncaughtExceptionCaptureCallback()`
-
-
-### warning 
-
+::: tab warning 
 + 触发：当 Node.js 触发进程警告时
 + 默认打印进程警告到 stderr，使用一些命令行选项
   + `--no-warnings`：阻止从 console 输出信息，但是 `warning` 事件仍会被 process 发出
@@ -110,8 +76,40 @@ process.on('exit', (code) => {
   + `--throw-deprecation`：使自定义的弃用警告打印到 stderr，包括其堆栈信息
   + `--no-deprecation`：阻止报告所有的自定义的弃用警告
   + `*-deprecation`：只会影响使用名字为 `DeprecationWarning` 的警告
+:::
+::::
 
 
++ 异常事件
+
+:::: tabs
+::: tab rejectionHandled
++ 触发：当 `Promise` 被拒绝并且错误处理函数附加到晚于一个 Node.js 事件循环时
+:::
+
+
+::: tab unhandledRejection
++ 触发：当 `Promise` 被 reject 但它没有没有绑定错误处理器时
++ 该事件在探测和跟踪 promise 被 reject 且未被处理的场景中是很有用的
+
+备注：
++ 使用 Promise 时，异常会以被 reject 的 promise 的形式封装
++ reject 可以被 `promise.catch()` 捕获并处理，并且在 Promise 链中传播
+:::
+
+
+::: tab uncaughtException
++ 触发：未捕获的 JS 异常一直冒泡回到事件循环时
++ 默认情况下，Node.js 通过将堆栈跟踪打印到 stderr 并使用 `exitCode: 1` 来处理此类异常(覆盖先前设置的 `process.exitCode`)
++ 为该事件添加处理程序会覆盖默认行为
++ 更改事件处理程序中的 `process.exitCode` 将导致进程退出并提供退出码，在存在这样的处理程序的情况下，进程将以 0 退出(避免出现无限循环的情况)
++ 设置 `uncaughtExceptionMonitor` 监听器，可以监视该事件，而不会覆盖默认行为以退出该进程
+:::
+
+::: tab uncaughtExceptionMonitor
++ 触发：在 `uncaughtException` 事件触发前或调用 `process.setUncaughtExceptionCaptureCallback()`
+:::
+::::
 
 
 
@@ -149,7 +147,8 @@ process.on('exit', (code) => {
 
 ## 方法
 
-### 进程相关
+:::: tabs
+::: tab 进程相关
 
 + `abort()`：结束进程并生成一个核心文件
 + `cpuUsage([previousValue])`：返回进程的用户 CPU 时间和系统 CPU 时间信息
@@ -169,18 +168,18 @@ process.on('exit', (code) => {
 + `setUncaughtExceptionCaptureCallback(fn)`：
 + `umask([mask])`：设置/返回 Node.js 进程的默认创建文件的权限掩码
 + `uptime()`：返回当前 Node.js 进程运行时间(秒)
+:::
 
-
-### 其他
+::: tab 其他
 
 + `cwd()`：返回当前的工作目录
 + `chdir(directory)`：切换当前的工作目录
 + `hrtime([time])`：返回当前时间的高精度解析值
 + `hrtime.bigint()`：返回当前的高精度实际时间
 + `nextTick(callback[, ...args])`：将 callback 添加到下一个时间点的事件队列
+:::
 
-
-### POSIX 平台
+::: tab POSIX 平台
 
 + `getgid()`：返回进程的数字标记的组身份
 + `getuid()`：返回进程的数字标记的用户身份
@@ -193,3 +192,5 @@ process.on('exit', (code) => {
 + `getgroups()`：返回补充的组 ID
 + `setgroups(groups)`：为进程补充组 ID
 + `initgroups(user, extraGroup)`：读取 `/etc/group` 文件并初始化组访问列表，包括了用户所在的所有组
+:::
+::::

@@ -80,14 +80,12 @@ sidebarDepth: 2
 
 ## Readable
 
-### 简介
-
 + 可读流是对提供数据的来源的一种抽象
 + 所有可读流都实现了 `stream.Readable` 类定义的接口
 + 在任意时刻，可读流会处于以下三种状态之一：`readable.readableFlowing === null || false || true`
 
-
-### 事件
+:::: tabs
+::: tab 事件
 
 + `error`：发生错误时触发
 + `readable`：当有数据可从流中读取时触发
@@ -139,9 +137,9 @@ times: 4, total: 2, data: d!
 正在关闭流...
 */
 ```
+:::
 
-
-### 属性
+::: tab 属性
 
 + `readable.readableEnded`：当 `end` 事件被触发时变为 `true`
 + `readable.destroyed`：在调用 `readable.destroy()` 之后为 `true`
@@ -151,9 +149,9 @@ times: 4, total: 2, data: d!
 + `readable.readableLength`：此属性包含准备读取的队列中的字节数（或对象数）
 + `readable.readableObjectMode`：获取用于给定可读流的 `objectMode` 属性
 + `readable.readableHighWaterMark`：返回构造可读流时传入的 `highWaterMark` 的值
+:::
 
-
-### 方法
+::: tab 方法
 
 + `readable.destroy([error])`: 销毁流
 + `readable.isPaused()`: 返回可读流当前的操作状态
@@ -175,19 +173,17 @@ r.pipe(z).pipe(w)
 + `readable.read([size])`: 从内部缓冲拉取并返回数据
 + `readable.unshift(chunk[, encoding])`: EOF 信号会被放在 buffer 的末尾，任何缓冲的数据仍将会被刷新
 + `readable[Symbol.asyncIterator]()`: 
-
-
+:::
+::::
 
 
 ## Writeable
 
-### 简介
-
 + 所有可写流都实现了 `stream.Writable` 类定义的接口
 + 可写流是对数据要被写入的目的地的一种抽象
 
-
-### 事件
+:::: tabs
+::: tab 事件
 
 + `error`: 写入数据发生错误时触发
 + `close`: 当流或其底层资源(比如文件描述符)被关闭时触发，使用 `emitClose` 选项创建的可写流始终会触发该事件
@@ -195,9 +191,9 @@ r.pipe(z).pipe(w)
 + `finish`: 调用 `stream.end()` 且缓冲数据都已传给底层系统之后触发
 + `pipe`: 在可读流上调用 `stream.pipe()` 方法时触发
 + `unpipe`: 在可读流上调用 `stream.unpipe()` 方法时触发；当可读流通过管道流向可写流发生错误时也会触发
+:::
 
-
-### 属性
+::: tab 属性
 
 + `writable.destroyed`：调用 `writable.destroy()` 之后为 true
 + `writable.writable`：若调用 `writable.write()` 是安全的，则为 true
@@ -207,9 +203,9 @@ r.pipe(z).pipe(w)
 + `writable.writableHighWaterMark`：返回构造可写流时传入的 `highWaterMark` 的值
 + `writable.writableObjectMode`：获取用于给定 Writable 流的 `objectMode` 属性
 + `writable.writableCorked`：为了完全 uncork 流所需要调用的 `writable.uncork()` 的次数
+:::
 
-
-### 方法
+::: tab 方法
 
 + `writable.destroy([error])`: 销毁流
 + `writable.cork()`: 强制把所有写入的数据都缓冲到内存中
@@ -217,44 +213,40 @@ r.pipe(z).pipe(w)
 + `writable.end([chunk[, encoding]][, callback])`: 表明之后没有数据写入可写流，此时可再写入一块数据
 + `writable.setDefaultEncoding(encoding)`: 为可写流设置默认的 `encoding`
 + `writable.write(chunk[, encoding][, callback])`: 写入数据到流，在数据被完全处理后触发回调
+:::
+::::
 
 
 
 
 ## Duplex
 
-### 简介
-
 + Duplex 同时实现了 Readable 和 Writable 接口
 
-
-### 实现
 
 
 
 ## Transform
 
-### 简介
-
 + Transform 是一种 Duplex 流，但它的输出与输入是相关联的
 + Transform 流也同时实现了 Readable 和 Writable 接口
 
-
-### 方法
-
+:::: tabs
+::: tab 方法
 + `transform.destroy([error])`: 销毁流，并可选地触发 `error` 事件
+:::
 
+::: tab 实现
++ 实现方式：
+:::
 
-### 实现
-
-
-
-## 其他 API
-
+::: tab 其他 API
 + `stream.Readable.from(iterable, [options])`: 从迭代器中创建可读流
 + `stream.finished(stream[, options], callback)`: 当流不再可读、可写、或遇到错误、或过早关闭事件时该函数会获得通知
 + `stream.pipeline(streams, callback)`: 一个模块方法，使用管道传送多个流，并转发错误和正确地清理，当管道完成时提供回调
 + `stream.pipeline(source[, ...transforms], destination, callback)`：一个模块方法，使用管道传送多个流，并转发错误和正确地清理，当管道完成时提供回调
+:::
+::::
 
 
 

@@ -92,7 +92,7 @@ for (const i of obj) {
 function* f(x) {
   const y = yield(x + 10)
   const z = yield(y / 2)
-  return (x + y+ z)
+  return (x + y + z)
 }
 
 const a = f(10)  // x = 10
@@ -274,7 +274,7 @@ function* numbers() {
 let jobs = [job1, job2, job3]
 
 function* iterateJobs(jobs){
-  for (let i=0; i< jobs.length; i++){
+  for (let i = 0; i < jobs.length; i++){
     let job = jobs[i]  // 依次执行任务
     yield* iterateSteps(job.steps)  // 每个任务里面还有很多步骤
   }
@@ -309,7 +309,7 @@ for (const i of obj) {
 + 修改数组的 `Iterator` 接口：
 ```js
 function* makeArrayGenerator(arr) {
-  for (let i=0; i<arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     yield 'step-' + arr[i];
   }
 }

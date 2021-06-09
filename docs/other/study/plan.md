@@ -19,13 +19,13 @@ sidebarDepth: 2
 |10|C 语言|掌握基础，便于学习 CS 基础|
 |10|数据结构和算法|强化编程思维、面试准备|
 |10|计算机网络|TCP/IP 协议、HTTP、DNS 等|
+|10|设计模式|23 种设计模式|
 |9|计算机组成和操作系统|计算机组成、架构，各功能的抽象，Linux 等|
 |9|数学|高等数学，离散数学，线性代数，组合数学，概率论等|
 |6|英语阅读|能独立阅读开源库文档、英文书籍、Chrome 搜索结果等|
 |6|数据库系统概论||
 |6|编译原理||
 |6|软件工程||
-|6|设计模式||
 
 
 
@@ -52,6 +52,15 @@ sidebarDepth: 2
 |7|运维|Python，Linux，Nginx，网络安全等|
 |6|人工智能|与时俱进|
 
+
+### 其他
+
+|权重|描述|内容|
+-|-|-
+10|Debug|基本的代码调试、纠错能力
+10|Git|代码管理和融入开源社区
+9|工具控|Vim、Chrome、VSCode 等工具使用、定制等
+7|玩机|Hackintosh，装机、云服务器相关
 
 
 ## 书单
@@ -196,8 +205,3 @@ sidebarDepth: 2
 
 + [javascript-algorithm](https://github.com/trekhleb/javascript-algorithms)：javascript 实现的数据结构和算法。不仅能学习算法，还能借鉴该项目的 OOP 思想、Jest 自动化测试、JsDoc 等的使用。
 + [jsdoc](https://github.com/jsdoc/jsdoc)：javascript 块注释，除了类型提示外还能生成文档。有利于团队协作，非常值得使用，如果你还没用 typescript 的话。
-
-
-
-## Todo
-

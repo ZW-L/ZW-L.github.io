@@ -15,3 +15,4 @@ code      # 直接启动 VS Code
 code .    # 在当前目录启动
 code ~/project/path   # 打开指定目录
 ```
+
