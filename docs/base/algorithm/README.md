@@ -54,9 +54,16 @@
 
 ## 算法分类
 
++ 数据结构和算法相辅相成：算法求解的过程通常要使用数据结构的辅助，而数据结构的实现过程也蕴含了众多的算法思想
++ 数据结构只用于辅助算法，而算法思想是算法的灵魂，一个完整的算法应该是由数据结构和算法思想组成的
++ 在我看来，以分类的方式学习算法，有两大优点：
+  1. 加深对数据结构的掌握，如其实现方式、使用场景
+  2. 更好地磨合数据结构和算法的关系，如在你选择了一个算法后便知道随后需要使用的数据结构，或是在选择一种数据结构后便知道其常用的算法；使分析问题的速度加快以及提高其准确程度
+
+
+
 ### 按算法思想
 
-数据结构只用于辅助算法，而算法思想是算法的灵魂，一个完整的算法应该是由数据结构和算法思想组成的：
 
 + `枚举`：即暴力求解，这个过程往往只使用循环去迭代问题的解，属于最简单且行之有效的方法；但随着问题的复杂化，算法往往变得更为复杂（更多的判断），以及更高的时间/空间渐进复杂度
 + `递归`：只有问题和子问题存在递推关系，就可以使用递归，递归唯一的代价是会使用额外的调用栈空间
@@ -166,3 +173,206 @@ a = tmp;
 // 由于解构赋值内部使用了 Iterator，导致空间复杂度会增加
 // 使用 benchmark 测试：解构赋值方式比临时变量方式慢 30%
 ```
+
+
+
+## 处理输入输出的模板
+
+### 每行为一组数据
+
++ 适用：每行是一组完整输入，行结束便输出结果
++ 例题：输入 n 行，每行是两个整数，输出它们的和
+```
+输入：
+12 22
+1 2
+50 100
+
+输出：
+34
+3
+150
+```
+
++ 代码示例
+
+:::: tabs
+::: tab JavaScript
++ 借助 `readline` 模块的 `createInterface()`
+```js
+const r1 = require("readline").createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+r1.on("line", str => {
+  const [a, b] = str.split(" ");
+  console.log(solution(+a, +b));
+});
+
+function solution(a, b) {
+  return a + b;
+}
+```
+:::
+
+::: tab Java
++ 使用 `Scanner` 工具类，以及相关方法
+```Java
+import java.util.*;
+
+public class Main {
+  public static void main(String args[]) {
+    int a, b;
+    Scanner cin = new Scanner(System.in);
+    
+    while (cin.hasNextInt()) {
+      a = cin.nextInt();
+      b = cin.nextInt();
+      System.out.println(solution(a, b));
+    }
+  }
+  
+  public static int solution(int a, int b) {
+    return a + b;
+  }
+}
+```
+:::
+
+::: tab C++
++ 使用 `<iostream>` 提供的输入输出流
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int solution(int a, int b);
+
+int main() {
+  int a, b;
+  cin >> a >> b;
+  cout << solution(a, b) << endl;
+  return 0;
+}
+
+int solution(int a, int b) {
+  return a + b;
+}
+```
+:::
+::::
+
+
+### 只包含一组数据
+
++ 适用：未指定数据行数时
++ 例题：[01背包](https://www.acwing.com/problem/content/2/)，数据的第一行是两个数值，分别为 $N$、$V$，表示物品的个数和背包的容量；紧跟 $N$ 行，每行两个数字分别代表物品的体积 $v_i$、价值 $w_i$。
+```
+输入：
+4 5
+1 2
+2 4
+3 4
+4 5
+
+输出：10
+其中 N = 4, V = 5, v = [1,2,3,4], w = [2,4,4,5]
+```
+
++ 代码示例：
+:::: tabs
+::: tab JavaScript
++ `readable` 事件持续读取数据，`end` 事件执行并打印结果
+```js
+let buf = "";
+
+process.stdin.on("readable", () => {
+  const chunk = process.stdin.read();
+  if (chunk) buf += chunk.toString();
+});
+
+process.stdin.on("end", () => {
+  let N, V;
+  const v = [];
+  const w = [];
+  
+  buf.split("\n").forEach((line, i) => {
+    const [a, b] = line.split(" ");
+    if (i === 0) {
+      N = +a;
+      V = +b;
+    } else {
+      v.push(+a);
+      w.push(+b);
+    }
+  });
+  
+  console.log(solution(N, V, v, w));
+});
+
+function solution(N, V, v, w) {
+  // ...
+}
+```
+:::
+
+::: tab Java
++ 依旧可以使用 `Scanner` 读取
+```java
+import java.util.*;
+
+public class Main {
+  public static void main(String args[]) {
+    int n, m;
+    int v[] = new int[1005];
+    int w[] = new int[1005];
+    int i = 1;
+    Scanner cin = new Scanner(System.in);
+
+    n = cin.nextInt();
+    m = cin.nextInt();
+    while (cin.hasNextInt()) {
+      v[i] = cin.nextInt();
+      w[i] = cin.nextInt();
+      i++;
+    }
+    
+    System.out.println(solution(n, m, v, w));
+  }
+  
+  public static int solution(int n, int m, int v[], int w[]) {
+    // ...
+  }
+}
+```
+:::
+
+::: tab C++
++ `cin` 的功能很强大，既能处理指定行数的输入，也能轻松应付不定行的输入
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int solution(int, int, int [], int []);
+
+const int LEN = 1005;
+int w[LEN];
+int v[LEN];
+
+int main() {
+  int n, m;
+  int i = 1;
+  cin >> n >> m;
+  while (cin >> v[i] >> w[i]) i++;
+  cout << solution(n, m, v, w) << endl;
+  return 0;
+}
+
+int solution(int n, int m, int v[], int w[]) {
+  // ...
+}
+```
+:::
+::::
