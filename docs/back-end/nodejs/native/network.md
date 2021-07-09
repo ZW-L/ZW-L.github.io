@@ -2,8 +2,18 @@
 sidebarDepth: 2
 ---
 
-## [http](http://nodejs.cn/api/http.html)
+## 简介
 
++ [http](http://nodejs.cn/api/http.html)：提供 HTTP 功能的基础模块
++ [https](http://nodejs.cn/api/https.html)：集成了 SSL 的 HTTP 模块
++ [http2](http://nodejs.cn/api/http2.html)：提供 HTTP2 功能
++ [net](http://nodejs.cn/api/net.html)：用于实现 TCP 服务的模块
++ [dgram](http://nodejs.cn/api/dgram.html)：用于实现 UDP 服务的模块
++ [dns](http://nodejs.cn/api/dns.html)：用于实现 DNS 服务的模块
+
+
+
+## http
 
 ### API
 
@@ -259,7 +269,7 @@ res.end()
 
 
 
-## [https](http://nodejs.cn/api/https.html)
+## https
 
 + https.Agent 类
 + https.Server 类
@@ -271,7 +281,7 @@ res.end()
 + `https.request(url[, options][, callback])`：
 
 
-## [http2](http://nodejs.cn/api/http2.html)
+## http2
 
 + Http2Session 类
 + ServerHttp2Session 类
@@ -290,19 +300,134 @@ res.end()
 + `http2.getUnpackedSettings(buf)`：
 
 
-## [net](http://nodejs.cn/api/net.html)
+## net
 
-+ net.Server
-+ net.Socket
-+ net.connect()
-+ net.createConnection()
-+ `net.createServer([options][, connectionListener])`：
-+ `net.isIP(input)`：
-+ `net.isIPv4(input)`：
-+ `net.isIPv6(input)`：
++ `net.Socket`：TCP 套接字，继承自双工流 `Duplex`
++ `net.Server`：继承自 `EventEmitter`
++ `net.createConnection()`：创建 TCP 链接，它有一个别名 `net.connect()`，返回 `net.Socket` 的实例
++ `net.createServer([options][, connectionListener])`：创建 TCP 服务端，返回 `net.Server` 的实例，回调函数中可访问 `net.Socket` 实例
++ `net.isIP(ip)`：检测 IP 地址，对 IPv4 返回 `4`，IPv6 返回 `6`，否则返回 `0`
++ `net.isIPv4(ip)`：检测是否是 IPv4 地址
++ `net.isIPv6(ip)`：检测是否是 IPv6 地址
 
 
-## [dns](http://nodejs.cn/api/dns.html)
+### 创建 TCP 服务端
+
+使用 `net.createServer()` 创建一个 TCP 服务端：
++ `client` 是一个 `net.Socket` 实例，可将其输出到可写流 `client.pipe(process.stdout)` 或它自身 `client.pipe(client)`
++ `client.write()`：对连接的客户端发送欢迎信息
++ 监听 `end` 事件，当客户端断开连接时，在服务端显示
+```js
+// server.js
+const net = require("net");
+
+let clients = 0;
+
+const server = net.createServer(client => {
+  clients++;
+  const clientId = clients;
+  console.log("Client connect: %d", clientId);
+
+  client.on("end", () => {
+    console.log("Client disconnect: %d", clientId);
+  });
+
+  client.write("Welcome client: " + clientId + "!\r\n"); // 发送欢迎信息到客户端
+  client.pipe(process.stdout); // 打印客户端发送的消息
+  client.pipe(client); // 将同样的消息发送给客户端
+});
+
+console.log(server instanceof net.Server); // server 是 net.Server 的实例
+// 监听 8000 端口
+server.listen(8000, () => {
+  console.log("Server started on port 8000.");
+});
+```
+
+打开一个终端（客户端），使用 `telnet` 连接至服务端：
+```sh
+$ telnet localhost 8000
+```
+
+还可以打开多个终端，同时连接到服务端，会显示不同 id 的欢迎消息。
+
+注：若要退出 `telnet`，按下 `Ctrl + ]` 组合键，输入 quit 并回车即可。
+
+
+### 创建 TCP 客户端
+
+使用 `net.connect()` 创建一个 TCP 连接：
+```js
+// client.js
+const net = require("net");
+
+function runTest() {
+  const client = net.connect(8000);
+
+  client.on("data", data => {
+    console.log(data.toString()); // 注意 data 是二进制数据
+  });
+
+  process.stdin.pipe(client); // 发送消息到服务端
+};
+
+runTest();
+```
+
+这里只是将 `telnet` 替换为 Node.js 创建的 TCP 客户端，同样，可以创建多个 TCP 客户端，连接到 TCP 服务端：
+```sh
+# 启动服务端
+$ node server.js
+# 创建客户端
+$ node client.js
+```
+
+::: tip 备注
+这种方式是利于测试的，将客户端、服务端拆分为模块，这样可以单独测试某一端。
+:::
+
+
+### 优化
+
+TCP 连接后会默认 [Nagle](https://en.wikipedia.org/wiki/Nagle%27s_algorithm) 算法，该算法会延迟数据，然后再通过网络发送数据（尝试以延迟为代价优化吞吐量）；简单来说，为了防止拥堵，Socket 将非常小的数据包收集起来一起发送，从而造成一定的延迟。
+
+由于目前的网络带宽已经有了很大的提升，可以关闭 Nagle 算法来降低延迟，提高用户体验。另外，在实时性要求高的应用（如游戏服务器）中，也建议关闭。
+
+使用 `socket.setNoDelay(true)` 关闭 Nagle 算法；同时，`server.unref()` 会导致在最后一个客户端断开时，关闭服务：
+```js
+const net = require("net");
+
+const server = net.createServer(client => {
+  client.setNoDelay(true); // 关闭 Nagle 算法
+  client.write("Welcome!\n", "binary");
+  console.log("Client connect.");
+
+  client.on("end", () => {
+    console.log("Client disconnect.");
+    server.unref(); // 在最后一个客户端断开时，关闭服务
+  });
+
+  client.on("data", data => {
+    process.stdout.write(data.toString() + "\n");
+    client.write(data.toString() + "\n");
+  })
+});
+
+server.listen(8000, () => {
+  console.log("Server started on port 8000.");
+});
+```
+
+
+## dgram
+
++ dgram.Socket 类
++ `dgram.createSocket(options[, callback])`
++ `dgram.createSocket(type[, callback])`
+
+
+
+## dns
 
 + dns.Resolver 类
 + `resolver.cancel()`
@@ -323,10 +448,3 @@ res.end()
 + `dns.resolveTxt(hostname, callback)`
 + `dns.reverse(ip, callback)`
 + `dns.setServers(servers)`
-
-
-## [dgram](http://nodejs.cn/api/dgram.html)
-
-+ dgram.Socket 类
-+ `dgram.createSocket(options[, callback])`
-+ `dgram.createSocket(type[, callback])`

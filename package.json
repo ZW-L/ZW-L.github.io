@@ -12,6 +12,7 @@
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.5.2",
     "animejs": "^3.2.1",
+    "async-validator": "^3.5.2",
     "markdown-it-katex": "^2.0.3",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
@@ -21,6 +22,7 @@
     "valine": "^1.4.14",
     "vuepress": "^1.5.2",
     "vuepress-plugin-element-tabs": "^0.2.8",
+    "vuepress-plugin-element-ui": "^1.1.0",
     "vuepress-plugin-reading-progress": "^1.0.10",
     "vuepress-plugin-smooth-scroll": "^0.0.9",
     "vuepress-plugin-zooming": "^1.1.7"
